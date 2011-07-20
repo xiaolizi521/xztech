@@ -81,7 +81,7 @@ if [[ -e "${DESTFILE}" ]]
 then
   
   # Grab the filesize
-  FILESIZE=`stat -c%s ${DESTFILE}}`
+  FILESIZE=`stat -c%s ${DESTFILE}`
 
   # Let's be reasonable. 500MB is good enough.
   # If a file reaches 500MB, it's time to compress.
@@ -97,7 +97,7 @@ then
     echo "Emptying ${DESTFILE}"
     # When it's done, no need for that file to grow anymore.
     cat /dev/null > "${DESTFILE}"
-    
+
   fi
 
 fi
