@@ -66,6 +66,10 @@ if [[ -f "${FILE}" ]]
 then
 
   echo "Appending ${FILE} to ${DESTFILE}"
+
+  # Mark the file. This is good for debugging.
+
+  cat "******* Timestamp: ${STAMP} **********"
   # Append the log file to the destination file.
   cat "${FILE}" >> "${DESTFILE}"
 
