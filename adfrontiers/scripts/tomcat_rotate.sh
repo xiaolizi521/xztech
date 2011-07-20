@@ -73,7 +73,7 @@ then
 
   # Mark the file. This is good for debugging.
 
-  cat "******* Timestamp: ${STAMP} **********" >> "${DESTFILE}"
+  echo "******* Timestamp: ${STAMP} **********" >> "${DESTFILE}"
   # Append the log file to the destination file.
   cat "${FILE}" >> "${DESTFILE}"
 
