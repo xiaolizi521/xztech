@@ -1,0 +1,8 @@
+#!/bin/sh
+cd /home/tomcat/tools/monitor/perl
+
+#nohup ./monitorPort.pl /usr/jdkhome/bin/java tomcat "sh -c '/sbin/service tomcat start'" /usr/tomcathome/logs/catalina.out http://media.jcarter.com:8080/xyzadmin &
+
+nohup ./monitorPort.pl /usr/jdkhome/bin/java tomcat "sh -c '/etc/init.d/tomcat start'" /usr/tomcathome/logs/catalina.out 'http://media.jcarter.com:8080/pq?t=j&s=8&at=5' &
+
+

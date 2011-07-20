@@ -1,0 +1,237 @@
+#!/usr/bin/perl
+use LWP::UserAgent;
+use FileHandle; # Or "IO::Handle" or "IO::"-anything-else
+
+my $thetry=0;
+
+sub printUsage
+{
+    print "Usage: monitorPort.pl javaproc tomcatuser restartcmd catalinaoutfile url\n";
+}
+if(int(@ARGV) != 5)
+{
+    print "Found ".length(@ARGV)." arguments\n"; 
+    printUsage();
+    exit(1);
+}
+my $serverproc = shift;
+my $serverprocuser = shift;
+my $restartcmd = shift;
+my $tomcatfile = shift;
+my $url = shift;
+my $serverStartupTimeout = 120;
+my $timeout = 20;
+
+open(LOGFILE, ">mon.log") || die "error appending mon.log";
+print LOGFILE "\n";
+
+LOGFILE->autoflush(1); # Make LOG hot.
+
+print LOGFILE "javaproc = $serverproc\n";
+print LOGFILE "tomcatuser = $serverprocuser\n";
+print LOGFILE "restartcmd = $restartcmd\n";
+print LOGFILE "catalinaoutfile = $tomcatfile\n";
+print LOGFILE "url = $url\n";
+print LOGFILE "timeout = $timeout\n";
+
+#my $serverproc = "/usr/java/jdk1.5.0_08/bin/java";
+#my $serverprocuser = "tomcat";
+#my $restartcmd = "sh -c '/sbin/service tomcat start'";
+#my $tomcatfile = "/usr/tomcathome/logs/catalina.out";
+#my $serverStartupTimeout = 60;
+#my $timeout = 20;
+
+#my $url = "http://127.0.0.1:9080/local_jcarter_media/pq?t=w&s=1&cm=8&ac=1&at=5&xvk=56266569";
+#my $url = "http://216.240.151.105:8080/xyzadmin";
+#pq?t=j&s=8&at=5";
+#my $url = "http://cnn.com/";
+#my $url = "http://it.ru/";
+
+
+my $first = 1;
+while(1)
+{
+    my $ua = new LWP::UserAgent;
+
+    $ua->agent("Monitor");
+    $ua->timeout(200);
+
+    my $req = new HTTP::Request GET => $url;
+
+    my $starttime = time();
+
+    my $res;
+    my $timedout = 0;
+    my $itTimeout = $timeout;
+    if($first)
+    {
+	$itTimeout = 200;
+    }
+    $first = 0;
+    eval {
+	local $SIG{ALRM} = sub { $timedout = 1; die "alarm\n" }; # NB: \n required
+	alarm $itTimeout;
+	$res = $ua->request($req);
+
+	alarm 0;
+    };
+    my $endtime = time();
+    my $timediff =$endtime-$starttime;
+    print LOGFILE localtime() . ":timedout = $timedout, timediff = $timediff\n";
+#    if($timedout == 1)
+#    {
+#	do_restart();
+#	next;
+#    }
+    if ($@) {
+#	die unless $@ eq "alarm\n";   # propagate unexpected errors
+	do_restart("Unexpected alarm error, time diff = $timediff");
+	next;
+	# timed out
+    }
+    else {
+	# didn't
+    }
+
+
+
+
+
+
+    my $content;
+
+    if ($res->is_success) 
+    {
+	$content= $res->content;
+    } 
+    else 
+    {
+	print LOGFILE "Could not get content\n";
+	do_restart("Couldn't get content, time diff = $timediff");
+	next;
+    }
+
+#    if(length($content) <=5)
+#    {
+#	do_restart("Content less than 5 bytes, time diff = $timediff");
+#	next;
+#    }
+    $thetry=0;
+    sleep(10);
+#print LOGFILE "c = ".$content."\n";
+#    print LOGFILE "content = ".length($content).", diff = " .$timediff ."\n";
+}
+
+
+
+sub do_restart
+{
+    my ($reason) = @_;
+
+    print LOGFILE localtime().":restart: $reason\n";
+
+    my $data = `tail -100000 $tomcatfile`;
+    
+
+    if (!($data =~ /Full GC/) && !($data =~ /SIGSEGV/) && !($data =~ /VoldemortClientNocookie.java:77/) && !($data =~ /Connections could not be acquired from the underlying database/)) {
+	print LOGFILE "Not restarting since there was no full GC/segv\n";
+	sleep(4);
+	# If no full GC, return
+	return;
+    }
+    
+
+    if ($thetry < 3)
+    {
+	$thetry++;
+	return;
+    }
+    $thetry = 0;
+    my $cmd;
+    my $caughttimestart = time();
+
+    $cmd = "killall -u $serverprocuser -s 9 $serverproc";
+    
+    print LOGFILE localtime().":cmd = $cmd\n";
+    system($cmd);
+    if($?)
+    {
+	print LOGFILE "Error with $cmd\n";
+    }
+    $cmd = $restartcmd;
+    print LOGFILE localtime().":cmd = $cmd\n";
+    system($cmd);
+    if($?)
+    {
+	print LOGFILE "Error with $cmd\n";
+    }
+
+    read_until_started();
+    print LOGFILE "Sleeping 120 secs\n";
+    sleep(120);
+    my $caughttimeend = time();
+    print LOGFILE localtime().": Took ". ($caughttimeend-$caughttimestart) ." seconds to restart\n";
+    
+}
+
+sub read_until_started {
+    open(FILE,"<$tomcatfile") || die "Couldn't read $tomcatfile";
+
+    my $start = time();
+
+    my $displayederror=0;
+    seek(FILE, -1, 2); 
+    while(1)
+    {
+	my $line = <FILE>;
+	if($line) {
+	    print LOGFILE "== $line";
+	    if($line =~ /Server startup/)
+	    {
+		print LOGFILE "Server started\n";
+		return;
+	    }
+	}
+	else {
+	    seek(FILE, 0, 1);
+	    sleep 1;
+	}
+	my $now = time();
+	my $secs = $now-$start;
+	if($secs >= $serverStartupTimeout)
+	{
+	    if($displayederror == 0)
+	    {
+		print LOGFILE "ERROR: server hasn't come up in $secs seconds\n";
+		$displayederror=1;
+		print LOGFILE "BEEP\n";
+		return;
+	    }
+	}
+    }
+#    for (;;) {
+#	for ($curpos = tell(FILE); $_ = <FILE>;
+#	     $curpos = tell(FILE)) {
+#	    # search for some stuff and put it into files
+#	}
+#	sleep($for_a_while);
+#        seek(FILE, $curpos, 0);
+#    }
+
+#   do
+#    {
+#	my $lastline = `tail -1 $tomcatfile`;
+#	print LOGFILE "lastline=$lastline\n";
+#	sleep(1);
+#    }while(1);
+
+#    my $file=File::Tail->new($tomcatfile);
+#    my $line;
+# 
+#   
+#    while (defined($line=$file->read)) {
+#	print LOGFILE "file = $file\n";
+#	print LOGFILE "$line";
+#    }
+
+}
