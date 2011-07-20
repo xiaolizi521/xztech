@@ -2,7 +2,7 @@
 
 # File: tomcat_rotate.sh
 # Package: N/A
-# Install Location: /var/spool/cron/root
+# Install Location: /opt/adfrontiers/contrib
 # Name: Tomcat Log Rotation
 #
 # Supported Platforms: N/A
