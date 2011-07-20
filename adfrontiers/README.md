@@ -13,6 +13,7 @@ development projects, these are simply scripts that I write to get the job done.
 In some cases they may be commissioned. If that is the case, they will note so within comments.
 
 Current Project Participants are:
+
 1.    **Adam Hubscher (Engineer & DBA)**
 2.    **Jon Erdman (Lead DBA/DBD)**
 
