@@ -13,7 +13,7 @@ development projects, these are simply scripts that I write to get the job done.
 In some cases they may be commissioned. If that is the case, they will note so within comments.
 
 Current Project Participants are:
-+ *Adam Hubscher (Myself)*
-+ *Jon Erdman*
++     *Adam Hubscher (Myself)*
++     *Jon Erdman*
 
 Others may join at a later date.
