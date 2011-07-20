@@ -40,7 +40,7 @@ LOGPATH="/usr/tomcathome/logs"
 ARCHPATH="/usr/tomcathome/logs/archive"
 
 # Current Date & Time for Archiving Purposes (If required)
-STAMP=$( `date +%Y%m%d_%H.%M` )
+STAMP=`date +%Y%m%d_%H.%M`
 
 # Make sure the log locations are created
 mkdir -p "${ARCHPATH}"
@@ -81,7 +81,7 @@ if [[ -e "${DESTFILE}" ]]
 then
   
   # Grab the filesize
-  FILESIZE=$( `stat -c%s ${DESTFILE}}` )
+  FILESIZE=`stat -c%s ${DESTFILE}}`
 
   # Let's be reasonable. 500MB is good enough.
   # If a file reaches 500MB, it's time to compress.
