@@ -25,24 +25,23 @@ then
   $iptables -A INPUT -p tcp -s 127.0.0.1 -j ACCEPT
   $iptables -A INPUT -i lo -j ACCEPT
   $iptables -A INPUT -s 127.0.0.1 -d $LOCALNET -p tcp -j ACCEPT
-
  
-  # allow ping
+  # ICMP
   $iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 180/minute -j ACCEPT
   $iptables -A INPUT -p icmp --icmp-type echo-reply -m limit --limit 180/minute -j ACCEPT
 
-  # Allow ec2 postgres
+  # EC2 Postgres
   $iptables -A INPUT -p tcp --dport 5432 -s 174.129.49.232 -j ACCEPT
   $iptables -A INPUT -p tcp --dport 5432 -s 184.73.148.68 -j ACCEPT
   $iptables -A INPUT -p tcp --dport 5432 -s 184.72.84.174 -j ACCEPT
   $iptables -A INPUT -p tcp --dport 5432 -s 50.17.104.220 -j ACCEPT
   $iptables -A INPUT -p tcp --dport 5432 -s 184.73.24.190 -j ACCEPT
 
-  # Allow local IPs
+  # RFC.1918 Address Space (Private Networks)
   $iptables -A INPUT -s 10.0.0.0/8 -j ACCEPT
   $iptables -A INPUT -d 10.0.0.0/8 -j ACCEPT
 
-  # Local Datacenter Block
+  # Public IP Space Allocation from Datacenter
   $iptables -A INPUT -p tcp -s $LOCALNET -j ACCEPT
  
   # HTTP/HTTPS Traffic
