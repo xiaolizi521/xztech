@@ -101,10 +101,10 @@ then
   $iptables -A OUTPUT -m state --state NEW,ESTABLISHED,RELATED -p tcp -j ACCEPT
   $iptables -A OUTPUT -m state --state NEW,ESTABLISHED -p tcp -j ACCEPT
 
-  # Zimbra (mail)
-  $iptables -A INPUT -p tcp --dport 9080 -j ACCEPT
-  $iptables -A INPUT -s 68.6.55.160/32 -p tcp --dport 7071 -j ACCEPT
-  $iptables -A INPUT -p tcp --dport 25 -j ACCEPT
+  # Sendmail. Local hosts only.
+  $iptables -A INPUT -p tcp -s 127.0.0.1 --dport 25 -j ACCEPT
+  $iptables -A INPUT -p tcp -s 10.0.0.0/8 --dport 25 -j ACCEPT
+  $iptables -A INPUT -p tcp -s $LOCALNET --dport 25 -j ACCEPT
 
   # Set DEFAULT to DENY (with LOGGING)
   $iptables -A INPUT -j LOGDROP
