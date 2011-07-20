@@ -110,7 +110,7 @@ then
     # When it's done, no need for that file to grow anymore.
     cat /dev/null > "${DESTFILE}"
 
-   # /bin/mail -s "Tomcat Rotation Archival Occurred" "offbeatadam@gmail.com" < ${MSGTMP}
+    /bin/mail -s "Tomcat Rotation Archival Occurred" "offbeatadam@gmail.com" < ${MSGTMP}
     rm ${MSGTMP}
   fi
 
