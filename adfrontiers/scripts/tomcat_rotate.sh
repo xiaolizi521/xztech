@@ -97,6 +97,8 @@ then
     echo "Emptying ${DESTFILE}"
     # When it's done, no need for that file to grow anymore.
     cat /dev/null > "${DESTFILE}"
+    
+  fi
 
 fi
 
