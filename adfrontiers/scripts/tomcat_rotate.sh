@@ -49,6 +49,10 @@ mkdir -p "${ARCHPATH}"
 FILE="${LOGPATH}/catalina.out"
 DESTFILE="${LOGPATH}/core2.production.log"
 
+# Temporary Message Storage for Emailing
+
+MSGTMP="/tmp/msg.txt"
+touch "${MSGTMP}"
 # Just in case, let's prep the file.
 
 if [[ ! -f "${DESTFILE}" ]]
@@ -93,15 +97,21 @@ then
   if [[ "${FILESIZE}" -gt 524288000 ]]
   then
     
+    # We want to keep tabs on this, so create a message.
+    echo "The tomcat log is too large. Compressiong is beginning." >> "${MSGTMP}"
+
     # Compress the file. We will use tar & bzip2.
     ARCHFILE="core2.production.log.${STAMP}.tar.bz2"
     echo "Compressing ${DESTFILE} to ${ARCHFILE}"
     tar cvjf "${ARCHPATH}/${ARCHFILE}" "${DESTFILE}"
 
-    echo "Emptying ${DESTFILE}"
+    echo "Archiving complete. Emptying fil" >> "${MSGTMP}"
+    echo "Emptying ${DESTFILE}" >> "${MSGTMP}"
     # When it's done, no need for that file to grow anymore.
     cat /dev/null > "${DESTFILE}"
 
+    /bin/mail -s "Tomcat Rotation Archival Occurred" "offbeatadam@gmail.com" < ${MSGTMP}
+    rm ${MSGTMP}
   fi
 
 fi
