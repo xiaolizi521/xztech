@@ -92,7 +92,7 @@ then
     # Compress the file. We will use tar & bzip2.
     ARCHFILE="core2.production.log.${STAMP}.tar.bz2"
     echo "Compressing ${DESTFILE} to ${ARCHFILE}"
-    tar cvzj "${ARCHPATH}/${ARCHFILE}" "${DESTFILE}"
+    tar cvjf "${ARCHPATH}/${ARCHFILE}" "${DESTFILE}"
 
     echo "Emptying ${DESTFILE}"
     # When it's done, no need for that file to grow anymore.
