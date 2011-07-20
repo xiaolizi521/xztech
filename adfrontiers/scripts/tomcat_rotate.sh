@@ -98,19 +98,21 @@ then
   then
     
     # We want to keep tabs on this, so create a message.
-    echo "The tomcat log is too large. Compressiong is beginning." >> "${MSGTMP}"
+    echo "The tomcat log has grown beyond 500MB. The file is being rotated." > "${MSGTMP}"
+    echo "This does not require any interaction from you. This is simply a notice." >> "${MSGTMP}"
+
+    echo "===== Current Archive Directory Tree ======" >> "${MSGTMP}"
+
+    ls -atlhr "${ARCHPATH}" | tee "${MSGTMP}"
 
     # Compress the file. We will use tar & bzip2.
     ARCHFILE="core2.production.log.${STAMP}.tar.bz2"
-    echo "Compressing ${DESTFILE} to ${ARCHFILE}"
     tar cvjf "${ARCHPATH}/${ARCHFILE}" "${DESTFILE}"
 
-    echo "Archiving complete. Emptying fil" >> "${MSGTMP}"
-    echo "Emptying ${DESTFILE}" >> "${MSGTMP}"
     # When it's done, no need for that file to grow anymore.
     cat /dev/null > "${DESTFILE}"
 
-    /usr/bin/mail -s "Tomcat Rotation Archival Occurred" "offbeatadam@gmail.com" < ${MSGTMP}
+    cat "${MSGTMP}" | mail -s "[NOTICE] Apache Tomcat Log Rotation (catalina.out)" "offbeatadam@gmail.com"
     rm ${MSGTMP}
   fi
 
