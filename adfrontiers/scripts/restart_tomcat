@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# File: restart_tomcat
+# Package: N/A
+# Install Location: /opt/adfrontiers/contrib
+# Name: Tomcat Control Script
+#
+# Supported Platforms: N/A
+#
+# Description: This is a simple script to restart the
+# tomcat process.
+#
+# Author: Adam Hubscher <offbeatadam AT gmail DOT com>
+# Version: 1.0
+# Last Updated: July 19th, 2011
+# Revision: 1
+
+# Set appropriate environment settings for Tomcat/JAVA
+ulimit -d unlimited
+ulimit -l 32
+ulimit -m unlimited
+ulimit -n 1000000
+ulimit -s 2048
+ulimit -u 16379
+ulimit -v unlimited
+
+## Control Section ##
+# Note: Pauses are due to Java's frequent delays
+
+# Stop Tomcat using the normal init script
+sudo -u tomcat sh -c '/etc/init.d/tomcat stop'
+sleep 1
+
+# Under no circumstance do we want tomcat running.
+pkill -hup -u tomcat -f java
+sleep 1
+pkill -9 -u tomcat -f java
+sleep 1
+
+# Start Tomcat Again
+sudo -u tomcat sh -c '/etc/init.d/tomcat start'

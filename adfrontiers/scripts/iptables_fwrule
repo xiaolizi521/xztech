@@ -1,10 +1,33 @@
-# Log all rejected packets
 #!/bin/bash
+
+# chkconfig: 2345 99 80
+
+### BEGIN INIT INFO
+# Provides: iptables-rules
+# Required-Start: $local_fs $network $remote_fs
+# Required-Stop: $local_fs $network $remote_fs
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: start stop adfrontiers firewall rules
+# Description: This script installs firewall rules for the system
+# to allow communication for the application.
 #
-#       /etc/init.d/cust_iptables.sh
+### END INIT INFO
+
+# File: iptables.sh
+# Package: N/A
+# Install Location: /opt/adfrontiers/contrib
+# Name: IPTables Rules Configuration
 #
-# chkconfig: 12345 44 56
-# description: Redirect port 80 traffic to 8080 and 433 to 8433
+# Supported Platforms: N/A
+#
+# Description: This is a simple script to configure iptables
+# in an automated fashion.
+#
+# Author: Adam Hubscher <offbeatadam AT gmail DOT com>
+# Version: 1.0
+# Last Updated: July 19th, 2011
+# Revision: 1
 
 ## Set Variables ##
 iptables=/sbin/iptables
