@@ -1,0 +1,16 @@
+CREATE LANGUAGE plperlu;
+\set ECHO none
+CREATE TEMP TABLE test(a INTEGER, b INTEGER, c INTEGER);
+INSERT INTO test VALUES(1, 2, 3);
+CREATE TRIGGER check_updates_on_test BEFORE INSERT OR UPDATE ON test
+FOR EACH ROW EXECUTE PROCEDURE check_updates('f', 'a', 'b', '%s + %s > 20', 'NEW.a', 'NEW.b');
+-- allow --
+UPDATE test SET c = 10;
+-- deny --
+UPDATE test SET a = 5, b = 4 WHERE a = 1;
+ERROR:  error from Perl trigger function: update of attribute "a" denied by the trigger "check_updates_on_test" when expression 5 + 4 > 20 is false at line 71.
+-- allow --
+UPDATE test SET a = 11, b = 10 WHERE a = 1;
+DROP LANGUAGE plperlu CASCADE;
+NOTICE:  drop cascades to function check_updates()
+NOTICE:  drop cascades to trigger check_updates_on_test on table test

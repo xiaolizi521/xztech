@@ -1,0 +1,101 @@
+.\"     Title: londiste
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 09/22/2008
+.\"    Manual: 
+.\"    Source: 
+.\"
+.TH "LONDISTE" "5" "09/22/2008" "" ""
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+londiste - PostgreSQL replication engine written in python
+.SH "SYNOPSIS"
+.sp
+.RS 4
+.nf
+[londiste]
+job_name = asd
+.fi
+.RE
+.SH "DESCRIPTION"
+The londiste configuration file follow the famous \.INI syntax\. It contains only one section named londiste\.
+.sp
+Most defaults values are reasonable ones\. That means you can only edit provider_db, subscriber_db and pgq_queue_name and be done with londiste configuration\.
+.sp
+.SH "OPTIONS"
+You can configure the following options into the londiste section\.
+.PP
+job_name
+.RS 4
+Each Skytools daemon process must have a unique job_name\. Londiste uses it also as consumer name when subscribing to queue\.
+.RE
+.PP
+provider_db
+.RS 4
+Provider database connection string (DSN)\.
+.RE
+.PP
+subscriber_db
+.RS 4
+Subscriber database connection string (DSN)\.
+.RE
+.PP
+pgq_queue_name
+.RS 4
+Name of the queue to read from\. Several subscribers can read from same queue\.
+.RE
+.PP
+logfile
+.RS 4
+Where to log londiste activity\.
+.RE
+.PP
+pidfile
+.RS 4
+Where to store the pid of the main londiste process, the replay one\.
+.RE
+.PP
+lock_timeout
+.RS 4
+Few operations take lock on provider (provider add/remove, compare, repair)\. This parameter specifies timeout in seconds (float) how long a lock can be held\. New in version 2\.1\.8\. Default: 10
+.RE
+.PP
+loop_delay
+.RS 4
+How often to poll events from provider\. In seconds (float)\. Default: 1\.
+.RE
+.SH "EXAMPLE"
+.sp
+.RS 4
+.nf
+[londiste]
+job_name = test_to_subcriber
+.fi
+.RE
+.sp
+.RS 4
+.nf
+provider_db = dbname=provider port=6000 host=127\.0\.0\.1
+subscriber_db = dbname=subscriber port=6000 host=127\.0\.0\.1
+.fi
+.RE
+.sp
+.RS 4
+.nf
+# it will be used as sql ident so no dots/spaces
+pgq_queue_name = londiste\.replika
+.fi
+.RE
+.sp
+.RS 4
+.nf
+logfile = /tmp/%(job_name)s\.log
+pidfile = /tmp/%(job_name)s\.pid
+.fi
+.RE
+.SH "SEE ALSO"
+londiste(1)
+.sp

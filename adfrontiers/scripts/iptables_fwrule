@@ -66,6 +66,21 @@ then
   $iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 180/minute -j ACCEPT
   $iptables -A INPUT -p icmp --icmp-type echo-reply -m limit --limit 180/minute -j ACCEPT
 
+  # DNS Inbound and Outbound Traffic
+  $iptables -A INPUT -p udp -s 0/0 --sport 1024:65535 -d 67.203.19.55 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+  $iptables -A OUTPUT -p udp -s 67.203.19.55 --sport 53 -d 0/0 --dport 1024:65535 -m state --state ESTABLISHED -j ACCEPT
+  $iptables -A INPUT -p udp -s 0/0 --sport 53 -d 67.203.19.55 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+  $iptables -A OUTPUT -p udp -s 67.203.19.55 --sport 53 -d 0/0 --dport 53 -m state --state ESTABLISHED -j ACCEPT
+  $iptables -A OUTPUT -p udp -s 67.203.19.55 --sport 1024:65535 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+  $iptables -A INPUT -p udp --sport 53 -d 67.203.19.55 --dport 1024:65535 -m state --state ESTABLISHED -j ACCEPT
+  $iptables -A OUTPUT -p tcp -s 67.203.19.55 --sport 1024:65535 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+  $iptables -A INPUT -p tcp --sport 53 -d 67.203.19.55 --dport 1024:65535 -m state --state ESTABLISHED -j ACCEPT
+  $iptables -A INPUT -p tcp --dport 53 -j ACCEPT
+  $iptables -A INPUT -p udp --dport 53 -j ACCEPT
+  $iptables -A OUTPUT -p tcp --dport 53 -j ACCEPT
+  $iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+
+
   # HTTP/HTTPS Traffic
   $iptables -A INPUT -p tcp --dport 80 -j ACCEPT 
   $iptables -A INPUT -p tcp --dport 443 -j ACCEPT

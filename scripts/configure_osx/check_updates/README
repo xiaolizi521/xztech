@@ -1,0 +1,128 @@
+This module contains several function implementing rules that restrict certain subset of update commands on a table. These functions are designed to be set as on update per-row triggers on a table.
+
+This work is sponsored by CashNet USA (cashnetusa.com) 
+Installation:
+
+cd contrib/check_updates
+make install
+
+Optionally you can run a regression test:
+make installcheck.
+
+Run psql to install any of function (deny_updates, allow_on_condition, check_updates) into a database:
+psql -f deny_updates.sql $databasename
+
+Make sure your PostgreSQL installation contains pl/perlu support and that pl/perlu is installed into the database.
+
+Usage:
+Create a new 'on update' trigger on the target table.
+ 
+CREATE TRIGGER deny_test_updates BEFORE UPDATE ON test 
+FOR EACH ROW EXECUTE PROCEDURE deny_updates('false', password);
+
+1. deny_updates
+
+Purpose: block updates to individual table columns. 
+
+Syntax:
+deny_updates(options, [fieldname1, fieldname2, ..., fieldnameN])
+
+Where:
+options - options for the trigger
+fieldname1, fieldname2, .. - names of the target fields
+
+Options:
+The following options are allowed (case insensitive). If multiple options are
+used, they must be comma delimited.
+
+ALLOW_LIST - list of fields is a list of fields that should allow updates
+(instead of the normal case of disallowing updates to listed fields)
+ONLY_FROM_NULL - fields can only be updated if they were originally NULL
+
+Note that for backwards compatibility you can pass in 'false', 'f', 'no' or 'n'
+to disallow updates of the given fields, or to 'true', 't', 'yes' or 'y' to
+disallow updates of all fields except for the given ones. This functionality is
+deprecated and may be removed in the future.
+
+Examples:
+
+Suppose we have a table called test, defined as: 
+CREATE TABLE test(id INTEGER, name VARCHAR, password VARCHAR);
+
+To disallow updates for the password field a trigger should be added using 
+the following command:
+
+CREATE TRIGGER deny_test_updates BEFORE UPDATE ON test 
+FOR EACH ROW EXECUTE PROCEDURE deny_updates('', password);
+
+If the goal is to allow updates on id field only then this command can be
+implemented:
+
+CREATE TRIGGER deny_test_updates BEFORE UPDATE ON test 
+FOR EACH ROW EXECUTE PROCEDURE deny_updates('ALLOW_LIST', id);
+
+or as an alternative:
+
+CREATE TRIGGER deny_test_updates BEFORE UPDATE ON test 
+FOR EACH ROW EXECUTE PROCEDURE deny_updates('', name, password);
+
+A trigger can be defined with an empty set of arguments. It will block all
+updates to the table.
+
+2. allow_on_condition
+
+Purpose: allow updates to the table only if the user supplied condition is satisfied.
+
+Syntax:
+allow_on_condition(condition_string, ['attribute1', 'attribute2', ..., 'attributeN']);
+
+Where:
+condition_string - a string with SQL condition, with %s placeholders instead of column names.
+attribute1, .. attributeN - list of tuple attribute names prefixed with either NEW. or OLD.
+
+Examples:
+
+Let's take the table test2 defined as: 
+CREATE TABLE test2(a INTEGER, b INTEGER, c INTEGER, d INTEGER);
+
+To make a trigger allowing updates only when c becomes equal to 5:
+
+CREATE TRIGGER c_should_be_5 BEFORE UPDATE ON test2 FOR EACH ROW 
+EXECUTE PROCEDURE allow_on_condition('%s = 5', NEW.c);
+
+To disallow updates to columns b and c:
+CREATE TRIGGER deny_b_c BEFORE UPDATE ON test2 FOR EACH ROW 
+EXECUTE PROCEDURE allow_on_condition('%s = %s AND %s = %s', 'OLD.b', 'NEW.b', 'OLD.c', 'NEW.c');
+
+Note: you can also deny_updates for the same effect:
+
+CREATE TRIGGER deny_b_c BEFORE UPDATE ON test2 FOR EACH ROW 
+EXECUTE PROCEDURE deny_updates('', b, c);
+
+To allow updates to column d only if column a is NOT NULL:
+CREATE TRIGGER allow_d_if_a BEFORE UPDATE ON test2 FOR EACH ROW 
+EXECUTE PROCEDURE allow_on_condition('%s IS NOT NULL OR (%s = %s)', 'NEW.a', 'OLD.d', 'NEW.d');
+
+3. check_updates
+
+Purpose: combine deny_updates and allow_on_condition in one function. The logic is to block updates if
+they change a set of 'deny_columns', unless the 'allow_condition' is satisfied.
+
+Syntax:
+check_updates(options, [column1, column2, ...,columnN], condition_string, ['attribute1', 'attribute2',..,'attributeN']),
+where:
+options - list of options (see deny_updates).
+[column1, ... columnN] - list of 'deny_columns' (see deny_updates)
+condition_string - a string representing the condition to check (see allow_on_condition)
+['attribute1', 'attribute2', 'attributeN'] - list of attributes for the condition (see alow_on_condition).
+
+Examples:
+
+Assume we have a table test:
+CREATE TABLE test(a INTEGER, b INTEGER, c INTEGER);
+
+To block updates to columns a and b unless value of column b + c is greater than 10 use this trigger:
+
+CREATE TRIGGER check_updates_on_test BEFORE UPDATE ON test FOR EACH ROW
+EXECUTE PROCEDURE check_updates('f', 'a', 'b', '%s + %s > 10', 'NEW.b', 'NEW.c');
+

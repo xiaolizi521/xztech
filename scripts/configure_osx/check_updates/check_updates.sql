@@ -1,0 +1,78 @@
+CREATE OR REPLACE FUNCTION check_updates() RETURNS TRIGGER AS 
+$$
+	BEGIN { strict->import(); }
+	
+	use lib "/opt/local/share/postgresql83/contrib";
+	use check_helper;
+	
+	# This should be a row level trigger */
+	die 'should be called as a row level trigger' unless ($_TD->{level} eq 'ROW');
+
+	# Do nothing if event is not UPDATE 
+	return if ($_TD->{event} ne 'UPDATE');
+	
+	die "$_TD->{name} takes at least 2 argument"
+	unless ($_TD->{argc} >= 2);
+	
+	my ($options_arg, $condition);
+	my @deny_columns = ();
+	my @condition_columns = ();
+	my $state = 0;
+			
+	foreach (@{$_TD->{args}}) {
+		if ($state == 0) {
+			# get the options for check_columns
+			$options_arg = uc($_);
+			$state++;
+			next;
+		}
+		elsif ($state == 1) {
+			# get the list of columns for check_columns.
+			# Read the values until they are valid column names.
+			if (defined $_TD->{new}{$_}) {
+				push @deny_columns, $_;
+				next;
+			} else {
+				$state++;
+			}
+		}
+		if ($state == 2) {
+			# get the condition to check
+			$condition = $_;
+			$state++;
+		} elsif ($state == 3) {
+			# get the columns for check_condition
+			push @condition_columns, $_;
+		} else {
+			# shouldn't be there
+			die "Invalid state: $state";
+		}
+	}
+	
+	# create a new instance of the 'helper' class.
+	my $ch = new check_helper($_TD);
+	my $result;
+	my $errmsg = "";
+	
+	eval {
+		# check whether this update touches columns that shouldn't change
+		$result = $ch->check_columns($options_arg, @deny_columns);
+		if ($result == 0) {
+			# this update should be denied, however, we allow it if the
+			# condition passed will be satisfied.
+			$errmsg = $ch->{errmsg};
+			$result = $ch->check_condition($condition, @condition_columns);
+		}
+	};
+	die $@ if ($@);
+	
+	if (!$result) {
+		$errmsg .= " when " . $ch->{errmsg};
+		$errmsg =~ s/, UPDATE is not allowed//;
+	die $errmsg
+}
+
+return;
+$$ LANGUAGE plperlu;
+
+-- vi: noexpandtab

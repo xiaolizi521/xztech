@@ -1,0 +1,474 @@
+.\"     Title: walmgr
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 09/22/2008
+.\"    Manual: 
+.\"    Source: 
+.\"
+.TH "WALMGR" "1" "09/22/2008" "" ""
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+walmgr - tools for managing WAL-based replication for PostgreSQL.
+.SH "SYNOPSIS"
+.sp
+.RS 4
+.nf
+walmgr\.py <config\.ini> command
+.fi
+.RE
+.SH "DESCRIPTION"
+It is both admin and worker script for PostgreSQL PITR replication\.
+.sp
+.SH "QUICK START"
+.sp
+.RS 4
+\h'-04' 1.\h'+02'Set up passwordless ssh authentication from master to slave
+.sp
+.RS 4
+.nf
+master$ test \-f ~/\.ssh/id_dsa\.pub || ssh\-keygen \-t dsa
+master$ cat ~/\.ssh/id_dsa\.pub | ssh slave cat \e>\e> \.ssh/authorized_keys
+.fi
+.RE
+.RE
+.sp
+.RS 4
+\h'-04' 2.\h'+02'Configure paths
+.sp
+.RS 4
+.nf
+master$ edit master\.ini
+slave$ edit slave\.ini
+.fi
+.RE
+.sp
+.RS 4
+.nf
+Make sure that walmgr\.py executable has same pathname on slave and master\.
+.fi
+.RE
+.RE
+.sp
+.RS 4
+\h'-04' 3.\h'+02'Start archival process and create a base backup
+.sp
+.RS 4
+.nf
+master$ \./walmgr\.py master\.ini setup
+master$ \./walmgr\.py master\.ini backup
+.fi
+.RE
+.RE
+.sp
+.RS 4
+\h'-04' 4.\h'+02'Prepare postgresql\.conf and pg_hba\.conf on slave and start replay
+.sp
+.RS 4
+.nf
+master$ scp $PGDATA/*\.conf slave:
+slave$ \./walmgr\.py slave\.ini restore
+.fi
+.RE
+.sp
+.RS 4
+.nf
+For debian based distributions the standard configuration files are located
+in /etc/postgresql/x\.x/main directory\. If another scheme is used the postgresql\.conf
+and pg_hba\.conf should be copied to slave full_backup directory\. Make sure to
+disable archive_command in slave config\.
+.fi
+.RE
+.sp
+.RS 4
+.nf
+\'walmgr\.py restore\' moves data in place, creates recovery\.conf and starts postmaster
+in recovery mode\.
+.fi
+.RE
+.RE
+.sp
+.RS 4
+\h'-04' 5.\h'+02'In\-progress WAL segments can be backup by command:
+.sp
+.RS 4
+.nf
+master$ \./walmgr\.py master\.ini sync
+.fi
+.RE
+.RE
+.sp
+.RS 4
+\h'-04' 6.\h'+02'If need to stop replay on slave and boot into normal mode, do:
+.sp
+.RS 4
+.nf
+slave$ \./walmgr\.py slave\.ini boot
+.fi
+.RE
+.RE
+.SH "GENERAL OPTIONS"
+Common options to all walmgr\.py commands\.
+.PP
+\-h, \-\-help
+.RS 4
+show this help message and exit
+.RE
+.PP
+\-q, \-\-quiet
+.RS 4
+make program silent
+.RE
+.PP
+\-v, \-\-verbose
+.RS 4
+make program more verbose
+.RE
+.PP
+\-n, \-\-not\-really
+.RS 4
+Show what would be done without actually doing anything\.
+.RE
+.SH "MASTER COMMANDS"
+.SS "setup"
+Sets up postgres archiving, creates necessary directory structures on slave\.
+.sp
+.SS "sync"
+Synchronizes in\-progress WAL files to slave\.
+.sp
+.SS "syncdaemon"
+Start WAL synchronization in daemon mode\. This will start periodically synching the in\-progress WAL files to slave\.
+.sp
+loop_delay use_xlog_functions
+.sp
+.SS "stop"
+Deconfigures postgres archiving\.
+.sp
+.SS "periodic"
+Runs periodic command, if configured\. This enables to execute arbitrary commands on interval, useful for synchronizing scripts, config files, crontabs etc\.
+.sp
+.SS "listbackups"
+List backup sets available on slave node\.
+.sp
+.SS "backup"
+Creates a new base backup from master database\. Will purge expired backups and WAL files on slave if keep_backups is specified\. During a backup a lock file is created in slave completed_wals directory\. This is to prevent simultaneous backups and resulting corruption\. If running backup is terminated, the BACKUPLOCK file may have to be removed manually\.
+.sp
+.SS "restore <set> <dst>"
+EXPERIMENTAL\. Attempts to restore the backup from slave to master\.
+.sp
+.SH "SLAVE COMMANDS"
+.SS "boot"
+Stop log playback and bring the database up\.
+.sp
+.SS "pause"
+Pauses WAL playback\.
+.sp
+.SS "continue"
+Continues previously paused WAL playback\.
+.sp
+.SS "listbackups"
+Lists available backups\.
+.sp
+.SS "backup"
+EXPERIMENTAL\. Creates a new backup from slave data\. Log replay is paused, slave data directory is backed up to full_backup directory and log replay resumed\. Backups are rotated as needed\. The idea is to move the backup load away from production node\. Usable from postgres 8\.2 and up\.
+.sp
+.SS "restore [src][dst]"
+Restores the specified backup set to target directory\. If specified without arguments the latest backup is \fBmoved\fR to slave data directory (doesn\'t obey retention rules)\. If src backup is specified the backup is copied (instead of moving)\. Alternative destination directory can be specified with dst\.
+.sp
+.SH "CONFIGURATION"
+.SS "Common settings"
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+job_name
+.RS
+Optional\. Indentifies this script, used in logging\. Keep unique if using central logging\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+logfile
+.RS
+Where to log\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+use_skylog
+.RS
+Optional\. If nonzero, skylog\.ini is used for log configuration\.
+.sp
+.RE
+.SS "Master settings"
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+pidfile
+.RS
+Pid file location for syncdaemon mode (if running with \-d)\. Otherwise not required\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+master_db
+.RS
+Database to connect to for pg_start_backup() etc\. It is not a good idea to use dbname=template if running syncdaemon in record shipping mode\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+master_data
+.RS
+Master data directory location\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+master_config
+.RS
+Master postgresql\.conf file location\. This is where archive_command gets updated\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+slave
+.RS
+Slave host and base directory\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+completed_wals
+.RS
+Slave directory where archived WAL files are copied\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+partial_wals
+.RS
+Slave directory where incomplete WAL files are stored\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+full_backup
+.RS
+Slave directory where full backups are stored\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+loop_delay
+.RS
+The frequency of syncdaemon updates\. In record shipping mode only incremental updates are sent, so smaller interval can be used\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+use_xlog_functions
+.RS
+Use pg_xlog functions for record based shipping (available in 8\.2 and up)\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+compression
+.RS
+If nonzero, a \-z flag is added to rsync cmdline\. Will reduce network traffic at the cost of extra CPU time\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+periodic_command
+.RS
+Shell script to be executed at specified time interval\. Can be used for synchronizing scripts, config files etc\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+command_interval
+.RS
+How ofter to run periodic command script\. In seconds, and only evaluated at log switch times\.
+.sp
+.RE
+.SS "Sample master\.ini"
+.sp
+.RS 4
+.nf
+[wal\-master]
+logfile              = master\.log
+pidfile              = master\.pid
+master_db            = dbname=template1
+master_data          = /var/lib/postgresql/8\.0/main
+master_config        = /etc/postgresql/8\.0/main/postgresql\.conf
+slave                = slave:/var/lib/postgresql/walshipping
+completed_wals       = %(slave)s/logs\.complete
+partial_wals         = %(slave)s/logs\.partial
+full_backup          = %(slave)s/data\.master
+loop_delay           = 10\.0
+use_xlog_functions   = 1
+compression          = 1
+.fi
+.RE
+.SS "Slave settings"
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+slave_data
+.RS
+Postgres data directory for the slave\. This is where the restored backup is copied/moved\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+slave_stop_cmd
+.RS
+Script to stop postmaster on slave\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+slave_start_cmd
+.RS
+Script to start postmaster on slave\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+slave
+.RS
+Base directory for slave files (logs\.comlete, data\.master etc)
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+completed_wals
+.RS
+Directory where complete WAL files are stored\. Also miscellaneous control files are created in this directory (BACKUPLOCK, STOP, PAUSE, etc\.)\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+partial_wals
+.RS
+Directory where partial WAL files are stored\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+full_backup
+.RS
+Directory where full backups are stored\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+keep_backups
+.RS
+Number of backups to keep\. Also all WAL files needed to bring earliest
+.sp
+backup up to date are kept\. The backups are rotated before new backup is started, so at one point there is actually one less backup available\.
+.sp
+It probably doesn\'t make sense to specify keep_backups if periodic backups are not performed \- the WAL files will pile up quickly\.
+.sp
+Backups will be named data\.master, data\.master\.0, data\.master\.1 etc\.
+.sp
+.RE
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+archive_command
+.RS
+Script to execute before rotating away the oldest backup\. If it fails backups will not be rotated\.
+.sp
+.RE
+.SS "Sample slave\.ini"
+.sp
+.RS 4
+.nf
+[wal\-slave]
+logfile              = slave\.log
+slave_data           = /var/lib/postgresql/8\.0/main
+slave_stop_cmd       = /etc/init\.d/postgresql\-8\.0 stop
+slave_start_cmd      = /etc/init\.d/postgresql\-8\.0 start
+slave                = /var/lib/postgresql/walshipping
+completed_wals       = %(slave)s/logs\.complete
+partial_wals         = %(slave)s/logs\.partial
+full_backup          = %(slave)s/data\.master
+keep_backups         = 5
+.fi
+.RE

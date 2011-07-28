@@ -1,0 +1,82 @@
+.\"     Title: skytools_upgrade
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 09/22/2008
+.\"    Manual: 
+.\"    Source: 
+.\"
+.TH "SKYTOOLS_UPGRADE" "1" "09/22/2008" "" ""
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+skytools_upgrade - utility for upgrading Skytools code in databases.
+.SH "SYNOPSIS"
+.sp
+.RS 4
+.nf
+skytools_upgrade\.py connstr [connstr \.\.]
+.fi
+.RE
+.SH "DESCRIPTION"
+It connects to given database, then looks for following schemas:
+.PP
+pgq
+.RS 4
+Main PgQ code\.
+.RE
+.PP
+pgq_ext
+.RS 4
+PgQ batch/event tracking in remote database\.
+.RE
+.PP
+londiste
+.RS 4
+Londiste replication\.
+.RE
+.sp
+If schema exists, its version is detected by querying \.version() function under schema\. If the function does not exists, there is some heiristics built in to differentiate between 2\.1\.4 and 2\.1\.5 version of ther schemas\.
+.sp
+If detected that version is older that current, it is upgraded by applying upgrade scripts in order\.
+.sp
+.SH "COMMAND LINE SWITCHES"
+Following switches are common to all skytools\.DBScript\-based Python programs\.
+.PP
+\-h, \-\-help
+.RS 4
+show help message and exit
+.RE
+.PP
+\-q, \-\-quiet
+.RS 4
+make program silent
+.RE
+.PP
+\-v, \-\-verbose
+.RS 4
+make program more verbose
+.RE
+.PP
+\-d, \-\-daemon
+.RS 4
+make program go background
+.RE
+.sp
+Following switches are used to control already running process\. The pidfile is read from config then signal is sent to process id specified there\.
+.PP
+\-r, \-\-reload
+.RS 4
+reload config (send SIGHUP)
+.RE
+.PP
+\-s, \-\-stop
+.RS 4
+stop program safely (send SIGINT)
+.RE
+.PP
+\-k, \-\-kill
+.RS 4
+kill program immidiately (send SIGTERM)
+.RE

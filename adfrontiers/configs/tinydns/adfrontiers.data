@@ -1,0 +1,30 @@
+# DNS for Adfrontiers
+
+# Primary Name Server and SOA Record
+.adfrontiers.com:67.203.19.42:ns1.adfrontiers.com:14400::
+
+# Secondary NS Record
+&adfrontiers.com:67.203.19.55:ns2.adfrontiers.com:14400::
+
+# MX Record
+@adfrontiers.com:72.20.4.6:mail.adfrontiers.com:1:14400::
+
+# A Records
++adfrontiers.com:67.203.19.34:3600::
++media.adfrontiers.com:67.203.19.35:3600::
++www.adfrontiers.com:67.203.19.34:3600::
+
+# Load Balancers
++lb1.adfrontiers.com:67.203.19.40:300::
++lb2.adfrontiers.com:67.203.19.41:300::
+
+# Database Servers/Core Servers
++core1.adfrontiers.com:67.203.19.42:300::
++core2.adfrontiers.com:67.203.19.43:300::
+
+# Media Servers
++media1.adfrontiers.com:67.203.19.51:300::
++media2.adfrontiers.com:67.203.19.52:300::
++media3.adfrontiers.com:67.203.19.53:300::
++media4.adfrontiers.com:67.203.19.54:300::
++media5.adfrontiers.com:67.203.19.55:300::
