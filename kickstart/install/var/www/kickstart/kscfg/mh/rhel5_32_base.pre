@@ -1,0 +1,32 @@
+#!/bin/sh
+
+exec < /dev/tty6 > /dev/tty6 2>/dev/tty6
+chvt 6 || echo "chvt didnt work" > /dev/tty6
+
+havepata=0
+havesata=0
+
+fdisk -l /dev/hda | grep ^Disk >/dev/null && havepata=1
+fdisk -l /dev/sda | grep ^Disk >/dev/null && havesata=1
+fdisk -l /dev/mapper/isw_*_Volume? | grep ^Disk >/dev/null && IntelOnboardRAID=1
+
+if [ $IntelOnboardRAID -eq 1 ] ; then
+    drive1=`basename \`ls /dev/mapper/isw_*_Volume0\``
+elif [ $havepata -eq 1 ] ; then
+    drive1=hda
+elif [ $havesata -eq 1 ] ; then
+    drive1=sda
+else
+    exit 1
+fi
+
+cat <<PART > /tmp/part-include
+clearpart --all
+partition /boot --fstype=ext2 --size=300 --ondisk $drive1 --asprimary
+partition pv.01 --size=1024 --grow --ondisk $drive1
+partition swap --size=1024 --grow --maxsize=2048 --ondisk $drive1 --asprimary
+volgroup SysVolGroup --pesize=32768 pv.01
+logvol / --fstype ext3 --name=LogVolRoot --vgname=SysVolGroup --size=1024 --grow
+PART
+
+chvt 1

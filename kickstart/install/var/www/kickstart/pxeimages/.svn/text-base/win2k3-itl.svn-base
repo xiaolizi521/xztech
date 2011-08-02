@@ -1,0 +1,2 @@
+KERNEL memdisk
+APPEND initrd=win2k3/DOSstage-itl.img

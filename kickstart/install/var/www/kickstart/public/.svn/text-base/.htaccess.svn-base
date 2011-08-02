@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_FILENAME} !/opt/kickstart/install/var/www/kickstart/public/fixIAD2resolvers.sh
+RewriteCond %{REQUEST_FILENAME} !/opt/kickstart/install/var/www/kickstart/public/logs.xsl
+RewriteCond %{REQUEST_FILENAME} !/opt/kickstart/install/var/www/kickstart/public/rhnUpgrade
+RewriteCond %{REQUEST_FILENAME} !/opt/kickstart/install/var/www/kickstart/public/rhnUpgrade.pl
+RewriteCond %{REQUEST_FILENAME} !/opt/kickstart/install/var/www/kickstart/public/sbadm_authorized_keys
+RewriteCond %{REQUEST_FILENAME} !/opt/kickstart/install/var/www/kickstart/public/testfile.bin
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ /index.php [NC,L]

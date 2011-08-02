@@ -1,0 +1,304 @@
+body {
+  margin:0px;
+  padding:0px;
+  font: x-small verdana, arial, helvetica, sans-serif;
+  color:#333;
+  background-color:white;
+}
+
+h1 {
+  margin:0px 0px 15px 0px;
+  padding:0px;
+  font-size: medium;
+  line-height: medium;
+  font-weight:900;
+  color:#666;
+}
+
+h2 {
+  font-size: small;
+  line-height: small;
+}
+
+h3 {
+  font-size: x-small;
+  line-height: x-small;
+}
+
+p {
+/*  font:11px/20px verdana, arial, helvetica, sans-serif;*/
+  margin:0px 0px 16px 0px;
+  padding:0px;
+}
+
+ul li {
+/*  font:11px/20px verdana, arial, helvetica, sans-serif;*/
+  list-style-type: none;
+}
+
+ul {
+  list-style:inside 0em; 
+  margin:0; 
+  padding:0;
+}
+
+.curr {
+  font-weight: bold;
+}
+
+.list {
+  overflow: auto;
+}
+
+.cntr {
+  text-align: center;
+}
+
+.left_ali {
+  text-align: left;
+}
+
+.left_flo {
+  float: left;
+}
+
+.right_ali {
+  text-align: right;
+}
+
+.right_flo {
+  float: right;
+}
+
+a {
+  text-decoration: none;
+  color:#333;
+  outline: none;
+}
+a:visited {}
+a:active {}
+a:hover {
+  text-decoration: underline; 
+  color: black;
+  background: #DDDDDD;
+}
+
+#top {
+  margin:15px 0px 10px 0px;
+  padding: 15px 20px 10px 20px;
+  /* For IE5/Win's benefit height = [correct height] + [top padding] + [top and bottom border widths] */
+  height:33px; /* 14px + 17px + 2px = 33px */
+  border-style:solid;
+  border-color:black;
+  border-width:1px 0px; /* top and bottom borders: 1px; left and right borders: 0px */
+  line-height:11px;
+/*  background-color:#eee; */
+  background-color:#AABBCC;
+  voice-family: "\"}\"";
+  voice-family:inherit;
+  height:14px; /* the correct height */
+}
+body>#top {height:14px;}
+
+#left {
+  position:absolute;
+  top:70px;
+  left:20px;
+  width:172px;
+  padding:10px;
+  background-color:#eee;
+  border:1px solid #999;
+  line-height:17px;
+  voice-family: "\"}\"";
+  voice-family:inherit;
+  width:150px;
+}
+body>#left {width:150px;}
+
+#notes {
+  position:absolute;
+  top:240px;
+  left:20px;
+  width:172px;
+  padding:10px;
+  background-color:#f3f3f3;
+  border:1px dashed #999;
+  line-height:17px;
+  voice-family: "\"}\"";
+  voice-family:inherit;
+  width:150px;
+}
+body>#notes {width:150px;}
+#notes li { 
+	list-style: square outside; 
+	margin-left: 1em;
+	margin-bottom: 0.5em;
+}
+
+#middle {
+  margin:0px 200px 50px 200px;
+  padding:10px;
+/*  border-style:solid;*/
+}
+
+#right {
+  position: absolute;
+  top: 70px;
+  right: 20px; /* Opera5.02 will show a space at right when there is no scroll bar */
+  padding: 10px;
+  background-color: #eee;
+  border: 1px solid #999;
+  line-height:17px;
+  width: 172px; /* ie5win fudge begins */
+  voice-family: "\"}\"";
+  voice-family:inherit;
+  width: 150px;
+}
+>body #right { width: 150px; }
+
+
+.alert {
+	color: blue;
+	background: white;
+}
+.error {
+	color: red;
+	background: white;
+}
+
+table.listing {
+	border: solid 1px black;
+}
+table.listing td {
+	background: #DDD;
+}
+th.grouped {
+	height: 3em; 
+	text-align: left; 
+	vertical-align: bottom; 
+	border-width: 0px 0px 1px 0px; 
+	border-style: solid; 
+	border-color: black;
+}
+input {
+	font: x-small verdana, arial, helvetica, sans-serif;
+}
+
+select {
+	font: x-small verdana, arial, helvetica, sans-serif;
+}
+
+textarea {
+	font: x-small verdana, arial, helvetica, sans-serif;
+}
+
+/* tooltips EXPERIMENTAL */
+.tooltip {
+    position:relative;
+    z-index:24;
+}
+
+.tooltip:hover {
+	z-index:25;
+}
+
+.tooltip div {
+	display: none;
+}
+
+/* for clickable <span>'s */
+
+.clickable {
+	color: black;
+	font-style: italic;
+	text-decoration: underline; 
+}
+.clickable:hover {
+	color: black;
+	background: #DDDDDD;
+	font-style: italic;
+}
+.tooltip div .clickable:hover {
+	cursor: help;
+	background: #DDDDDD;
+}
+
+.tooltip:hover div.tipspacer {
+	display: block; 
+	position: absolute;
+	top: 0em; left: 0em;
+	padding: 0em;
+
+	width: 15em; height: 1em;
+	
+	border: none 1px;
+	background: clear; 
+}
+
+.tooltip:hover div.tooltip {
+	display: block; 
+	position: absolute;
+	top: 1em; left: 5em;
+	padding: 0.5em;
+
+	width: 15em;
+
+	border: black 1px solid; 
+	text-decoration: none; 
+	background: white; 
+	color: black;
+	font-style: normal;
+	font-weight: normal;
+}
+
+
+form { /* makes all forms inline (not block level elemnts) */
+	display: inline;
+}
+
+dl dt {
+	font-weight: bold;
+	margin: 0.5em 0em 0em 0.5em;
+}
+
+input {
+	/* middle align all checkboxes -MIM */
+	vertical-align: middle;
+}
+
+.rightalign {
+	text-align: right;
+}
+.leftalign {
+	text-align: left;
+}
+
+
+.spam_label {
+	color: #FF0000; /* red */
+	font-weight: bold;
+}
+.hsrp_label, .l3_label, .vlan_label, .aggr_label {
+	color:  #0000FF; /* blue */
+}
+.static_label, .bgp_label, .aggr_label {
+	color: #800080; /* purple */
+}
+.host_label,.delg_label {
+	color: #008000; /* green */
+}
+.ipmaster_label,.arin_label,.rwhois_label, .owner_label {
+	color: #666666; /* darkgray */
+}
+
+input.textfield {
+	width: 20em;
+}
+
+.thinborder {
+	border: 1px solid black;
+}
+
+img {
+	border: none;
+}

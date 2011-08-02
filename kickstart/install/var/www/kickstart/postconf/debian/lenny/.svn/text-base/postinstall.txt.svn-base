@@ -1,0 +1,115 @@
+#!/bin/bash
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+export KSIPADDR=$1;
+export KSDOMAIN=$2;
+export SBPOST="/usr/local/sbpost"
+export POSTCONF="${SBPOST}/postconf.info"
+export POSTLOG="${SBPOST}/postconf.log"
+
+fetch() {
+    url=$1
+    post=$2
+    file=$3
+
+    if [ -z $url ] ; then return 1 ; fi
+    if [ -z $file ] ; then file="/dev/null" ; fi
+
+    if [ $post ] ; then
+        /usr/bin/curl --max-time 30 --data $post --output $file --silent $url
+    else
+        /usr/bin/curl --max-time 30 --output $file --silent $url
+    fi
+}
+
+if [ ! -d $SBPOST ] ; then
+        mkdir -p $SBPOST
+fi
+
+# For all you Geonirrific p30pl3 our there
+exec < /dev/tty6 > /dev/tty6 2>/dev/tty6
+chvt 6 || echo "chvt didnt work" > /dev/tty6
+
+if [ ! -d $SBPOST ] ; then
+        mkdir -p $SBPOST
+fi
+
+# Check to see if an IP is configured on eth0.  If not, failover to eth1.  This is 
+# an attempt to circumvent issues that occur on Dual Opteron servers were we cannot
+# disable eth0
+ifconfig eth0 | grep "inet addr"
+if [ $? -eq 0 ] ; then
+        MACADDR=`ifconfig eth0 | grep HWaddr | awk '{print $5}' | tr A-Z a-z`
+else
+        MACADDR=`ifconfig eth1 | grep HWaddr | awk '{print $5}' | tr A-Z a-z`
+fi 
+
+echo -n > $POSTCONF
+echo -n > $POSTLOG
+
+echo "postinstall.txt[INFO] Downloading and installing sbadm" >> $POSTLOG
+# Download and install sbadm.
+# Do this first to make sure we have a way in if something b0rks
+fetch http://${KSIPADDR}/installs/modules/sbadm.tgz "" /tmp/sbadm.tgz
+tar -C / -zxf /tmp/sbadm.tgz
+cd /etc/pam.d && ln -sf sshd sbadm
+/etc/init.d/ssh restart
+update-rc.d sbadm start 10 2 . start 10 3 . start 10 4 . start 10 5 .
+/etc/init.d/sbadm start
+echo "sbadm: ALL" >> /etc/hosts.allow
+
+postlog "INFO" "Setting up postboot environment (sbpost)"
+fetch http://$KSIPADDR/installs/modules/sbpost.tgz "" /tmp/sbpost.tgz
+tar -C / -zxvf /tmp/sbpost.tgz
+
+echo "postinstall.txt[INFO] Fetching postconf" >> $POSTLOG
+fetch http://${KSIPADDR}/kickstart/postconf/debian/lenny/postconf.txt "" /tmp/postconf.txt
+chmod +x /tmp/postconf.txt
+
+echo "postinstall.txt[INFO] Executing postconf" >> $POSTLOG
+/tmp/postconf.txt
+postres=$?
+[ $postres -eq 0 ] || echo "FATAL: postconf.txt ($postres)" >> ${POSTLOG}
+
+# Get useful information out of the postinstall configuration file
+. /boot/.serverbeach
+. $POSTCONF
+
+FATAL=$(grep -c FATAL ${POSTLOG})
+FATAL_MSG=$(grep -m 1 FATAL ${POSTLOG})
+
+if [ ! -s ${POSTLOG} ] || [ $FATAL -eq 0 ] ; then
+	if [ $PANEL == "cpanel" ] ; then
+		STATUS=cpl_wait
+	elif [ $PANEL == "ensim" ] ; then
+		STATUS=esm_wait
+	elif [ $PANEL == "plesk" ] ; then
+		STATUS=psa_wait
+	else
+		STATUS=ks_wait
+	fi
+else
+	STATUS=ksfail
+fi
+
+# Upgrading Repos and etc...
+groupadd root
+
+echo "Letting the kickstart server know we are done"
+fetch "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=${STATUS}"
+
+echo "Moving resolv.conf.new to resolv.conf"
+mv -v /etc/resolv.conf.new /etc/resolv.conf
+
+if [ $STATUS == "ksfail" ] ; then 
+	echo ${FATAL_MSG}
+	read FOO ;
+	exit 1 ; 
+fi
+
+touch /tmp/alldone
+
+# Remove the Geonirrificness
+chvt 1
+
+exit 0

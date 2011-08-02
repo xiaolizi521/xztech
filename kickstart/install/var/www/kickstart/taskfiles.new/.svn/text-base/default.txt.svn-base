@@ -1,0 +1,106 @@
+#!/bin/bash
+# =======================================================================
+# Company:              ServerBeach
+# Copyright(c):         ServerBeach, Ltd. 2006-2008
+# Project:              Kickstart Sub-System
+# Pri. Code Devloper:   SB Development Team
+# Creation Date:        2006-09-14
+#
+# File Type:            Taskfile     
+# File Name:            default.txt
+# Dependencies:         The SBRescue PXE RAM Disk Envrionment.    
+#
+# Discription:
+# This is the default task file the gets loaded and executed on a local
+# server by the SBRescue ram disk image.  It is written to operate under
+# the assumption that if a server has never been seen on the network (meaning
+# that there is no pxe target under /tftpdboot/pxe/pxelinux.cfg and in/on the 
+# mac_list table of the local Kickstart server database) the it will be the
+# first script that gets executed by SBRescue.
+#
+# Note: If a sever has been previously "Registered" on the kickstart system,
+# as been noted above, then this script will never be run. 
+#
+# Reference Info:
+#   - taskfile.cgi
+# =======================================================================
+
+# Source the following files and include them as part of this script
+. /etc/local.sh
+. /usr/lib/sbks_lib.sh
+
+# Export the following environment variables
+export KSIPADDR MACADDR IPADDR REALIP
+
+# Register the current state of the kick using register.cgi
+# By calling this web cgi that sits on the KS server it can register the current state of the kick.
+post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=holding"
+
+#Variable declaration
+reboot=0
+link="Y"
+
+# Write the following default message out the screeen
+# Note: by default if this is a new server it could be do to a chasis swap not just a
+# new server going to production.  If so then DCOPS will have the option to directly
+# link the server to an existing customer account at at the console. 
+cat <<EOF
+################################################################################
+################################################################################
+##                                                                            ##
+## This is a NEW server which has not been seen by the kickstart system yet.  ##
+##                                                                            ##
+## If this server contains the hard drive from a current customer, you MUST   ##
+## link the MAC address of this server to their account.                      ##
+##                                                                            ##
+################################################################################
+################################################################################
+EOF
+
+# Determine if this server needs to get linked to a an existing customer.
+echo -n "Does this server need to be linked to a customer? [Y/n/q]: "
+read link
+
+# Process: Quit
+if [ x"$link" == "xq" ] || [ x"$link" == "xQ" ] ; then exit 0 ; fi
+
+# Process: Linkserver
+echo x"$link" | grep "x[nN]" > /dev/null
+if [ $? -ne 0 ] ; then
+    # Begin linking customer
+	linkres=1
+	while [ $linkres -eq 1 ] ; do
+        sbtask linkserver
+		linkres=$?
+	done
+
+	echo "Server is now marked online.  Make sure it boots from local disk!"
+	echo "Hit any key to continue .."
+	read CONT
+	reboot=1
+    # End linking customer
+
+# Process: New Server registration.
+else
+	echo "You have choosen to not link this server to a customer."
+    echo "The kickstart system will now begin registering server as a new system by begining BURNIN.";
+	echo "Please Note: The BURNIN process will destroy any/all data that may be present on the system."
+	echo ""
+	echo -n "To begin please enter \"BURNIN\" at the prompt to proceed: "
+	read proceed
+	if [ $proceed == "BURNIN" ] ; then
+        # Update the kickstart system to set the next task to BURNIN.
+        post "http://${KSIPADDR}/cgi-bin/updateks.cgi" "macaddr=${MACADDR}&osload=burnin"
+		echo ""
+		echo "All done.  The server will burnin at the next kickstart run"
+        echo "It may take up to 15 minutes for the burnin process to start!"
+	else
+		echo "Aborting!  System will now reboot and go into SBRescue for another chance at this proces.."
+		reboot=1
+	fi
+fi
+
+# Check status of reboot var and reboot if set to true
+[ $reboot -eq 1 ] && shutdown -rn now
+
+exit 0

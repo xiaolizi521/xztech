@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/kickstart/!svn/ver/876/trunk/install/var/www/kickstart/sbpost/usr/local/sbpost/lib
+END
+sbks_lib.sh
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/kickstart/!svn/ver/876/trunk/install/var/www/kickstart/sbpost/usr/local/sbpost/lib/sbks_lib.sh
+END
+keep_me
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/sbpost/usr/local/sbpost/lib/keep_me
+END
+config.sh
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/kickstart/!svn/ver/859/trunk/install/var/www/kickstart/sbpost/usr/local/sbpost/lib/config.sh
+END

@@ -1,0 +1,80 @@
+#!/usr/bin/perl -wT
+
+BEGIN {
+    use lib qw(/exports/kickstart/lib);
+    require 'sbks.pm';
+}
+
+use strict;
+use Net::Ping ();
+use POSIX ":sys_wait_h";
+
+my $apacheUser;
+my $apacheUid;
+
+foreach (qw( apache www-data )) {
+    my @pw = getpwnam($_);
+    if (@pw) { $apacheUser = $_; $apacheUid = $pw[2]; }
+}
+
+if (($< != $apacheUid) && ($< != 0)) { exit 1; }
+
+my $target = untaint('ipaddr', $ARGV[0]);
+($target) || exit 1;
+my $command = $ARGV[1];
+if ($command =~ /^(.*)$/) { $command = $1; }
+else { exit 1; }
+
+#open LOG, ">/tmp/sbadm_wrapper.log";
+#print LOG "TARGET: $target\n";
+#print LOG "COMMAND: $command\n";
+#close LOG;
+
+$ENV{'PATH'} = "/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin";
+delete @ENV{'IFS', 'CDPATH', 'ENV', 'BASH_ENV'};
+
+$< = 0; $> = 0;
+
+my $icmp_ping = Net::Ping->new("icmp", 1);
+if (!$icmp_ping->ping($target)) {
+    print "FAILURE - ICMP PING\n";
+    exit 1;
+}
+my $tcp_ping = Net::Ping->new("tcp", 5);
+$tcp_ping->service_check(1);
+$tcp_ping->{port_num} = 225;
+if (!$tcp_ping->ping($target)) {
+    print "FAILURE - TCP PING\n";
+    exit 1;
+}
+
+$< = 505; $> = 505;
+
+my $result;
+
+$SIG{CHLD} = \&REAPER;
+sub REAPER {
+    my $stiff;
+    while (($stiff = waitpid(-1, &WNOHANG)) > 0) {
+        print "Reaping $stiff\n";
+        exit 1;
+    }
+    $SIG{CHLD} = \&REAPER;
+}
+
+eval {
+    local $SIG{ALRM} = sub { die "timeout" };
+    alarm 10;
+
+    my $sshcmd = "ssh -q -l root $target \"$command\"";
+    $result = `$sshcmd`;
+
+    alarm 0;
+};
+
+# We will probably never see this
+if ($@ and $@ !~ /timeout/) { die "$@"; }
+# But we should always see this
+if ($result and $result =~ /SUCCESS/) { print $result; exit 0; }
+else { print "FAILURE"; exit 1; }
+

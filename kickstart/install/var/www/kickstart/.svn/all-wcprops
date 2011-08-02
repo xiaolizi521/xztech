@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/kickstart/!svn/ver/1081/trunk/install/var/www/kickstart
+END
+patchfile
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/patchfile
+END
+migrate.pl
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/migrate.pl
+END
+rhel4ks.kscfg-anaconda
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/rhel4ks.kscfg-anaconda
+END

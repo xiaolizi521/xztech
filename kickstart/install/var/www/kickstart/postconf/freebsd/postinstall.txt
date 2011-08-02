@@ -1,0 +1,114 @@
+#!/usr/local/bin/bash
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+export KSIPADDR=`netstat -rnf inet | grep default | awk '{print $2}'`
+export KSDOMAIN=$2;
+export SBPOST="/usr/local/sbpost"
+export POSTCONF="${SBPOST}/postconf.info"
+export POSTLOG="${SBPOST}/postconf.log"
+
+fetch() {
+    url=$1
+    post=$2
+    file=$3
+
+    if [ -z $url ] ; then return 1 ; fi
+    if [ -z $file ] ; then file="/dev/null" ; fi
+
+    if [ $post ] ; then
+        /usr/local/bin/curl --max-time 30 --data $post --output $file --silent $url
+    else
+        /usr/local/bin/curl --max-time 30 --output $file --silent $url
+    fi
+}
+
+if [ ! -d $SBPOST ] ; then
+        mkdir -p $SBPOST
+fi
+
+# Find the device ID for the ethernet interface
+# This can be a number of different /dev names on FreeBSD
+#
+MSG=`dmesg | awk ' /Ethernet address/ { print $1 }' | sed 's/.\{1\}$//'`
+for i in $MSG; do
+    if ifconfig $i | grep 'status: active'; then
+     IFACE=$i; export IFACE
+     break
+    fi
+done
+
+# Check to see if an IP is configured on the ethernet interface.
+ifconfig $IFACE | grep "inet" | tail -1
+if [ $? -eq 0 ] ; then
+        MACADDR=`ifconfig $IFACE | grep ether | awk '{print $2}' | tr A-Z a-z`
+fi
+
+echo -n > $POSTCONF
+echo -n > $POSTLOG
+
+echo "postinstall.txt[INFO] Downloading and installing sbadm" >> $POSTLOG
+# Download and install sbadm.
+# Do this first to make sure we have a way in if something b0rks
+fetch http://${KSIPADDR}/installs/modules/freebsd/sbadm.tgz "" /tmp/sbadm.tgz
+tar -C / -zxf /tmp/sbadm.tgz
+cd /etc/pam.d && ln -sf sshd sbadm
+echo sbadm_enable=\"YES\" >> /etc/defaults/rc.conf
+echo sbadm_program=\"/usr/sbin/sshd\" >> /etc/defaults/rc.conf
+echo sbadm_flags=\"-f /etc/ssh/.sbadm_config\" >> /etc/defaults/rc.conf
+
+#/etc/init.d/ssh restart
+
+#NOT USED for FreeBSD
+#update-rc.d sbadm start 99 2 . start 99 3 . start 99 4 . start 99 5 .
+#/etc/init.d/sbadm start
+echo "sbadm: ALL" >> /etc/hosts.allow
+
+echo "postinstall.txt[INFO] Setting up postboot environment-sbpost" >> $POSTLOG
+fetch http://$KSIPADDR/installs/modules/freebsd/sbpost.tgz "" /tmp/sbpost.tgz
+tar -C / -zxvf /tmp/sbpost.tgz
+chmod +x $SBPOST/postconf.info
+echo "postinstall.txt[INFO] Fetching postconf" >> $POSTLOG
+fetch http://${KSIPADDR}/kickstart/postconf/freebsd/postconf.txt "" /tmp/postconf.txt
+chmod +x /tmp/postconf.txt
+
+echo "postinstall.txt[INFO] Executing postconf" >> $POSTLOG
+/tmp/postconf.txt
+postres=$?
+[ $postres -eq 0 ] || echo "FATAL: postconf.txt $postres" >> ${POSTLOG}
+
+# Get useful information out of the postinstall configuration file
+. /boot/.serverbeach
+. $POSTCONF
+
+FATAL=`grep -c FATAL ${POSTLOG}`
+
+if [ ! -s ${POSTLOG} ] || [ $FATAL -eq 0 ] ; then
+	if [ $PANEL == "cpanel" ] ; then
+		STATUS=cpl_wait
+	elif [ $PANEL == "ensim" ] ; then
+		STATUS=esm_wait
+	elif [ $PANEL == "plesk" ] ; then
+		STATUS=psa_wait
+	else
+		STATUS=ks_wait
+	fi
+else
+	STATUS=ksfail
+fi
+
+echo "Letting the kickstart server know we are done"
+fetch "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=${STATUS}"
+
+echo "Moving resolv.conf.new to resolv.conf"
+mv -v /etc/resolv.conf.new /etc/resolv.conf
+
+if [ $STATUS == "ksfail" ] ; then read FOO ; exit 1 ; fi
+
+touch /tmp/alldone
+
+sync; sync; sync; sync; sync; sync;
+
+echo "Halting Operating System"
+halt
+
+exit 0

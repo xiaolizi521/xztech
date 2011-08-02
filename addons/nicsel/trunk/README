@@ -1,0 +1,74 @@
+Related JIRA issues:
+
+DEBIAN-12
+UBUNTU-1
+
+There is a long standing issue where Debian and Ubuntu have required DCO
+to manually select a NIC during provisioning. This is frustrating for 
+DCO as well as time consuming. This also holds potential as it can
+cause a Rapid Reload to sit stalled for many days, if not caught by
+a member of DCO as the customer will never know or be able to perform the
+NIC selection on their own.
+
+Resolution to this issue is a two fold process.
+
+1) Add ipapppend 2 to the PXE target file for the kick
+2) Add S31nicsel to /lib/deb-installer-startup.d within the initrd.gz
+
+Instructions to complete (2) are as follows:
+
+The file we will be working with is initrd.gz. This file is stored in our
+TFTP directory, organized by OS and version. The example I will work with, 
+will be debian lenny.
+
+The directory is /tftpboot/pxe/debian/lenny. This directory is divided by 
+architecture, so please remember to do this for both. We will work on 64bit.
+
+1) Back up the initrd.
+2) Make a working directory. (mkdir lenny-initrd-amd64)
+3) Move into the working directory.
+4) Perform the following command:
+gunzip -c <path.to.initrd.gz> | cpio -id
+
+If you now look at the directory, you'll see what looks like a linux 
+root directory tree.
+
+Copy the script S31nicsel into the directory "/lib/deb-installer-startup.d" 
+and make it executable.
+
+Once this is done, you need to repack the initrd.
+
+5) Move back to the top of the working directory.
+6) Perform the following command:
+find . | cpio --create --format='newc' | gzip > ../initrd.gz.new
+
+Note: This does not overwrite the old one.
+
+If you are satisfied that you did everything correctly, move the file into place. 
+
+Make sure the permissions are set correctly by executing the following command:
+
+chmod --reference=<backup.initrd> initrd.gz
+
+**********************
+
+Description of Fix:
+
+Adding 'ipappend 2' to the host's pxelinux config file makes PXELINUX
+append the mac address of that interface to the kernel options.
+* http://syslinux.zytor.com/wiki/index.php/SYSLINUXIPAPPEND_flag_val_.5BPXELINUX_only.5D
+
+This allows the initrd to access to the mac address of the interface
+which PXE booted and is probably the interface we want to use for DHCP.
+
+Executing from the debian-installer-startup.d directory of the initrd,
+this script reads the value of the 'BOOTIF' kernel option and looks
+to see if there is an interface name with this mac address.
+If so, it then uses 'db_set' to change the 'netcfg/choose_interface'
+option to this interface name.
+
+Example /var/lib/tftpboot/pxelinux.cfg/default:
+LABEL install
+ kernel hardy-amd64
+ ipappend 2
+ append interface=auto [the rest of your options]

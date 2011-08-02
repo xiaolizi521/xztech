@@ -1,0 +1,17 @@
+#!/bin/bash
+
+archive() {
+    tar zcvf cpanel-ALL-everything.tgz \
+       installer.sh \
+       fixrndc.pl 
+}
+
+case "$1" in 
+    archive)
+        archive
+        ;;
+    *)
+    	echo "Usage 'sudo bash Make archive'"
+        exit 1
+        ;;
+esac

@@ -1,0 +1,2 @@
+RUN_DAEMON="yes"
+OPTIONS="-v -v -l -s /tftpboot -m /etc/tftpremap"

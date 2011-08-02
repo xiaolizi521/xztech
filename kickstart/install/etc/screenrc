@@ -1,0 +1,7 @@
+screen -t kslogd 0 /exports/kickstart/bin/kslogd.do_nothing
+screen -t pxed 1 /exports/kickstart/bin/pxed
+screen -t status 2 /exports/kickstart/bin/statuspipe.pl
+screen -t logs 3 /exports/kickstart/bin/logtail.sh
+screen -t trigger_dhcp 4 /exports/kickstart/bin/start_triggers.sh dhcp
+screen -t trigger_tftp 5 /exports/kickstart/bin/start_triggers.sh tftp
+

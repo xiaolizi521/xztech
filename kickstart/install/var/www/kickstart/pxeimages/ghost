@@ -1,0 +1,2 @@
+KERNEL memdisk
+APPEND initrd=ghost/BB-floppy_2002-04-04.img

@@ -1,0 +1,2 @@
+KERNEL memdisk
+APPEND initrd=win2k/DOSstage-b57.img

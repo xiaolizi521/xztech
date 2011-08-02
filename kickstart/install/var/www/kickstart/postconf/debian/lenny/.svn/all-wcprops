@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/898/trunk/install/var/www/kickstart/postconf/debian/lenny
+END
+postboot.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/kickstart/!svn/ver/886/trunk/install/var/www/kickstart/postconf/debian/lenny/postboot.txt
+END
+postconf.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/kickstart/!svn/ver/898/trunk/install/var/www/kickstart/postconf/debian/lenny/postconf.txt
+END
+postinstall.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/kickstart/!svn/ver/862/trunk/install/var/www/kickstart/postconf/debian/lenny/postinstall.txt
+END

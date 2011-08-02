@@ -1,0 +1,2 @@
+KERNEL memdisk
+APPEND initrd=beta2k/DOSstage-itl.img

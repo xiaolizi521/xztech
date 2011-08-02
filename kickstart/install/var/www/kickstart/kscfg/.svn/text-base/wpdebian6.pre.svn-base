@@ -1,0 +1,26 @@
+# Peer 1 Networks, 2011
+# Last Modified: May 3rd, 2011 by Adam Hubscher <ahubscher AT peer1 DOT com>
+
+# Wordpress Webhead, Squeeze (6.0)
+
+### Partition Layout
+
+d-i partman-auto/method string regular
+
+d-i partman-auto/expert_recipe string                           \
+      boot-root ::                                              \
+              75 85 100 ext3                                    \
+                      $primary{ } $bootable{ }                  \
+                      method{ format } format{ }                \
+                      use_filesystem{ } filesystem{ ext3 }      \
+                      mountpoint{ /boot }                       \
+              .                                                 \
+              500 10000 1000000000 ext4                         \
+                      method{ format } format{ }                \
+                      use_filesystem{ } filesystem{ ext4 }      \
+                      mountpoint{ / }                           \
+              .                                                 \
+              512 1024 300% linux-swap                          \
+                      $lvmok{ }                                 \
+                      method{ swap } format{ }                  \
+              .

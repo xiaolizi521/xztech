@@ -1,0 +1,7 @@
+#!/usr/local/bin/bash
+
+/usr/local/sbpost/sbpost.real
+
+rm -f /etc/rc.local
+
+exit 0

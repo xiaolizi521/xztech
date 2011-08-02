@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/addons/!svn/ver/69/p1post/src/p1post-1.0/usr/local/p1post/script.d
+END
+11firewall.sh
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/addons/!svn/ver/69/p1post/src/p1post-1.0/usr/local/p1post/script.d/11firewall.sh
+END
+00p1admin.sh
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/addons/!svn/ver/69/p1post/src/p1post-1.0/usr/local/p1post/script.d/00p1admin.sh
+END
+20rhn.sh
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/addons/!svn/ver/72/p1post/src/p1post-1.0/usr/local/p1post/script.d/20rhn.sh
+END
+00fixNamed.sh
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/addons/!svn/ver/69/p1post/src/p1post-1.0/usr/local/p1post/script.d/00fixNamed.sh
+END
+999update.sh
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/addons/!svn/ver/69/p1post/src/p1post-1.0/usr/local/p1post/script.d/999update.sh
+END
+10fixphpini.sh
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/addons/!svn/ver/66/p1post/src/p1post-1.0/usr/local/p1post/script.d/10fixphpini.sh
+END
+999mh.sh
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/addons/!svn/ver/69/p1post/src/p1post-1.0/usr/local/p1post/script.d/999mh.sh
+END
+15raid.sh
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/addons/!svn/ver/69/p1post/src/p1post-1.0/usr/local/p1post/script.d/15raid.sh
+END

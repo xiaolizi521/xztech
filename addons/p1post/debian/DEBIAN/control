@@ -1,0 +1,14 @@
+Source: p1post
+Section: unknown
+Priority: optional
+Maintainer: Adam Hubscher <ahubscher@peer1.com>
+
+Package: p1post
+Version: 1.0-1
+Section: base
+Priority: optional
+Architecture: all
+
+Description: Peer1 Post Installation Environment
+ This suite provides automated configuration and post installation task execution
+ for provisioned servers.

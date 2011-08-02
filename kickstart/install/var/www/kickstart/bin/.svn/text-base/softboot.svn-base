@@ -1,0 +1,80 @@
+#!/usr/bin/perl -wT
+
+# Called by apache to log into a server via sbadm and reboot it
+
+use strict;
+use Net::Ping ();
+use POSIX ":sys_wait_h";
+
+my $uid;
+
+open IFH, "</etc/passwd";
+while (<IFH>) {
+	if (/^(apache|www-data|sbadmin|root):/) {
+		chomp;
+		$uid = (split(/:/, $_))[2];
+		last;
+	} else { next; }
+}
+close IFH;                                                     
+if (($< != $uid) && ($< != 0)) { 
+	print "Failed UID check.\n";
+	exit 1; 
+}
+
+my $target = $ARGV[0];
+if ($target and $target =~ /^((\d{1,3}\.){3}\d{1,3})$/) {
+    $target = $1;
+}
+else {
+    print "Invalid or null IP address";
+    exit 1;
+}
+
+$< = 0; $> = 0;
+my $icmp_ping = Net::Ping->new("icmp", 1);
+if (!$icmp_ping->ping($target)) {
+    print "PING FAILURE\n";
+    exit 1;
+}
+my $tcp_ping = Net::Ping->new("tcp", 5);
+$tcp_ping->service_check(1);
+$tcp_ping->{port_num} = 225;
+if (!$tcp_ping->ping($target)) {
+    print "PING PORT 225 FAILURE\n";
+    exit 1;
+}
+
+$SIG{CHLD} = \&REAPER;
+sub REAPER {
+    my $stiff;
+    while (($stiff = waitpid(-1, &WNOHANG)) > 0) {
+        print "Reaping $stiff\n";
+        exit 1;
+    }
+    $SIG{CHLD} = \&REAPER;
+}
+
+$< = 505; $> = 505;
+$ENV{'PATH'} = "/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin";
+delete @ENV{'IFS', 'CDPATH', 'ENV', 'BASH_ENV'};
+
+my $result;
+
+eval {
+    local $SIG{ALRM} = sub { die "timeout" };
+    alarm 10;
+
+	print `whoami`;
+    my $sshcmd = "ssh -q -l root $target /sbin/shutdown -r now && echo SUCCESS";
+    $result = `$sshcmd`;
+
+    alarm 0;
+};
+
+# We will probably never see this
+if ($@ and $@ !~ /timeout/) { die "$@"; }
+
+if ($result and $result =~ /SUCCESS/) { print $result; exit 0; }
+else { print "LAST FAILURE"; exit 1; }
+

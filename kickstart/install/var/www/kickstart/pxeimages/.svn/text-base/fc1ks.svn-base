@@ -1,0 +1,2 @@
+KERNEL fc1/vmlinuz
+APPEND ks=http://MYIPADDR/cgi-bin/ks.cgi?ks=fc1 lang=en_US text initrd=fc1/initrd.img root=/dev/ram0 ramdisk_size=10240 hdc=none

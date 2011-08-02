@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svnroot/kickstart/!svn/ver/796/trunk/install/var/www/kickstart/configs/templates/apache2/sites-available
+END
+000-default
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svnroot/kickstart/!svn/ver/609/trunk/install/var/www/kickstart/configs/templates/apache2/sites-available/000-default
+END
+winstart-ssl
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svnroot/kickstart/!svn/ver/796/trunk/install/var/www/kickstart/configs/templates/apache2/sites-available/winstart-ssl
+END
+winstart
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svnroot/kickstart/!svn/ver/796/trunk/install/var/www/kickstart/configs/templates/apache2/sites-available/winstart
+END

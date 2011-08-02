@@ -1,0 +1,423 @@
+#!/bin/bash
+# =======================================================================
+# Company:              ServerBeach
+# Copyright(c):         ServerBeach, Ltd. 2006-2007
+# Project:              Kickstart Sub-System
+# Pri. Code Devloper:   SB Development Team
+# Creation Date:        2006-09-14
+#
+# File Type:            Taskfile     
+# File Name:            win2k3std-copy.txt 
+# Dependencies:         N/A    
+#
+# Discription:
+# This file is used to copy all windows 2003 files onto a sever system.
+# Specifcially this bash script is first loaded into the RAM SBRescue image and 
+# uses the Post Configuraiton information provided by OCEAN to copy the 
+# necessary windows install files on the hard disk.  Inclusive in these 
+# files is are any addons that are part of the system; these add on include
+# Databases and control panels.
+# =======================================================================
+
+# Source the following scripts.
+. /etc/local.sh
+. /usr/lib/sbks_lib.sh
+export KSIPADDR MACADDR IPADDR REALIP
+
+# These are the only variables that need to be changed between windows versions
+winver="2003"
+subver="std"
+target="/mnt/sysimage/"
+
+# Update the status of the provisioning process in the kickstart database
+post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${REALIP}&status=win2k_copy"
+
+# Check the system for the type of hard drives it has on it.
+havepata=0
+havesata=0
+postlog "INFO" "Checking for existence of drives"
+fdisk -l /dev/hda | grep ^Disk >/dev/null && havepata=1
+fdisk -l /dev/sda | grep ^Disk >/dev/null && havesata=1
+
+if [ $havepata -eq 1 ] ; then
+    disc="/dev/hda"
+    hdparm -d1 $disc
+elif [ $havesata -eq 1 ] ; then
+    disc="/dev/sda"
+else
+    postlog "ERR" "No PATA or SATA/SCSI drives found" "win2k_copyfail"
+fi
+
+# Mount the target drive and check to make sure it gets mounted
+mount -t vfat "${disc}1" $target 2>/dev/null
+grep "${disc}1" /proc/mounts || postlog "ERR" "Mounting ${disc}1 failed" "win2k_copyfail"
+
+# Setup the skelton directory on new server
+mkdir -p "${target}/skel"
+
+# Retrieve the post configuration informatio for this server
+# and writes it to the skel directory on the server
+post "http://${KSIPADDR}/cgi-bin/postconf.cgi" "macaddr=${MACADDR}" "${target}/skel/postconf.txt"
+
+# Retrieve the Windowws unattended installation file for this script
+# and writes it to the skel directory on the server
+post "http://${KSIPADDR}/cgi-bin/unattend.cgi" "macaddr=${MACADDR}" "${target}/skel/unattend.txt"
+
+# Retrieve the licenses information for this script
+# and writes it to the skel directory on the server
+post "http://${KSIPADDR}/cgi-bin/licenses.cgi" "macaddr=${MACADDR}" "/tmp/licenses.tgz"
+
+# Source the POST Configuration information that was just retrieved.
+. ${target}/skel/postconf.txt
+
+# Check to see if the licences have been retrieved and if 
+# unzip them the information.
+havelicenses=0
+if [ -s "/tmp/licenses.tgz" ] ; then
+	havelicenses=1
+	tar -C /tmp -zxf /tmp/licenses.tgz
+	mkdir -p "${target}/skel/licenses"
+fi
+
+# JR@2006-01-19: This has no importance other than creating this file
+# this should be removed in the future. 
+if [ $customer_number == 4 ] ; then
+    touch ${target}/skel/debug
+fi
+
+# Update the provisioning status to the kickstart database     
+post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${REALIP}&status=win2k_copy"
+
+# Rsync the root files and skel tree
+# Please note that --files-from: command allows for the list of
+# files that need to be rsynce to be read from a file: i.e. filelist.root
+rsync -rlptoDv --exclude .svn --files-from=:/windows/${winver}/${subver}/filelist.root rsync://${KSIPADDR}/installs/windows/${winver}/${subver}/ $target
+
+# Rsync Web Matrix stuff if we need it
+if [ ${ASPNET} -eq 1 ] ; then
+    rsync -rlptoDv --exclude .svn --files-from=:/windows/${winver}/${subver}/filelist.webmtrx rsync://${KSIPADDR}/installs/windows/${winver}/${subver}/ $target
+fi
+
+# Get MS SQL 2000 Workgroup if we need it
+if [ x"${DATABASE}" == x"mssqlwg" ] ; then
+    mkdir -p $target/skel/software/sql2kwg
+
+    rsync -rlptoDv --exclude .svn --files-from=:/windows/sql2kwg/filelist.sql2kwg rsync://${KSIPADDR}/installs/windows/sql2kwg/ $target/skel/software/sql2kwg/
+
+    if [ -s $target/skel/software/sql2kwg/filelist.sql2kwg ] ; then
+        postlog "INFO" "rsync of MS SQL Workgroup data complete"
+    else
+        postlog "ERR" "rsync of MS SQL Workgroup data incomplete"
+    fi
+fi
+
+# Get MS SQL 2005 Express if we need it
+mkdir -p $target/skel/software/sql2k5expr
+rsync -rlptoDv --exclude .svn --files-from=:/windows/sql2k5/Expr/filelist.sql2k5epr rsync://${KSIPADDR}/installs/windows/sql2k5/Expr/ $target/skel/software/sql2k5expr/
+
+if [ -s $target/skel/software/sql2k5expr/filelist.sql2k5epr ] ; then
+	postlog "INFO" "rsync of MS SQL Server 2005 Express data complete"
+else
+	postlog "ERR" "rsync of MS SQL Server 2005 Express data incomplete"
+fi
+
+# Get MS SQL 2005 Standard if we need it                
+if [ x"${DATABASE}" == x"mssql2k5std" ] ; then
+	mkdir -p $target/skel/software/sql2k5std          
+	rsync -rlptoDv --exclude .svn --files-from=:/windows/sql2k5/Std/filelist.sql2k5std rsync://${KSIPADDR}/installs/windows/sql2k5/Std/ $target/skel/software/sql2k5std/
+	
+	if [ -s $target/skel/software/sql2k5std/filelist.sql2k5std ] ; then
+		postlog "INFO" "rsync of MS SQL Server 2005 Standard data complete"
+	else                                                
+		postlog "ERR" "rsync of MS SQL Server 2005 Standard data incomplete"
+	fi
+fi
+
+# Get MS SQL 2005 Workgroup Standard if we need it                
+if [ x"${DATABASE}" == x"mssql2k5wg" ] ; then
+	mkdir -p $target/skel/software/sql2k5wg           
+	rsync -rlptoDv --exclude .svn --files-from=:/windows/sql2k5/Wg/filelist.sql2k5wg rsync://${KSIPADDR}/installs/windows/sql2k5/Wg/ $target/skel/software/sql2k5wg/
+	
+	if [ -s $target/skel/software/sql2k5wg/filelist.sql2k5wg ] ; then
+		postlog "INFO" "rsync of MS SQL Server 2005 Workgroup data complete"
+	else                                                                                                                
+		postlog "ERR" "rsync of MS SQL Server 2005 Workgroup data incomplete"
+	 fi
+ fi
+
+# Get MS SQL 2008 Installer Files if we need it                
+if [ x"${DATABASE:0:8}" == x"mssql2k8" ] ; then
+	mkdir -p $target/skel/software/sql2k8           
+	rsync -rlptoDv --exclude .svn --files-from=:/windows/sql2k8/filelist.sql2k8 rsync://${KSIPADDR}/installs/windows/sql2k8/ $target/skel/software/sql2k8/
+	
+	if [ -s $target/skel/software/sql2k8/filelist.sql2k8 ] ; then
+		postlog "INFO" "rsync of MS SQL Server 2008 data complete"
+	else                                                                                                                
+		postlog "ERR" "rsync of MS SQL Server 2008 data incomplete"
+	 fi
+ fi
+
+# Get ensim if we need it.
+# Ensime 3.6
+if [ x"${PANEL}" == x"ensim36" ] || [ x"${PANEL}" == x"ensim" ] ; then
+	# Make sure we have licenses
+    if [ $havelicenses -eq 1 ] ; then
+	    esmlic=`find /tmp/licenses -name W\*.lic`
+        if [ $esmlic ] && [ -s $esmlic ] ; then
+            cp -f $esmlic $target/skel/licenses/ensimpro.lic
+            if [ -s "$target/skel/licenses/ensimpro.lic" ] ; then
+                postlog "INFO" "$esmlic copied to skel/licenses/ensimpro.lic"
+            else 
+                postlog "ERR" "$esmlic license copy failed" "win2k_copyfail"
+            fi
+        else
+            postlog "ERR" "Ensim license not found" "win2k_copyfail"
+        fi
+    else
+        postlog "ERR" "No licenses available" "win2k_copyfail"
+    fi
+
+    # Remove this after Steven fixes the 3.6 installer for Windows 2000
+    if [ $winver -eq 2000 ] ; then esmver="3.2"
+    else esmver="3.6" ; fi
+
+    rsync -rlptoDv --exclude .svn --files-from=:/panels/ensim/windows/pro/$esmver/windows${winver}/filelist.ensim rsync://${KSIPADDR}/installs/panels/ensim/windows/pro/$esmver/windows${winver}/ $target/skel/software/ensim/
+
+    if [ -s $target/skel/software/ensim/filelist.ensim ] ; then
+        postlog "INFO" "rsync of Ensim data complete"
+    else
+        postlog "ERR" "rsync of Ensim data incomplete"
+    fi
+#Ensim 4.0
+elif [ x"${PANEL}" == x"ensim40win" ] ; then
+	# Make sure we have licenses
+    if [ $havelicenses -eq 1 ] ; then
+	    esmlic=`find /tmp/licenses -name W\*.lic`
+        if [ $esmlic ] && [ -s $esmlic ] ; then
+            cp -f $esmlic $target/skel/licenses/ensimpro.lic
+            if [ -s "$target/skel/licenses/ensimpro.lic" ] ; then
+                postlog "INFO" "$esmlic copied to skel/licenses/ensimpro.lic"
+            else 
+                postlog "ERR" "$esmlic license copy failed" "win2k_copyfail"
+            fi
+        else
+            postlog "ERR" "Ensim license not found" "win2k_copyfail"
+        fi
+    else
+        postlog "ERR" "No licenses available" "win2k_copyfail"
+    fi
+
+    esmver="4.0"
+    rsync -rlptoDv --exclude .svn --files-from=:/windows/${winver}/${subver}/filelist.webmtrx rsync://${KSIPADDR}/installs/windows/${winver}/${subver}/ $target
+
+    rsync -rlptoDv --exclude .svn --files-from=:/panels/ensim/windows/pro/${esmver}/windows${winver}/filelist.ensim rsync://${KSIPADDR}/installs/panels/ensim/windows/pro/${esmver}/windows${winver}/ $target/skel/software/ensim/
+
+    if [ -s $target/skel/software/ensim/filelist.ensim ] ; then
+        postlog "INFO" "rsync of Ensim data complete"
+    else
+        postlog "ERR" "rsync of Ensim data incomplete"
+    fi
+# Ensim Pro X (100 User and Unlimitted License)
+elif [ x"${PANEL}" == x"ensimProXwin100" ] || [ x"${PANEL}" == x"ensimProXwinUnl" ] ; then
+	esmver="10.0"
+	rsync -rlptoDv --exclude .svn --files-from=:/windows/${winver}/${subver}/filelist.webmtrx rsync://${KSIPADDR}/installs/windows/${winver}/${subver}/ $target
+	
+	rsync -rlptoDv --exclude .svn --files-from=:/panels/ensim/windows/pro/${esmver}/windows${winver}/filelist.ensim rsync://${KSIPADDR}/installs/panels/ensim/windows/pro/${esmver}/windows${winver}/ $target/skel/software/ensim/
+	
+	if [ -s $target/skel/software/ensim/filelist.ensim ] ; then
+	        postlog "INFO" "rsync of Ensim data complete"
+	else
+	        postlog "ERR" "rsync of Ensim data incomplete"
+	fi
+# Helm 3.1 Control Panel
+elif [ x"$PANEL" == x"helm31" ] ; then
+
+    rsync -rlptoDv --exclude .svn --files-from=:/panels/helm/filelist.helm31 rsync://${KSIPADDR}/installs/panels/helm/ $target/skel/software/helm/
+
+    if [ -s $target/skel/software/helm/filelist.helm31 ] ; then
+        postlog "INFO" "rsync of Helm data complete"
+    else
+        postlog "ERR" "rsync of Helm data incomplete"
+    fi
+# Helm 3.2 Control Panel
+elif [ x"$PANEL" == x"helm32" ] ; then
+        rsync -rlptoDv --exclude .svn --files-from=:/panels/helm/32/filelist.helm32 rsync://${KSIPADDR}/installs/panels/helm/32/ $target/skel/software/helm/        
+        if [ -s $target/skel/software/helm/filelist.helm32 ] ; then
+                postlog "INFO" "rsync of Helm 3.2 data complete"
+        else
+                postlog "ERR" "rsync of Helm 3.2 data incomplete"
+        fi
+# Helm 4 Control Panel
+elif [ x"$PANEL" == x"helm4" ] ; then
+        rsync -rlptoDv --exclude .svn --files-from=:/panels/helm/4/filelist.helm4 rsync://${KSIPADDR}/installs/panels/helm/4/ $target/skel/software/helm/        
+        if [ -s $target/skel/software/helm/filelist.helm4 ] ; then
+                postlog "INFO" "rsync of Helm 4 data complete"
+        else
+                postlog "ERR" "rsync of Helm 4 data incomplete"
+        fi
+# Plesk Control Panel 6.5
+elif [ x"$PANEL" == x"plesk65" ] ; then
+	# Make sure we have licenses
+    if [ $havelicenses -eq 1 ] ;then
+        psa_license=`find /tmp/licenses -name 'PLSK*.exe'`
+        if [ $psa_license ] && [ -s $psa_license ] ; then
+            cp -f $psa_license $target/skel/licenses/psa65lic.exe
+            if [ -s $target/skel/licenses/psa65lic.exe ] ; then
+                postlog "INFO" "Plesk license copied to skel/licenses/psa65lic.exe"
+            else
+                postlog "ERR" "Plesk license copy failed" "win2k_copyfail"
+            fi
+        else
+            postlog "ERR" "Plesk license not found" "win2k_copyfail"
+        fi
+    else
+        postlog "ERR" "No licenses available" "win2k_copyfail"
+    fi
+
+    rsync -rlptoDv --exclude .svn --files-from=:/panels/plesk/windows/6.5/filelist.plesk rsync://${KSIPADDR}/installs/panels/plesk/windows/6.5/ $target/skel/software/plesk/
+
+    if [ -s $target/skel/software/plesk/filelist.plesk ] ; then
+        postlog "INFO" "rsync of Plesk data complete"
+    else
+        postlog "ERR" "rsync of Plesk data failed"
+    fi
+# Plesk Control Panel 7.0
+elif [ x"$PANEL" == x"plesk7" ] ; then
+	# Make sure we have licenses
+    if [ $havelicenses -eq 1 ] ;then
+        psa_license=`find /tmp/licenses -name 'PLSK*.exe'`
+        if [ $psa_license ] && [ -s $psa_license ] ; then
+            cp -f $psa_license $target/skel/licenses/psa7lic.exe
+            if [ -s $target/skel/licenses/psa7lic.exe ] ; then
+                postlog "INFO" "Plesk license copied to skel/licenses/psa7lic.exe"
+            else
+                postlog "ERR" "Plesk license copy failed" "win2k_copyfail"
+            fi
+        else
+            postlog "ERR" "Plesk license not found" "win2k_copyfail"
+        fi
+    else
+        postlog "ERR" "No licenses available" "win2k_copyfail"
+    fi
+
+    rsync -rlptoDv --exclude .svn --files-from=:/panels/plesk/windows/7/filelist.plesk rsync://${KSIPADDR}/installs/panels/plesk/windows/7/ $target/skel/software/plesk/
+
+    if [ -s $target/skel/software/plesk/filelist.plesk ] ; then
+        postlog "INFO" "rsync of Plesk data complete"
+    else
+        postlog "ERR" "rsync of Plesk data failed"
+    fi
+# Plesk Control Panel 7.5
+elif [ x"$PANEL" == x"plesk75" ] ; then
+	# Make sure we have licenses
+    if [ $havelicenses -eq 1 ] ;then
+        psa_license=`find /tmp/licenses -name 'PLSK*.exe'`
+        if [ $psa_license ] && [ -s $psa_license ] ; then
+            cp -f $psa_license $target/skel/licenses/psa75lic.exe
+            if [ -s $target/skel/licenses/psa75lic.exe ] ; then
+                postlog "INFO" "Plesk license copied to skel/licenses/psa7lic.exe"
+            else
+                postlog "ERR" "Plesk license copy failed" "win2k_copyfail"
+            fi
+        else
+            postlog "ERR" "Plesk license not found" "win2k_copyfail"
+        fi
+    else
+        postlog "ERR" "No licenses available" "win2k_copyfail"
+    fi
+
+    rsync -rlptoDv --exclude .svn --files-from=:/panels/plesk/windows/7.5.1/filelist.plesk rsync://${KSIPADDR}/installs/panels/plesk/windows/7.5.1/ $target/skel/software/plesk/
+
+    if [ -s $target/skel/software/plesk/filelist.plesk ] ; then
+        postlog "INFO" "rsync of Plesk data complete"
+    else
+        postlog "ERR" "rsync of Plesk data failed"
+    fi
+elif [ x"$PANEL" == x"plesk81" ] ; then
+        # Make sure we have licenses
+    if [ $havelicenses -eq 1 ] ;then
+        psa_license=`find /tmp/licenses -name 'PLSK*.xml'`
+        if [ $psa_license ] && [ -s $psa_license ] ; then
+            cp -f $psa_license $target/skel/licenses/psa8lic.xml
+            if [ -s $target/skel/licenses/psa8lic.xml ] ; then
+                postlog "INFO" "Plesk license copied to skel/licenses/psa8lic.xml"
+            else
+                postlog "ERR" "Plesk license copy failed" "win2k_copyfail"
+            fi
+        else
+            postlog "ERR" "Plesk license not found" "win2k_copyfail"
+        fi
+    else
+        postlog "ERR" "No licenses available" "win2k_copyfail"
+    fi
+
+    rsync -rlptoDv --exclude .svn --files-from=:/panels/plesk/windows/8.1.0/filelist.plesk rsync://${KSIPADDR}/installs/panels/plesk/windows/8.1.0/ $target/skel/software/plesk/
+
+    if [ -s $target/skel/software/plesk/filelist.plesk ] ; then
+        postlog "INFO" "rsync of Plesk data complete"
+    else
+        postlog "ERR" "rsync of Plesk data failed"
+    fi
+# Plesk Control Panel 8.3
+elif [ x"$PANEL" == x"plesk83" ] ; then
+        # Make sure we have licenses
+    if [ $havelicenses -eq 1 ] ;then
+        psa_license=`find /tmp/licenses -name 'PLSK*.xml'`
+        if [ $psa_license ] && [ -s $psa_license ] ; then
+            cp -f $psa_license $target/skel/licenses/psa8lic.xml
+            if [ -s $target/skel/licenses/psa8lic.xml ] ; then
+                postlog "INFO" "Plesk license copied to skel/licenses/psa8lic.xml"
+            else
+                postlog "ERR" "Plesk license copy failed" "win2k_copyfail"
+            fi
+        else
+            postlog "ERR" "Plesk license not found" "win2k_copyfail"
+        fi
+    else
+        postlog "ERR" "No licenses available for ${PANEL}" "win2k_copyfail"
+    fi
+
+    rsync -rlptoDv --exclude .svn --files-from=:/panels/plesk/windows/8.3.0/filelist.plesk rsync://${KSIPADDR}/installs/panels/plesk/windows/8.3.0/ $target/skel/software/plesk/
+
+    if [ -s $target/skel/software/plesk/filelist.plesk ] ; then
+        postlog "INFO" "rsync of Plesk data complete"
+    else
+        postlog "ERR" "rsync of Plesk data failed"
+    fi
+fi
+
+# Rsync the i386 source tree
+# JR@2007-01-15: The following customer 4 check should be removed.  It does not do anything other than take up space.
+if [ $customer_number -eq 4 ] ; then
+    rsync -rlptoDv --exclude .svn --files-from=:/windows/${winver}/${subver}/filelist.i386 rsync://${KSIPADDR}/installs/windows/${winver}/${subver}/ $target
+    if [ -s $target/filelist.i386 ] ; then
+        postlog "INFO" "rsync of $winver/$subver/i386 complete"
+    else
+        postlog "ERR" "rsync of $winver/$subver/i386 failed"
+    fi
+else
+    rsync -rlptoDv --exclude .svn --files-from=:/windows/${winver}/${subver}/filelist.i386 rsync://${KSIPADDR}/installs/windows/${winver}/${subver}/ $target
+    if [ -s $target/filelist.i386 ] ; then
+        postlog "INFO" "rsync of $winver/$subver/i386 complete"
+    else
+        postlog "ERR" "rsync of $winver/$subver/i386 failed"
+    fi
+fi
+
+# Cleanup: Remove all temporary files.
+rm -f $target/filelist.*
+cd /mnt
+sync
+umount ${target}
+
+# Update the provisioning status on the kickstart database server.
+ post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${REALIP}&status=win2k_copydone"
+
+# Attempt to circumvent hanging shutdown on SuperMicro servers
+if [ `echo ${MACADDR} | cut -b 1-8` == "00:30:48" ] ; then
+        #/sbin/shutdown -rn now
+        reboot
+else
+        # Reboot the system and begin the windows setup process.
+        /sbin/shutdown -rn now
+fi 

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/kickstart/!svn/ver/997/trunk/install/var/www/kickstart/postconf/debian/squeeze
+END
+init.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/kickstart/!svn/ver/994/trunk/install/var/www/kickstart/postconf/debian/squeeze/init.txt
+END
+tty12
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/kickstart/!svn/ver/986/trunk/install/var/www/kickstart/postconf/debian/squeeze/tty12
+END
+postboot.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/kickstart/!svn/ver/986/trunk/install/var/www/kickstart/postconf/debian/squeeze/postboot.txt
+END
+postconf.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/kickstart/!svn/ver/997/trunk/install/var/www/kickstart/postconf/debian/squeeze/postconf.txt
+END
+postinstall.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/kickstart/!svn/ver/986/trunk/install/var/www/kickstart/postconf/debian/squeeze/postinstall.txt
+END

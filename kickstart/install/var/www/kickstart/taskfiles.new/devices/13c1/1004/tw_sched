@@ -1,0 +1,437 @@
+#!/usr/bin/perl
+
+# =====================================================================
+# Desc: This program in conjunction with time-driven command schedulers
+#       such as conrd(1d) could be used to schedule tasks for 3ware ATA 
+#       Controller model 7000 which lacks on-board scheduling feature.
+# Input: tw_sched.cfg config file
+# Output: STDOUT and STDERR
+# Author: Medi Montaseri <medi.montaseri@3ware.com>
+# Ver   : 1.0
+# =====================================================================
+
+# ------------------- BEGIN() ----------------------------------------
+# Think of this as your constructor/initializer
+sub BEGIN()
+{
+    use v5.6.0;
+    use Getopt::Std;
+    use strict;
+    our $EXIT_SUCCESS = 0;
+    our $EXIT_FAILURE = 1;
+    our $SUCCESS = 1;
+    our $FAILURE = undef;
+    our $VERSION = '1.01';
+    $|++;       # autoFlush on
+    our $Usage = "$0 [-h] [-v] [-n] -c config -p tw_cli -a start|stop";
+}
+# ======================== main() ====================================
+MAIN:
+{
+    my ($CLI, $ConfigFile, $Action, $ErrorMsg);
+    processCmdLine(\$CLI, \$ConfigFile, \$Action, \$ErrorMsg ) || do 
+    {
+        print STDERR "$0: $ErrorMsg\n";
+        exit($EXIT_FAILURE);
+    };
+
+    my @Tasks;
+    readConfigFile($ConfigFile, \@Tasks, \$ErrorMsg) || do
+    {
+        print STDERR "$0: $ErrorMsg\n";
+        exit($EXIT_FAILURE);
+    };
+
+    my @ErrorMsgs;
+    processTasks(\@Tasks, $Action, $CLI, \@ErrorMsgs) || do
+    {
+        foreach (@ErrorMsgs) { warn("$0: $_\n"); }
+        exit($EXIT_FAILURE);
+    };
+    
+}
+# ------------------- processCmdLine() ---------------------------
+sub processCmdLine()
+{
+    my($cliRef, $configRef, $actRef, $msgRef) = @_;
+
+    my $argc = @ARGV;
+    if ( $argc < 1 || $argc > 9 )
+    {
+        $$msgRef = "Usage Error: $Usage";
+        return($FAILURE);
+    }
+
+    my %Options;
+    if ( !getopts('vhnc:p:a:', \%Options) )
+    {
+        $$msgRef = $Usage;
+        return($FAILURE);
+    }
+
+    if ( $Options{'h'} )
+    {
+        PrintHelp();
+        exit($EXIT_SUCCESS);
+    }
+
+    if ( $Options{'v'} )
+    {
+        print "Version = $VERSION\n";
+        exit($EXIT_SUCCESS);
+    }
+
+    $$configRef = $Options{'c'};
+    unless ( -f $$configRef )
+    {
+        $$msgRef = "Error: Can not find ConfigFile(4) [$$configRef]";
+        $$msgRef .= "\n";
+        $$msgRef .= $Usage;
+        return($FAILURE);
+    }
+
+    if ( $Options{'n'} )
+    {
+        readConfigFile($$configRef, [], $msgRef) || do
+        {
+            print STDERR "$0: ", $$msgRef, "\n";
+            exit($EXIT_FAILURE);
+        };
+        exit($EXIT_SUCCESS);
+    }
+
+
+    $$cliRef = $Options{'p'};
+    unless ( -f $$cliRef )
+    {
+        $$msgRef = "Error: Can not find tw_cli(1)"; 
+        $$msgRef .= "\n";
+        $$msgRef .= $Usage;
+        return($FAILURE);
+    }
+    
+    if ( $Options{'a'} =~ /^start$/i )
+    {
+        $$actRef = 'start';
+    }
+    elsif ( $Options{'a'} =~ /^stop$/i )
+    {
+        $$actRef = 'stop';
+    }
+    else
+    {
+        $$msgRef = "Error: invalid action [$Options{'a'}]";
+        $$msgRef .= "\n";
+        $$msgRef .= $Usage;
+        return($FAILURE);
+    }
+    return($SUCCESS);
+}
+# ------------------------ PrintHelp() ----------------------
+sub PrintHelp()
+{
+    print <<EOT;
+    -h              To produce this help.
+    -n              Syntax check only, do not actually schedule anything.
+    -v              Print the Version.
+    -c config       Configuration file containing scheduling directives.
+    -p tw_cli       Path to tw_cli(1).
+    -a start|stop   Action; start or stop tasks.
+
+    See also 'perldoc tw_sched'
+EOT
+    return($SUCCESS);
+}
+# ------------------------ readConfigFile() -------------------
+sub readConfigFile()
+{
+    my($ConfFile, $tasksRef, $eRef) = @_;
+
+    open(IN, $ConfFile) || do
+    {
+        $$eRef = $!;
+        return($FAILURE);
+    };
+
+    my %Gram;
+    $Gram{'Space'} = qr!
+        (?:
+            (?:\s+)
+        )!x;
+
+    $Gram{'CID'} = qr!
+        (?i:
+           (?:c\d{1,3})
+        )!x; 
+
+    $Gram{'UID'} = qr!
+        (?i:
+           (?:u\d{1,3})
+        )!x; 
+
+    $Gram{'Ecc'} = qr!
+        (?i:
+           (?:ignoreECC)
+        )!x; 
+
+    $Gram{'Rebuild'} = qr!
+        (?:
+            (?:\A)
+            (?:$Gram{'Space'})?
+            (?i:task)
+            (?:$Gram{'Space'})?
+            (?:=)
+            (?:$Gram{'Space'})?
+            (?i:rebuild)
+            (?:$Gram{'Space'})
+            (?:($Gram{'CID'}))
+            (?:$Gram{'Space'})
+            (?:($Gram{'UID'}))
+            (?:$Gram{'Space'})?
+            (?:\Z)
+        )!x; 
+
+    $Gram{'Verify'} = qr!
+        (?:
+            (?:\A)
+            (?:$Gram{'Space'})?
+            (?i:task)
+            (?:$Gram{'Space'})?
+            (?:=)
+            (?:$Gram{'Space'})?
+            (?i:verify)
+            (?:$Gram{'Space'})
+            (?:($Gram{'CID'}))
+            (?:$Gram{'Space'})
+            (?:($Gram{'UID'}))
+            (?:$Gram{'Space'})?
+            (?:\Z)
+        )!x; 
+
+    $Gram{'MediaScan'} = qr!
+        (?:
+            (?:\A)
+            (?:$Gram{'Space'})?
+            (?i:task)
+            (?:$Gram{'Space'})?
+            (?:=)
+            (?:$Gram{'Space'})?
+            (?i:mediascan)
+            (?:$Gram{'Space'})
+            (?:($Gram{'CID'}))
+            (?:$Gram{'Space'})?
+            (?:\Z)
+        )!x; 
+
+    my $i=0;
+    while ( my $task = <IN>)
+    {
+        chomp($task);
+        next if ( $task =~ /^\s*#/ );    # skip comments
+        next if ( $task =~ /^$/ );       # skip blank lines
+        next if ( $task =~ /^\s*version\s*=/i );       # skip version
+        
+        if ( $task =~ /(?=$Gram{'Rebuild'})/i )
+        {
+            my ($cid, $uid, $ecc) = $task =~ /$Gram{'Rebuild'}/i ;
+            {
+                $tasksRef->[$i] = {};
+                $tasksRef->[$i]->{'cmd'} = 'rebuild'; 
+                $tasksRef->[$i]->{'cid'} = $cid; 
+                $tasksRef->[$i]->{'uid'} = $uid; 
+                $i++;
+            }
+        }
+        elsif ( $task =~ /(?=$Gram{'Verify'})/i )
+        {
+            my ($cid, $uid) = $task =~ /$Gram{'Verify'}/i ;
+            {
+                $tasksRef->[$i] = {};
+                $tasksRef->[$i]->{'cmd'} = 'verify'; 
+                $tasksRef->[$i]->{'cid'} = $cid; 
+                $tasksRef->[$i]->{'uid'} = $uid; 
+                $i++;
+            }
+        }
+        elsif ( $task =~ /(?=$Gram{'MediaScan'})/i )
+        {
+            my ($cid) = $task =~ /$Gram{'MediaScan'}/i ;
+            {
+                $tasksRef->[$i] = {};
+                $tasksRef->[$i]->{'cmd'} = 'mediascan'; 
+                $tasksRef->[$i]->{'cid'} = $cid; 
+                $i++;
+            }
+        }
+        else
+        {
+            print STDERR "syntax error on line $. : [$task]...skipping.\n";
+        }
+    }
+    close(IN);
+    return($SUCCESS);
+}
+# ------------------------- processTasks() ---------------
+sub processTasks()
+{
+    my($tasksRef, $Action, $CLI, $eRef) = @_;
+
+    @$eRef = ();
+    foreach my $task ( @$tasksRef )
+    {
+        my $cmd = '';
+        if ( $task->{'cmd'} =~ /rebuild/i )
+        {
+            $cmd = "$CLI";
+            $cmd .= " /" . $task->{'cid'};
+            $cmd .= "/" . $task->{'uid'};
+            $cmd .= ($Action =~ /^start$/i )? " resume" : " pause";
+            $cmd .= " rebuild";
+        }
+        elsif ( $task->{'cmd'} =~ /verify/i )
+        {
+            $cmd = "$CLI";
+            $cmd .= " /" . $task->{'cid'};
+            $cmd .= "/" . $task->{'uid'};
+            $cmd .= ($Action =~ /^start$/i )? " " : " stop";
+            $cmd .= " verify";
+        }
+        elsif ( $task->{'cmd'} =~ /mediascan/i )
+        {
+            $cmd = "$CLI";
+            $cmd .= " /" . $task->{'cid'};
+            $cmd .= ($Action =~ /^start$/i )? " start" : " stop";
+            $cmd .= " mediascan" ;
+        }
+        else
+        {
+            push(@$eRef, "Warning: invalid maintenance command [". $task->{'cmd'} ."]");
+            next;
+        }
+
+        # print "$0: Processing [$cmd]\n";
+
+        open(PIPE, " $cmd | ") || do
+        {
+            push(@$$eRef, "Error: failed to launch [$cmd].");
+            next;
+        };
+        while (<PIPE>)
+        {
+            print ;
+        }
+        close(PIPE);
+        if ( $? >> 8 )
+        {
+            push(@$eRef, "Error: failed to execute [$cmd].");
+            next;
+        }
+    }
+    ( @$eRef  ) ? return($FAILURE) : return($SUCCESS);
+}
+# -------------------------- end ---------------------------
+=pod 
+
+=head1 NAME
+
+tw_sched(1) - 3ware ATA RAID Controller 7000 scheduler.
+
+=head1 SYNOPSIS
+
+ tw_sched [-h] 
+ tw_sched [-v] 
+ tw_sched -n -c configFile 
+ tw_sched -c configFile -p /path/tw_cli -a stop|start
+
+=head1 DESCRIPTION
+
+I<tw_sched(1)> is a wrapper around I<tw_cli(1)>. Used in conjunction with
+a time-driven schedulers such as I<crond(1d)>, it provides basic background
+task scheduling feature such as I<rebuild>, I<verify>, and I<Media Scan>.
+
+While this application can be executed manually, its intended use is to be
+submitted as a cronjob. For example to run a B<verify> background task from
+03:00 to 04:00 every day, submit the following cronjob. See I<crontab(1)> for
+more.
+
+ # min hour dayOfMonth mon dayOfweek program
+ 0 3 * * * /sbin/tw_sched -c /etc/tw_sched.cfg -p /sbin/tw_cli -a start
+ 0 4 * * * /sbin/tw_sched -c /etc/tw_sched.cfg -p /sbin/tw_cli -a stop
+
+Or you can use different config files for different tasks, as in
+
+ 0 2 * * * /sbin/tw_sched -c /etc/verify.cfg -p /sbin/tw_cli -a start
+ 0 3 * * * /sbin/tw_sched -c /etc/verify.cfg -p /sbin/tw_cli -a stop
+ 0 4 * * * /sbin/tw_sched -c /etc/rebuild.cfg -p /sbin/tw_cli -a start
+ 0 5 * * * /sbin/tw_sched -c /etc/rebuild.cfg -p /sbin/tw_cli -a stop
+
+=head1 OPTIONS
+
+The following options are supported. Items in I<[xxx]> are optional.
+
+=over 4
+
+=item B<-h>
+
+Provides a brief help screen.
+
+=item B<-v>
+
+Reports tw_sched(1)s version.
+
+=item B<-n>
+
+Runs a syntax check on the ConfigFile without actually executing the instructions.
+
+=item B<-a start|stop>
+
+Action is either I<start> or I<stop>. While I<start> instructs the controller 
+to begin (or resume) task(s), I<stop> ends or pauses task(s).
+
+=item B<-p /path/tw_cli>
+
+Specifies path to tw_cli(1) as I did not want to assume or hunt for it.
+
+=item B<-c configFile>
+
+Specifies path to a configuration file containing one or many scheduling 
+directives (or tasks). Version 1.0 of this configuration file supports 
+the following:
+
+I<Comments> are supported; a line starting with C<#>. 
+
+ # this is a comment
+
+I<VERSION> keyword indicates the configFile version. At this point its ignored
+but end user do not change this at will, you will confuse my parser.
+
+ Version = 1.0
+
+I<task> keyword indicates start of a directive. Directives can not span multiple 
+physical lines. This is a version 1.0 limitation.
+
+ task = rebuild c0 u0
+ task = verify c1 u2
+ task = mediascan c1
+
+tw_sched(1) version 1.01 supports I<rebuild>, I<verify>, and I<MediaScan>.
+
+=back
+
+=head1 BUGS
+
+In order to start/stop a rebuild background task, the target unit I<must> be in a 
+C<REBUILDING> state. In future an C<auto> feature will remedy this shortcoming.
+Also verifying a unit requires the unit to be in a non-degraded, non-rebuilding
+state. 
+
+=head1 AUTHOR
+
+Medi Montaseri, medi.montaseri@3ware.com
+
+=head1 SEE ALSO
+
+tw_cli(1).
+
+=cut
+

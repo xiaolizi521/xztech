@@ -1,0 +1,2 @@
+KERNEL rh73/vmlinuz
+APPEND ks=http://MYIPADDR/cgi-bin/ks.cgi?ks=rh72esm lang=en_US text initrd=rh73/initrd.img root=/dev/ram0 ramdisk_size=8192

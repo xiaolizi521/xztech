@@ -1,0 +1,29 @@
+localboot	boot locally
+memtest		memtest86+
+sbrescue	SB rescue
+sbtest          SB test
+rhel4ks		RHEL 4 kickstart
+rhel4_64ks      RHEL 4 64bit kickstart
+centos4ks       CentOS 4.2 kickstart
+centos4_64ks    CentOS 4.2 64bit Kickstart
+centos4_4ks     CentOS 4.4 kickstart
+centos4_4_64ks  CentOS 4.4 64bit Kickstart
+fc4ks           Fedora Core 4 kickstart
+fc6ks           Fedora Core 6 kickstart
+fc6_64ks        Fedora Core 6 64bit Kickstart
+fedora8_ks      Fedora 8 kickstart
+fedora8_64_ks   Fedora 8 64bit kickstart
+deb30ks		Debian 3.0r0 kickstart
+win2k-itl	Win2000 kickstart
+win2k-rtl	Win2000 kickstart
+win2k3std-itl	Win2003 kickstart
+win2k3std-rtl	Win2003 kickstart
+win2k3web-itl	Win2003 kickstart
+win2k3web-rtl	Win2003 kickstart
+win2k3std-b57	Win2003 kickstart
+win2k3web-b57	Win2003 kickstart
+win2k3std-3wr	Win2003 kickstart
+win2k-b57	Win2000 kickstart
+beta2k-itl	Win2000 installer
+beta2k-rtl	Win2000 installer
+ghost		ghost

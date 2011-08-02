@@ -1,0 +1,31 @@
+There are several scripts in the cleanup directory that automate the purging
+of cruft from the datacenter.
+
+Check for orphan servers before doing any of this! (see below)
+
+I generally run these in the following order:
+bin/ksctl off (disable provisioning)
+cleanup/unlinked_audit.pl
+cleanup/missing_audit.pl (optional)
+cleanup/online_audit.pl
+bin/ksctl on ; bin/provision
+
+missing_audit.pl - compares list of MAC addresses on the kickstart server to the list of MAC addresses in PIT.  If the MAC address is not found in PIT, it is set to "new" status and the IP address is set to "0.0.0.0".  If the MAC address is found in PIT but is located in another datacenter, it is deleted from the kickstart database completely.
+
+online_audit.pl - downloads a list of all MAC addresses that are linked to customers and marks them online in the kickstart database and sets the PXE target to localboot.  Does not actually do anything unless you enter "doit" as the only argument.
+
+unlinked_audit.pl - run this to set all MAC addresses that are not linked to a customer.
+
+Checking for orphan servers -
+1.  What is an orphan server?
+
+A customer product that is linked to an inventory product that is no longer visible in the datacenter.  This normally happens when hardware is swapped out and the new MAC address is not properly linked.
+
+2.  How do you check for them?
+
+serverbeach=> select t1.macaddress,t2.customer_product_id from inventory_mac_addr t1, xref_inventory_product_customer_product t2 where t1.inventory_product_id=t2.inventory_product_id and t1.id not in (select inventory_mac_addr_id from xref_switch_mac_addr);
+
+select t1.macaddress,t2.customer_product_id from inventory_mac_addr t1, 
+xref_inventory_product_customer_product t2 where 
+t1.inventory_product_id=t2.inventory_product_id and t1.id not in 
+(select inventory_mac_addr_id from xref_switch_mac_addr);

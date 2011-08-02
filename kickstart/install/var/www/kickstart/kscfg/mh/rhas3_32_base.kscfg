@@ -1,0 +1,79 @@
+### Begin /ks/rhel-3-as-32bit-stock-scsi
+#
+# Kickstart file for installation of Red Hat Enterprise Linux
+#    3 AS 32bit STOCK (SCSI/SATA-RAID)
+#
+text
+install
+lang en_US.UTF-8
+langsupport --default en_US.UTF-8 en_US.UTF-8
+keyboard us
+mouse none
+skipx
+#reboot
+zerombr yes
+network --bootproto=dhcp --device=eth0
+rootpw password
+firewall --disabled
+authconfig --enableshadow --enablemd5
+timezone America/New_York
+
+# Download path
+#
+url --url http://kickstart/installs/linuxmh/rhel-3-as/en/os/i386-stock
+
+# Disk setup and layout
+#
+bootloader --location=mbr
+%include /tmp/part-include
+
+reboot
+
+
+%packages --resolvedeps
+
+@ Core
+@ Base
+@ Text-based Internet
+@ Mail Server
+@ FTP Server
+@ SQL Database
+@ MySQL Database
+@ Web Server
+@ DNS Name Server
+@ Editors
+@ Compatibility Arch Support
+
+# Packages to exclude
+#
+-anaconda-images
+-firstboot
+-redhat-logos
+
+# Packages to include
+#
+caching-nameserver
+chkraid
+compat-libstdc++
+compat-libstdc++-devel
+cyrus-sasl-plain
+dialog
+grub
+initboot-winstart
+inld-logos
+p1mhqa
+kernel
+net-snmp
+net-snmp-utils
+ntp
+perl-CGI
+perl-Crypt-PasswdMD5
+perl-Crypt-SSLeay
+perl-DBD-Pg
+perl-DBI
+perl-Digest-HMAC
+perl-Digest-SHA1
+perl-XML-Parser
+perl-libwww-perl
+php-mysql
+up2date-p1mh-autoupdates

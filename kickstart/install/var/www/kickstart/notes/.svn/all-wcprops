@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/notes
+END
+bootprocess.txt
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/notes/bootprocess.txt
+END
+new_sbpost
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/notes/new_sbpost
+END
+cleanup.txt
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/notes/cleanup.txt
+END
+burnin_fail.txt
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/notes/burnin_fail.txt
+END
+notes.txt
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/notes/notes.txt
+END
+RHEL_ISOS
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/notes/RHEL_ISOS
+END
+checklist
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/notes/checklist
+END
+admin_database.txt
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/notes/admin_database.txt
+END

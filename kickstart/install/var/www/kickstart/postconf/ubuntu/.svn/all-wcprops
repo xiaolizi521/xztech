@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/926/trunk/install/var/www/kickstart/postconf/ubuntu
+END
+tty12
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/544/trunk/install/var/www/kickstart/postconf/ubuntu/tty12
+END
+postboot.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/kickstart/!svn/ver/887/trunk/install/var/www/kickstart/postconf/ubuntu/postboot.txt
+END
+postconf.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/kickstart/!svn/ver/887/trunk/install/var/www/kickstart/postconf/ubuntu/postconf.txt
+END
+postinstall.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/kickstart/!svn/ver/580/trunk/install/var/www/kickstart/postconf/ubuntu/postinstall.txt
+END

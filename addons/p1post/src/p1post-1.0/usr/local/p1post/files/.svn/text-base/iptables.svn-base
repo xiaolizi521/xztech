@@ -1,0 +1,51 @@
+# File: iptables
+# Package: p1post
+# Install Location: /etc/sysconfig/iptables
+# Name: Default Firewall Rule Set
+#
+# Supported Platforms: 
+# Redhat Enterprise Linux Based Distributions (Fedora, CentOS, RHEL)
+#
+# Description: This file contains the default iptables rules for
+# Peer1 hosting.
+#
+# Author: Adam Hubscher <ahubscher AT peer1 DOT com>
+# Version: 1.0
+# Last Updated: July 6th, 2011
+# Revision: 3
+
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:icmp_packets - [0:0]
+
+# Default Input Rules
+-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT 
+-A INPUT -p tcp -m tcp --dport 443 -j ACCEPT 
+-A INPUT -p tcp -m tcp --dport 22 -j ACCEPT 
+-A INPUT -p tcp -m tcp --dport 25 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 110 -j ACCEPT 
+-A INPUT -p tcp -m tcp --dport 143 -j ACCEPT 
+-A INPUT -p tcp -m tcp --dport 20 -j ACCEPT 
+-A INPUT -p tcp -m tcp --dport 21 -j ACCEPT 
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT 
+-A INPUT -s 127.0.0.1 -d 127.0.0.1 -i lo -j ACCEPT 
+-A INPUT -p icmp -j icmp_packets 
+-A INPUT -p tcp -m tcp --dport 993 -j ACCEPT 
+-A INPUT -p udp -m udp --dport 53 -j ACCEPT
+-A INPUT -p tcp -m tcp -s 66.33.98.93 --dport 53 -j ACCEPT
+
+# Additional Application Specific Input Rules
+#
+# The below example enables Plesk Panel administration access
+# For addons, please use /etc/sysconfig/iptables.d in your module.
+#-A INPUT -p tcp -m tcp --dport 8443 -j ACCEPT  
+
+# Default ICMP Rules
+-A icmp_packets -p icmp -m icmp --icmp-type 0 -j ACCEPT 
+-A icmp_packets -p icmp -m icmp --icmp-type 8 -j ACCEPT 
+-A icmp_packets -p icmp -m icmp --icmp-type 3 -j ACCEPT 
+-A icmp_packets -p icmp -m icmp --icmp-type 11 -j ACCEPT 
+
+COMMIT

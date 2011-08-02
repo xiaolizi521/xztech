@@ -1,0 +1,128 @@
+#!/bin/sh
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export KSIPADDR="kickstart"
+export KSDOMAIN="@@KSDOMAIN@@"
+
+exec < /dev/tty6 > /dev/tty6 2>/dev/tty6
+chvt 6 || echo "chvt didnt work" > /dev/tty6
+
+# Run through and do a few chkconfigs to ensure everything starts up
+/sbin/chkconfig anacron off
+/sbin/chkconfig atd off
+/sbin/chkconfig cups off
+/sbin/chkconfig dovecot on
+/sbin/chkconfig initboot on
+/sbin/chkconfig gpm off
+/sbin/chkconfig httpd on
+/sbin/chkconfig iptables off
+/sbin/chkconfig kudzu off
+/sbin/chkconfig mysqld on
+/sbin/chkconfig named on
+/sbin/chkconfig netfs off
+/sbin/chkconfig ntpd on
+/sbin/chkconfig saslauthd on
+/sbin/chkconfig smartd off
+/sbin/chkconfig sshd on
+/sbin/chkconfig vsftpd on
+/sbin/chkconfig watchdog off
+/sbin/chkconfig xfs off
+
+cat >/etc/sysconfig/initboot <<_FILE_
+# Should initboot execute on system startup?
+RUN_INITBOOT=YES
+
+# OS to be provisioned
+PROVISION_OS="RHEL4"
+
+# For P1MH or STOCK configuration?
+# false = STOCK, true = P1MH
+IS_P1MH=false
+
+# Default domain name
+DEFAULT_DOMAIN="pubip.peer1.net"
+
+# Default admin user
+DEFAULT_ADMIN_USER="admin"
+
+# Default network interface speed/duplex (100Mbit full)
+DEFAULT_NIC_SETTING=4
+
+# MySQL information file
+FILE_MYSQL_INFO="mysql-setupinfo.txt"
+
+# Have OpenSSH use protocol 2 only?
+HAVE_OPENSSH_PROTOCOL_2_ONLY=true
+
+# Have OpenSSH not permit root login?
+HAVE_OPENSSH_NO_PERMIT_ROOT=false
+
+# Have vsftpd not allow anonymous ftp?
+HAVE_VSFTPD_NO_ANONYMOUS_FTP=true
+
+# Have chroot local users for vsftpd?
+HAVE_VSFTPD_CHROOT_USERS=true
+
+# Have banner change for vsftpd?
+HAVE_VSFTPD_BANNER=false
+
+# Have colorized prompt in Bash run-command file?
+HAVE_BASH_COLORIZED_PROMPT=false
+
+# Have Bash time-stamped history?
+HAVE_BASH_TIMED_HISTORY=false
+
+# Have Bash history contain whoami stamp on logout?
+HAVE_BASH_LOGOUT_WHOAMI=false
+
+# Have terminal power-save disabled?
+HAVE_RC_NO_TERM_POWER_SAVE=false
+
+# Have terminal blanking disabled?
+HAVE_RC_NO_TERM_BLANKING=false
+
+# *** Specify script options ***
+# Debug level (0..2, 0 = off)
+OPT_d=0
+_FILE_
+
+# Go to /tmp
+cd /tmp
+
+# Get the Plesk installer script
+wget 2>/dev/null -O plesk-install.pl http://current.dedicatedhosting.com/build/extras/plesk/plesk-install.pl
+
+if [ -f plesk-install.pl ]; then
+   chmod 700 plesk-install.pl
+
+   # Update file modification time so tmpwatch doesn't eat it
+   touch plesk-install.pl
+fi
+
+# vim:ts=3
+
+for i in `ifconfig -a | awk '/^eth[0-9]/ { print $1 }'`; do
+   ifconfig $i | grep 'inet addr' >/dev/null 2>&1
+   if [ $? -eq 0 ]; then
+      echo $i
+      int=$i
+      break
+   fi
+done
+
+# Print out the macaddr of the interface found above. tr to lowercase it.
+MACADDR=$(ifconfig $int | awk '/^eth[0-9]/ { print $5 }' | tr [A-Z] [a-z])
+if [ -z "$MACADDR" ] || [ -z "$int" ]; then
+   echo "ERROR: Cannot find either the int or mac."
+   echo "int: $int"
+   echo "mac: $mac"
+   read FOO
+fi
+
+echo ${MACADDR}
+curl --output /tmp/postconf -d "macaddr=${MACADDR}" http://${KSIPADDR}/cgi-bin/postconf.cgi
+
+. /tmp/postconf
+
+STATUS="kickstarted"
+curl -d "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=${STATUS}" http://${KSIPADDR}/cgi-bin/register.cgi

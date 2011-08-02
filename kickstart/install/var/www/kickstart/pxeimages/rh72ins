@@ -1,0 +1,2 @@
+KERNEL rh72/vmlinuz
+APPEND initrd=rh72/initrd.img root=/dev/ram0 text

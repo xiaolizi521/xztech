@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svnroot/addons/!svn/ver/31/webmin/trunk
+END
+installer.sh
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/addons/!svn/ver/31/webmin/trunk/installer.sh
+END
+jcameron-key.asc
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/addons/!svn/ver/30/webmin/trunk/jcameron-key.asc
+END

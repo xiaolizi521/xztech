@@ -1,0 +1,13 @@
+Source: p1post
+Section: unknown
+Priority: extra
+Maintainer: unknown <ahubscher@peer1.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: <insert the upstream URL, if relevant>
+
+Package: p1post
+Architecture: all
+Depends: ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>

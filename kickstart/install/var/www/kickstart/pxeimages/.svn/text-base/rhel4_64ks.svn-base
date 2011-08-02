@@ -1,0 +1,2 @@
+KERNEL rhel4_64/vmlinuz
+APPEND ksdevice=eth0 ks=http://MYIPADDR/cgi-bin/ks.cgi kssendmac lang=en_US text initrd=rhel4_64/initrd.img root=/dev/ram0 ramdisk_size=10240 selinux=disabled

@@ -1,0 +1,127 @@
+#!/bin/sh
+
+# =======================================================================
+# Company:              Server Beach
+# Copyright(c):         Server Beach 2006
+# Project:              Kickstart Sub-System
+# Code Devloper:        SB Development Team
+#
+# File Type:            Post Configuration File 
+# File Name:            rhcommon.post                
+#
+# Description:
+# This file is a common file used by Red Hat Based Distributions during
+# POST Configuration of a provisioning server. It is the default file that
+# is called by ks.cgi for Red Hat Based Intalls (RHBI).  RHBIs include
+# RHEL4, CentOS, and Fedora Core distributions.
+#
+# NOTE: If a OS specific file is not defined and called (i.e.: centos4_4ks.post)
+# then this is the file that will be used for post configuration. 
+# ======================================================================='
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export KSIPADDR="@@KSIPADDR@@"
+export KSDOMAIN="@@KSDOMAIN@@"
+export SBPOST="/usr/local/sbpost"
+export POSTCONF="${SBPOST}/postconf.info"
+export POSTLOG="${SBPOST}/postconf.log"
+
+exec < /dev/tty6 > /dev/tty6 2>/dev/tty6
+chvt 6 || echo "chvt didnt work" > /dev/tty6
+
+# Download and install sbadm.
+# Do this first to make sure we have a way in if something b0rks
+# Use curl directly because we don't have our functions setup yet
+echo -en "Installing sbadm .. "
+wget http://${KSIPADDR}/installs/modules/sbadm.tgz -O /tmp/sbadm.tgz
+tar -C / -zxf /tmp/sbadm.tgz && rm -f /tmp/sbadm.tgz
+
+echo -ne "activating .. "
+cd /etc/pam.d && ln -sf sshd sbadm
+/sbin/chkconfig --add sbadm
+/sbin/chkconfig sbadm on
+/sbin/service sshd restart
+/sbin/service sbadm start
+echo "sbadm: ALL" >> /etc/hosts.allow
+echo "done."
+
+echo -en "Fetching postinstall environment .. "
+# Use curl directly because we don't have our functions setup yet
+#curl --output /tmp/sbpost.tgz http://${KSIPADDR}/installs/modules/sbpost.tgz
+wget http://${KSIPADDR}/installs/modules/sbpost.tgz -O /tmp/sbpost.tgz
+tar -C / -zxf /tmp/sbpost.tgz && rm -f /tmp/sbpost.tgz
+ln -sf ${SBPOST}/sbpost.init /etc/rc3.d/S99zzz
+
+# Pull in our shell functions
+. ${SBPOST}/lib/config.sh
+. ${SBPOST}/lib/sbks_lib.sh
+echo "done."
+
+if [ -f "/tmp/sbpost.tgz" ] || [ -f "/tmp/sbadm.tgz" ] ; then
+    postlog "ERR" "Unpack of sbpost or sbadm failed"
+    echo "Unpack of sbpost or sbadm failed" > /var/log/lasterror
+    read FOO
+fi
+
+# Download and execute perl POST CONFIGURATION script
+# curl --output /tmp/postconf.txt http://${KSIPADDR}/postconf/postconf.txt
+wget http://${KSIPADDR}/postconf/postconf.txt -O /tmp/postconf.txt
+chmod +x /tmp/postconf.txt
+/tmp/postconf.txt
+postres=$?
+if [ $postres -ne 0 ] ; then
+    postlog "INFO" "postconf.txt ($postres)"
+    echo "Fatal error with postconf.pl" > /var/log/lasterror
+    read FOO
+fi
+
+. /boot/.serverbeach
+. ${POSTCONF}
+
+FATAL=`egrep -c "ERR|FATAL" ${POSTLOG}`
+
+if [ ! -s ${POSTLOG} ] || [ $FATAL -eq 0 ] ; then
+	if [ $PANEL == "cpanel" ] ; then
+		STATUS=cpl_wait
+	elif [ $PANEL == "ensim" ] ; then
+		STATUS=esm_wait
+	elif [ $PANEL == "plesk" ] || [ $PANEL == "plesk6" ] ; then
+		STATUS=psa_wait
+	else
+		STATUS=ks_wait
+	fi
+else
+	STATUS=ksfail
+fi
+
+chkconfig NetworkManager off
+chkconfig NetworkManagerDispatcher off
+chkconfig network on
+
+wget -O /etc/event.d/tty12 http://@@KSIPADDR@@/kickstart/postconf/ubuntu/tty12
+
+getMAC
+getIP
+
+postlog "INFO" "Posting to kickstart server $MACADDR $IPADDR $STATUS"
+fetch "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=${STATUS}"
+
+if [ $STATUS == "ksfail" ] ; then read FOO ; fi
+
+mv /etc/resolv.conf.new /etc/resolv.conf
+
+# Remove the following log files from the system.
+if [ $customer_number -ne 4 ] ; then
+    [ -f "/root/anaconda-ks.cfg" ] && rm -f /root/anaconda-ks.cfg
+    [ -f "/root/install.log" ] && rm -f /root/install.log
+    [ -f "/root/install.log.syslog" ] && rm -f /root/install.log.syslog
+    rm -f /var/log/lasterror
+fi
+
+if [ $testing ] ; then 
+    echo "Testing, press any key .."
+    #read FOO
+fi
+
+chvt 1
+

@@ -1,0 +1,2 @@
+KERNEL rh80/vmlinuz
+APPEND ks=http://MYIPADDR/cgi-bin/ks.cgi?ks=rh80ks lang=en_US text initrd=rh80/initrd.img root=/dev/ram0 ramdisk_size=10240 hdc=none

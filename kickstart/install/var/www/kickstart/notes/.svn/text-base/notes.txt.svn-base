@@ -1,0 +1,38 @@
+ADS INFO
+66.139.72.30 /nbs/boot/x86/STARTNBS
+http://66.139.72.30/SetupADSTools/add.aspx
+username: beach
+password: !4v4t4r
+
+
+updateks.cgi
+- verify MAC is valid
+- verify osload is valid
+- set MAC address
+- set osload then update (win2k -> win2k-itl/win2k-rtl)
+- verify there are no errors
+  - if there are errors, osload is likely invalid -> updateks_fail
+  - no errors, good to go -> updateks
+
+provision
+- scan DB for boxes in updateks status
+- for redhat/debian/win2k
+  - fetch postconf
+  - fetch licenses
+  - move postconf,licenses,unattend files to proper directories for win2k
+- update PXE
+- reboot
+
+register.cgi
+- verify MAC is valid
+- verify IP is valid
+- verify status is valid
+
+
+MAC and IP of servers linked to customers:
+select t1.macaddress,t2.ip_address from inventory_mac_addr t1, ip_list t2,
+xref_inventory_product_customer_product t3, xref_customer_product_ip_list t4
+where t2.id = t4.ip_list_id and t4.is_primary_ip = 't' and
+t4.customer_product_id = t3.customer_product_id and t3.inventory_product_id =
+t1.inventory_product_id;
+

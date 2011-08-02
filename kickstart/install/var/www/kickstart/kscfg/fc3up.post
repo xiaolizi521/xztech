@@ -1,0 +1,63 @@
+#!/bin/sh
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export KSIPADDR="@@KSIPADDR@@"
+export SBPOST="/usr/local/sbpost"
+export RHEL4UP=1
+
+exec < /dev/tty6 > /dev/tty6 2>/dev/tty6
+chvt 6 || echo "chvt didnt work" > /dev/tty6
+
+# Download and install sbadm.
+# Do this first to make sure we have a way in if something b0rks
+# Use curl directly because we don't have our functions setup yet
+echo -en "Installing sbadm .. "
+curl --output /tmp/sbadm.tgz http://${KSIPADDR}/installs/modules/sbadm.tgz
+tar -C / -zxf /tmp/sbadm.tgz && rm -f /tmp/sbadm.tgz
+
+echo -ne "activating .. "
+cd /etc/pam.d && ln -sf sshd sbadm
+/sbin/chkconfig --add sbadm
+/sbin/chkconfig sbadm on
+/sbin/service sshd restart
+/sbin/service sbadm start
+echo "done."
+
+echo -en "Fetching postinstall environment .. "
+# Use curl directly because we don't have our functions setup yet
+curl --output /tmp/sbpost.tgz http://${KSIPADDR}/installs/modules/sbpost.tgz
+tar -C / -zxf /tmp/sbpost.tgz && rm -f /tmp/sbpost.tgz
+ln -sf ${SBPOST}/sbpost.init /etc/rc3.d/S99zzz
+
+if [ -f "/tmp/sbpost.tgz" ] || [ -f "/tmp/sbadm.tgz" ] ; then
+    echo "Unpack of sbpost or sbadm failed"
+    echo "Unpack of sbpost or sbadm failed" > /var/log/lasterror
+    read FOO
+fi
+
+if [ $RHEL4UP -eq 1 ] ; then
+    echo "RHEL4UP=1" >> ${SBPOST}/lib/config.sh
+fi
+
+# Pull in our shell functions
+. ${SBPOST}/lib/config.sh
+. ${SBPOST}/lib/sbks_lib.sh
+echo "done."
+
+# We need these before we can pull any dynamic information
+getMAC
+getIP
+
+curl --output ${SBPOST}/postconf.info --data "macaddr=${MACADDR}" --max-time 30 "http://${KSIPADDR}/cgi-bin/postconf.cgi"
+
+. ${SBPOST}/postconf.info
+. /boot/.serverbeach
+
+STATUS=ks_wait
+
+curl --data "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=${STATUS}" --max-time 30 "http://${KSIPADDR}/cgi-bin/register.cgi"
+
+if [ $STATUS == "ksfail" ] ; then read FOO ; fi
+
+chvt 1
+

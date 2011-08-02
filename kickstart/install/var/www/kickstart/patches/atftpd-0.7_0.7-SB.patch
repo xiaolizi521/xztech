@@ -1,0 +1,59 @@
+diff -r -u3 -N atftp-0.7/Changelog atftp-0.7-SB/Changelog
+--- atftp-0.7/Changelog	2004-03-16 01:51:40.000000000 +0000
++++ atftp-0.7-SB/Changelog	2004-11-11 22:08:11.000000000 +0000
+@@ -1,3 +1,6 @@
++atftp (0.7-SB)
++  * Added kslog functionality for ServerBeach kickstart system (HP 2004-11-11)
++
+ atftp (0.7)
+   * Fixed typo (Debian bug: #147218).
+   * Fixed French translations for real this time (Debian bug: #136339).
+diff -r -u3 -N atftp-0.7/configure atftp-0.7-SB/configure
+--- atftp-0.7/configure	2004-03-16 01:53:07.000000000 +0000
++++ atftp-0.7-SB/configure	2004-11-11 22:05:49.000000000 +0000
+@@ -1603,7 +1603,7 @@
+ 
+ # Define the identity of the package.
+  PACKAGE=atftp
+- VERSION=0.7
++ VERSION=0.7-SB
+ 
+ 
+ cat >>confdefs.h <<_ACEOF
+diff -r -u3 -N atftp-0.7/tftpd.c atftp-0.7-SB/tftpd.c
+--- atftp-0.7/tftpd.c	2004-02-27 02:05:26.000000000 +0000
++++ atftp-0.7-SB/tftpd.c	2004-11-11 22:04:22.000000000 +0000
+@@ -42,6 +42,7 @@
+ #include "logger.h"
+ #include "options.h"
+ #include "stats.h"
++#include "/exports/kickstart/include/kslog.h"   /* SB Custom */
+ #ifdef HAVE_PCRE
+ #include "tftpd_pcre.h"
+ #endif
+@@ -558,6 +559,7 @@
+      int num_of_threads;
+      int abort = 0;             /* 1 if we need to abort because the maximum
+                                    number of threads have been reached*/ 
++     char *message = NULL;      /* SB Custom */
+      struct sockaddr_in to;     /* destination of client's packet */
+      socklen_t len = sizeof(struct sockaddr);
+ 
+@@ -661,6 +663,17 @@
+                       ntohs(data->client_info->client.sin_port));
+                if (data->trace)
+                     logger(LOG_DEBUG, "received RRQ <%s>", string);
++               /* SB Custom */
++                message = make_message("tftpd [info] %s from %s filename %s\n",
++                    "RRQ", inet_ntoa(data->client_info->client.sin_addr),
++                    data->tftp_options[OPT_FILENAME].value);
++                if (message != NULL) {
++                    kslog(message);
++                    free(message);
++                } else {
++                    kslog("tftpd [err] Unable to allocate memory");
++                }
++               /* SB Custom */
+                if (tftpd_send_file(data) == OK)
+                     stats_send_locked();
+                else

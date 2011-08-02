@@ -1,0 +1,33 @@
+# /etc/hosts.allow: list of hosts that are allowed to access the system.
+#                   See the manual pages hosts_access(5), hosts_options(5)
+#                   and /usr/doc/netbase/portmapper.txt.gz
+#
+# Example:    ALL: LOCAL @some_netgroup
+#             ALL: .foobar.edu EXCEPT terminalserver.foobar.edu
+#
+# If you're going to protect the portmapper use the name "portmap" for the
+# daemon name. Remember that you can only use the keyword "ALL" and IP
+# addresses (NOT host or domain names) for the portmapper, as well as for
+# rpc.mountd (the NFS mount daemon). See portmap(8), rpc.mountd(8) and 
+# /usr/share/doc/portmap/portmapper.txt.gz for further information.
+
+# TFTP connections from any kickstart network
+in.tftpd: 10.0.0.0/8
+
+# SNMP monitoring from 66.135.45.69
+snmpd: 66.135.45.69/32
+
+# SSH from ServerBeach locations
+sshd: 66.135.45.161/28
+sshd: 64.34.160.96/29
+sshd: 72.51.32.96/29
+sshd: 66.135.45.96/29
+
+# SSH from Managed Hosting corporate IP addresses
+sshd: 192.168.0.0/16
+sshd: 10.0.0.0/8
+
+# SSH from Managed Hosting translated IP addresses
+sshd: 66.223.56.0/23
+sshd: 216.65.65.26/32
+sshd: 216.87.0.195/32

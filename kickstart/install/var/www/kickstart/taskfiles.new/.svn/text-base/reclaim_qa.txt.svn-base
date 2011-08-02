@@ -1,0 +1,573 @@
+#!/bin/bash
+# =======================================================================
+# Company:              ServerBeach
+# Copyright(c):         ServerBeach, Ltd. 2006-2008
+# Project:              Kickstart Sub-System
+# Pri. Code Devloper:   SB Development Team
+# Creation Date:        ~2006-09-14
+#
+# File Type:            Taskfile     
+# File Name:            reclaim_qa.txt
+# Dependencies:         The SBRescue PXE RAM Disk Envrionment.    
+#
+# Discription:
+# This is the default task file the gets loaded and executed on a local
+# server by the SBRescue ram disk image.
+#
+# The zerofill task is used to carry out the "ZEROFILL" (or Wipe) of a 
+# server that has been released of its resources from the system.  
+#
+# This task file was copied from reclaim.txt and the zero-fill parts removed.
+# =======================================================================
+
+# Source the following files and include them as part of this script
+. /etc/local.sh
+. /usr/lib/sbks_lib.sh
+
+# Export the following environment variable
+export KSIPADDR MACADDR IPADDR REALIP
+
+#find the datacenter
+DC="$(grep 'kslan.' /etc/resolv.conf | cut -d . -f 2-)"
+export DC
+
+#save the name of the verify login script
+verify="verify_login.pl";
+# Get our audit.py file
+echo -n "Fetching $verify from Kickstart..."
+wget http://kickstart.${DC}/kickstart/taskfiles.new/${verify} -O ${verify} >> /dev/null 2>&1
+if [ $? -ne 0 ]; then
+        	echo -e "failed.\nUnable to download $verify from kickstart.$DC" >&2
+	        exit 1
+elif [ ! -s $verify ]; then
+	        echo -e "failed.\nDownloaded script but has no file size." >&2
+	        exit 2
+else
+		echo -e "done.\n"
+fi
+
+#verify the box
+perl verify_login.pl reclaim
+
+# Register the current state of the kick using register.cgi
+# By calling this web cgi that sits on the KS server it can register the current state of the kick.
+post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=zerofill"
+
+cat <<EOF
+################################################################################
+################################################################################
+##                                                                            ##
+##    This server is set to reclaim.  The reclaim procedure will start in     ##
+##                                                                            ##
+##                          LESS THAN ONE MINUTE                              ##
+##                                                                            ##
+##  If you do not want this server to reclaim, shut it down now and contact   ##
+##                  a developer as soon as possible!                          ##
+##                                                                            ##
+################################################################################
+################################################################################
+EOF
+
+sleep 60
+
+#/usr/bin/zerofill.sh start
+partprobe
+for disc in hda hdb hdc hdd ; do
+    parted -s /dev/$disc mklabel msdos
+done
+for disc in sda sdb sdc sdd ; do
+    parted -s /dev/$disc mklabel msdos
+done
+
+CARD=$(lspci | grep -i raid | egrep -o "3ware|LSI")
+if [ "$CARD" == "3ware" ] ; then
+        wget http://${KSIPADDR}/kickstart/taskfiles.new/devices/13c1/1004/cli.tgz
+        tar xzf cli.tgz -C /sbin/
+        CTL=$(tw_cli show | grep c[0-9] | awk '{ print $1 }')
+        for i in `tw_cli /$CTL show | grep p[0-9] | grep -o u[0-9]` ; do
+                tw_cli /$CTL/$i del quiet
+        done
+elif [ "$CARD" == "LSI" ] ; then
+        wget http://${KSIPADDR}/kickstart/taskfiles.new/devices/1000/0060/cli.tgz
+        tar xzf cli.tgz -C /sbin/
+        MegaCli -cfgclr -aall
+fi
+
+true
+
+if [ $? -eq 0 ] ; then
+    post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=zerodone"
+else
+    post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=zero_fail"
+fi
+
+sb_memtest() {
+       echo "Testing memory .. "
+        cd /tmp
+        total_mem=$(head -n1 /proc/meminfo | awk '{print $2}')
+        # there seems to be a problem with the ram disk we use for sbrescue
+        total_mb=$(( ${total_mem} / 1024 ))
+        test_mem=$(( ${total_mb} - 275 ))
+        echo ${total_mem}k
+        # we can disable the OOM killer with sysctl 
+        /sbin/sysctl -w vm.overcommit_memory=1
+        if [ "$total_mb" -gt "4096" ] ; then
+                echo "Only testing first 4GB 32bit limitation"
+                memtester 3821 1
+        elif [ "$total_mb" -lt "4096" ] ; then
+                memtester $test_mem 1
+        fi
+    if [ $? -ne 0 ] ; then
+        postlog "ERR" "memtest bombed" "burnin_fail"
+    fi }
+
+#    mkdir /tmp/log
+#    cp -f /tmp/memtest.log /tmp/log
+#    memerrs=`grep -c -i failure /tmp/memtest.log`
+#    if [ $memerrs -eq 0 ] ; then
+#        postlog "INFO" "Memory errors - $memerrs"
+#    else
+#        postlog "ERR" "Memory errors - $memerrs" "burnin_fail"
+#    fi }
+
+sb_hddtest() {
+ 
+    disc=$1
+    fullname="/dev/$disc"
+    allowedTime="27500" # In Hours
+
+    # First, ensure drive hours are acceptable before anything else.
+    driveHours="$(smartctl -a $fullname | awk '($2 ~ /Power_On_Hours/) {print $NF}' | sed '/[^0-9]/d')"
+    if [ -z "$driveHours" ]; then
+        postlog "ERR" "Unable to find drive hours on $fullname" "burnin_fail"
+        exit 1
+    else
+        postlog "INFO" "Drive $fullname has $driveHours hours on it."
+        if [ "$driveHours" -gt "$allowedTime" ]; then
+            postlog "ERR" "$fullname failed drive hour check - has $driveHours needs less than $allowedTime" "burnin_fail"
+            exit 1
+        else
+            postlog "INFO" "$fullname passed drive hour check - has $driveHours needs less than $allowedTime"
+        fi
+    fi
+
+    postlog "INFO" "Checking for partitions"
+    parted -s /dev/$disc print 2> /dev/null | egrep '^[[:space:]]*[1-9]' | grep -vi fat
+    if [ $? -eq 0 ] ; then
+
+        echo "Parted found partitions. Checking with fdisk."
+
+        fdisk -l /dev/$disc 2>&1 /dev/null | grep -i 't contain a valid partition table'
+
+        if [ $? -eq 0 ] ; then
+            echo "But fdisk says there is no partition table, so this is wrong."
+        else
+            echo "And its right!"
+            postlog "ERR" "Partitions found!" "burnin_fail"
+        fi
+    fi
+
+    postlog "INFO" "Tuning ${disc}"
+    smartctl -d ata -s on $fullname
+    hdparm -c3 -d1 $fullname
+
+    grep '/mnt/sysimage' /proc/mounts && umount /mnt/sysimage
+
+    ct=0
+    res=1
+    while [ $ct -lt 5 ] && [ $res -ne 0 ] ; do
+        postlog "INFO" "Creating filesystem on $fullname"
+        mke2fs -j -m0 -F $fullname
+        sync
+        sleep 2
+        postlog "INFO" "Attempting to mount $fullname"
+        mount -t ext3 $fullname /mnt/sysimage
+        res=$?
+        ct=$[ $ct + 1 ]
+    done
+
+    # Make sure the disc is mounted before continuing
+    grep '/mnt/sysimage' /proc/mounts
+    [ $? -eq 0 ] || postlog "ERR" "Unable to mount ${disc} for testing" "burnin_fail"
+
+    # Run hdd benchmarks
+    bonnie -n 10:4096 -r 512 -u root -d /mnt/sysimage >/dev/null
+    [ $? -eq 0 ] || postlog "ERR" "Benchmark failed on ${disc}" "burnin_fail"
+
+    # Record relevant data
+    smartctl -d ata -a $fullname > "/tmp/log/${disc}-smart.log"
+    dmesg | grep "^${disc}: dma_intr: error" > "/tmp/log/${disc}-bench.err"
+    bencherrs=$(grep -c "^${short}:" /tmp/log/${disc}-bench.err)
+    [ $bencherrs -eq 0 ] || postlog "ERR" "Benchmark errors on ${disc}" "burnin_fail"
+
+# need to figure out why drives get so many SMART errors
+    smartctl -d ata -l error ${disc} > /tmp/log/${disc}-smart.err
+    smarterrs=$(grep "ATA Error Count:" /tmp/log/${disc}-smart.err | awk '{print $4}')
+    if [ -z $smarterrs ] ; then smarterrs=0 ; fi
+    [ $smarterrs -lt 5 ] || postlog "ERR" "Too many SMART errors on ${disc} - $smarterrs" "burnin_fail"
+
+    grep '/mnt/sysimage' /proc/mounts && umount /mnt/sysimage
+#    badblocks -b 4096 -c 81920 -o /badblocks.txt -s -w ${LDISC}
+    parted -s $fullname mklabel msdos
+}
+
+# MAIN
+
+
+#find the datacenter
+DC="$(grep 'kslan.' /etc/resolv.conf | cut -d . -f 2-)"
+export DC
+
+# Let KS know that we're starting burnin
+post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=burnin"
+
+havepata=0
+havesata=0
+
+
+for device in "hda" "hdb" "hdc" "hdd" ; do
+    fdisk -l /dev/$device | grep ^Disk >/dev/null && havepata=1
+done
+
+for device in "sda" "sdb" "sdc" "sdd" ; do
+    fdisk -l /dev/$device | grep ^Disk >/dev/null && havesata=1
+done
+
+if [ $havepata -eq 1 ] ; then
+
+    for device in $(find /proc/ide/ide[0-4] -name hd*) ; do
+        disc=$(basename $device)
+    
+        cat $device/model | grep CD-ROM >/dev/null && continue  # CD-ROM HAX
+        cat $device/model | grep CDROM >/dev/null && continue   # CD-ROM HAX
+    cat $device/model | grep TEAC >/dev/null && continue    # CD-ROM HAX
+        
+        postlog "INFO" "Checking for partitions on $disc"
+        parted -s /dev/$disc print 2> /dev/null | egrep '^\s?[1-9]' | grep -vi fat
+        if [ $? -eq 0 ] ; then
+
+            fdisk -l /dev/$disc 2>&1 /dev/null | grep -i 't contain a valid partition table'
+            if [ $? -eq 0 ] ; then
+                postlog "INFO" "Found partitions on $disc but probably bonnie"
+            else
+                postlog "ERR" "Partitions found on $disc" "burnin_fail"
+            fi
+        fi
+    done
+
+fi
+
+if [ $havesata -eq 1 ] ; then
+
+    disc=sda
+
+    for disc in "sda" "sdb" "sdc" "sdd" ; do
+
+        postlog "INFO" "Checking for partitions on $disc"
+        parted -s /dev/$disc print 2> /dev/null | egrep '^\s?[1-9]' | grep -vi fat
+
+        if [ $? -eq 0 ] ; then
+
+            fdisk -l /dev/$disc 2>&1 /dev/null | grep -i 't contain a valid partition table'
+            if [ $? -eq 0 ] ; then
+                postlog "INFO" "Found partitions on $disc but probably bonnie"
+            else
+                postlog "ERR" "Partitions found on $disc" "burnin_fail"
+            fi
+        fi
+    done
+
+fi
+
+sb_memtest
+
+# Attempting to start pulling down drivers and burnin scripts dynamically based on the devices that
+# were detected.  This is just a start, but it keeps us from having to edit the burnin script 
+# everytime that we want to add new hardware. To add new hardware to burnin, please add the pci id
+# returned by lspci -n to /exports/kickstart/taskfiles.new/devices/raid.devices.  Read help file at
+# /exports/kickstart/taskfiles.new/devices/README for more information
+
+curl -# http://${KSIPADDR}/kickstart/taskfiles.new/devices/raid.devices -o /tmp/raid.devices
+for device in $(cat /tmp/raid.devices)
+do
+        lspci -n | grep "$device" > /dev/null
+        if [ $? -eq 0 ] ; then
+                echo "Raid device detected, downloading tools"
+        make=$(lspci -n | grep -o "$device" | awk -F \: '{ print $1 }')
+        model=$(lspci -n | grep -o "$device" | awk -F \: '{ print $2 }')
+                curl -# http://${KSIPADDR}/kickstart/taskfiles.new/devices/$make/$model/tools.tgz -o /tmp/tools.tgz
+                tar -xzvf /tmp/tools.tgz -C /tmp/
+                if [[ $? -eq 0 ]] ; then
+                        postlog "INFO" "Got RAID tools from the tarball"
+                else
+                        postlog "ERR" "Failed to get RAID tools from the tarball"
+                fi
+                if [[ -s /tmp/burnin.sh ]] ; then
+                        postlog "INFO" "Executing burnin task for $device"
+                        . /tmp/burnin.sh
+                        burnin
+                else
+                        postlog "INFO" "No burnin function specified for $device"
+                fi
+        fi
+done
+
+if [ $havepata -eq 1 ] ; then
+
+    for device in $(find /proc/ide/ide[0-4] -name hd[a-h]) ; do
+        disc=$(basename $device)
+    
+        cat $device | grep LITE >/dev/null && continue  # LITE-ON CDROM HACK
+        cat $device | grep TEAC >/dev/null && continue  # TEAC CDROM HACK
+        postlog "INFO" "Running sb_hddtest on ${disc}"
+        sb_hddtest ${disc}
+    done
+
+fi
+
+if [ $havesata -eq 1 ] ; then
+
+    for disc in "sda" "sdb" "sdc" "sdd" ; do
+
+        letsgo=0
+        
+        fdisk -l /dev/${disc} | grep ^Disk >/dev/null && letsgo=1
+
+        if [ $letsgo -eq 1 ] ; then
+            postlog "INFO" "Running sb_hddtest on ${disc}"
+            sb_hddtest ${disc}
+        fi
+
+        letsgo=0
+        
+    done
+
+fi
+
+post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=burnin_done"
+echo "Told Kickstart we're done with burnin! Will reboot shortly to audit..."
+
+auditOutput='output.xml'
+auth='amagnus:PRUchec2'
+headers='"content-type: text/xml"'
+logFile='/tmp/audit.log'
+options="-X POST -i -k -d@${auditOutput} -u${auth} -H${headers}"
+script='audit.py'
+
+# This function checks for a "reboot" status every 30 seconds. It may
+# be disowned by the script to run in the background.
+checkForStatus() {
+    sleep=30
+    while [ 1 ]; do
+        server_status=$(post "http://${KSIPADDR}/cgi-bin/server_status.cgi" "macaddr=$MACADDR")
+        if [[ $server_status == "reboot" ]] ; then
+            echo "Rebooting the system"
+            /sbin/reboot
+	    break
+        else
+            echo "Status is $server_status. Sleeping for $sleep seconds"
+	    sleep $sleep
+        fi
+    done
+}
+
+auditFail() {
+	# Used for ANY failures during the audit process
+	echo -en "\nSending 'audit_fail' status to Kickstart..."
+	out="$(post "http://kickstart.${DC}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=reclaim_fail")"
+	if [ "$out" != "status=success" ]; then
+		echo "failed. Status given: $out" >&2
+	else
+		echo "done."
+	fi
+	echo -e "\nCheck $logFile for more detailed info if needed."
+}
+
+auditDone() {
+	# Used for successful audit status
+	echo -en "\nSending 'audit_done' status to Kickstart..."
+	out="$(post "http://kickstart.${DC}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=reclaim_done")"
+	if [ "$out" != "status=success" ]; then
+		echo "failed. Status given: $out" >&2
+	else
+		echo "done."
+	fi
+}
+
+# Before anything else, make sure we have a network connection.
+echo -n "Testing our network..."
+echo "Begin network test:" >> $logFile
+ping -c 2 -w 2 www.google.com >> $logFile 2>&1
+# If this fails, try a static IP from Google's NS
+if [ $? -ne 0 ]; then
+	ping -c 2 -w 2 8.8.8.8 >> $logFile 2>&1
+	if [ $? -ne 0 ]; then
+		echo -e "failed.\n\nIf this system is not on VLAN 405, please place it on VLAN 405." >&2
+		exit 1
+	else
+		echo -e "failed.\n\nWe can ping an IP, but not resolve hostnames. Something is wrong." >&2
+	fi
+else
+	echo -e "done\n"
+fi
+
+# Work in /tmp/
+cd /tmp/
+
+# Find our DC Name and export it for getRaidCli()
+DC="$(grep 'kslan.' /etc/resolv.conf | cut -d . -f 2-)"
+export DC
+dcNum="$(grep 'kslan.' /etc/resolv.conf | cut -d . -f 2- | wc -l)"
+if [ "$dcNum" -ne 1 ]; then
+	echo "Unable to find our datacenter." >&2
+	echo "Output of DC:" >&2
+	echo $DC >&2
+	auditFail
+	exit 1
+fi
+
+# Get our audit.py file
+touch $logFile
+echo -n "Fetching $script from Kickstart..."
+echo "Begin wget of $script from Kickstart" >> $logFile
+wget http://kickstart.${DC}/kickstart/taskfiles.new/${script} -O ${script} >> $logFile 2>&1
+if [ $? -ne 0 ]; then
+	echo -e "failed.\nUnable to download $script from kickstart.$DC" >&2
+	auditFail
+	exit 1
+elif [ ! -s $script ]; then
+	echo -e "failed.\nDownloaded script but has no file size." >&2
+	auditFail
+	exit 2
+else
+	echo -e "done.\n"
+fi
+
+# Run our audit.py file
+echo -e "Running ${script}\n"
+chmod +x ${script}
+./${script} > $auditOutput
+if [ $? -ne 0 ]; then
+	echo "$script failed to run successfully." >&2
+	auditFail
+	exit 3
+else
+	echo -e "$script has finished.\n"
+fi
+
+# For WinStart compatibility, let Kickstart know the audit has
+# been completed before attempting to post to the DCC.
+auditDone
+
+# Build our cURL command.
+curlCommand="curl ${options} https://dcc.${DC}/datacenter/devices/audit"
+
+# We run the post to the DCC in this loop. Essentially, when 
+# trying to audit a system where it cannot find the MAC on the 
+# network/NetAdmin, the DCC will fail to post. To save DCO some 
+# trouble, we loop and try again a few times.
+loop=0
+while [ $loop -lt 16 ]; do
+	# Increment our loop
+	loop=$((loop+1))
+
+	# Run our cURL command and append it to logs.
+	# This REQUIRES the eval within commmandOut. Not entirely sure
+	# why, but it will throw an error about "Couldn't resolve host 'text'"
+	echo -e "Running the following command:\n${curlCcommand}" >> $logFile
+	echo -n "Posting our audit back to the DCC..."
+	curlCommandOut="$(eval $curlCommand 2>&1)"
+	echo "$curlCommandOut" >> $logFile
+	echo -e "done.\n"
+
+	# If we don't have this error, exit out of loop.
+	locationError="$(echo $curlCommandOut | grep -i 'Could not find a location')"
+	if [ -z "$locationError" ]; then
+		break
+	else
+		# Just change minute as needed as well as loop above. Was waiting while testing so
+		# made it dynamic while we decided on what value to use. =)
+		minutes=1
+		sleepTime=$((minutes*60))
+		if [ $minutes -eq 1 ]; then
+			echo "The DCC doesn't know our current location. Sleeping for $minutes minute."
+		else
+			echo "The DCC doesn't know our current location. Sleeping for $minutes minutes."
+		fi
+
+		echo "This was attempt #${loop}"
+		sleep $sleepTime
+	fi
+done
+
+# Make sure no errors are returned from the DCC
+errorCheck="$(echo $curlCommandOut | grep -i 'error')"
+if [ -n "$errorCheck" ]; then
+	echo "An error was returned from the DCC." >&2
+	echo "Here is our response from the DCC:" >&2
+	echo "$curlCommandOut" >&2
+	auditFail
+	exit 4
+fi
+
+# Find our HTTP Status Line(s) and ensure we only have one.
+ourLine="$(echo "$curlCommandOut" | egrep '^HTTP/1.[0-9]' | grep -v '100 Continue')"
+ourLineCount="$(echo "$ourLine" | wc -l)"
+if [ -z "$ourLine" ]; then
+	echo "Something happened and we cannot find our response line." >&2
+	exit 5
+elif [ "$ourLineCount" -ne 1 ]; then
+	echo "ourLine: $ourLine" >> $logFile
+	echo "ourLineCount: $ourLineCount" >> $logfile
+	echo "Something happened and we cannot tell if our audit posted." >&2
+	echo "We found $ourLineCount line(s) instead of 1." >&2
+	auditFail
+	exit 6
+fi
+
+# Find our status code and ensure it's only numbers
+ourStatus="$(echo "$ourLine" | awk '{print $2}' | grep '[0-9][0-9][0-9]')"
+if [ -z "$ourStatus" ]; then
+	echo "ourLine: $ourLine" >> $logFile
+	echo "Something happened and we cannot tell if our audit posted." >&2
+	echo "ourStatus code is failing regular expression." >&2
+	auditFail
+	exit 7
+fi
+
+# Ensure we get an exit status in the 2xx range
+if [ "$ourStatus" -ge 300 -o "$ourStatus" -lt 200 ]; then
+	echo "Sending our data to the DCC has failed." >&2
+	echo "Here is our response from the DCC:" >&2
+	echo "$curlCommandOut" >&2
+	auditFail
+	exit 8
+fi
+
+# Find our device ID
+# Debug info is already in logFile
+device="$(echo "$curlCommandOut" | awk '($1 ~ /Location:/) {print $NF}')"
+if [ -z "$device" ]; then
+	echo "Something happened and we cannot find our device ID."
+	auditFail
+	exit 9
+fi
+
+# All done.
+echo "Audit has been successfully posted to the DCC!"
+echo "Status : $ourLine"
+echo "Device : $device"
+echo "MAC    : ${MACADDR}"
+echo "URL    : https://dcc.${DC}/datacenter/devices/audit"
+echo -e "\nCheck $logFile for more detailed info if needed."
+
+
+echo "Reclaim complete, this server can now be removed from the rack."
+# Screen prevents bash job control from working properly so instead of
+# backgrounding checkForStatus and using "disown", we will detach the
+# screen and run the check in the foreground.
+#screen -d
+
+# Check for a "reboot" status after script termination.
+#checkForStatus
+#poweroff

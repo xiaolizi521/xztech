@@ -1,0 +1,807 @@
+#!/bin/bash
+# Source the following files and include them as part of this script
+# Change path for local.sh from postconf
+
+. /etc/local.sh
+. /usr/lib/sbks_lib.sh
+# Export the following environment variable
+export KSIPADDR MACADDR IPADDR REALIP
+
+#find the datacenter
+DC="$(grep 'kslan.' /etc/resolv.conf | cut -d . -f 2-)"
+export DC
+
+#save the name of the verify login script
+verify="verify_login.pl"
+
+# Function to call when we fail for any reason.
+hw_raid_fail() {
+	post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=hwraid_setup_fail"
+	exit 1
+}
+
+# This should be added into sbks_lib.sh - putting in here for now.
+run() {
+	# Assign our variables based on our input.
+	# Application
+	app="$1"
+	# Command
+	com="$@"
+	# Execute Command
+	exc="$($@ 2>&1)"
+	# Exit Code
+	ec="$(echo $?)"
+
+	# Catch any bad commands and print out why it's not good.
+	case $app in
+		# cd built-in doesn't work with this function
+		cd)
+		echo "ERROR: $app is not supported by run()" >&2
+		echo "Exiting." >&2
+		exit 1
+		;;
+
+		# Everything else is fine, proceed.
+		*)
+		;;
+	esac
+
+	# Check our exit code and respond accordingly.
+	# Simply echo the output if we exit cleanly.
+	if [ $ec -eq 0 ]; then
+		if [ -n "$exc" ]; then
+			echo "$exc"
+		fi
+	# Checks for the application not being found in our $PATH by BASH.
+	elif [ $ec -eq 127 ]; then
+		echo -e "ERROR: The following application was not found by BASH:\n"
+		echo -e "${app}\n\nThis application was called when trying to run the following command:\n"
+		echo -e "${com}\n\nExiting."
+		exit $ec
+	# Anything else would be a non-specific exit code. Print our info and exit.
+	else
+		echo -e "ERROR: We received an exit code of $ec when running the following command:\n"
+		echo -e "${com}\n\nError message given:\n\n${exc}\n\nExiting."
+		exit $ec
+	fi
+}
+
+# Get our verify.py file
+echo -n "Fetching $verify from Kickstart..."
+wget http://kickstart.${DC}/kickstart/taskfiles.new/${verify} -O ${verify} >> /dev/null 2>&1
+if [ $? -ne 0 ]; then
+	echo -e "failed.\nUnable to download $verify from kickstart.$DC" >&2
+	exit 1
+elif [ ! -s $verify ]; then
+	echo -e "failed.\nDownloaded script but has no file size." >&2
+	exit 2
+else
+	echo -e "done.\n"
+fi
+
+# verify the box
+perl $verify hw_raidsetup
+
+# jbair@2009-08-06 - Added sleep command to top the script from nuking
+# a RAID array in the event this is being run in error.
+cat << EOWARNING
+
+#####################################################################
+##                                                                 ##
+##                             WARNING                             ##
+##          This system is about to setup Hardware RAID            ##
+## THIS WILL DESTROY ALL DATA FROM ANY RAID DEVICES ON THIS SERVER ##
+## Either cancel this action (ctrl+c) or POWER THIS SERVER DOWN if ##
+##        this is not a brand new machine or a reprovision!        ##
+##                 MAC Address: $MACADDR                  ##
+##                                                                 ##
+#####################################################################
+
+EOWARNING
+
+sleep 60
+
+echo -n "Fetching raid_setup.pl from Kickstart..."
+wget http://kickstart.${DC}/kickstart/taskfiles.new/raid_setup.pl -O raid_setup.pl >> /dev/null 2>&1
+if [ $? -ne 0 ]; then
+	echo -e "failed.\nUnable to download raid_setup.pl from kickstart.$DC" >&2
+	exit 1;
+elif [ ! -s 'raid_setup.pl' ]; then
+	echo -e "failed.\nDownloaded script but has no file size." >&2
+	exit 2;
+else
+	echo -e "done.\n";
+fi
+
+perl raid_setup.pl
+
+exit 0
+
+# Update the status of the server
+post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&ipaddr=${IPADDR}&status=hwraid_setup"
+
+# Get the postconf information for this server
+target=/tmp
+post "http://${KSIPADDR}/cgi-bin/postconf.cgi" "macaddr=${MACADDR}&update=no" "$target/postconf.info"
+. $target/postconf.info
+
+# Export the RAID variables
+export osload HW_RAID0_LVL HW_RAID0_NUM_DRIVES HW_RAID1_LVL HW_RAID1_NUM_DRIVES HW_RAID2_LVL HW_RAID2_NUM_DRIVES HW_RAID3_LVL HW_RAID3_NUM_DRIVES HW_RAID4_LVL HW_RAID4_NUM_DRIVES
+
+# Adding drive check stuff
+if [ -z  $HW_RAID1_NUM_DRIVES ] && [ -z $HW_RAID2_NUM_DRIVES ] && [ -z $HW_RAID3_NUM_DRIVES ]; then
+	let result=$HW_RAID0_NUM_DRIVES
+elif [ -z $HW_RAID3_NUM_DRIVES ] && [ -z $HW_RAID2_NUM_DRIVES ]; then
+	let result=$HW_RAID0_NUM_DRIVES+$HW_RAID1_NUM_DRIVES
+elif [ -z $HW_RAID3_NUM_DRIVES ]; then
+	let result=$HW_RAID0_NUM_DRIVES+$HW_RAID1_NUM_DRIVES+$HW_RAID2_NUM_DRIVES
+else
+	let result=$HW_RAID0_NUM_DRIVES+$HW_RAID1_NUM_DRIVES+$HW_RAID2_NUM_DRIVES+$HW_RAID3_NUM_DRIVES
+fi
+
+# Build array value blah :( I am
+# Revamping all this in my spare time
+# because it feels dirty ^_^
+ARRAY=($HW_RAID0_LVL$HW_RAID0_NUM_DRIVES$HW_RAID1_LVL$HW_RAID1_NUM_DRIVES$HW_RAID2_LVL$HW_RAID2_NUM_DRIVES$HW_RAID3_LVL$HW_RAID3_NUM_DRIVES)
+
+if [ -z "$ARRAY" ]; then
+	postlog "ERR" "Empty values for the RAID setup check postconf please"
+	echo "Verify POSTCONF in Ocean/KS http://${KSIPADDR}/cgi-bin/postconf.cgi?macaddr=${MACADDR}&update=no"
+	hw_raid_fail
+fi
+
+# First, make sure we only have one RAID card
+# The "Fusion-MPT" is an LSI card and it reports as follows in lspci:
+# 01:00.0 SCSI storage controller: LSI Logic / Symbios Logic SAS1064ET PCI-Express Fusion-MPT SAS (rev 08)
+# This raid card does NOT uses the MegaCli tools even though it is an LSI card. It uses the mpt driver and the cfggen tool.
+RAID_NUM="$(lspci | egrep -c -i 'raid|Fusion-MPT')"
+if [ $RAID_NUM -eq 0 ]; then
+	postlog "ERR" "No RAID controllers found."
+	hw_raid_fail
+elif [ $RAID_NUM -ne 1 ]; then
+	postlog "ERR" "More than 1 RAID controller found and not supported! Found $RAID_NUM"
+	hw_raid_fail
+fi
+
+# Determine the card Vendor
+VENDOR="$(lspci | egrep -i 'raid|Fusion-MPT' | egrep -o '3ware|LSI|Fusion-MPT' | tail -1)"
+if [ "$VENDOR" == "Fusion-MPT" ]; then
+    # Adjust the vendor name to a cleaner name. Notice we cannot use the 'LSI' name as the LSI cards uses
+    # the MegaCli tool and the LSI Fusion-MPT card uses the mptsas drivers and the cfggen command line tool.
+    VENDOR="LSI-Fusion-MPT"
+fi
+# Check the number of cards. notice that I need to separate the MPT one since the lspci reports LSI for it
+VENDOR_NUM="$(lspci | egrep -i 'raid|Fusion-MPT' | egrep -o '3ware|LSI' | wc -l)" # using -c in grep only returns 1
+
+# Check for nothing
+if [ -z "$VENDOR" ]; then
+	postlog "ERR" "Could not find RAID card type."
+	hw_raid_fail
+fi
+
+# See if we got double responses (i.e. LSI 9260) and if they match, set VENDOR to a single response.
+if [ $VENDOR_NUM -eq 2 ]; then
+	VENDOR_FIRST="$(lspci | grep -i 'raid' | egrep -o '3ware|LSI' | head -1)"
+	VENDOR_LAST="$(lspci | grep -i 'raid' | egrep -o '3ware|LSI' | tail -1)"
+	if [ "$VENDOR_FIRST" == "$VENDOR_LAST" ]; then
+		VENDOR="$VENDOR_FIRST"
+	fi
+elif [ $VENDOR_NUM -ne 1 ]; then
+	postlog "ERR" "More than 2 vendor strings found - unsupported."
+	hw_raid_fail
+fi
+
+# Validate
+if [ "$VENDOR" == "3ware" ] || [ "$VENDOR" == "LSI" ] || [ "$VENDOR" == "LSI-Fusion-MPT" ]; then
+	postlog "INFO" "Found a RAID card by ${VENDOR}."
+else
+	postlog "ERR" "Invalid RAID card vendor found. Vendor found: $VENDOR"
+	hw_raid_fail
+fi
+
+# Pull down the required CLI
+# This is a hack - These PCI IDs need to by DYNAMIC
+# NOT STATIC URLS. =( Use audit.py for reference.
+if [ "$VENDOR" == "3ware" ]; then
+	run wget http://${KSIPADDR}/kickstart/taskfiles.new/devices/13c1/1004/cli.tgz
+	run tar xzf cli.tgz -C /sbin/
+elif [ "$VENDOR" == "LSI" ]; then
+	run wget http://${KSIPADDR}/kickstart/taskfiles.new/devices/1000/0060/cli.tgz
+	run tar xzf cli.tgz -C /sbin/
+elif [ "$VENDOR" == "LSI-Fusion-MPT" ]; then
+	run wget http://${KSIPADDR}/kickstart/taskfiles.new/devices/1000/0056/cli.tgz
+	run tar xzf cli.tgz -C /sbin/
+fi
+
+# Probe for controler number can be c0-9 or a0-a9
+if [ "$VENDOR" == "3ware" ]; then
+	CTL=$(tw_cli show | grep c[0-9] | awk '{ print $1 }')
+	postlog "INFO" "found controller on port $CTL"
+elif [ "$VENDOR" == "LSI" ]; then
+	CTL=$(MegaCli -adpallinfo -aall | grep "Adapter #" | grep -o [0-9])
+	postlog "INFO" "found controller on port $CTL"
+elif [ "$VENDOR" == "LSI-Fusion-MPT" ]; then
+	CTL=$(cfggen list | sed '/^$/d' | awk '{print $1}' | grep -o [0-9])
+	postlog "INFO" "found controller on port $CTL"
+fi
+
+# Probe for card model lspci will not show it
+if [ "$VENDOR" == "3ware" ]; then
+	CARD=$(tw_cli show | grep c[0-9] | awk '{ print $2 }')
+	postlog "INFO" "Found a $VENDOR $CARD"
+elif [ "$VENDOR" == "LSI" ]; then
+	CARD=$(MegaCli -adpallinfo -a$CTL | grep Product | awk '{ print $NF }')
+	postlog "INFO" "Found a $VENDOR $CARD"
+elif [ "$VENDOR" == "LSI-Fusion-MPT" ]; then
+	CARD=$(cfggen list | sed '/^$/d' | awk '{print $2}' | tail -1)
+	postlog "INFO" "Found a $VENDOR $CARD"
+fi
+
+# Check for exsisting data and blow away if there
+if [ "$VENDOR" == "3ware" ]; then
+	for i in $(tw_cli /$CTL show | grep p[0-9] | grep -o u[0-9]) ; do
+		tw_cli /$CTL/$i del quiet
+		postlog "INFO" "Removed any existing partitions"
+	done
+elif [ "$VENDOR" == "LSI" ]; then
+	MegaCli -cfgclr -a$CTL
+	MegaCli -cfgforeign -clear -a$CTL
+	postlog "INFO" "Removed any existing partitions"
+elif [ "$VENDOR" == "LSI-Fusion-MPT" ]; then
+	cfggen $CTL delete noprompt
+	postlog "INFO" "Removed any existing partitions"
+fi
+
+# Determine drive count
+if [ "$VENDOR" == "3ware" ]; then
+	N_DRIVES=$(tw_cli /$CTL show | grep OK | grep -o p[0-7] | wc -l)
+	postlog "INFO" "Found $N_DRIVES drives"
+elif [ "$VENDOR" == "LSI" ]; then
+	N_DRIVES=$(MegaCli -adpallinfo -a$CTL | grep Disks | head -n1 | awk '{ print $3 }')
+	SLOTS=$(MegaCli -pdlist -a$CTL | grep Slot | awk '{ print $3 }')
+	SLOT_LOOP=$N_DRIVES
+	SLOT_FILE=/tmp/slots_file
+	postlog "INFO" "Found $N_DRIVES drives"
+
+	# Remove our file if it already exists.
+	if [ -f $SLOT_FILE ]; then
+		rm -f $SLOT_FILE
+	fi
+
+	# Ennumerate our slot variables, write them to a file
+	# and source the file.
+	loop=0
+	for i in $SLOTS ; do
+		let loop++
+		if [ "$loop" -gt "$N_DRIVES" ]; then
+			break
+		fi
+		echo "SLOT${loop}=${i}" >> $SLOT_FILE
+	done
+	source $SLOT_FILE
+	export SLOT1 SLOT2 SLOT3 SLOT4 SLOT5
+
+	postlog "INFO" "Found $loop slots: $SLOT1 $SLOT2 $SLOT3 $SLOT4 $SLOT5"
+	ENCL=$(MegaCli -encinfo -a0 | grep ID | awk '{ print $4 }')
+	postlog "INFO" "Found enclosure $ENCL"
+	loop=0
+elif [ "$VENDOR" == "LSI-Fusion-MPT" ]; then
+ 	N_DRIVES=$(cfggen $CTL display | grep -c 'Target on ID')
+	postlog "INFO" "Found $N_DRIVES drives"
+fi
+
+# Added for empty POSTCONFs
+if [ -z "$N_DRIVES" ]; then
+	postlog "ERR" "No drives were detected check card bios and connections"
+	hw_raid_fail
+fi
+
+# Verify # of drives in server match
+# the # requested in the POSTCONF
+if [ -z "$result" ]; then
+	postlog "ERR" "Null values for RAID setup check postconf"
+	hw_raid_fail
+elif [ "$result" -gt "$N_DRIVES" ]; then
+	postlog "ERR" "Not enough drives to build array verify number of drives in box"
+	hw_raid_fail
+fi
+
+# Mark the LSI drives as good
+if [ "$VENDOR" == "LSI" ]; then
+	count=0
+	for i in "$SLOT1" "$SLOT2" "$SLOT3" "$SLOT4" "$SLOT5"; do
+		let count++
+		if [ -n "$i" ]; then
+			postlog "INFO" "Marking drive #${count} as good."
+			MegaCli -pdmakegood -physdrv "[${ENCL}:${i}]" -a${CTL}
+			# We expect either a clean exit or a exit of 1
+			# Not sure how to test for 'good' drives to avoid running
+			# on a drive that does not need it to get only clean exits and use run()
+			if [ $? -gt 1 ]; then
+				postlog "ERR" "Failure when marking drive #${count} as good."
+				hw_raid_fail
+			fi
+		else
+			postlog "INFO" "No drive found at slot #${count}"
+		fi
+	done
+fi
+
+# Determine max drive capacity for RAID card
+# Mostly done for the 8 port cards best I can tell.
+i2_PORT_CARDS="8006-2LP 9650SE-2LP"
+i4_PORT_CARDS="9650SE-4LPML 9690SA-4I 9260-4i SAS1064E"
+i8_PORT_CARDS="9650SE-8LPML 9690SA-8I 8708ELP 8708EM2 9260-8i"
+ALL_CARDS="$i2_PORT_CARDS $i4_PORT_CARDS $i8_PORT_CARDS"
+
+# Two port cards
+for i in $i2_PORT_CARDS; do
+	if [ "$CARD" == "$i" ] && [ "$N_DRIVES" -gt "2" ]; then
+		postlog "ERR" "Too many drives 2 max"
+		hw_raid_fail
+	fi
+done
+
+# Four port cards
+for i in $i4_PORT_CARDS; do
+	if [ "$CARD" == "$i" ] && [ "$N_DRIVES" -gt "4" ]; then
+		postlog "ERR" "Too many drives 4 max"
+		hw_raid_fail
+	fi
+done
+
+# Eight port cards
+for i in $i8_PORT_CARDS; do
+	if [ "$CARD" == "$i" ] && [ "$N_DRIVES" -gt "5" ]; then
+		postlog "ERR" "Too many drives 5 max"
+		hw_raid_fail
+	fi
+done
+
+# Also, check to make sure we have a supported card period.
+VALID_CARD="false"
+for i in $ALL_CARDS; do
+	if [ "$i" == "$CARD" ]; then
+		VALID_CARD="true"
+		break
+	fi
+done
+
+if [ "$VALID_CARD" == 'false' ]; then
+	postlog "ERR" "Invalid RAID card $VENDOR $CARD was found."
+	hw_raid_fail
+fi
+
+# Find out if there is a BBU
+if [ "$VENDOR" == "LSI" ]; then
+	BBU_CK=$(MegaCli -adpallinfo -a$CTL | grep BBU | grep -o Present)
+	if [ "$BBU_CK" == "Present" ]; then
+		BBU="1"
+	fi
+elif [ "$VENDOR" == "3ware" ]; then
+	BBU_CK=$(tw_cli info | grep c[0-9] | awk '{ print $9 }')
+	if [ "$BBU_CK" == "Charging" ] || [ "$BBU_CK" == "Yes" ] || [ "$BBU_CK" == "OK" ]; then
+		BBU="1"
+	fi
+fi
+
+# Flags for 3ware BBU creation
+if [ "$VENDOR" == "3ware" ] && [ "$BBU" == "1" ]; then
+	BBU_OPT=""
+elif [ "$VENDOR" == "3ware" ] && [ "$BBU" != "1" ]; then
+	BBU_OPT="nocache"
+fi
+
+# Build arrays based on POSTCONF values (revamping to be more modular)
+if [ "$VENDOR" == "3ware" ]; then
+	if [ "$CARD" == "8006-2LP" ] || [ "$CARD" == "9650SE-2LP" ]; then
+		tw_cli /$CTL add type=raid$HW_RAID0_LVL disk=0-1 $BBU_OPT
+	elif [ "$CARD" == "9650SE-4LPML" ] || [ "$CARD" == "9650SE-8LPML" ] || [ "$CARD" == "9690SA-4I" ] || [ "$CARD" == "9690SA-8I" ]; then
+		if [ "$ARRAY" == "104" ]; then
+			tw_cli /$CTL add type=raid10 disk=0-3 $BBU_OPT
+		elif [ "$ARRAY" == "02" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+		elif [ "$ARRAY" == "03" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-2 $BBU_OPT
+		elif [ "$ARRAY" == "04" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-3 $BBU_OPT
+		elif [ "$ARRAY" == "05" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-4 $BBU_OPT
+		elif [ "$ARRAY" == "01" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+		elif [ "$ARRAY" == "0101" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=single disk=1 $BBU_OPT
+		elif [ "$ARRAY" == "010101" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=single disk=1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+		elif [ "$ARRAY" == "01010101" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=single disk=1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+			tw_cli /$CTL add type=single disk=3 $BBU_OPT
+		elif [ "$ARRAY" == "55" ] ;  then
+			tw_cli /$CTL add type=raid5 disk=0-4 $BBU_OPT
+		elif [ "$ARRAY" == "12" ]; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+		elif [ "$ARRAY" == "54" ]; then
+			tw_cli /$CTL add type=raid5 disk=0-3 $BBU_OPT
+		elif [ "$ARRAY" == "5302" ]; then
+			tw_cli /$CTL add type=raid5 disk=0-2 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=3-4 $BBU_OPT
+		elif [ "$ARRAY" == "0253" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid5 disk=2-4 $BBU_OPT
+		elif [ "$ARRAY" == "5312" ]; then
+			tw_cli /$CTL add type=raid5 disk=0-2 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=3-4 $BBU_OPT
+		elif [ "$ARRAY" == "1253" ]; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid5 disk=2-4 $BBU_OPT
+		elif [ "$ARRAY" == "530101" ]; then
+			tw_cli /$CTL add type=raid5 disk=0-2 $BBU_OPT
+			tw_cli /$CTL add type=single disk=3 $BBU_OPT
+			tw_cli /$CTL add type=single disk=4 $BBU_OPT
+		elif [ "$ARRAY" == "015301" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid5 disk=1-3 $BBU_OPT
+			tw_cli /$CTL add type=single disk=4 $BBU_OPT
+		elif [ "$ARRAY" == "010153" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=single disk=1 $BBU_OPT
+			tw_cli /$CTL add type=raid5 disk=2-4 $BBU_OPT
+		elif [ "$ARRAY" == "53" ]; then
+			tw_cli /$CTL add type=raid5 disk=0-2 $BBU_OPT
+		elif [ "$ARRAY" == "5301" ]; then
+			tw_cli /$CTL add type=raid5 disk=0-2 $BBU_OPT
+			tw_cli /$CTL add type=single disk=3 $BBU_OPT
+		elif [ "$ARRAY" == "0153" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid5 disk=1-3 $BBU_OPT
+		elif [ "$ARRAY" == "0154" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid5 disk=1-4 $BBU_OPT
+		elif [ "$ARRAY" == "01104" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid10 disk=1-4 $BBUT_OPT
+		elif [ "$ARRAY" == "010102" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=single disk=1 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=2-3 $BBU_OPT
+		elif [ "$ARRAY" == "010112" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=single disk=1 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=2-3 $BBU_OPT
+		elif [ "$ARRAY" == "010201" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=1-2 $BBU_OPT
+			tw_cli /$CTL add type=single disk=3 $BBU_OPT
+		elif [ "$ARRAY" == "011201" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=1-2 $BBU_OPT
+			tw_cli /$CTL add type=single disk=3 $BBU_OPT
+		elif [ "$ARRAY" == "020101" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+			tw_cli /$CTL add type=single disk=3 $BBU_OPT
+		elif [ "$ARRAY" == "120101" ]; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+			tw_cli /$CTL add type=single disk=3 $BBU_OPT
+		elif [ "$ARRAY" == "0201" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+		elif [ "$ARRAY" == "1201" ]; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+		elif [ "$ARRAY" == "0102" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=1-2 $BBU_OPT
+		elif [ "$ARRAY" == "0103" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=1-3 $BBU_OPT
+		elif [ "$ARRAY" == "0112" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=1-2 $BBU_OPT
+		elif [ "$ARRAY" == "0202" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=2-3 $BBU_OPT
+		elif [ "$ARRAY" == "1212" ]; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=2-3 $BBU_OPT
+		elif [ "$ARRAY" == "0212" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=2-3 $BBU_OPT
+		elif [ "$ARRAY" == "1202" ]; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=2-3 $BBU_OPT
+		elif [ "$ARRAY" == "020201" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=2-3 $BBU_OPT
+			tw_cli /$CTL add type=single disk=4 $BBU_OPT
+		elif [ "$ARRAY" == "121201" ]; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=2-3 $BBU_OPT
+			tw_cli /$CTL add type=single disk=4 $BBU_OPT
+		elif [ "$ARRAY" == "120201" ]; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=2-3 $BBU_OPT
+			tw_cli /$CTL add type=single disk=4 $BBU_OPT
+		elif [ "$ARRAY" == "021201" ]  ; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=2-3 $BBU_OPT
+			tw_cli /$CTL add type=single disk=4 $BBU_OPT
+		elif [ "$ARRAY" == "020102" ]  ; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=3-4 $BBU_OPT
+		elif [ "$ARRAY" == "120112" ]  ; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=3-4 $BBU_OPT
+		elif [ "$ARRAY" == "120102" ]; then
+			tw_cli /$CTL add type=raid1 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=3-4 $BBU_OPT
+		elif [ "$ARRAY" == "020112" ]; then
+			tw_cli /$CTL add type=raid0 disk=0-1 $BBU_OPT
+			tw_cli /$CTL add type=single disk=2 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=3-4 $BBU_OPT
+		elif [ "$ARRAY" == "010202" ]  ; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=1-2 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=3-4 $BBU_OPT
+		elif [ "$ARRAY" == "011212" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=1-2 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=3-4 $BBU_OPT
+		elif [ "$ARRAY" == "011202" ]; then
+			tw_cli /$CTL add type=single disk=0 $BBU_OPT
+			tw_cli /$CTL add type=raid1 disk=1-2 $BBU_OPT
+			tw_cli /$CTL add type=raid0 disk=3-4 $BBU_OPT
+		else
+			postlog "ERR" "Could not build the requested RAID array"
+			hw_raid_fail
+		fi
+	fi
+elif [ "$VENDOR" == "LSI" ]; then
+	if [ "$CARD" == "8708ELP" ] || [ "$CARD" == "8708EM2" ] || \
+	[ "$CARD" == "9260-4i" ] || [ "$CARD" == "9260-8i" ]; then
+		if [ "$ARRAY" == "0202" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1,$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3,$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "104" ]; then
+			MegaCli -cfgspanadd -R10 -array0 "'[$ENCL:$SLOT1,$ENCL:$SLOT2]'" -array1 "'[$ENCL:$SLOT3,$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "02" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1,$ENCL:$SLOT2]'" -a$CTL
+		elif [ "$ARRAY" == "03" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1,$ENCL:$SLOT2,$ENCL:$SLOT3]'" -a$CTL
+		elif [ "$ARRAY" == "04" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1,$ENCL:$SLOT2,$ENCL:$SLOT3,$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "05" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1,$ENCL:$SLOT2,$ENCL:$SLOT3,$ENCL:$SLOT4,$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "01" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+		elif [ "$ARRAY" == "0101" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2]'" -a$CTL
+		elif [ "$ARRAY" == "010101" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+		elif [ "$ARRAY" == "01010101" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "12" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1,$ENCL:$SLOT2]'" -a$CTL
+		elif [ "$ARRAY" == "0212" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1,$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT3,$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "1212" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1,$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT3,$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "1202" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1,$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3,$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "55" ]; then
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT1,$ENCL:$SLOT2,$ENCL:$SLOT3,$ENCL:$SLOT4,$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "54" ]; then
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT1,$ENCL:$SLOT2,$ENCL:$SLOT3,$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "53" ]; then
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT1,$ENCL:$SLOT2,$ENCL:$SLOT3]'" -a$CTL
+		elif [ "$ARRAY" == "5301" ]; then
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT1,$ENCL:$SLOT2,$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "5302" ]; then
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT1,$ENCL:$SLOT2,$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4,$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "0253" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1,$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT3,$ENCL:$SLOT4,$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "5312" ]; then
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT1,$ENCL:$SLOT2,$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT4,$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "1253" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1,$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT3,$ENCL:$SLOT4,$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "530101" ]; then
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT1, $ENCL:$SLOT2, $ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "015301" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT2, $ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "010153" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT2, $ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "0103" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2, $ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "0153" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT2, $ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "0154" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R5 "'[$ENCL:$SLOT2, $ENCL:$SLOT3, $ENCL:$SLOT4, $ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "01104" ]; then
+			MegaCli -cfgldadd -R0 "'$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgspanadd -R10 -array1 "'[$ENCL:$SLOT2, $ENCL:$SLOT3, $ENCL:$SLOT4, $ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "010102" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3, $ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "010112" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "010201" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2, $ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "011201" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT2, $ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "020101" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "120101" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "0201" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+		elif [ "$ARRAY" == "1201" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+		elif [ "$ARRAY" == "0102" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2, $ENCL:$SLOT3]'" -a$CTL
+		elif [ "$ARRAY" == "0102" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2, $ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+		elif [ "$ARRAY" == "0112" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT2, $ENCL:$SLOT3]'" -a$CTL
+		elif [ "$ARRAY" == "020201" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "121201" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "120201" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "021201" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT3, $ENCL:$SLOT4]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "020102" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4, $ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "120112" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT4, $ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "120102" ]; then
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4, $ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "020112" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1, $ENCL:$SLOT2]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT4, $ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "010202" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT2, $ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4, $ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "011212" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT2, $ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT4, $ENCL:$SLOT5]'" -a$CTL
+		elif [ "$ARRAY" == "011202" ]; then
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT1]'" -a$CTL
+			MegaCli -cfgldadd -R1 "'[$ENCL:$SLOT2, $ENCL:$SLOT3]'" -a$CTL
+			MegaCli -cfgldadd -R0 "'[$ENCL:$SLOT4, $ENCL:$SLOT5]'" -a$CTL
+		else
+			postlog "ERR" "Could not build array for $VENDOR $CARD"
+			hw_raid_fail
+		fi
+	fi
+elif [ "$VENDOR" == "LSI-Fusion-MPT" ]; then
+	if [ "$CARD" == "SAS1064E" ]; then
+		# 'is' volume  =  RAID 0 (JBOD)
+		# 'im' volume  =  RAID 1
+		# 'ime' volume =  RAID 5
+
+		if [ "$ARRAY" == "02" ]; then
+			cfggen $CTL create is max 0 1 qsync noprompt
+		elif [ "$ARRAY" == "12" ]; then
+			cfggen $CTL create im max 0 1 qsync noprompt
+		elif [ "$ARRAY" == "0101" ]; then
+			:  # do nothing, this is just a JBOD
+
+		# The below combinations couldn't be tested due to lack of bays on the chassis
+		elif [ "$ARRAY" == "03" ]; then
+			cfggen $CTL create is max 0 1 2 qsync noprompt
+		elif [ "$ARRAY" == "04" ]; then
+			cfggen $CTL create is max 0 1 2 4 qsync noprompt
+		elif [ "$ARRAY" == "14" ]; then
+			cfggen $CTL create im max 0 1 2 4 qsync noprompt
+		elif [ "$ARRAY" == "53" ]; then
+			cfggen $CTL create ime max 0 1 2 qsync noprompt
+		else
+			postlog "ERR" "Could not build array for $VENDOR $CARD"
+			hw_raid_fail
+		fi
+	fi
+fi
+
+# Setup BBU cache options for LSI
+if [ "$VENDOR" == "LSI" ] && [ "$BBU" == "1" ]; then
+	for i in $(MegaCli -ldinfo -lall -a$CTL | grep "Virtual Disk" | awk '{ print $3 }'); do
+		MegaCli -ldsetprop -WB -l$i -a$CTL
+		MegaCli -ldsetprop -Cached -l$i -a$CTL
+		MegaCli -ldsetprop -nocachedbadbbu -l$i -a$CTL
+		MegaCli -ldsetprop -endskcache -l$i -a$CTL
+	done
+# Setup arrays without BBUs
+elif [ "$VENDOR" == "LSI" ] && [ "$BBU" != "1" ]; then
+	for i in $(MegaCli -ldinfo -lall -a$CTL | grep "Virtual Disk" | awk '{ print $3 }'); do
+		MegaCli -ldsetprop -WT -l$i -a$CTL
+		MegaCli -ldsetprop -Direct -l$i -a$CTL
+		MegaCli -ldsetprop -nocachedbadbbu -l$i -a$CTL
+		MegaCli -ldsetprop -disdskcache -l$i -a$CTL
+	done
+fi
+
+# Nice summary at the end for troubleshooting.
+echo -e "\nQuick summary:"
+echo "Vendor: $VENDOR"
+echo "Card:   $CARD"
+echo -e "Array:  ${ARRAY}\n"
+
+# Update the status
+echo "Setting the status to hwraid_setup_done on register.cgi"
+post "http://${KSIPADDR}/cgi-bin/register.cgi" "macaddr=${MACADDR}&status=hwraid_setup_done"
+
+# Set the PXE target to the choosen OS
+echo "Setting PXE target to $osload via updateks.cgi"
+post "http://${KSIPADDR}/cgi-bin/updateks.cgi" "macaddr=${MACADDR}&osload=${osload}"
+
+# Automatically reboot the system
+echo "Sleeping..."
+sleep 60
+echo "Rebooting..."
+/sbin/reboot

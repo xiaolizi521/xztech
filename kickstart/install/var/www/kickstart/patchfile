@@ -1,0 +1,41 @@
+Index: taskfiles.new/win2k3std-copy.txt
+===================================================================
+RCS file: /var/lib/cvs/serverbeach/kickstart/taskfiles.new/win2k3std-copy.txt,v
+retrieving revision 1.9
+diff -u -3 -r1.9 win2k3std-copy.txt
+--- taskfiles.new/win2k3std-copy.txt	19 Apr 2005 22:47:33 -0000	1.9
++++ taskfiles.new/win2k3std-copy.txt	27 Apr 2005 20:58:58 -0000
+@@ -105,6 +105,33 @@
+         postlog "ERR" "rsync of Ensim data incomplete"
+     fi
+ 
++elif [ x"${PANEL}" == x"ensim40win" ] ; then
++	# Make sure we have licenses
++    if [ $havelicenses -eq 1 ] ; then
++	    esmlic=`find /tmp/licenses -name W\*.lic`
++        if [ $esmlic ] && [ -s $esmlic ] ; then
++            cp -f $esmlic $target/skel/licenses/ensimpro.lic
++            if [ -s "$target/skel/licenses/ensimpro.lic" ] ; then
++                postlog "INFO" "$esmlic copied to skel/licenses/ensimpro.lic"
++            else 
++                postlog "ERR" "$esmlic license copy failed" "win2k_copyfail"
++            fi
++        else
++            postlog "ERR" "Ensim license not found" "win2k_copyfail"
++        fi
++    else
++        postlog "ERR" "No licenses available" "win2k_copyfail"
++    fi
++
++    esmver="4.0"
++    rsync -av --files-from=:/panels/ensim/windows/pro/${esmver}/windows${winver}/filelist.ensim rsync://${KSIPADDR}/installs/panels/ensim/windows/pro/${esmver}/windows${winver}/ $target/skel/software/ensim/
++
++    if [ -s $target/skel/software/ensim/filelist.ensim ] ; then
++        postlog "INFO" "rsync of Ensim data complete"
++    else
++        postlog "ERR" "rsync of Ensim data incomplete"
++    fi
++
+ elif [ x"$PANEL" == x"helm31" ] ; then
+ 
+     rsync -av --files-from=:/panels/helm/filelist.helm31 rsync://${KSIPADDR}/installs/panels/helm/ $target/skel/software/helm/

@@ -1,0 +1,521 @@
+#!/usr/bin/perl -w
+
+# =======================================================================
+#  Company:              Server Beach
+#  Copyright(c):         Server Beach 2006
+#  Project:              Kickstart Sub-System
+#  Code Devloper:        SB Development Team
+#  Creation Date:        2007-04-16
+# 
+#  File Type:            Taskfile
+#  File Name:            postconf.txt                
+# 
+#  Description:          Post install file for Debian installs.
+# ======================================================================='
+
+use strict;
+use Crypt::PasswdMD5;
+use File::Copy;
+use POSIX;
+use LWP::UserAgent;
+
+my ($sbpost, $ksipaddr, $ksdomain, $macaddr, $ks, $which_eth);
+
+# Function Definitions
+sub crypt_pw {
+	my $passwd = shift();
+	my $salt = "";
+	my $chars = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	for ( my $i = 0 ; $i < 8 ; $i++ ) {
+		my $tmp = substr($chars, rand(64), 1);
+		$salt .= $tmp;
+	}
+	my $crypted = unix_md5_crypt($passwd, $salt);
+	return $crypted;
+}
+
+# U SUCK NATE AND HUSSAM
+sub get_ip {
+        my ( $int ) = @_;
+        my $ip;
+        my @iface=`ifconfig $int`;
+        for ( @iface ) {
+                if ( /inet / ) {
+                        my @line = split;
+                        for (@line) {
+                                my @tmp = split(/:/, $line[1]);
+                                $ip = $tmp[1];
+                        }
+                }
+        }
+        return $ip;
+}
+
+
+sub getmac {
+        # iterate through the interface configs until you find one that has an IP
+        # assigned to it.  Start with eth0 (that is the most likely candidate) and 
+        # go through each one until we find the correct one.  
+	my $ret = '';
+        my $found = 0;
+        my $interface = 0;
+        while ( ($found == 0) and ($interface <= 1) )
+        {
+	        open IFH, "/sbin/ifconfig eth$interface |";
+	        while (<IFH>) 
+                {
+                        if (/inet addr/)
+                        {
+                                $found = 1;
+                                $which_eth = "eth$interface";
+                        }
+		        next unless (/HWaddr/);
+		        if (/((\w{2}:){5}\w{2})/) 
+                        { 
+                                $ret = lc($1); 
+                        }
+                }
+	        close IFH;
+                $interface++;
+	}
+	return $ret;
+}
+
+sub readpost {
+	my $ret = {};
+	return unless (-e "$sbpost/postconf.info");
+	open IFH, "<$sbpost/postconf.info";
+	while (<IFH>) {
+		next if (/^\#/);
+		chomp;
+		my @line = split(/=/, $_);
+		$ret->{$line[0]} = $line[1];
+	}
+	close IFH;
+	return $ret;
+}
+# need to determine the unconigured interface
+# should have a link if more than 2 interfaces exist
+# should not have a ip address if the interface we are planning on using
+# returns interfaces that have a link and no ip address configured
+# todo
+# should throw an error if there is only 1 interface exists
+sub find_pri_nic {
+        my $pri_int ;
+        my @ifaces=`ifconfig -a` ;
+        for (@ifaces) {
+                # find lines that start with characters not whitespace
+                if ( /^\w/ ) {
+                        # take the array returned from split and assign the 1st element to $int
+                        my ( $int ) = split(/\s/);
+                        if ( $int =~ /eth[0-9]/ ) {
+                                my @link_check=`ethtool $int`;
+                                for (@link_check) {
+                                        if ( /\s+Link detected: yes/ ) {
+                                                if ( &get_ip($int) ) {
+                                                        $pri_int = $int;
+                                                        return $pri_int;
+                                                } else {
+                                                        # ndurr@2009-01-11: Blank because some style guide suggested 
+                                                        # not sure how I feel about this.
+                                                }
+                                        }
+                                }
+                        } else {
+                                # postlog("INFO: skipping $int");
+                        }
+                }
+        }
+        return $pri_int;
+}
+
+
+sub find_sec_nic {
+        my $sec_int ;
+        my @ifaces=`ifconfig -a` ;
+        for (@ifaces) {
+                if ( /^\w/ ) {
+                        my ( $int ) = split(/\s/) ;
+                        if ( $int =~ /eth[0-9]/ ) {
+                                # ndurr@2009-01-11: to deal with the motherboards that detect 3 nics
+                                # we need DCO plug in the cables so the interfaces we are using have 
+                                # a link.  
+
+                                # jbair@2008-12-31 - Fixing bug in RHEL4
+                                # Our secdonary interface shows as no link even though it has one.
+                                # When testing @ console, an ifconfig down/up shows a link after 
+                                # bouncing 
+                                # ndurr@2009-01-11: this could be a hardware/driver, issue seen 
+                                # with debian etch on a X7DBN mobo  
+                                postlog("INFO: cycling $int");
+                                `ifconfig $int down ; sleep 5 ; ifconfig $int up ; sleep 5` ;
+
+                                my @link_check=`ethtool $int` ;
+                                for (@link_check) {
+                                        # ndurr@2009-01-11: we need the interface that is not configured 
+                                        # with an ip address because the primary will have gotten an ip 
+                                        # via dhcp during the install process.  
+                                        if ( /\s+Link detected: yes/ ) { 
+                                                unless ( &get_ip($int) ) {
+                                                        $sec_int = $int;
+                                                        return $sec_int
+                                                }
+                                        } else { 
+                                                # and link check again, should have made a function
+                                        }
+                                }
+                                postlog("INFO: find_sec_nic no ip found on $int");
+                        }
+                }
+        }
+        return $sec_int;
+}
+sub lwpfetch {
+	my %input = @_;
+	my ($url, $post, $file);
+	foreach (keys %input) {
+		if (/^url$/i) { $url = $input{$_}; }
+		elsif (/^post$/i) { $post = $input{$_}; }
+		elsif (/^file$/i) { $file = $input{$_}; }
+		else { next; }
+	}
+
+	my ($auth, $method, $content, $ua, $req, $res);
+	$method = 'GET';
+	$content = '';
+
+	($url) || return [ '1', 'Missing information: URL' ];
+	if ($url =~ /\@/) {
+		$url =~ s/http:\/\/(\w+:\w+)\@/http:\/\//;
+		$auth = $1;
+	}
+
+	if ($post) {
+		$content = $post;
+		$method = 'POST';
+	}
+
+	$ua = LWP::UserAgent->new();
+	$req = HTTP::Request->new($method => $url);
+	if ($auth) { $req->authorization_basic(split(/:/, $auth)) }
+	if ($content) {
+		$req->content($content);
+		$req->content_type('application/x-www-form-urlencoded');
+	}
+
+	if ($file) {
+		$res = $ua->request($req, $file);
+		(-f $file) || return [ 1, 'Download failed: $file' ];
+	}
+	else { $res = $ua->request($req); }
+
+	if ($res->is_success()) {
+		return [ 0, $res->content() ];
+	}
+	elsif ($res->is_error()) {
+		return [ 1, $res->status_line() ];
+	}
+}
+
+sub postlog {
+	my $msg = shift();
+	my $str = strftime("%Y/%m/%d-%T", gmtime());
+	open OFH, ">>$sbpost/postconf.log";
+	printf OFH "%s %s\n", $str, $msg;
+	close OFH;
+	if ($msg =~ /FATAL/) { exit 1; }
+}
+
+# Fuction that returns the type of product is being installed.
+ sub get_product {
+        my ($product, $version, $version_number);
+        #Check for Red Hat based Install
+        if (-e "/etc/redhat-release") 
+        {
+                my $release = `cat /etc/redhat-release`;
+                $release =~ /(.*)\ release\ (.*)\ \((.*)\)/;
+                $product = $1;
+                $version_number = $2;
+                $product =~ s/[[:lower:]]|\s+//g;
+                chomp($version_number);
+        }
+        #Check for Debian Based install
+        elsif (-e "/etc/debian_version") 
+        {
+                 $product = "DEB";
+                 $version_number = `cat /etc/debian_version`;
+                 chomp($version_number);
+        }
+
+        # ks@2007-02-08 : attempt to see if this is a 64 bit OS or not
+        if ( ( `file /bin/cp` =~ /64-bit/) || ( `uname -a` =~ /x86_64/ ) )
+        {
+                $version = $version_number . "_64";
+        }
+        else
+        {
+                $version = $version_number;
+        }
+        return ($product, $version);
+}
+
+####################################################
+# MAIN
+####################################################
+
+$sbpost = $ENV{'SBPOST'};
+($sbpost) || exit 1;
+
+system("mkdir","-p",$sbpost);
+
+$ksipaddr = $ENV{'KSIPADDR'};
+$ksdomain = $ENV{'KSDOMAIN'};
+($ksipaddr) || postlog("FATAL: \$KSIPADDR not defined!");
+$macaddr = getmac();
+($macaddr) || postlog("FATAL: MAC address not defined!");
+
+lwpfetch('url' => "http://${ksipaddr}/cgi-bin/postconf.cgi",
+	'post' => "macaddr=${macaddr}",
+	'file' => "${sbpost}/postconf.info");
+
+$ks = readpost();
+$ks->{fqdn} = join(".", $ks->{HOST}, $ks->{DOMAIN});
+($ks->{product}, $ks->{version}) = get_product();
+$ks->{fullprod} = join("_", $ks->{product}, $ks->{version});
+$ks->{macaddr} = $macaddr;
+$ks->{sbpost} = $sbpost;
+$ks->{scriptd} = "$sbpost/script.d";
+
+
+#Fetch the license information and store the license tgz file.
+lwpfetch('url' => "http://${ksipaddr}/cgi-bin/licenses.cgi",
+         'post' => "macaddr=${macaddr}",
+	 'file' => "/tmp/licenses.tgz");
+    
+if (-s "/tmp/licenses.tgz") 
+{
+	system("/bin/tar","-C","$sbpost","-zxf","/tmp/licenses.tgz");
+        unlink("/tmp/licenses.tgz");
+}
+    
+open OFH, ">${sbpost}/postconf.info";
+foreach my $key (sort(keys %{$ks})) { print OFH "$key=$ks->{$key}\n"; }
+close OFH;
+
+open OFH, ">/boot/.serverbeach";
+printf OFH "MACADDR=%s
+IPADDR=%s
+PRODUCT=%s
+VERSION=%s
+", $macaddr, $ks->{'IPADDR'}, $ks->{'product'}, $ks->{'version'};
+close OFH;
+
+my $eth = '';
+system("/usr/bin/lspci > /tmp/rockin");
+open IFH, "/tmp/rockin";
+while (<IFH>) {
+	next unless (/Ethernet controller/);
+	if (/Broadcom/) { $eth = "tg3"; }
+	elsif (/Realtek/) { $eth = "8139too"; }
+	elsif (/Intel/) { $eth = "e100"; }
+	elsif (/VIA/) { $eth = "via-rhine"; }
+}
+close IFH;
+
+postlog("INFO: Updating IP information");
+open OFH, ">/etc/network/interfaces";
+printf OFH "#/etc/network/interfaces
+auto lo
+iface lo inet loopback
+	up route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
+	down route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
+
+auto %s
+iface %s inet static
+	address %s
+	netmask %s
+	gateway %s
+", $which_eth, $which_eth, $ks->{IPADDR}, $ks->{NETMASK}, $ks->{GATEWAY}, $eth;
+close OFH;
+
+open OFH, ">/etc/hostname";
+print OFH $ks->{fqdn}."\n";
+close OFH;
+
+system("/bin/hostname","-F","/etc/hostname");
+
+open OFH, ">/etc/hosts";
+print OFH "127.0.0.1\tlocalhost\n";
+printf OFH "%s\t%s %s\n", $ks->{IPADDR}, $ks->{fqdn}, $ks->{HOST};
+print OFH '# The following lines are desirable for IPv6 capable hosts
+# (added automatically by netbase upgrade)
+
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+';
+close OFH;
+
+open OFH, ">/etc/resolv.conf.new";
+printf OFH "#/etc/resolv.conf
+domain %s
+nameserver %s
+nameserver %s
+", $ks->{DOMAIN}, $ks->{DNS1}, $ks->{DNS2};
+close OFH;
+
+#===============================
+# Mail system (postfix)
+#===============================
+open OFH, ">/tmp/etc-postfix-main.cf";
+open IFH, "</etc/postfix/main.cf";
+while (<IFH>) {
+	if (/^mydestination/) {
+		printf OFH "mydestination = %s, %s, %s\n",
+			$ks->{fqdn}, "localhost", "localhost.localdomain";
+	}
+	else { print; }
+}
+close IFH;
+close OFH;
+(-s "/tmp/etc-postfix-main.cf") &&
+	rename("/tmp/etc-postfix-main.cf","/etc/postfix/main.cf");
+
+open OFH, ">/etc/aliases";
+printf OFH "# See man 5 aliases for format
+postmaster:	root
+root:	%s
+", $ks->{PUSER};
+close OFH;
+
+#===============================
+# SSH
+#===============================
+unlink("/etc/ssh/ssh_host_rsa_key");
+my @sshargs1 = ("/usr/bin/ssh-keygen",
+	"-f","/etc/ssh/ssh_host_rsa_key",
+	"-N","",
+	"-t","rsa");
+system(@sshargs1);
+unlink("/etc/ssh/ssh_host_dsa_key");
+my @sshargs2 = ("/usr/bin/ssh-keygen",
+	"-f","/etc/ssh/ssh_host_dsa_key",
+	"-N","",
+	"-t","dsa");
+system(@sshargs2);
+
+#===============================
+# Users
+#===============================
+
+my @userargs1 = ("/usr/sbin/adduser",
+	"--disabled-password","--gecos","", $ks->{PUSER});
+my @userargs2 = ("/usr/sbin/adduser",
+	"--disabled-password","--gecos","", "beach");
+system(@userargs1);
+system(@userargs2);
+
+# need to set a password then change the configuration
+system("echo root:qwerty123 | chpasswd");
+#system("dpkg-reconfigure -f noninteractive passwd");
+#system("dpkg-reconfigure -f noninteractive -u passwd");
+system("echo \"set passwd/md5 true\" | debconf-communicate");
+system("echo \"set passwd/shadow true\" | debconf-communicate");
+
+open CHPW, "|/usr/sbin/chpasswd -e";
+print CHPW "root:".crypt_pw($ks->{RPASS})."\n";
+print CHPW "beach:".crypt_pw($ks->{BPASS})."\n";
+print CHPW $ks->{PUSER}.":".crypt_pw($ks->{PPASS})."\n";
+close CHPW;
+
+open OFH, ">/etc/apt/sources.list";
+print OFH "
+# Main
+deb http://mirrors.kernel.org/debian/ squeeze main non-free contrib
+# Source
+deb-src http://mirrors.kernel.org/debian/ squeeze main non-free contrib
+# Security
+deb http://security.debian.org/ squeeze/updates main contrib non-free
+";
+close OFH;
+
+my @modlist = qw(sbadmin.mod sbadm.mod);
+if ( $ks->{PANEL} =~ /plesk81/ )
+{
+        push(@modlist, 'plesk81.mod');
+}
+elsif ( $ks->{PANEL} =~ /plesk82/ )
+{
+        push(@modlist, 'plesk82.mod');
+}
+elsif ( $ks->{PANEL} =~ /plesk95/ )
+{
+        push(@modlist, 'plesk95.mod');
+}
+elsif ( $ks->{PANEL} =~ /webmin/ )
+{       
+        push(@modlist, 'webmin.mod');
+}
+
+########################################################################
+# MongoDB setup
+########################################################################
+if (lc($ks->{DATABASE}) eq "mongodb") {
+        #Adding Mongodb to the module list
+       postlog( "INFO: Adding MongoDB" );
+       push( @modlist, "mongodb.mod");
+}
+
+
+#######################################################################
+# secondary ip address setup
+#######################################################################
+if ( $ks->{SECIP} ne "none" ) {
+        postlog("INFO: secondary ip address configurration");
+        push(@modlist, "secipaddr.mod");
+}
+
+# my @modlist = qw(sbadmin.mod sbadm.mod webmin.mod);
+my $modbase = "http://".$ks->{static}."/postconf/modules";
+(-d "$sbpost/modules") || mkdir("$sbpost/modules");
+
+foreach my $mod (@modlist) {
+	lwpfetch('url' => "$modbase/$mod", 'file' => "$sbpost/modules/$mod");
+	if (-e "$sbpost/modules/$mod") {
+		my $modres = scalar eval `cat $sbpost/modules/$mod`;
+		if ($modres) {
+			postlog("INFO: $mod execution complete");
+			unlink("$sbpost/modules/$mod");
+		}
+		else {
+			postlog("FATAL: $mod execution failed ($@)");
+		}
+	}
+}
+
+# Rewrite the postconf.info with stuff we've learned since we began
+open OFH, ">$sbpost/postconf.info";
+foreach my $param (sort(keys %{$ks})) {
+	print OFH "$param=".$ks->{$param}."\n";
+}
+close OFH;
+
+my $pbooturl = "http://".$ks->{ksserver}."/kickstart/postconf/debian/squeeze/postboot.txt";
+lwpfetch('url' => $pbooturl, 'file' => "$sbpost/sbpost.real");
+my $initurl = "http://".$ks->{ksserver}."/kickstart/postconf/debian/squeeze/init.txt";
+lwpfetch('url' => $initurl, 'file' => "$sbpost/sbpost.init");
+
+chmod(0755, "$sbpost/sbpost.init");
+copy("$sbpost/sbpost.init", "/etc/init.d/sbpost.init");
+chmod(0755, "/etc/init.d/sbpost.init");
+chmod(0755, "/target/etc/init.d/sbpost.init");
+$chmod=`chmod 755 /etc/init.d/sbpost.init`;
+$chmod2=`chmod 755 /target/etc/init.d/sbpost.init`;
+$rc=`update-rc.d sbpost.init defaults`;
+
+lwpfetch('url' => "http://".$ks->{ksserver}."/installs/linux/serverbeach/sbeach_debian.xpm.gz", 'file' => "/boot/grub/splash.xpm.gz");
+
+1;

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+tar --exclude 'Make' \
+    --exclude '.svn' \
+    --exclude 'keep_me' \
+    -zcvf /exports/installs/modules/freebsd/sbadm.tgz .
+

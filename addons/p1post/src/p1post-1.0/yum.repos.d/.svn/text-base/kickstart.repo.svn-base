@@ -1,0 +1,15 @@
+### Begin /etc/yum.repos.d/kickstart.repo
+#
+# *** Base Installation
+[kickstart-stock]
+name=Red Hat Enterprise Linux $releasever - $basearch - Base Install
+baseurl=http://kickstart/installs/redhat/$releasever/en/os/$basearch/iso/Server
+enabled=0
+gpgcheck=0
+
+# *** Managed Hosting
+[kickstart-p1]
+name=Red Hat Enterprise Linux $releasever - $basearch - Peer 1
+baseurl=http://kickstart/installs/redhat/$releasever/en/os/$basearch/p1
+enabled=0
+gpgcheck=0

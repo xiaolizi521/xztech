@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/cleanup
+END
+port_sweep.pl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/cleanup/port_sweep.pl
+END
+online_audit.pl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/cleanup/online_audit.pl
+END
+missing_audit.pl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/cleanup/missing_audit.pl
+END
+unlinked_audit.pl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/cleanup/unlinked_audit.pl
+END
+clearparts.pl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/cleanup/clearparts.pl
+END

@@ -1,0 +1,101 @@
+#!/usr/bin/perl -w
+
+BEGIN {
+	use lib qw(/exports/kickstart/lib);
+	require 'sbks.pm';
+}
+
+use Time::ParseDate;
+use strict;
+
+if (is_running()) { exit 0; }
+
+my $dbh = ks_dbConnect();
+
+# select pertinent information from rapid_reboot_queue db table
+my $servers = $dbh->selectall_arrayref("SELECT mac_address, started, last_updated FROM rapid_reboot_queue WHERE status = ? AND active='t'", undef, 4);
+
+# SERV is a label for this foreach loop
+# this loop goes through the list of servers, and tries to cat that
+# MAC address out of the last 2500 lines of daemon.log for a
+# DHCPDISCOVER -- if it finds that, its timestamp is checked.
+# If the timestamp of the log line is greater than the start
+# of the Rapid Reboot, this is a successful Rapid Reboot
+#
+# NOTE -- without doing any actual testing, I decided to loop
+# this way because I think loading up each MACFUN object is probably
+# more resource intensive than tailing the file. If this script
+# starts having performance issues or slamming the server or
+# something, then the opposite should be written -- cat the file once,
+# and match each mac address it finds against the array from the db
+# table
+SERV: foreach my $row (@{$servers}) {
+    my $macaddr = $row->[0];
+    my $started = parsedate($row->[1]);
+    my $last_updated = parsedate($row->[2]);
+
+    print "Checking for DHCP for ".$macaddr." after ".$started."\n";
+
+	my $mobj = MACFun->new(dbh => $dbh, macaddr => $macaddr);
+	my $ipaddr = $mobj->ipaddr();
+    my @result = "";
+
+    # tail the daemon.log file (DHCP goes in here) for the mac address
+    # on the same line as DHCPDISCOVER is
+    @result = `tail -n5000 /exports/kickstart/logs/daemon.log | grep -i '$macaddr' | grep -i DHCP | grep -v DHCPOFFER`;
+
+    foreach (@result) {
+        print;
+        chomp;
+
+        # create array of each word in the line
+        my @line = split(/ +/, $_);
+
+        my $datetime = "";
+        # recombine the first 3 words into 1 (the datetime stamp from the
+        # log
+        $datetime = $line[0] . " " . $line[1] . " " . $line[2];
+
+        my $timestamp = 0;
+        # use Time::ParseDate::parsedate to create Unix timestamp (seconds
+        # since epoch) from the recombined log datetime stamp
+        $timestamp = parsedate($datetime);
+
+        if ($timestamp > $started) {
+            # we're good -- the timestamp of the line in the log
+            # is greater than when this RR started, so the RR
+            # worked (or something else rebooted it, but the
+            # end result is the thing just rebooted) -- update
+            # the db to status 5 (port_check) and skip
+            # to the next loop iteration
+            $dbh->do("  UPDATE rapid_reboot_queue
+                        SET status=5, last_updated = now()
+                        WHERE mac_address = ?
+                        AND active='t'", undef, $macaddr);
+            print "Found DHCP for ".$macaddr."\n";
+            print "$datetime > ".$row->[1]."\n\n";
+            next SERV;
+        }
+
+        print "Found DHCP for but ".$timestamp." < ".$started.". Continuing ";
+        print "search.\n";
+    }
+
+    # if the start-time of this RR + 7 minutes (420 seconds) is
+    # LESS than the current time, then 7 minutes has passed
+    # since the RR was attempted physically (give or take 30 seconds),
+    # which should be too long to wait, so we log as a dhcp_fail (6)
+    if (($started + 420) < time()) {
+        $dbh->do("  UPDATE rapid_reboot_queue
+                    SET status=6, last_updated = now()
+                    WHERE mac_address = ?
+                    AND active='t'", undef, $macaddr);
+        print "Nothing found for ".$macaddr.". Been too long! FAILURE!\n";
+        next SERV;
+    }
+    
+    print "Nothing found for ".$macaddr.". Will try again.\n";
+}
+$dbh->disconnect();
+
+1;

@@ -1,0 +1,103 @@
+#!/bin/bash
+SCREENOPTS='-d -m -c /exports/kickstart/configs/screenrc'
+SERVICES='dhcp3-server tftpd-hpa apache rsync samba bind'
+case "$1" in
+
+   stop)
+        echo "Disabling provisioning"
+        /exports/kickstart/bin/ksctl off
+
+        echo "Killing screen session"
+        for PID in `ps -ef | grep "SCREEN ${SCREENOPTS}" | awk ' ! /grep/ {print $2}'` ; do
+                kill -9 $PID
+                if [ $? -eq 0 ] ; then
+                        echo -e "\tsuccessfully killed pid $PID"
+                else
+                        echo -e "\tunable to kill pid $PID"
+                fi
+        done
+        screen -wipe
+
+        echo "Removing state files"
+        for i in `ls /exports/kickstart/state/`; do
+                echo -e "\tKilling ${i}"
+                kill -9 `cat /exports/kickstart/state/${i}`
+                echo -e "\tRemoving ${i}"
+                rm /exports/kickstart/state/${i}
+        done
+        echo "Done"
+        
+        for service in ${SERVICES} ; do
+            echo "Stopping $service"
+            /etc/init.d/$service stop
+        done
+
+
+        ;;
+   restart)
+
+        echo "Disabling provisioning"
+        /exports/kickstart/bin/ksctl off
+
+        echo "Killing screen session"
+        for PID in `ps -ef | grep "SCREEN ${SCREENOPTS}" | awk ' ! /grep/ {print $2}'` ; do
+                kill -9 $PID
+                if [ $? -eq 0 ] ; then
+                        echo -e "\tsuccessfully killed pid $PID"
+                else
+                        echo -e "\tunable to kill pid $PID"
+                fi 
+        done
+        screen -wipe
+        echo "Removing state files"
+        for i in `ls /exports/kickstart/state/`; do
+                echo -e "\tKilling ${i}"
+                kill -9 `cat /exports/kickstart/state/${i}`
+                echo -e "\tRemoving ${i}"
+                rm /exports/kickstart/state/${i}
+        done
+        echo "Done"
+
+        echo "Starting online audit"
+        /exports/kickstart/cleanup/online_audit.pl doit
+        echo "Configuring VLAN interfaces"
+        /exports/kickstart/bin/vconf.pl
+        echo "Generating DHCP configuration"
+        /exports/kickstart/bin/dhcpconf.pl -f
+
+        for service in ${SERVICES} ; do
+            echo "Restarting $service"
+            /etc/init.d/$service restart
+        done
+
+        echo "Starting screen session"
+        screen ${SCREENOPTS}
+
+        echo "Enabling provisioning"
+        /exports/kickstart/bin/ksctl on
+
+        ;;
+
+    start)
+        echo "Starting online audit"
+        /exports/kickstart/cleanup/online_audit.pl doit
+        echo "Configuring VLAN interfaces"
+        /exports/kickstart/bin/vconf.pl
+        echo "Generating DHCP configuration"
+        /exports/kickstart/bin/dhcpconf.pl -f
+
+        for service in ${SERVICES} ; do
+            echo "Starting $service"
+            /etc/init.d/$service start
+        done
+
+        echo "Starting screen session"
+        screen ${SCREENOPTS}
+                
+        echo "Enabling provisioning"
+        /exports/kickstart/bin/ksctl on
+        ;;
+    *)
+        exit 0
+        ;;
+esac

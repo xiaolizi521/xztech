@@ -1,0 +1,16 @@
+PidFile /var/run/sbadm.pid
+Port 225
+Protocol 2
+ListenAddress 0.0.0.0
+SyslogFacility DAEMON
+LogLevel VERBOSE
+PasswordAuthentication no
+PermitRootLogin yes
+RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile /etc/ssh/.sbadm_authorized_keys
+ChallengeResponseAuthentication no
+UseLogin no
+#UsePrivilegeSeparation yes
+Subsystem sftp /usr/libexec/openssh/sftp-server
+

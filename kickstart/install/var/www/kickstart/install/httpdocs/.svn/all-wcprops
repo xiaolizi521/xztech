@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/install/httpdocs
+END
+rhnUpgrade
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/install/httpdocs/rhnUpgrade
+END
+sbadm_authorized_keys
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/install/httpdocs/sbadm_authorized_keys
+END
+fixIAD2resolvers.sh
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/install/httpdocs/fixIAD2resolvers.sh
+END
+testfile.bin
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/install/httpdocs/testfile.bin
+END
+logs.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/install/httpdocs/logs.xsl
+END
+rhnUpgrade.pl
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/install/httpdocs/rhnUpgrade.pl
+END

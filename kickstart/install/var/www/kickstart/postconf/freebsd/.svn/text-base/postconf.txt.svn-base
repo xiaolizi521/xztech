@@ -1,0 +1,301 @@
+#!/usr/local/bin/perl -w
+
+# =======================================================================
+#  Company:              Server Beach
+#  Copyright(c):         Server Beach 2006
+#  Project:              Kickstart Sub-System
+#  Code Devloper:        SB Development Team
+#  Creation Date:        2007-04-16
+#  Modified Date:        2008-10-29
+#  Modifier:             Thomas Foster
+#  File Type:            Taskfile
+#  File Name:            postconf.txt                
+# 
+#  Description:          Post install file for FreeBSD installs.
+# ======================================================================='
+
+use strict;
+use Crypt::PasswdMD5;
+use File::Copy;
+use POSIX;
+use LWP::UserAgent;
+
+my ($sbpost, $ksipaddr, $ksdomain, $linkint, $macaddr, $ks, $which_eth, $my_eth, $codename);
+
+# Function Definitions
+sub crypt_pw {
+	my $passwd = shift();
+	my $salt = "";
+	my $chars = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	for ( my $i = 0 ; $i < 8 ; $i++ ) {
+		my $tmp = substr($chars, rand(64), 1);
+		$salt .= $tmp;
+	}
+	my $crypted = unix_md5_crypt($passwd, $salt);
+	return $crypted;
+}
+
+
+sub readpost {
+	my $ret = {};
+	return unless (-e "$sbpost/postconf.info");
+	open IFH, "<$sbpost/postconf.info";
+	while (<IFH>) {
+		next if (/^\#/);
+		chomp;
+		my @line = split(/=/, $_);
+		$ret->{$line[0]} = $line[1];
+	}
+	close IFH;
+	return $ret;
+}
+
+sub lwpfetch {
+	my %input = @_;
+	my ($url, $post, $file);
+	foreach (keys %input) {
+		if (/^url$/i) { $url = $input{$_}; }
+		elsif (/^post$/i) { $post = $input{$_}; }
+		elsif (/^file$/i) { $file = $input{$_}; }
+		else { next; }
+	}
+
+	my ($auth, $method, $content, $ua, $req, $res);
+	$method = 'GET';
+	$content = '';
+
+	($url) || return [ '1', 'Missing information: URL' ];
+	if ($url =~ /\@/) {
+		$url =~ s/http:\/\/(\w+:\w+)\@/http:\/\//;
+		$auth = $1;
+	}
+
+	if ($post) {
+		$content = $post;
+		$method = 'POST';
+	}
+
+	$ua = LWP::UserAgent->new();
+	$req = HTTP::Request->new($method => $url);
+	if ($auth) { $req->authorization_basic(split(/:/, $auth)) }
+	if ($content) {
+		$req->content($content);
+		$req->content_type('application/x-www-form-urlencoded');
+	}
+
+	if ($file) {
+		$res = $ua->request($req, $file);
+		(-f $file) || return [ 1, 'Download failed: $file' ];
+	}
+	else { $res = $ua->request($req); }
+
+	if ($res->is_success()) {
+		return [ 0, $res->content() ];
+	}
+	elsif ($res->is_error()) {
+		return [ 1, $res->status_line() ];
+	}
+}
+
+sub postlog {
+	my $msg = shift();
+	my $str = strftime("%Y/%m/%d-%T", gmtime());
+	open OFH, ">>$sbpost/postconf.log";
+	printf OFH "%s %s\n", $str, $msg;
+	close OFH;
+	if ($msg =~ /FATAL/) { exit 1; }
+}
+
+# Fuction that returns the type of product is being installed.
+ sub get_product {
+ 
+ 
+ my ($release, $product, $version, $version_number);
+        #Check for FreeBSD version
+        if (-e "/COPYRIGHT") 
+        {
+                $release = `uname -a | awk '{ print \$3 }' | cut -d '-' -f2-`;
+                $release =~ s/\s+$//;
+                $product = `uname -a | awk '{ print \$4 }'`;
+                $product =~ s/\s+$//;
+                $version_number = `uname -a | awk '{ print \$3 }' | cut -d '-' -f1`;
+                $version_number =~ s/\s+$//;
+        }
+
+        # Attempt to see if this is a 64 bit OS or not
+        if ( ( `file /bin/cp` =~ /64-bit/) || ( `uname -a` =~ /x86_64/ ) )
+        {
+                $version = $version_number . "_64";
+        }
+        else
+        {
+                $version = $version_number;
+        }
+        return ($product, $version);
+}
+
+####################################################
+# MAIN
+####################################################
+
+$sbpost = $ENV{'SBPOST'};
+($sbpost) || exit 1;
+
+system("mkdir","-p",$sbpost);
+
+$ksipaddr = `netstat -rnf inet | grep default | awk '{ print \$2 }'`;
+$ksipaddr =~ s/\s+$//;
+$ksdomain = $ENV{'KSDOMAIN'};
+($ksipaddr) || postlog("FATAL: \$KSIPADDR not defined!");
+$linkint = `netstat -rn | awk ' /default/ { print \$6 }'`;
+$linkint =~ s/\s+$//;
+#$macaddr = `ifconfig $linkint | awk ' /ether/ { print \$2 }'`;
+$macaddr = `dmesg | grep $linkint | awk ' /Ethernet address/ { print \$4 }' | head -1`;
+$macaddr =~ s/\s+$//;
+($macaddr) || postlog("FATAL: MAC address not defined!");
+
+lwpfetch('url' => "http://${ksipaddr}/cgi-bin/postconf.cgi",
+	'post' => "macaddr=${macaddr}",
+	'file' => "${sbpost}/postconf.info");
+
+$ks = readpost();
+$ks->{fqdn} = join(".", $ks->{HOST}, $ks->{DOMAIN});
+($ks->{product}, $ks->{version}) = get_product();
+$ks->{fullprod} = join("_", $ks->{product}, $ks->{version});
+postlog("INFO: fullprod = $ks->{fullprod}");
+$ks->{macaddr} = $macaddr;
+$ks->{sbpost} = $sbpost;
+$ks->{scriptd} = "$sbpost/script.d";
+
+if ($ks->{version} =~ /7.0/)
+{
+        $codename = '7.0-RELEASE';
+}
+
+
+#Fetch the license information and store the license tgz file.
+lwpfetch('url' => "http://${ksipaddr}/cgi-bin/licenses.cgi",
+         'post' => "macaddr=${macaddr}",
+	 'file' => "/tmp/licenses.tgz");
+    
+if (-s "/tmp/licenses.tgz") 
+{
+	system("/bin/tar","-C","$sbpost","-zxf","/tmp/licenses.tgz");
+        unlink("/tmp/licenses.tgz");
+}
+    
+open OFH, ">${sbpost}/postconf.info";
+foreach my $key (sort(keys %{$ks})) { print OFH "$key=$ks->{$key}\n"; }
+close OFH;
+
+open OFH, ">/boot/.serverbeach";
+printf OFH "MACADDR=%s
+IPADDR=%s
+PRODUCT=%s
+VERSION=%s
+", $macaddr, $ks->{'IPADDR'}, $ks->{'product'}, $ks->{'version'};
+close OFH;
+
+$which_eth = `netstat -rn | grep default | awk ' { print \$6 }'`;
+$which_eth =~ s/\s+$//;
+
+system ("touch /etc/rc.conf");
+postlog("INFO: Updating IP information");
+open OFH, ">/etc/rc.conf";
+printf OFH "####################################
+## rc.conf created by serverbeach ##
+####################################
+hostname=\"%s.%s\"
+ifconfig_%s=\"inet %s netmask %s\"
+defaultrouter=\"%s\"
+sshd_enable=\"YES\"
+", $ks->{HOST}, $ks->{DOMAIN}, $which_eth, $ks->{IPADDR}, $ks->{NETMASK}, $ks->{GATEWAY};
+close OFH;
+
+open OFH, ">/etc/hostname";
+print OFH $ks->{fqdn}."\n";
+close OFH;
+
+system("/bin/hostname","-f","/etc/hostname");
+system("echo 'ttyvb   \"/usr/libexec/getty autologin\"   cons25   on   secure' >> /etc/ttys");
+open OFH, ">/etc/hosts";
+print OFH "127.0.0.1\tlocalhost\n";
+printf OFH "%s\t%s %s\n", $ks->{IPADDR}, $ks->{fqdn}, $ks->{HOST};
+print OFH '# The following lines are desirable for IPv6 capable hosts
+# (added automatically by netbase upgrade)
+
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+';
+close OFH;
+
+open OFH, ">/etc/resolv.conf.new";
+printf OFH "#/etc/resolv.conf
+domain %s
+nameserver %s
+nameserver %s
+", $ks->{DOMAIN}, $ks->{DNS1}, $ks->{DNS2};
+close OFH;
+
+#===============================
+# SSH
+#===============================
+unlink("/etc/ssh/ssh_host_rsa_key");
+my @sshargs1 = ("/usr/bin/ssh-keygen",
+	"-f","/etc/ssh/ssh_host_rsa_key",
+	"-N","",
+	"-t","rsa");
+system(@sshargs1);
+unlink("/etc/ssh/ssh_host_dsa_key");
+my @sshargs2 = ("/usr/bin/ssh-keygen",
+	"-f","/etc/ssh/ssh_host_dsa_key",
+	"-N","",
+	"-t","dsa");
+system(@sshargs2);
+
+#Add an SSH server configuration parameter.
+open OFH, ">/tmp/sshd_config";
+open IFH, "/etc/ssh/sshd_config";
+while (<IFH>) {
+        chomp;
+        if (/PermitRootLogin/) { $_ = "PermitRootLogin no"; }
+        print OFH $_."\n";
+}
+close IFH;
+close OFH;
+
+(-s "/tmp/sshd_config") && rename("/tmp/sshd_config","/etc/ssh/sshd_config");
+
+#===============================
+# Users
+#===============================
+
+###############################################################################################
+#### my @userargs1 = ("/usr/sbin/pw user add -n $ks->{PUSER} -m -s /usr/local/bin/bash"); #####
+###############################################################################################
+system ("echo $ks->{PPASS} | /usr/sbin/pw useradd -q -h 0 -n $ks->{PUSER} -m -s /usr/local/bin/bash -d /home/$ks->{PUSER}");
+system ("echo $ks->{BPASS} | /usr/sbin/pw useradd -q -h 0 -n beach -m -s /usr/local/bin/bash -d /home/beach");
+# FreeBSD folks object to bash
+#system ("echo $ks->{RPASS} | /usr/sbin/pw usermod -q -h 0 -n root -m -s /usr/local/bin/bash -d /root");
+system ("echo $ks->{RPASS} | /usr/sbin/pw usermod -q -h 0 -n root -m -d /root");
+system ("sed -e 's/:root/:root,beach,$ks->{PUSER}/g' /etc/group > /etc/newgroup");
+system ("mv /etc/newgroup /etc/group");
+
+# Rewrite the postconf.info with stuff we've learned since we began
+open OFH, ">$sbpost/postconf.info";
+foreach my $param (sort(keys %{$ks})) {
+	print OFH "$param=".$ks->{$param}."\n";
+}
+close OFH;
+
+my $pbooturl = "http://".$ks->{ksserver}."/kickstart/postconf/freebsd/postboot.txt";
+#lwpfetch('url' => $pbooturl, 'file' => "$sbpost/sbpost.real");
+chmod(0755, "$sbpost/sbpost.init");
+chmod(0755, "$sbpost/postconf.info");
+symlink("$sbpost/sbpost.init","/etc/rc.local");
+
+1;

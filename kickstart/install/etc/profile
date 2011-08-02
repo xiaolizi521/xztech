@@ -1,0 +1,58 @@
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+# dm@12-01-2006: have to source this file for additional customizations
+. /etc/bash.bashrc
+
+if [ "`id -u`" -eq 0 ]; then
+  PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11"
+else
+  PATH="/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/games"
+fi
+
+
+# ryry@4-25-2007: Initial integrity check pt 1 - in prompt
+# runs function in terminal prompt for minute updates
+function pstat {
+        PSTATE=`xmlstarlet sel -t -v //opt/provisioning/@status -n /exports/kickstart/status/data`
+
+        if [ "$PSTATE" = "active" ]; then
+                echo -e "\[\e[0;32m\]$PSTATE\[\e[0m\]"
+        else
+                echo -e "\[\e[0;31m\]$PSTATE\[\e[0m\]"
+        fi
+}
+
+if [ "$PS1" ]; then
+  if [ "$BASH" ]; then
+    STATUS=`pstat`
+    export PS1='\u@\h.'$STATUS':\w\$ '
+#    export PS1='\u@\h.:\w\$ '
+  else
+    if [ "`id -u`" -eq 0 ]; then
+    STATUS=`pstat`
+    export PS1='\u@\h.'$STATUS':\w\$ '
+    else
+      export PS1='$.`pstat` >'
+    fi
+  fi
+fi
+
+export PATH
+
+umask 022
+
+# ryry@4-23-2007: Initial integrity check pt 2
+# report status of module by calling a program and assigning result to a variable
+BSTATE=`xmlstarlet sel -t -v //opt/provisioning/@status -n /exports/kickstart/status/data`
+if [ "$BSTATE" = "active" ]; then
+        BANSTAT=`echo -e "[0;32m RUNNING [m"`
+else
+        BANSTAT=`echo -e "[0;31m NOT RUNNING [m"`
+fi
+
+echo "=========================="
+echo "INTEGRITY REPORT"
+echo "=========================="
+echo ""
+echo "Provisioning -> $BANSTAT"
+echo ""

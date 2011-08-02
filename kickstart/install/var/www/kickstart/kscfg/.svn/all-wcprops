@@ -1,0 +1,785 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/kickstart/!svn/ver/1081/trunk/install/var/www/kickstart/kscfg
+END
+rhel4up.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rhel4up.kscfg
+END
+win2k3unattend.3w.9590.temp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/win2k3unattend.3w.9590.temp
+END
+etch.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/1032/trunk/install/var/www/kickstart/kscfg/etch.cfg
+END
+fedora9_ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fedora9_ks.kscfg
+END
+gogoapps_lvm.pre
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/945/trunk/install/var/www/kickstart/kscfg/gogoapps_lvm.pre
+END
+rh72esm.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rh72esm.kscfg
+END
+edgy.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/kickstart/!svn/ver/739/trunk/install/var/www/kickstart/kscfg/edgy.cfg
+END
+etch_i386.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/866/trunk/install/var/www/kickstart/kscfg/etch_i386.cfg
+END
+centos4_4ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/centos4_4ks.kscfg
+END
+ubuntu804_amd64.pre
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/kickstart/!svn/ver/1035/trunk/install/var/www/kickstart/kscfg/ubuntu804_amd64.pre
+END
+fc3ks.pre
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/fc3ks.pre
+END
+dapper.pre
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/1036/trunk/install/var/www/kickstart/kscfg/dapper.pre
+END
+rhel4ks.pre
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/rhel4ks.pre
+END
+fedora13_i386.pre
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/1068/trunk/install/var/www/kickstart/kscfg/fedora13_i386.pre
+END
+gogoapps.post
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/1025/trunk/install/var/www/kickstart/kscfg/gogoapps.post
+END
+fc3up.post
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/fc3up.post
+END
+rhel6.pre
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/1077/trunk/install/var/www/kickstart/kscfg/rhel6.pre
+END
+fedora9_ks.post
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/692/trunk/install/var/www/kickstart/kscfg/fedora9_ks.post
+END
+gogoapps.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/942/trunk/install/var/www/kickstart/kscfg/gogoapps.kscfg
+END
+centos5_64ks.pre
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/kickstart/!svn/ver/1064/trunk/install/var/www/kickstart/kscfg/centos5_64ks.pre
+END
+wpdebian6.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/1055/trunk/install/var/www/kickstart/kscfg/wpdebian6.cfg
+END
+fedora9_64_ks.post
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/692/trunk/install/var/www/kickstart/kscfg/fedora9_64_ks.post
+END
+ubuntu604_i386.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/653/trunk/install/var/www/kickstart/kscfg/ubuntu604_i386.cfg
+END
+fedora13_amd64.pre
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/1068/trunk/install/var/www/kickstart/kscfg/fedora13_amd64.pre
+END
+wpdatabase_etchnhalf.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/kickstart/!svn/ver/1026/trunk/install/var/www/kickstart/kscfg/wpdatabase_etchnhalf.cfg
+END
+fedora9_64_ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fedora9_64_ks.kscfg
+END
+challengegm.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/875/trunk/install/var/www/kickstart/kscfg/challengegm.cfg
+END
+ubuntu604_amd64.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/653/trunk/install/var/www/kickstart/kscfg/ubuntu604_amd64.cfg
+END
+ubuntu1004_amd64.pre
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/kickstart/!svn/ver/1034/trunk/install/var/www/kickstart/kscfg/ubuntu1004_amd64.pre
+END
+ubuntu804_amd64.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/653/trunk/install/var/www/kickstart/kscfg/ubuntu804_amd64.cfg
+END
+freebsd_zfs.csh
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/1047/trunk/install/var/www/kickstart/kscfg/freebsd_zfs.csh
+END
+dapper.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/1036/trunk/install/var/www/kickstart/kscfg/dapper.cfg
+END
+lenny.pre
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/1068/trunk/install/var/www/kickstart/kscfg/lenny.pre
+END
+ubuntu606_i386.pre
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/1036/trunk/install/var/www/kickstart/kscfg/ubuntu606_i386.pre
+END
+fc3up.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fc3up.kscfg
+END
+rhel6_64.pre
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/1075/trunk/install/var/www/kickstart/kscfg/rhel6_64.pre
+END
+gogoapps_nolvm.post
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/kickstart/!svn/ver/1025/trunk/install/var/www/kickstart/kscfg/gogoapps_nolvm.post
+END
+centos5_64ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/892/trunk/install/var/www/kickstart/kscfg/centos5_64ks.kscfg
+END
+lucid.pre
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/1074/trunk/install/var/www/kickstart/kscfg/lucid.pre
+END
+wpvcache.pre
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/1027/trunk/install/var/www/kickstart/kscfg/wpvcache.pre
+END
+ubuntu904_i386.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/690/trunk/install/var/www/kickstart/kscfg/ubuntu904_i386.cfg
+END
+nscentos.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/nscentos.kscfg
+END
+fedora13_amd64.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/kickstart/!svn/ver/925/trunk/install/var/www/kickstart/kscfg/fedora13_amd64.kscfg
+END
+rhel3ks.pre
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/rhel3ks.pre
+END
+rhel6.post
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/1077/trunk/install/var/www/kickstart/kscfg/rhel6.post
+END
+rhel6_32.pre
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/1075/trunk/install/var/www/kickstart/kscfg/rhel6_32.pre
+END
+wpnonprofit.pre
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/1027/trunk/install/var/www/kickstart/kscfg/wpnonprofit.pre
+END
+ubuntu1004_amd64.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/kickstart/!svn/ver/925/trunk/install/var/www/kickstart/kscfg/ubuntu1004_amd64.cfg
+END
+rhel4_64ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rhel4_64ks.kscfg
+END
+lenny.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/1033/trunk/install/var/www/kickstart/kscfg/lenny.cfg
+END
+win2k3unattend.temp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/690/trunk/install/var/www/kickstart/kscfg/win2k3unattend.temp
+END
+ubuntu606_i386.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/653/trunk/install/var/www/kickstart/kscfg/ubuntu606_i386.cfg
+END
+rh9ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rh9ks.kscfg
+END
+hardy.pre
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/1054/trunk/install/var/www/kickstart/kscfg/hardy.pre
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/README
+END
+lucid.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/1054/trunk/install/var/www/kickstart/kscfg/lucid.cfg
+END
+wpvcache.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/1027/trunk/install/var/www/kickstart/kscfg/wpvcache.cfg
+END
+SOS.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/720/trunk/install/var/www/kickstart/kscfg/SOS.kscfg
+END
+centos3x.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/centos3x.kscfg
+END
+etchnhalf_i386.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/692/trunk/install/var/www/kickstart/kscfg/etchnhalf_i386.cfg
+END
+centos4_4_64ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/centos4_4_64ks.kscfg
+END
+rhcommon.post
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/925/trunk/install/var/www/kickstart/kscfg/rhcommon.post
+END
+rhel4up.post
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/rhel4up.post
+END
+rhel3ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rhel3ks.kscfg
+END
+rhel4ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rhel4ks.kscfg
+END
+rhel5ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/891/trunk/install/var/www/kickstart/kscfg/rhel5ks.kscfg
+END
+wpnonprofit.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/1027/trunk/install/var/www/kickstart/kscfg/wpnonprofit.cfg
+END
+lenny_i386.pre
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/1033/trunk/install/var/www/kickstart/kscfg/lenny_i386.pre
+END
+etchnhalf_amd64.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/739/trunk/install/var/www/kickstart/kscfg/etchnhalf_amd64.cfg
+END
+ubuntu606_amd64.pre
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/kickstart/!svn/ver/1036/trunk/install/var/www/kickstart/kscfg/ubuntu606_amd64.pre
+END
+wpdatabase.pre
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/1027/trunk/install/var/www/kickstart/kscfg/wpdatabase.pre
+END
+hardy.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/1054/trunk/install/var/www/kickstart/kscfg/hardy.cfg
+END
+centos4ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/centos4ks.kscfg
+END
+centos5ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/892/trunk/install/var/www/kickstart/kscfg/centos5ks.kscfg
+END
+nscentos.post
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/638/trunk/install/var/www/kickstart/kscfg/nscentos.post
+END
+fc6_64ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/720/trunk/install/var/www/kickstart/kscfg/fc6_64ks.kscfg
+END
+wpdb6xen.pre
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/1053/trunk/install/var/www/kickstart/kscfg/wpdb6xen.pre
+END
+win2k3unattend.temp.orig
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/win2k3unattend.temp.orig
+END
+gogoapps_nolvm.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/kickstart/!svn/ver/942/trunk/install/var/www/kickstart/kscfg/gogoapps_nolvm.kscfg
+END
+gogoapps_lvm.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/942/trunk/install/var/www/kickstart/kscfg/gogoapps_lvm.kscfg
+END
+fedora8_64_ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fedora8_64_ks.kscfg
+END
+lenny_i386.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/692/trunk/install/var/www/kickstart/kscfg/lenny_i386.cfg
+END
+centos5ks.pre
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/1064/trunk/install/var/www/kickstart/kscfg/centos5ks.pre
+END
+fc1ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fc1ks.kscfg
+END
+fc2ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fc2ks.kscfg
+END
+lenny_amd64.pre
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/1033/trunk/install/var/www/kickstart/kscfg/lenny_amd64.pre
+END
+fc3ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fc3ks.kscfg
+END
+fc4ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fc4ks.kscfg
+END
+ubuntu606_amd64.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/653/trunk/install/var/www/kickstart/kscfg/ubuntu606_amd64.cfg
+END
+fc6ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fc6ks.kscfg
+END
+ubuntu904_amd64.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/690/trunk/install/var/www/kickstart/kscfg/ubuntu904_amd64.cfg
+END
+fedora13_i386.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/925/trunk/install/var/www/kickstart/kscfg/fedora13_i386.kscfg
+END
+wpdatabase.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/1027/trunk/install/var/www/kickstart/kscfg/wpdatabase.cfg
+END
+rh72ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rh72ks.kscfg
+END
+ubuntu804_i386.pre
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/1035/trunk/install/var/www/kickstart/kscfg/ubuntu804_i386.pre
+END
+rh73ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rh73ks.kscfg
+END
+gogoapps_nolvm.pre
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/942/trunk/install/var/www/kickstart/kscfg/gogoapps_nolvm.pre
+END
+rhel6_32.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/1078/trunk/install/var/www/kickstart/kscfg/rhel6_32.kscfg
+END
+rhel5_64ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/891/trunk/install/var/www/kickstart/kscfg/rhel5_64ks.kscfg
+END
+preseed.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/739/trunk/install/var/www/kickstart/kscfg/preseed.cfg
+END
+ubuntu1004_i386.pre
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/kickstart/!svn/ver/1034/trunk/install/var/www/kickstart/kscfg/ubuntu1004_i386.pre
+END
+wpdb6xfs.pre
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/1053/trunk/install/var/www/kickstart/kscfg/wpdb6xfs.pre
+END
+wpdb6xen.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/1053/trunk/install/var/www/kickstart/kscfg/wpdb6xen.cfg
+END
+rhel5ks.pre
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/1064/trunk/install/var/www/kickstart/kscfg/rhel5ks.pre
+END
+win2k3unattend.3w.8000.temp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/win2k3unattend.3w.8000.temp
+END
+etch_amd64.pre
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/1032/trunk/install/var/www/kickstart/kscfg/etch_amd64.pre
+END
+fc3up.pre
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/fc3up.pre
+END
+jaunty.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/739/trunk/install/var/www/kickstart/kscfg/jaunty.cfg
+END
+etch.pre
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/1032/trunk/install/var/www/kickstart/kscfg/etch.pre
+END
+rhel4up.pre
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/rhel4up.pre
+END
+rh80ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rh80ks.kscfg
+END
+rhel5_64ks.pre
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/1064/trunk/install/var/www/kickstart/kscfg/rhel5_64ks.pre
+END
+lenny_amd64.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/692/trunk/install/var/www/kickstart/kscfg/lenny_amd64.cfg
+END
+rh73test.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/rh73test.kscfg
+END
+gogoapps_lvm.post
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/1025/trunk/install/var/www/kickstart/kscfg/gogoapps_lvm.post
+END
+fedora8_ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/fedora8_ks.kscfg
+END
+etch_i386.pre
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/1032/trunk/install/var/www/kickstart/kscfg/etch_i386.pre
+END
+nscentos.pre
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/638/trunk/install/var/www/kickstart/kscfg/nscentos.pre
+END
+centos4_64ks.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/711/trunk/install/var/www/kickstart/kscfg/centos4_64ks.kscfg
+END
+rhel6_64.kscfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/1078/trunk/install/var/www/kickstart/kscfg/rhel6_64.kscfg
+END
+ubuntu804_i386.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/653/trunk/install/var/www/kickstart/kscfg/ubuntu804_i386.cfg
+END
+ubuntu1004_i386.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/925/trunk/install/var/www/kickstart/kscfg/ubuntu1004_i386.cfg
+END
+win2kunattend.temp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/win2kunattend.temp
+END
+wpdb6xfs.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/1053/trunk/install/var/www/kickstart/kscfg/wpdb6xfs.cfg
+END
+centos4ks.pre
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/centos4ks.pre
+END
+wpdebian6.pre
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/1053/trunk/install/var/www/kickstart/kscfg/wpdebian6.pre
+END
+rhcommon.pre
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/rhcommon.pre
+END
+centos4_64ks.pre
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/kscfg/centos4_64ks.pre
+END
+wpdatabase_etchnhalf.pre
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/kickstart/!svn/ver/1026/trunk/install/var/www/kickstart/kscfg/wpdatabase_etchnhalf.pre
+END
+etch_amd64.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/866/trunk/install/var/www/kickstart/kscfg/etch_amd64.cfg
+END

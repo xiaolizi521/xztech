@@ -1,0 +1,515 @@
+#!/usr/bin/perl -w
+# =======================================================================
+# Company:              Server Beach
+# Copyright(c):         Server Beach 2006
+# Project:              Kickstart Sub-System
+# Code Devloper:        SB Development Team
+# Creation Date:        2006-09-14
+#
+# File Type:            Taskfile
+# File Name:            postconf.txt                
+#
+# Description:
+#
+# ======================================================================='
+
+use strict;
+use warnings;
+use POSIX;
+use LWP::UserAgent;
+use File::Path;
+my ($p1post, $ksipaddr, $ksdomain, $macaddr, $ks);
+
+######################################################
+# Subroutine Definitions
+######################################################
+#Function to get the MAC address inforamtion from the installed
+#Network card
+# ndurr@2009-01-07: changing to code developed for for secipaddr.mod
+# now requires an interface
+sub getmac {
+    my $iface = shift;
+    my $mac = qx(/sbin/ifconfig $iface | awk '/HWaddr/ {print \$5}');
+    chomp( $mac ); 
+    return $mac ;
+}
+
+sub get_ip {
+    my ( $int ) = @_;
+    my $ip;
+    my @iface=`ifconfig $int`;
+    for ( @iface ) {
+        if ( /inet / ) {
+            my @line = split; 
+            for (@line) {
+                my @tmp = split(/:/, $line[1]);
+                $ip = $tmp[1];
+            }
+        }
+    }
+    return $ip;
+}
+
+# need to determine the unconigured interface
+# should have a link if more than 2 interfaces exist
+# should not have a ip address if the interface we are planning on using
+# returns interfaces that have a link and no ip address configured
+# todo
+# should throw an error if there is only 1 interface exists
+sub find_pri_nic {
+    my $pri_int ;
+    my @ifaces=`ifconfig -a` ;
+    for (@ifaces) {
+        # find lines that start with characters not whitespace
+        if ( /^\w/ ) {
+            # take the array returned from split and assign the 1st element to $int
+            my ( $int ) = split(/\s/);
+            if ( $int =~ /eth[0-9]/ ) { 
+                my @link_check=`ethtool $int`;
+                for (@link_check) {
+                    if ( /\s+Link detected: yes/ ) {
+                        if ( &get_ip($int) ) {
+                            $pri_int = $int;
+                            return $pri_int;
+                        } else { 
+                            # ndurr@2009-01-11: Blank because some style guide suggested 
+                            # not sure how I feel about this.
+                        }
+                    }
+                }
+            } else { 
+                # postlog("INFO: skipping $int");
+            }
+        }
+    }
+    return $pri_int;
+}
+
+# ndurr@2009-01-07: currently only used in the secipaddr module
+sub find_sec_nic {
+    my $sec_int ;
+    my @ifaces=`ifconfig -a` ;
+    for (@ifaces) {
+        if ( /^\w/ ) {
+            my ( $int ) = split(/\s/) ;
+            if ( $int =~ /eth[0-9]/ ) {
+                # ndurr@2009-01-11: to deal with the motherboards that detect 3 nics
+                # we need DCO plug in the cables so the interfaces we are using have 
+                # a link.  
+                
+                # jbair@2008-12-31 - Fixing bug in RHEL4
+                # Our secdonary interface shows as no link even though it has one.
+                # When testing @ console, an ifconfig down/up shows a link after 
+                # bouncing 
+                # ndurr@2009-01-11: this could be a hardware/driver, issue seen 
+                # with debian etch on a X7DBN mobo  
+                postlog("INFO: cycling $int");
+                `ifconfig $int down ; sleep 5 ; ifconfig $int up ; sleep 5` ;
+
+                my @link_check=`ethtool $int` ;
+                for (@link_check) {
+                    # ndurr@2009-01-11: we need the interface that is not configured 
+                    # with an ip address because the primary will have gotten an ip 
+                    # via dhcp during the install process.  
+                    if ( /\s+Link detected: yes/ ) {
+                        unless ( &get_ip($int) ) {
+                            $sec_int = $int;
+                            return $sec_int
+                        } 
+                    } else { 
+                        # and link check again, should have made a function
+                    }
+                }
+                postlog("INFO: find_sec_nic no ip found on $int");
+            }
+        }
+    }
+    return $sec_int;
+}
+
+
+#Function that reads the post configuration file and 
+#returns each element.
+sub readpost {
+    my $ret = {};
+    return unless (-e "$p1post/postconf.info");
+    open IFH, "<$p1post/postconf.info";
+    while (<IFH>) {
+        next if (/^\#/);
+        chomp;
+        my @line = split(/=/, $_);
+        $ret->{$line[0]} = $line[1];
+    }
+    close IFH;
+    return $ret;
+}
+
+sub lwpfetch {
+    my %input = @_;
+    my ($url, $post, $file);
+    foreach (keys %input) {
+        if (/^url$/i) { $url = $input{$_}; }
+        elsif (/^post$/i) { $post = $input{$_}; }
+        elsif (/^file$/i) { $file = $input{$_}; }
+        else { next; }
+    }
+
+    my ($auth, $method, $content, $ua, $req, $res);
+    $method = 'GET';
+    $content = '';
+
+    ($url) || return [ '1', 'Missing information: URL' ];
+    if ($url =~ /\@/) {
+        $url =~ s/http:\/\/(\w+:\w+)\@/http:\/\//;
+        $auth = $1;
+    }
+
+    if ($post) {
+        $content = $post;
+        $method = 'POST';
+    }
+
+    $ua = LWP::UserAgent->new();
+    $req = HTTP::Request->new($method => $url);
+    if ($auth) { $req->authorization_basic(split(/:/, $auth)) }
+    if ($content) {
+        $req->content($content);
+        $req->content_type('application/x-www-form-urlencoded');
+    }
+
+    if ($file) {
+        $res = $ua->request($req, $file);
+        (-f $file) || return [ 1, 'Download failed: $file' ];
+    }
+    else { $res = $ua->request($req); }
+
+    if ($res->is_success()) {
+        return [ 0, $res->content() ];
+    }
+    elsif ($res->is_error()) {
+        return [ 1, $res->status_line() ];
+    }
+}
+
+# Function to write information out to the postlog
+# ndurr@2008-11-26: adding some remote logging if there is a fatal error.  for 
+#       the remote logging to work a mac address will also have to be passed
+sub postlog {
+    my $msg = shift();
+        my $mac = lc(shift()); 
+    my $str = strftime("%Y/%m/%d-%T", gmtime());
+    printf "%s %s\n", $str, $msg;
+    open OFH, ">>/usr/local/p1post/postconf.log";
+    printf OFH "%s %s\n", $str, $msg;
+    close OFH;
+    if ($msg =~ /FATAL/) { 
+        # we need a mac address to post to logError
+        # checking to see if the mac exists
+        if ( $macaddr ) {  
+            lwpfetch('url' => "http://${ksipaddr}/cgi-bin/logError.cgi",
+            'post' => "macaddr=${mac}&error_message=${msg}");
+            exit 2; 
+        } else { 
+            exit 2; 
+        }
+    }
+}
+
+# Fuction that returns the type of product is being installed.
+sub get_product {
+    my ($product, $version, $version_number);
+    #Check for Red Hat based Install
+    if (-f "/etc/redhat-release") {
+        # Red Hat Linux release 9 (Shrike)
+        # Red Hat Enterprise Linux ES release 3 (Taroon)
+        # Red Hat Enterprise Linux ES release 3 (Taroon Update 1)
+        my $release = `cat /etc/redhat-release`;
+        $release =~ /(.*)\ release\ (.*)\ \((.*)\)/;
+        $product = $1;
+        $version_number = $2;
+                # ks@2007-02-08 : attempt to see if this is a 64 bit OS or not
+                if ( ( `file /bin/cp` =~ /64-bit/) || ( `uname -a` =~ /x86_64/ ) )
+                {
+                        $version = $version_number . "_64";
+                }
+                else
+                {
+                        $version = $version_number;
+                }
+        $product =~ s/[[:lower:]]|\s+//g;
+    }
+    #Check for Debian Based install
+    elsif (-f "/etc/debian_version") {
+        my $product = "Debian";
+        my $version = `cat /etc/debian_version`;
+        chomp($version);
+    }
+    return ($product, $version);
+}
+
+######################################################
+# MAIN
+######################################################
+
+#Pull P1POST directory informaiton form Environment Var.
+$p1post = $ENV{'P1POST'};
+($p1post) || exit 1;
+
+#Pull other Environment Variable information.
+$ksipaddr = $ENV{KSIPADDR};
+$ksdomain = $ENV{KSDOMAIN};
+($ksipaddr) || postlog("FATAL: \$KSIPADDR not defined!");
+# ndurr@2009-01-07: we need better way to log this failing.  maybe update postlog work with server nubmers also 
+# or just report a error on all mac found on the system
+$macaddr = &getmac(&find_pri_nic);
+($macaddr) || postlog("FATAL: MAC address not defined!");
+
+# Fetch the Post Configuration information and pipe to file postconf.info
+lwpfetch('url' => "http://${ksipaddr}/cgi-bin/postconf.cgi",
+    'post' => "macaddr=${macaddr}",
+    'file' => "${p1post}/postconf.info");
+
+# Read the postconf.info and store in local variables
+$ks = readpost();
+$ks->{fqdn} = join(".", $ks->{HOST}, $ks->{DOMAIN});
+($ks->{product}, $ks->{version}) = get_product();
+$ks->{fullprod} = join("_", $ks->{product}, $ks->{version});
+$ks->{macaddr} = $macaddr;
+$ks->{p1post} = $p1post;
+$ks->{scriptd} = "$p1post/script.d";
+
+
+#Fetch the license information and store the license tgz file.
+lwpfetch('url' => "http://${ksipaddr}/cgi-bin/licenses.cgi",
+    'post' => "macaddr=${macaddr}",
+    'file' => "/tmp/licenses.tgz");
+
+if (-s "/tmp/licenses.tgz") {
+    system("/bin/tar","-C","$p1post","-zxf","/tmp/licenses.tgz");
+}
+
+unlink("/tmp/licenses.tgz");
+
+#Add the information from the $ks var to postconf.info
+open OFH, ">${p1post}/postconf.info";
+foreach my $key (sort(keys %{$ks})) { print OFH "$key=$ks->{$key}\n"; }
+close OFH;
+
+# Write out SB Specific file to boot directory
+open OFH, ">/boot/.serverbeach";
+printf OFH "MACADDR=%s
+IPADDR=%s
+PRODUCT=%s
+VERSION=%s
+", $macaddr, $ks->{'IPADDR'}, $ks->{'product'}, $ks->{'version'};
+close OFH;
+
+# Fix Language Settings
+postlog("INFO: Fixing LANG");
+my @i18n_ary = ("LANG=en_US");
+open IFH, "</etc/sysconfig/i18n";
+while (<IFH>) {
+        next if (/^LANG/);
+        chomp;
+        push @i18n_ary, $_;
+}
+close IFH;
+
+#Fix Character Encoding for OS
+open OFH, ">/etc/sysconfig/i18n";
+print OFH join("\n", @i18n_ary)."\n";
+close OFH;
+
+# determine primary interface for configuration files 
+my $pri_int = &find_pri_nic ; 
+#Update  IP information
+postlog("INFO: Updating IP information");
+open OFH, ">/etc/sysconfig/network";
+printf OFH "#/etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=%s
+DOMAIN=%s
+GATEWAYDEV=$pri_int
+", $ks->{fqdn}, $ks->{DOMAIN};
+close OFH;
+
+#Setup Network Card information on primary interface 
+open OFH, ">/etc/sysconfig/network-scripts/ifcfg-$pri_int";
+printf OFH "#/etc/sysconfig/network-scripts/ifcfg-$pri_int
+DEVICE=$pri_int
+ONBOOT=yes
+BOOTPROTO=none
+IPADDR=%s
+NETMASK=%s
+GATEWAY=%s
+HWADDR=%s
+", $ks->{IPADDR}, $ks->{NETMASK}, $ks->{GATEWAY}, $macaddr;
+close OFH;
+
+#update the host file information
+open OFH, ">>/etc/hosts";
+printf OFH "%s\t%s %s\n", $ks->{IPADDR}, $ks->{fqdn}, $ks->{HOST};
+close OFH;
+
+#update the nameserver information from the variable in kickstart
+my @nameservers = ($ks->{DNS1}, $ks->{DNS2});
+my @random_nameservers = ($nameservers[1], $nameservers[0]);
+
+#Rewrite the resolve conf file.
+open OFH, ">/etc/resolv.conf.new";
+printf OFH "domain %s
+nameserver %s
+nameserver %s 
+options rotate
+", $ks->{DOMAIN}, @random_nameservers;
+close OFH;
+
+#Setup the NTP File information
+open OFH, ">>/etc/ntp.conf";
+print OFH qq{server rdns1.peer1.net
+server rdns2.peer1.net
+};
+close OFH;
+
+#Setup the mail server information.
+open OFH, ">>/etc/mail/local-host-names";
+print OFH $ks->{fqdn}."\n";
+close OFH;
+
+#Disable the following services:
+postlog("INFO: Disabling services");
+my @dlist = ("gpm","kudzu","netfs","apmd","ipchains","portmap","xfs","rhnsd","nfslock","isdn","autofs","NetworkManager");
+foreach my $service (@dlist) {
+    (-e "/etc/rc.d/init.d/$service") || next;
+    system("/sbin/chkconfig --level 3 $service off");
+}
+
+#Enable the following services:
+#Apache, FTP, IPtables Firewall, and NTP
+postlog("INFO: Enabling services");
+my @elist = ("httpd","wu-ftpd","iptables","ntpd");
+foreach my $service (@elist) {
+    (-e "/etc/rc.d/init.d/$service") || next;
+    system("/sbin/chkconfig --level 3 $service on");
+}
+
+system("/sbin/chkconfig network on");
+
+#Add an SSH server configuration parameter.
+open OFH, ">/tmp/sshd_config";
+open IFH, "/etc/ssh/sshd_config";
+while (<IFH>) {
+    chomp;
+    if (/PermitRootLogin/) { $_ = "PermitRootLogin no"; }       
+    print OFH $_."\n";
+}
+close IFH;
+close OFH;
+
+(-s "/tmp/sshd_config") && rename("/tmp/sshd_config","/etc/ssh/sshd_config");
+
+#Setup the root user password information
+postlog("INFO: Setting root password");
+open OFH, "|/usr/bin/passwd --stdin root";
+print OFH $ks->{RPASS}."\n";
+close OFH;
+
+#Setup the defualt Customer Account
+postlog("INFO: Setting up default user: ".$ks->{PUSER});
+system("/usr/sbin/adduser","-n","-G","wheel", $ks->{PUSER}) == 0 ||
+    postlog("FATAL: adduser failed: ".$ks->{PUSER});
+open OFH, "|/usr/bin/passwd --stdin $ks->{PUSER}";
+print OFH $ks->{PPASS}."\n";
+close OFH;
+
+#Add the Beach account information.
+postlog("INFO: Setting up Server Beach Management user: beach");
+system("/usr/sbin/adduser","-n","-G","wheel","beach") == 0 ||
+    postlog("FATAL: adduser failed: beach");
+open OFH, "|/usr/bin/passwd --stdin beach";
+print OFH $ks->{'BPASS'}."\n";
+close OFH;
+
+# Modules that we have to run 
+my @modlist = ("cfgipaddr.mod","fixe2labels.mod");
+
+#######################################################################
+#Panel Setup
+#######################################################################
+# Setup the proper panel module to the list.  None of these can coexist
+
+if (lc($ks->{PANEL}) eq "webmin") { 
+        push(@modlist, "webmin.mod"); 
+}
+elsif (lc($ks->{PANEL}) eq "plesk95") {
+    push(@modlist, "plesk95.mod");
+}
+# CPanel
+elsif (lc($ks->{PANEL}) eq "cpanel") {
+        push(@modlist, "cpanel.mod");
+}
+elsif (lc($ks->{GPGPU}) eq "Y") {
+    push(@modlist, "gpgpu.mod");
+}
+elsif (lc($ks->{KVMVIRT}) eq "Y") {
+    push(@modlist, "kvm.mod");
+}
+#######################################################################
+# Monitoring Software Setup
+#######################################################################
+if( ! exists $ks->{MONITORING} ) {
+    postlog("INFO: No monitoring software defined");
+} elsif( lc( $ks->{MONITORING} ) eq "sshepherd" ){
+    push(@modlist, "sshepherd.mod");
+}  else {
+    postlog("FATAL: Monitoring software: $ks->{MONITORING} not supported" );
+}
+
+#######################################################################
+# secondary ip address setup
+#######################################################################
+if ( $ks->{SECIP} ne "none" ) { 
+    postlog( "INFO: secondary ip address configuration" ); 
+    push( @modlist, "secipaddr.mod" );
+}
+
+#######################################################################
+# MongoDB setup
+#######################################################################
+if (lc($ks->{DATABASE}) eq "mongodb") { 
+    #Adding Mongodb to the module list
+    postlog( "INFO: Adding MongoDB" ); 
+    push( @modlist, "mongodb.mod");
+}
+#######################################################################
+# Module processing
+#######################################################################
+postlog("INFO: MODLIST ".join(" ", @modlist));
+foreach my $module (@modlist) {
+    my $modurl = "http://${ksipaddr}/postconf/modules/$module";
+    my $modfile = "/tmp/${module}";
+    lwpfetch('url' => $modurl, 'file' => $modfile);
+    if (-f $modfile) { 
+        postlog("INFO: Running module $module");
+        my $modres = scalar eval `cat $modfile`;
+                postlog("INFO: $module returned $modres"); 
+        if ($modres == 1 ) { 
+                        postlog("INFO: Executing module $module done"); 
+                        # delete modules that finish successfully 
+                unlink("/tmp/$module");
+                }
+        else { 
+                        postlog("FATAL: Executing module $module failed ($@)"); 
+                }
+    }
+    else { 
+                postlog("FATAL: missing $module"); 
+        }
+}
+
+lwpfetch("http://".$ks->{ksserver}."/installs/linux/serverbeach/sbeach_redhat.xpm.gz","/boot/grub/splash.xpm.gz");
+
+postlog("INFO: SB Post Configuration setup complete.");
+postlog("INFO: postconf.txt exiting successfully");
+
+exit 0

@@ -1,0 +1,30 @@
+[exports]
+path = /exports
+use chroot = yes
+read only = true
+list = no
+hosts allow = office.sat5.serverbeach.com
+
+hosts deny = *
+uid = 0
+gid = 0
+
+[installs]
+path = /exports/installs
+use chroot = yes
+read only = true
+list = no
+hosts allow = 10.0.0.0/8 192.168.0.0/16
+hosts deny = *
+uid = 0
+gid = 0
+
+[freebsd]
+path = /exports/installs/freebsd
+use chroot = yes
+read only = true
+list = yes
+hosts allow = 10.0.0.0/8 192.168.0.0/16 kickstart.sat5.serverbeach.com kickstart.lax1.serverbeach.com kickstart.iad2.serverbeach.com ks1.sat5.serverbeach.com ks1.iad2.serverbeach.com ks1.lax1.serverbeach.com ks1.dev1.serverbeach.com
+hosts deny = *
+uid = 0
+gid = 0

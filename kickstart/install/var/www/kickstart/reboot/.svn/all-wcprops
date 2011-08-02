@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/reboot
+END
+massRRtest.pl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/reboot/massRRtest.pl
+END
+rebootd.lax
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/reboot/rebootd.lax
+END
+testRapidReboot.sh
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/reboot/testRapidReboot.sh
+END
+setserial
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/reboot/setserial
+END
+RRTest.pl
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/reboot/RRTest.pl
+END
+rebootd
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/reboot/rebootd
+END

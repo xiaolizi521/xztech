@@ -1,0 +1,29 @@
+ServerBeach Ltd. 
+Copyright 2006-2007
+
+README: Kickstart Configuration (kscfg)
+
+Description:
+This file describes the contents of this directory and how it is used in the ServerBeach
+Kickstart system.  Its intent is to give the developer and system administrator a  guide
+into the SB Provisioning process from a stand point of pre, during, and post configuration 
+for Redhat and Windows based systems.
+
+The kscfg directory is used by the provisioning system to call specific scripts for Redhat,
+Centos, Fedora, and Windows 2003 systems.
+
+Redhat, Centos, Fedora Specific files include:
+        - .pre files are executed prior to install
+        - .kscfg are actual anaconda file that are used by the OS
+        - .post files are scripts that are executed during post configuration of the OS
+        Please Note: that the file types listed above are read and executed during the call 
+        to the ks.cgi script.
+
+Windows Specific files include:
+        -.temp file are windows unattend files that get executed during the install of windows
+        Please note that these files get called during the call to unattend.cgi.
+
+JR@20070418: Added new Debian Etch Preceed information:
+Debian 4.0 Etch is a new product that will be added to the kickstart system officially 5-1-2007.  Here is some information
+regarding this new OS:
+    - 

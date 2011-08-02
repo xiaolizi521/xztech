@@ -1,0 +1,35 @@
+#!/bin/sh
+
+exec < /dev/tty6 > /dev/tty6 2>/dev/tty6
+chvt 6 || echo "chvt didnt work" > /dev/tty6
+
+havepata=0
+havesata=0
+
+fdisk -l /dev/hda | grep ^Disk >/dev/null && havepata=1
+fdisk -l /dev/sda | grep ^Disk >/dev/null && havesata=1
+
+if [ $havepata -eq 1 ] ; then
+    drive1=hda
+elif [ $havesata -eq 1 ] ; then
+    drive1=sda
+else
+    exit 1
+fi
+
+cat <<PART > /tmp/part-include
+clearpart --all
+partition /boot --fstype=ext3 --size=100 --ondisk sda --asprimary
+partition pv.01 --size=1024 --grow --ondisk sda
+volgroup r10 --pesize=32768 pv.01
+logvol swap --fstype=swap --name=swap --size=4096 --vgname=r10
+logvol / --fstype=ext3 --name=root --vgname=r10 --size=40960
+logvol /mnt/data1 --fstype=ext3 --vgname=r10 --name=mysql --size=102400
+logvol /mnt/data2 --fstype=ext3 --vgname=r10 --size=1024 --grow --name=drbd0
+partition pv.02 --size 1024 --grow --ondisk sdb
+volgroup r1 --pesize=32768 pv.02
+logvol /mnt/data3 --fstype=ext3 --vgname=r1 --size=102400 --name=rlogs
+logvol /mnt/data4 --fstype=ext3 --vgname=r1 --size=1024 --grow --name=drbd1
+PART
+
+chvt 1

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Default automated partitioning template for a kickstart server-->
+<system>
+ <storage>
+  <disk id="0">
+   <size>750000</size>
+   <type>SATA</type>
+   <partition id="0">
+    <size>100</size>
+    <primary>True</primary>
+    <mountpoint>/boot</mountpoint>
+    <type>Raw</type>
+    <configuration>
+     <setting id="filesystem" value="ext3"></setting>
+     <setting id="label" value="Boot"></setting>
+     <setting id="bootable" value="true"></setting>
+    </configuration>
+   </partition>
+
+   <partition id="1">
+    <size>1900</size>
+    <primary>True</primary>
+    <mountpoint>swap</mountpoint>
+    <type>Raw</type>
+    <configuration>
+     <setting id="filesystem" value="swap" />
+    </configuration>
+   </partition>
+
+   <partition id="2">
+    <size>12000</size>
+    <primary>True</primary>
+    <mountpoint>/</mountpoint>
+    <type>Raw</type>
+    <configuration>
+     <setting id="filesystem" value="ext3" />
+     <setting id="label" value="Root" />
+    </configuration>
+   </partition>
+   
+   <partition id="3">
+    <size>670000</size>
+    <primary>True</primary>
+    <mountpoint>/exports</mountpoint>
+    <type>Raw</type>
+    <configuration>
+     <setting id="filesystem" value="ext3" />
+     <setting id="label" value="Exports" />
+     <setting id="grow" value="true"></setting>
+    </configuration>
+   </partition>
+
+   <configuration>
+    <setting id="zerombr" value="true"></setting>
+    <setting id="clearpart" value="true"></setting>
+    <setting id="initlabel" value="true"></setting>
+   </configuration>
+  </disk>
+ </storage>
+</system>

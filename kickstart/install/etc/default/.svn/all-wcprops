@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/kickstart/!svn/ver/453/trunk/install/etc/default
+END
+atftpd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/kickstart/!svn/ver/309/trunk/install/etc/default/atftpd
+END
+samba
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/kickstart/!svn/ver/309/trunk/install/etc/default/samba
+END
+dhcp3-server
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/kickstart/!svn/ver/309/trunk/install/etc/default/dhcp3-server
+END
+tftpd-hpa
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/kickstart/!svn/ver/453/trunk/install/etc/default/tftpd-hpa
+END
+rsync
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/kickstart/!svn/ver/309/trunk/install/etc/default/rsync
+END

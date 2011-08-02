@@ -1,0 +1,32 @@
+# SB Kickstart Configuration
+
+lang en_US
+langsupport en_US
+keyboard us
+timezone --utc UTC
+
+text
+install
+url --url http://@@KSIPADDR@@/installs/linux/redhat/7.3
+
+mouse none
+network --device eth0 --bootproto dhcp
+rootpw --iscrypted $1$0vëÀ9aÓü$/chWLuhPpC06ivl54R1hR/
+firewall --disabled
+authconfig --enableshadow --enablemd5
+bootloader --location=mbr
+
+%include /tmp/part-include
+#zerombr yes
+#clearpart --all --initlabel
+#part /boot --fstype ext3 --ondisk hda --asprimary --size 40
+#part swap --ondisk hda --asprimary --size 1024
+#part / --fstype ext3 --ondisk hda --asprimary --size 20000 --grow
+
+skipx
+
+
+%packages --resolvedeps
+perl-libwww-perl
+kernel-source
+

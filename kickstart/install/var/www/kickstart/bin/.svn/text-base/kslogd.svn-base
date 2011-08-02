@@ -1,0 +1,168 @@
+#!/usr/bin/perl -w
+
+BEGIN {
+	use lib qw(/exports/kickstart/lib);
+	require 'sbks.pm';
+}
+
+use strict;
+use IO::Socket::UNIX;
+
+my ($kslogsock);
+
+sub parse {
+	my $input = shift();
+	print "# $input\n";
+	$input =~ /^(tftpd|dhcpd)\s+\[(info|err)\]\s+(.*)/;
+	my ($src, $pri, $msg) = ($1, $2, $3);
+
+	return 0 unless (($src) && ($pri) && ($msg));
+
+	if ($src eq "tftpd") {
+		do_tftpd($msg);
+	}
+	elsif ($src eq "dhcpd") { do_dhcpd($msg); }
+
+	return 0;
+}
+
+sub do_tftpd {
+	my $input = shift();
+    my $logfmt = "macaddr=%s pxe=%s osload=%s status=%s";
+	my $logstring;
+	if ($input !~ /pxelinux.cfg/) { return 0; }
+
+#	RRQ from 10.2.20.158 filename /pxe/pxelinux.cfg/01-00-02-b3-dc-43-66
+	$input =~ /RRQ from (.*) filename \/pxe\/pxelinux.cfg\/01-(.*)$/;
+	my ($ipaddr, $macaddr) = ($1, $2);
+	(($ipaddr) && ($macaddr)) || return 0;
+
+	$macaddr =~ s/-/:/g;
+	print "tftpd [info] $macaddr $ipaddr\n";
+
+	$ksdbh->ping() || ($ksdbh = ks_dbConnect());
+	my $mobj = MACFun->new(dbh => $ksdbh, macaddr => $macaddr);
+	my $pxe = $mobj->pxe();
+	my $osload = $mobj->osload();
+	my $status = $mobj->status();
+
+	if ($pxe eq "localboot") {
+		# Simple case.  Don't update servers that are online
+		if ($status =~ /^(kickstarted|online)$/) {
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "online");
+		}
+		# If the server is in the process of rebooting, mark online
+		elsif ($status =~ /^online_reboot.*$/) {
+			$mobj->status("online");
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "rebooted");
+		}
+		# If the server is in the process of rebooting, mark online
+		elsif ($status eq "online_rescue") {
+			$mobj->status("online");
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "rescued");
+		}
+        # Still provisioning .. 
+		elsif ($status eq "win2k_copydone") {
+		    # Refresh the timestamp
+			$mobj->status("win2k_copydone");
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "win2k_copydone");
+		}
+		# Almost done provisioning
+		elsif ($status =~ /^(ks|cpl|esm|psa)_wait$/) {
+			$mobj->status("booting");
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "booting");
+		}
+	}
+	else {
+		# Anything else
+		$mobj->status("booting");
+		$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "booting");
+	}
+
+    $mobj->set_rebooted();
+	$mobj->update();
+
+	if ($logstring) {
+		print $logstring."\n";
+		kslog('info', $logstring);
+	}
+
+	return 0;
+}
+
+sub do_dhcpd {
+	my $input = shift();
+	if ($input !~ /DHCPACK/) { return 0; }
+		
+# DHCPACK on 10.2.16.196 to 00:02:b3:e6:7c:1f via vlan227
+# DHCPACK on 10.2.11.227 to 00:40:ca:38:fa:5a (server207) via vlan207
+# DHCPACK on 10.3.1.126 to 00:0e:0c:66:46:11 via 10.3.1.65
+# DHCPACK on 10.3.1.126 to 00:0e:0c:66:46:11 (server65) via 10.3.1.65
+	$input =~ /DHCPACK on (.*) to (.*?)( \(\w+\))? via (.*)/;
+	my ($ipaddr, $macaddr, $source) = ($1, $2, $4);
+	($ipaddr && $macaddr && $source) || return 0;
+
+	print "## $input\n";
+	$ksdbh->ping() || ($ksdbh = ks_dbConnect());
+    my $vlan;
+    if ($source =~ /eth/) {
+        $vlan = 405;
+        print "# Got vlan $vlan from DHCP\n";
+    }
+    elsif ($source =~ /vlan(\d+)/) {
+        $vlan = $1;
+        print "# Got vlan $vlan from DHCP\n";
+    }
+    else {
+        $vlan = $ksdbh->selectall_arrayref("SELECT id FROM vlans WHERE '$source' << private_network")->[0]->[0];
+        print "# Got vlan $vlan from DB\n";
+    }
+
+	my $mobj = MACFun->new(dbh => $ksdbh, macaddr => $macaddr);
+	my $old_vlan = $mobj->vlan() ? $mobj->vlan() : 1;
+	my $old_ipaddr = $mobj->ipaddr() ? $mobj->ipaddr() : "0.0.0.0";
+	my $old_status = $mobj->status() ? $mobj->status() : "new";
+
+	if ($vlan != $old_vlan) {
+		$mobj->vlan($vlan);
+		kslog('info', "$macaddr VLAN -> $vlan");
+	}
+
+	if ($old_status =~ /kickstarted|.*wait|online.*/) {
+		(1 == 1) # really, it does
+	}
+	elsif ($ipaddr ne $old_ipaddr) {
+		$mobj->ipaddr($ipaddr);
+		kslog('info', "$macaddr IPADDR -> $ipaddr");
+	}
+
+	$mobj->update();
+	return 0;
+}
+
+# MAIN
+
+if (is_running()) { exit 0; }
+
+kslog("info", "Starting");
+
+chdir("/");
+
+$ksdbh = ks_dbConnect();
+
+my $sock = IO::Socket::INET->new(
+	'LocalAddr' => '127.0.0.1',
+	'LocalPort' => 226,
+	'Proto' => 'tcp',
+	'Listen' => 10) or die "$!";
+
+while (my $client = $sock->accept()) {
+	my $data = <$client>;
+	chomp $data;
+	close($client);
+	parse($data);
+}
+
+close ($sock);
+
+1;

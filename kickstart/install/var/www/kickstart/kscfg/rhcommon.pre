@@ -1,0 +1,78 @@
+#!/bin/sh
+# =======================================================================
+# Company:              ServerBeach
+# Copyright(c):         ServerBeach, Ltd. 2006-2007
+# Project:              Kickstart Sub-System
+# Pri. Code Devloper:   SB Development Team
+# Creation Date:        N/A
+#
+# File Type:            Anaconda Preconfiguration File      
+# File Name:            rhcommon.pre
+# Dependencies:         N/A    
+#
+# Discription:
+# This file is used as a preconfiguration to the Kickstart Anaconda setup.
+# It is used primarily during provisioning and is run prior to using the 
+# main anaconda file.
+# =======================================================================
+hds=""
+mymedia=""
+
+for file in /proc/ide/hd*
+do
+  mymedia=`cat $file/media`
+  if [ $mymedia = "disk" ] ; then
+      hds="$hds `basename $file`"
+  fi
+done
+
+set $hds
+numhd=`echo $#`
+
+drive1=`echo $hds | cut -d" " -f1`
+drive2=`echo $hds | cut -d" " -f2`
+
+#Write out partition scheme based on whether there are 1 or 2 hard drives
+
+if [ $numhd = "0" ] ; then
+    drive1=sda
+    cat <<PART0 >/tmp/part-include
+#partitioning scheme generated in %pre for 1 SATA drive
+zerombr yes
+clearpart --all --drives $drive1 --initlabel
+part /boot --fstype ext3 --size=100 --ondisk $drive1 --asprimary
+part swap --size=2048 --ondisk $drive1 --asprimary
+part / --fstype ext3 --size=1 --ondisk $drive1 --asprimary --grow
+PART0
+
+elif [ $numhd = "2" ] ; then
+
+  extra=""
+  if [ ! -b "/dev/${drive2}1" ] ; then
+    parted -s "/dev/$drive2" mklabel msdos
+    extra="part /disk2 --fstype ext3 --size=1 --ondisk $drive2 --asprimary --grow"
+  fi
+
+  cat <<PART2 > /tmp/part-include
+#partitioning scheme generated in %pre for 2 drives
+zerombr yes
+clearpart --all --drives $drive1 --initlabel
+part /boot --fstype ext3 --size=100 --ondisk $drive1 --asprimary
+part swap --size=2048 --ondisk $drive1 --asprimary
+part / --fstype ext3 --size=1 --ondisk $drive1 --asprimary --grow
+$extra
+PART2
+
+else
+
+  cat <<PART1 > /tmp/part-include
+#partitioning scheme generated in %pre for 1 drive
+zerombr yes
+clearpart --all --drives $drive1 --initlabel
+part /boot --fstype ext3 --size=100 --ondisk $drive1 --asprimary
+part swap --size=2048 --ondisk $drive1 --asprimary
+part / --fstype ext3 --size=1 --ondisk $drive1 --asprimary --grow
+PART1
+
+fi
+

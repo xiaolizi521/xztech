@@ -1,0 +1,54 @@
+#!/usr/bin/perl -w
+
+BEGIN {
+    use lib qw(/exports/kickstart/lib);
+    require 'sbks.pm';
+}
+
+use strict;
+use SB::Config;
+
+my $debug;
+
+if ($ARGV[0] && $ARGV[0] eq "debug") { $debug = 1; }
+
+$ksdbh = ks_dbConnect();
+
+my $holding = $ksdbh->selectall_arrayref("SELECT mac_address FROM kickstart_map WHERE new_status = 'holding' AND last_update < now() - '5 minutes'::interval");
+
+foreach my $row (@$holding) {
+    my $macAddress = $row->[0];
+    my $portInfo = switchPortInfo($macAddress);
+
+    my $newOSload = "burnin";
+    my $newPXEtarget;
+
+    print "$macAddress : ";
+
+    my $macObj = MACFun->new(dbh => $ksdbh, macaddr => $macAddress);
+    $macObj->osload($newOSload);
+    print "osload -> $newOSload : ";
+    $macObj->update();
+
+    $newPXEtarget = $macObj->pxe();
+    my $pxeResult = 0;
+    if (!$debug) {
+        $pxeResult = new_update_pxe($macAddress, $newPXEtarget);
+    }
+    print "pxe -> $newPXEtarget ($pxeResult) : ";
+
+    my $rebootResult = "0";
+    if (!$debug) {
+        $rebootResult = rebootByMac($macAddress, 0);
+    }
+    print "reboot -> $rebootResult\n";
+
+    if (!$debug) {
+        #portvlan($portInfo, 405);
+    }
+}
+
+$ksdbh->disconnect();
+
+1;
+

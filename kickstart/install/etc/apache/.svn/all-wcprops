@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/kickstart/!svn/ver/309/trunk/install/etc/apache
+END
+httpd.conf
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/kickstart/!svn/ver/309/trunk/install/etc/apache/httpd.conf
+END
+modules.conf
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/kickstart/!svn/ver/309/trunk/install/etc/apache/modules.conf
+END

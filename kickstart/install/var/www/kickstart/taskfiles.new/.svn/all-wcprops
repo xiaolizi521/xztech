@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/kickstart/!svn/ver/1073/trunk/install/var/www/kickstart/taskfiles.new
+END
+windows-copy.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/kickstart/!svn/ver/554/trunk/install/var/www/kickstart/taskfiles.new/windows-copy.txt
+END
+win2k-copy.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/taskfiles.new/win2k-copy.txt
+END
+remoterescue.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/kickstart/!svn/ver/1009/trunk/install/var/www/kickstart/taskfiles.new/remoterescue.txt
+END
+audit.txt
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/kickstart/!svn/ver/937/trunk/install/var/www/kickstart/taskfiles.new/audit.txt
+END
+randomBeep.sh
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/taskfiles.new/randomBeep.sh
+END
+sbrescue.txt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/kickstart/!svn/ver/1013/trunk/install/var/www/kickstart/taskfiles.new/sbrescue.txt
+END
+reclaim.txt
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/976/trunk/install/var/www/kickstart/taskfiles.new/reclaim.txt
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/334/trunk/install/var/www/kickstart/taskfiles.new/README
+END
+audit.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/923/trunk/install/var/www/kickstart/taskfiles.new/audit.py
+END
+9650flash.txt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/kickstart/!svn/ver/657/trunk/install/var/www/kickstart/taskfiles.new/9650flash.txt
+END
+win2k3web-copy.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/taskfiles.new/win2k3web-copy.txt
+END
+default.txt
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/333/trunk/install/var/www/kickstart/taskfiles.new/default.txt
+END
+linkserver.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/kickstart/!svn/ver/335/trunk/install/var/www/kickstart/taskfiles.new/linkserver.txt
+END
+online.txt
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/336/trunk/install/var/www/kickstart/taskfiles.new/online.txt
+END
+zerofill.txt
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/kickstart/!svn/ver/907/trunk/install/var/www/kickstart/taskfiles.new/zerofill.txt
+END
+verify_login.pl
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/kickstart/!svn/ver/978/trunk/install/var/www/kickstart/taskfiles.new/verify_login.pl
+END
+bootserver.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/kickstart/!svn/ver/335/trunk/install/var/www/kickstart/taskfiles.new/bootserver.txt
+END
+raid_setup.pl
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/kickstart/!svn/ver/1073/trunk/install/var/www/kickstart/taskfiles.new/raid_setup.pl
+END
+deb30ks.txt
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/taskfiles.new/deb30ks.txt
+END
+deb31ks.txt
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/336/trunk/install/var/www/kickstart/taskfiles.new/deb31ks.txt
+END
+burnin.txt
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/kickstart/!svn/ver/907/trunk/install/var/www/kickstart/taskfiles.new/burnin.txt
+END
+reclaim_qa.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/kickstart/!svn/ver/983/trunk/install/var/www/kickstart/taskfiles.new/reclaim_qa.txt
+END
+hw_raidsetup.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/kickstart/!svn/ver/1067/trunk/install/var/www/kickstart/taskfiles.new/hw_raidsetup.txt
+END
+win2k3std-copy.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/kickstart/!svn/ver/507/trunk/install/var/www/kickstart/taskfiles.new/win2k3std-copy.txt
+END

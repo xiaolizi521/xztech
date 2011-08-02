@@ -1,0 +1,897 @@
+--
+-- PostgreSQL database dump
+--
+
+DROP DATABASE kickstart;
+
+-- dm@10-25-2006: re/create kickstart user
+DROP USER kickstart;
+CREATE USER kickstart WITH CREATEDB NOCREATEUSER PASSWORD 'l33tNix';
+
+
+SET client_encoding = 'LATIN1';
+SET check_function_bodies = false;
+
+
+-- change user to: kickstart and create kickstart database
+SET SESSION AUTHORIZATION 'kickstart';
+CREATE DATABASE kickstart WITH TEMPLATE = template0 ENCODING = 'LATIN1';
+
+
+-- connect to kickstart database as postgres
+\connect kickstart postgres
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+SET SESSION AUTHORIZATION 'kickstart';
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 5 (OID 17154)
+-- Name: vlans; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE vlans (
+    id integer NOT NULL,
+    public_network cidr,
+    private_network cidr
+);
+
+
+--
+-- TOC entry 6 (OID 17661)
+-- Name: sb_datacenter; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE sb_datacenter (
+    id serial NOT NULL,
+    name text NOT NULL,
+    dc_abbr text NOT NULL
+);
+
+
+--
+-- TOC entry 7 (OID 17669)
+-- Name: hardware_list; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE hardware_list (
+    id serial NOT NULL,
+    part_type text NOT NULL,
+    part_name text NOT NULL
+);
+
+
+--
+-- TOC entry 8 (OID 17677)
+-- Name: os_list; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE os_list (
+    id serial NOT NULL,
+    osload text NOT NULL,
+    is_ks boolean DEFAULT false NOT NULL
+);
+
+
+--
+-- TOC entry 9 (OID 17686)
+-- Name: pxe_list; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE pxe_list (
+    id serial NOT NULL,
+    pxefile text NOT NULL
+);
+
+
+--
+-- TOC entry 10 (OID 17694)
+-- Name: task_list; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE task_list (
+    id serial NOT NULL,
+    taskfile text NOT NULL
+);
+
+
+--
+-- TOC entry 11 (OID 17700)
+-- Name: status_list; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE status_list (
+    id integer NOT NULL,
+    status text NOT NULL,
+    is_fail boolean DEFAULT false
+);
+
+
+--
+-- TOC entry 12 (OID 17708)
+-- Name: mac_list; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE mac_list (
+    id serial NOT NULL,
+    mac_address macaddr NOT NULL,
+    date_added timestamp with time zone DEFAULT now()
+);
+
+
+--
+-- TOC entry 13 (OID 17712)
+-- Name: hardware; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE hardware (
+    mac_list_id integer,
+    param text NOT NULL,
+    value text NOT NULL
+);
+
+
+--
+-- TOC entry 14 (OID 17717)
+-- Name: postconf; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE postconf (
+    mac_list_id integer,
+    param text NOT NULL,
+    value text NOT NULL
+);
+
+
+--
+-- TOC entry 15 (OID 17722)
+-- Name: licenses; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE licenses (
+    mac_list_id integer,
+    licenses text NOT NULL
+);
+
+
+--
+-- TOC entry 16 (OID 17727)
+-- Name: xref_macid_osload; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE xref_macid_osload (
+    mac_list_id integer,
+    os_list_id integer,
+    pxe_list_id integer,
+    task_list_id integer
+);
+
+
+--
+-- TOC entry 17 (OID 17729)
+-- Name: xref_macid_ipaddr; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE xref_macid_ipaddr (
+    mac_list_id integer,
+    vlan_id integer,
+    ip_address inet DEFAULT '0.0.0.0'::inet NOT NULL
+);
+
+
+--
+-- TOC entry 18 (OID 17732)
+-- Name: macid_status_current; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE macid_status_current (
+    mac_list_id integer NOT NULL,
+    old_status_id integer,
+    new_status_id integer,
+    date_added timestamp with time zone DEFAULT now()
+);
+
+
+--
+-- TOC entry 19 (OID 17737)
+-- Name: macid_status_history; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE macid_status_history (
+    id serial NOT NULL,
+    mac_list_id integer,
+    old_status_id integer,
+    new_status_id integer,
+    date_added timestamp with time zone DEFAULT now()
+);
+
+
+--
+-- TOC entry 20 (OID 17743)
+-- Name: macid_reboot_history; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE macid_reboot_history (
+    id serial NOT NULL,
+    mac_list_id integer,
+    reboot_status text,
+    date_added timestamp with time zone DEFAULT now()
+);
+
+
+--
+-- TOC entry 21 (OID 17752)
+-- Name: macid_product_history; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE macid_product_history (
+    id serial NOT NULL,
+    mac_list_id integer,
+    product text,
+    date_added timestamp with time zone DEFAULT now()
+);
+
+
+--
+-- TOC entry 22 (OID 17761)
+-- Name: kickstart_map; Type: VIEW; Schema: public; Owner: kickstart
+--
+
+CREATE VIEW kickstart_map AS
+    SELECT t1.id AS mac_list_id, t1.mac_address, t2.os_list_id, t5.osload, t2.pxe_list_id, t6.pxefile, t2.task_list_id, t7.taskfile, t3.vlan_id, t3.ip_address, t4.old_status_id, t8.status AS old_status, t4.new_status_id, t9.status AS new_status, t4.date_added AS last_update FROM mac_list t1, xref_macid_osload t2, xref_macid_ipaddr t3, macid_status_current t4, os_list t5, pxe_list t6, task_list t7, status_list t8, status_list t9 WHERE ((((((t2.mac_list_id = t1.id) AND (t5.id = t2.os_list_id)) AND (t6.id = t2.pxe_list_id)) AND (t7.id = t2.task_list_id)) AND (t3.mac_list_id = t1.id)) AND (((t4.mac_list_id = t1.id) AND (t8.id = t4.old_status_id)) AND (t9.id = t4.new_status_id)));
+
+
+--
+-- TOC entry 23 (OID 17762)
+-- Name: misc; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE misc (
+    param text,
+    value text
+);
+
+
+--
+-- TOC entry 24 (OID 17769)
+-- Name: macid_error_history; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE macid_error_history (
+    id serial NOT NULL,
+    mac_list_id integer,
+    old_status_id integer,
+    new_status_id integer,
+    error_message text,
+    date_added timestamp with time zone
+);
+
+
+--
+-- TOC entry 25 (OID 17777)
+-- Name: rapid_reboot_history; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE rapid_reboot_history (
+    id serial NOT NULL,
+    board_id integer NOT NULL,
+    board_port integer NOT NULL,
+    return_code integer NOT NULL,
+    "timestamp" timestamp with time zone DEFAULT now()
+);
+
+
+--
+-- TOC entry 26 (OID 17781)
+-- Name: rapid_reboot_status_list; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE rapid_reboot_status_list (
+    id integer NOT NULL,
+    status text NOT NULL,
+    is_final boolean DEFAULT false
+);
+
+
+--
+-- TOC entry 27 (OID 17789)
+-- Name: rapid_reboot_queue; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE rapid_reboot_queue (
+    id serial NOT NULL,
+    mac_address macaddr NOT NULL,
+    status integer NOT NULL,
+    started timestamp without time zone,
+    last_updated timestamp without time zone,
+    active boolean DEFAULT true
+);
+
+
+--
+-- TOC entry 28 (OID 771069)
+-- Name: reboot_view; Type: VIEW; Schema: public; Owner: kickstart
+--
+
+CREATE VIEW reboot_view AS
+    SELECT rapid_reboot_queue.mac_address, rapid_reboot_status_list.status, rapid_reboot_queue.started, rapid_reboot_queue.last_updated, rapid_reboot_queue.active FROM rapid_reboot_queue, rapid_reboot_status_list WHERE (rapid_reboot_queue.status = rapid_reboot_status_list.id);
+
+
+--
+-- TOC entry 32 (OID 18585)
+-- Name: os_list_name; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE os_list_name (
+    id integer NOT NULL,
+    osname text NOT NULL
+);
+
+
+--
+-- TOC entry 5 (OID 18651)
+-- Name: addon_list_id_seq; Type: SEQUENCE; Schema: public; Owner: kickstart
+--
+
+CREATE SEQUENCE addon_list_id_seq
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+--
+-- TOC entry 33 (OID 18653)
+-- Name: addon_list; Type: TABLE; Schema: public; Owner: kickstart
+--
+
+CREATE TABLE addon_list (
+    id integer DEFAULT nextval('addon_list_id_seq'::text) NOT NULL,
+    display_name text NOT NULL,
+    param text NOT NULL,
+    value text NOT NULL
+);
+
+
+--
+-- TOC entry 62 (OID 18804)
+-- Name: array_aggregate(integer); Type: AGGREGATE; Schema: public; Owner: kickstart
+--
+
+CREATE AGGREGATE array_aggregate (
+    BASETYPE = integer,
+    SFUNC = array_append,
+    STYPE = integer[],
+    INITCOND = '{}'
+);
+
+--
+-- TOC entry 63 (OID 18805)
+-- Name: array_aggregate(text); Type: AGGREGATE; Schema: public; Owner: kickstart
+--
+
+CREATE AGGREGATE array_aggregate (
+    BASETYPE = text,
+    SFUNC = array_append,
+    STYPE = text[],
+    INITCOND = '{}'
+);
+
+--
+-- Data for TOC entry 58 (OID 17677)
+-- Name: os_list; Type: TABLE DATA; Schema: public; Owner: kickstart
+--
+
+INSERT INTO os_list VALUES (1, 'localboot', false);
+INSERT INTO os_list VALUES (2, 'burnin', false);
+INSERT INTO os_list VALUES (3, 'wait', false);
+INSERT INTO os_list VALUES (5, 'sbrescue', false);
+INSERT INTO os_list VALUES (23, 'win2k', true);
+INSERT INTO os_list VALUES (24, 'win2k3std', true);
+INSERT INTO os_list VALUES (25, 'win2k3web', true);
+INSERT INTO os_list VALUES (29, 'default', false);
+INSERT INTO os_list VALUES (44, 'audit', false);
+INSERT INTO os_list VALUES (54, 'win2k3ent', true);
+INSERT INTO os_list VALUES (55, 'win2k3std_64', true);
+INSERT INTO os_list VALUES (56, 'win2k3ent_64', true);
+INSERT INTO os_list VALUES (1001, 'win2k8web_32_p1mh', false);
+INSERT INTO os_list VALUES (1002, 'win2k8web_64_p1mh', false);
+INSERT INTO os_list VALUES (1003, 'win2k8ent_64_base', false);
+INSERT INTO os_list VALUES (1004, 'win2k8ent_64_p1mh', false);
+INSERT INTO os_list VALUES (1005, 'win2k8dc_32_base', false);
+INSERT INTO os_list VALUES (1006, 'win2k8dc_32_p1mh', false);
+INSERT INTO os_list VALUES (1007, 'win2k8dc_64_base', false);
+INSERT INTO os_list VALUES (1008, 'win2k8dc_64_p1mh', false);
+INSERT INTO os_list VALUES (1009, 'mhrescue', false);
+
+--
+-- Data for TOC entry 59 (OID 17686)
+-- Name: pxe_list; Type: TABLE DATA; Schema: public; Owner: kickstart
+--
+
+INSERT INTO pxe_list VALUES (2, 'localboot');
+INSERT INTO pxe_list VALUES (3, 'memtest');
+INSERT INTO pxe_list VALUES (16, 'sbrescue');
+INSERT INTO pxe_list VALUES (17, 'win2k-itl');
+INSERT INTO pxe_list VALUES (18, 'win2k-rtl');
+INSERT INTO pxe_list VALUES (19, 'win2k3std-itl');
+INSERT INTO pxe_list VALUES (20, 'win2k3std-rtl');
+INSERT INTO pxe_list VALUES (21, 'win2k3web-itl');
+INSERT INTO pxe_list VALUES (22, 'win2k3web-rtl');
+INSERT INTO pxe_list VALUES (27, 'win2k-b57');
+INSERT INTO pxe_list VALUES (28, 'win2k3std-b57');
+INSERT INTO pxe_list VALUES (29, 'win2k3web-b57');
+INSERT INTO pxe_list VALUES (34, 'win2k3std-3wr');
+INSERT INTO pxe_list VALUES (1001, 'mhrescue');
+INSERT INTO pxe_list VALUES (1002, 'win2k8');
+INSERT INTO pxe_list VALUES (1003, 'localhd');
+INSERT INTO pxe_list VALUES (1004, 'none');
+
+--
+-- Data for TOC entry 60 (OID 17694)
+-- Name: task_list; Type: TABLE DATA; Schema: public; Owner: kickstart
+--
+
+INSERT INTO task_list VALUES (1, 'audit');
+INSERT INTO task_list VALUES (4, 'burnin');
+INSERT INTO task_list VALUES (6, 'default');
+INSERT INTO task_list VALUES (7, 'sbrescue');
+INSERT INTO task_list VALUES (1001, 'win2k8_tasks');
+
+--
+-- Data for TOC entry 61 (OID 17700)
+-- Name: status_list; Type: TABLE DATA; Schema: public; Owner: kickstart
+--
+
+INSERT INTO status_list VALUES (1, 'new', false);
+INSERT INTO status_list VALUES (2, 'burnin', false);
+INSERT INTO status_list VALUES (3, 'burnin_done', false);
+INSERT INTO status_list VALUES (4, 'zerofill', false);
+INSERT INTO status_list VALUES (5, 'zerodone', false);
+INSERT INTO status_list VALUES (6, 'audit', false);
+INSERT INTO status_list VALUES (7, 'audit_done', false);
+INSERT INTO status_list VALUES (8, 'ready', false);
+INSERT INTO status_list VALUES (9, 'wait', false);
+INSERT INTO status_list VALUES (10, 'updateks', false);
+INSERT INTO status_list VALUES (11, 'reboot', false);
+INSERT INTO status_list VALUES (12, 'booting', false);
+INSERT INTO status_list VALUES (13, 'ksscript', false);
+INSERT INTO status_list VALUES (14, 'postconf', false);
+INSERT INTO status_list VALUES (15, 'licenses', false);
+INSERT INTO status_list VALUES (16, 'cpl_wait', false);
+INSERT INTO status_list VALUES (17, 'esm_wait', false);
+INSERT INTO status_list VALUES (18, 'psa_wait', false);
+INSERT INTO status_list VALUES (19, 'ks_wait', false);
+INSERT INTO status_list VALUES (20, 'win2k_part', false);
+INSERT INTO status_list VALUES (21, 'win2k_partdone', false);
+INSERT INTO status_list VALUES (22, 'win2k_copy', false);
+INSERT INTO status_list VALUES (23, 'win2k_copydone', false);
+INSERT INTO status_list VALUES (24, 'win2k_preinst', false);
+INSERT INTO status_list VALUES (25, 'win2k_inst', false);
+INSERT INTO status_list VALUES (26, 'win2k_post', false);
+INSERT INTO status_list VALUES (27, 'postboot', false);
+INSERT INTO status_list VALUES (59, 'kickstarted', false);
+INSERT INTO status_list VALUES (60, 'online', false);
+INSERT INTO status_list VALUES (64, 'burnin_fail', true);
+INSERT INTO status_list VALUES (65, 'zero_fail', true);
+INSERT INTO status_list VALUES (66, 'audit_fail', true);
+INSERT INTO status_list VALUES (70, 'updateks_fail', true);
+INSERT INTO status_list VALUES (71, 'reboot_fail', true);
+INSERT INTO status_list VALUES (72, 'booting_fail', true);
+INSERT INTO status_list VALUES (73, 'ksscript_fail', true);
+INSERT INTO status_list VALUES (74, 'postconf_fail', true);
+INSERT INTO status_list VALUES (75, 'licenses_fail', true);
+INSERT INTO status_list VALUES (76, 'cpl_fail', true);
+INSERT INTO status_list VALUES (77, 'esm_fail', true);
+INSERT INTO status_list VALUES (78, 'psa_fail', true);
+INSERT INTO status_list VALUES (80, 'win2k_partfail', true);
+INSERT INTO status_list VALUES (82, 'win2k_copyfail', true);
+INSERT INTO status_list VALUES (120, 'ksfail', true);
+INSERT INTO status_list VALUES (121, 'online_reboot', false);
+INSERT INTO status_list VALUES (122, 'online_rescue', false);
+INSERT INTO status_list VALUES (181, 'online_reboot_fail', true);
+INSERT INTO status_list VALUES (182, 'online_rescue_fail', true);
+INSERT INTO status_list VALUES (253, 'holding', false);
+INSERT INTO status_list VALUES (254, 'bootserver', false);
+INSERT INTO status_list VALUES (255, 'retired', false);
+INSERT INTO status_list VALUES (1001, 'win2k8_imaged', false);
+INSERT INTO status_list VALUES (1002, 'win2k8_postprep', false);
+INSERT INTO status_list VALUES (1003, 'win2k8_postprepdone', false);
+INSERT INTO status_list VALUES (1004, 'win2k8_imaged_fail', true);
+INSERT INTO status_list VALUES (1005, 'win2k8_postprepfail', true);
+
+--
+-- Data for TOC entry 72 (OID 17762)
+-- Name: misc; Type: TABLE DATA; Schema: public; Owner: kickstart
+--
+
+INSERT INTO misc VALUES ('status', 'off');
+
+--
+-- Data for TOC entry 75 (OID 17781)
+-- Name: rapid_reboot_status_list; Type: TABLE DATA; Schema: public; Owner: kickstart
+--
+
+INSERT INTO rapid_reboot_status_list VALUES (1, 'initial', false);
+INSERT INTO rapid_reboot_status_list VALUES (2, 'softboot', false);
+INSERT INTO rapid_reboot_status_list VALUES (3, 'hardboot', false);
+INSERT INTO rapid_reboot_status_list VALUES (4, 'dhcp_check', false);
+INSERT INTO rapid_reboot_status_list VALUES (5, 'port_check', false);
+INSERT INTO rapid_reboot_status_list VALUES (7, 'port_fail', true);
+INSERT INTO rapid_reboot_status_list VALUES (6, 'dhcp_fail', true);
+INSERT INTO rapid_reboot_status_list VALUES (8, 'success', true);
+
+--
+-- Data for TOC entry 86 (OID 18585)
+-- Name: os_list_name; Type: TABLE DATA; Schema: public; Owner: kickstart
+--
+
+INSERT INTO os_list_name VALUES (1001, 'Windows Web Server 2008 32-bit P1MH');
+INSERT INTO os_list_name VALUES (1002, 'Windows Web Server 2008 64-bit P1MH');
+INSERT INTO os_list_name VALUES (1003, 'Windows Server 2008 Enterprise 64-bit BASE');
+INSERT INTO os_list_name VALUES (1004, 'Windows Server 2008 Enterprise 64-bit P1MH');
+INSERT INTO os_list_name VALUES (1005, 'Windows Server 2008 Datacenter 32-bit BASE');
+INSERT INTO os_list_name VALUES (1006, 'Windows Server 2008 Datacenter 32-bit P1MH');
+INSERT INTO os_list_name VALUES (1007, 'Windows Server 2008 Datacenter 64-bit BASE');
+INSERT INTO os_list_name VALUES (1008, 'Windows Server 2008 Datacenter 64-bit P1MH');
+
+--
+-- Data for TOC entry 87 (OID 18653)
+-- Name: addon_list; Type: TABLE DATA; Schema: public; Owner: kickstart
+--
+
+INSERT INTO addon_list VALUES (1, 'Plesk v8.3 for Windows (P1MH-only)', 'PANEL', 'plesk83');
+INSERT INTO addon_list VALUES (2, 'MailEnable Professional', 'MAIL', 'mepro');
+INSERT INTO addon_list VALUES (3, 'Urchin', 'STATS', 'urchin');
+INSERT INTO addon_list VALUES (4, 'Managed Patching', 'PATCHING', 'managed_patching');
+INSERT INTO addon_list VALUES (5, 'McAfee Anti-Virus', 'AV', 'macafee');
+INSERT INTO addon_list VALUES (7, 'SQL Server 2005 Standard', 'DATABASE', 'mssql2k5std');
+INSERT INTO addon_list VALUES (8, 'SQL Server 2005 Workgroup', 'DATABASE', 'mssql2k5wg');
+INSERT INTO addon_list VALUES (9, 'SQL Server 2005 Enterprise', 'DATABASE', 'mssql2k5ent');
+INSERT INTO addon_list VALUES (10, 'SQL Server Reporting Services', 'SQLREPORTING', 'Y');
+
+
+--
+-- TOC entry 41 (OID 17156)
+-- Name: vlans_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY vlans
+    ADD CONSTRAINT vlans_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 42 (OID 754128)
+-- Name: os_list_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY os_list
+    ADD CONSTRAINT os_list_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 43 (OID 754130)
+-- Name: pxe_list_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY pxe_list
+    ADD CONSTRAINT pxe_list_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 44 (OID 754132)
+-- Name: task_list_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY task_list
+    ADD CONSTRAINT task_list_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 45 (OID 754134)
+-- Name: status_list_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY status_list
+    ADD CONSTRAINT status_list_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 46 (OID 754136)
+-- Name: mac_list_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY mac_list
+    ADD CONSTRAINT mac_list_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 47 (OID 754138)
+-- Name: macid_status_current_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_status_current
+    ADD CONSTRAINT macid_status_current_pkey PRIMARY KEY (mac_list_id);
+
+
+--
+-- TOC entry 48 (OID 754140)
+-- Name: macid_status_history_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_status_history
+    ADD CONSTRAINT macid_status_history_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 49 (OID 754142)
+-- Name: macid_reboot_history_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_reboot_history
+    ADD CONSTRAINT macid_reboot_history_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 50 (OID 754144)
+-- Name: macid_product_history_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_product_history
+    ADD CONSTRAINT macid_product_history_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 51 (OID 754146)
+-- Name: macid_error_history_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_error_history
+    ADD CONSTRAINT macid_error_history_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 52 (OID 754148)
+-- Name: rapid_reboot_history_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY rapid_reboot_history
+    ADD CONSTRAINT rapid_reboot_history_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 53 (OID 754150)
+-- Name: rapid_reboot_status_list_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY rapid_reboot_status_list
+    ADD CONSTRAINT rapid_reboot_status_list_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 54 (OID 754152)
+-- Name: rapid_reboot_queue_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY rapid_reboot_queue
+    ADD CONSTRAINT rapid_reboot_queue_pkey PRIMARY KEY (id);
+
+--
+-- TOC entry 60 (OID 18590)
+-- Name: os_list_name_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY os_list_name
+    ADD CONSTRAINT os_list_name_pkey PRIMARY KEY (id);
+
+--
+-- TOC entry 61 (OID 18659)
+-- Name: addon_list_pkey; Type: CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY addon_list
+    ADD CONSTRAINT addon_list_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 77 (OID 754154)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY hardware
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 78 (OID 754158)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY postconf
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 79 (OID 754162)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY licenses
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 80 (OID 754166)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY xref_macid_osload
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 81 (OID 754170)
+-- Name: $2; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY xref_macid_osload
+    ADD CONSTRAINT "$2" FOREIGN KEY (os_list_id) REFERENCES os_list(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 82 (OID 754174)
+-- Name: $3; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY xref_macid_osload
+    ADD CONSTRAINT "$3" FOREIGN KEY (pxe_list_id) REFERENCES pxe_list(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 83 (OID 754178)
+-- Name: $4; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY xref_macid_osload
+    ADD CONSTRAINT "$4" FOREIGN KEY (task_list_id) REFERENCES task_list(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 84 (OID 754182)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY xref_macid_ipaddr
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 85 (OID 754186)
+-- Name: $2; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY xref_macid_ipaddr
+    ADD CONSTRAINT "$2" FOREIGN KEY (vlan_id) REFERENCES vlans(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 86 (OID 754190)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_status_current
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 87 (OID 754194)
+-- Name: $2; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_status_current
+    ADD CONSTRAINT "$2" FOREIGN KEY (old_status_id) REFERENCES status_list(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 88 (OID 754198)
+-- Name: $3; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_status_current
+    ADD CONSTRAINT "$3" FOREIGN KEY (new_status_id) REFERENCES status_list(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 89 (OID 754202)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_status_history
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 90 (OID 754206)
+-- Name: $2; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_status_history
+    ADD CONSTRAINT "$2" FOREIGN KEY (old_status_id) REFERENCES status_list(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 91 (OID 754210)
+-- Name: $3; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_status_history
+    ADD CONSTRAINT "$3" FOREIGN KEY (new_status_id) REFERENCES status_list(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 92 (OID 754214)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_reboot_history
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 93 (OID 754218)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_product_history
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 94 (OID 754222)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_error_history
+    ADD CONSTRAINT "$1" FOREIGN KEY (mac_list_id) REFERENCES mac_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 95 (OID 754226)
+-- Name: $2; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_error_history
+    ADD CONSTRAINT "$2" FOREIGN KEY (old_status_id) REFERENCES status_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 96 (OID 754230)
+-- Name: $3; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY macid_error_history
+    ADD CONSTRAINT "$3" FOREIGN KEY (new_status_id) REFERENCES status_list(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 97 (OID 754234)
+-- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: kickstart
+--
+
+ALTER TABLE ONLY rapid_reboot_queue
+    ADD CONSTRAINT "$1" FOREIGN KEY (status) REFERENCES rapid_reboot_status_list(id);
+
+
+
+SET SESSION AUTHORIZATION 'postgres';
+
+--
+-- TOC entry 3 (OID 2200)
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS 'Standard public schema';
+

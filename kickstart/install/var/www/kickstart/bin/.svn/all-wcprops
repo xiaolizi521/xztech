@@ -1,0 +1,275 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/kickstart/!svn/ver/1004/trunk/install/var/www/kickstart/bin
+END
+mass_update.pl
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/mass_update.pl
+END
+rebootByMac.pl
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/rebootByMac.pl
+END
+backup_ks_db.sh
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/340/trunk/install/var/www/kickstart/bin/backup_ks_db.sh
+END
+ksctl
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/ksctl
+END
+create_local_ks_user.pl
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/kickstart/!svn/ver/931/trunk/install/var/www/kickstart/bin/create_local_ks_user.pl
+END
+kslogd
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/kslogd
+END
+status
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/status
+END
+vconf.pl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/vconf.pl
+END
+rapid_rebootd.pl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/572/trunk/install/var/www/kickstart/bin/rapid_rebootd.pl
+END
+new_dhcp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/new_dhcp
+END
+scan_for_dhcp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/scan_for_dhcp
+END
+reset_perms
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/reset_perms
+END
+mac_cleaner.cron
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/520/trunk/install/var/www/kickstart/bin/mac_cleaner.cron
+END
+updateks.pl
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/updateks.pl
+END
+scan_for_portcheck
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/scan_for_portcheck
+END
+vlans.sh
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/vlans.sh
+END
+relink.sh
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/relink.sh
+END
+scan_for_holding
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/scan_for_holding
+END
+trigger_tftp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/431/trunk/install/var/www/kickstart/bin/trigger_tftp
+END
+pxed
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/kickstart/!svn/ver/569/trunk/install/var/www/kickstart/bin/pxed
+END
+trigger_dhcp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/408/trunk/install/var/www/kickstart/bin/trigger_dhcp
+END
+reset_vlan_for_mac.pl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/kickstart/!svn/ver/462/trunk/install/var/www/kickstart/bin/reset_vlan_for_mac.pl
+END
+booter.sh
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/booter.sh
+END
+logtail.sh
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/logtail.sh
+END
+clear_holding.pl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/clear_holding.pl
+END
+ks_server_check.sh
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/930/trunk/install/var/www/kickstart/bin/ks_server_check.sh
+END
+scan_for_kickstart
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/scan_for_kickstart
+END
+kslogd.do_nothing
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/kslogd.do_nothing
+END
+fetch_stuff.pl
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/fetch_stuff.pl
+END
+start_triggers.sh
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/428/trunk/install/var/www/kickstart/bin/start_triggers.sh
+END
+sbadm_wrapper
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/sbadm_wrapper
+END
+vlan_down
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/kickstart/!svn/ver/692/trunk/install/var/www/kickstart/bin/vlan_down
+END
+provision
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/kickstart/!svn/ver/651/trunk/install/var/www/kickstart/bin/provision
+END
+mkpxe.pl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/kickstart/!svn/ver/579/trunk/install/var/www/kickstart/bin/mkpxe.pl
+END
+dhcpconf.pl
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/697/trunk/install/var/www/kickstart/bin/dhcpconf.pl
+END
+softboot
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/softboot
+END
+docmd.pl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/docmd.pl
+END
+sb-ks-fw.sh
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/767/trunk/install/var/www/kickstart/bin/sb-ks-fw.sh
+END
+mh-ks-fw.sh
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/767/trunk/install/var/www/kickstart/bin/mh-ks-fw.sh
+END
+mac_cleaner.pl
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/691/trunk/install/var/www/kickstart/bin/mac_cleaner.pl
+END
+retire.pl
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/kickstart/!svn/ver/313/trunk/install/var/www/kickstart/bin/retire.pl
+END
+vlan_restart
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/675/trunk/install/var/www/kickstart/bin/vlan_restart
+END
+statuspipe.pl
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/400/trunk/install/var/www/kickstart/bin/statuspipe.pl
+END
+vmware.pl
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/kickstart/!svn/ver/1004/trunk/install/var/www/kickstart/bin/vmware.pl
+END
+vlan_restart.sh
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/692/trunk/install/var/www/kickstart/bin/vlan_restart.sh
+END

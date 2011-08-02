@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update
+END
+viewbypub.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/viewbypub.php
+END
+added.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/added.html
+END
+kickstartupdate.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/kickstartupdate.html
+END
+delete.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/delete.html
+END
+delete.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/delete.php
+END
+viewbyid.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/viewbyid.php
+END
+addentries.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/addentries.php
+END
+viewtable.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/viewtable.php
+END
+deleted.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/deleted.html
+END
+delete2.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/delete2.php
+END
+add.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/add.html
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/.htaccess
+END
+viewbypriv.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/kickstart/!svn/ver/671/trunk/install/var/www/kickstart/update/viewbypriv.php
+END

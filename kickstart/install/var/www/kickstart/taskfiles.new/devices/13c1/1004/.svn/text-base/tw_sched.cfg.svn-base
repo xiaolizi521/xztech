@@ -1,0 +1,13 @@
+# This file contains one or many directives for tw_sched(1).
+# Version specifies the protocol version.
+
+VERSION = 1.0
+
+# Adjust the following directives to match your settings.
+# Note: since multiple concurrent background tasks are not
+#   supported on 7000, you might want to create multiple
+#   config files per directive and spread the tasks over time.
+
+#task = rebuild c0 u7
+#task = verify c1 u3 
+task = mediascan c0

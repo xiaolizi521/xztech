@@ -1,0 +1,2 @@
+KERNEL sbtest/vmlinuz
+APPEND initrd=sbtest/initrd.img init=/linuxrc root=/dev/ram0 ro

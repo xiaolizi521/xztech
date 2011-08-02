@@ -1,0 +1,116 @@
+#!/usr/bin/perl -w
+
+BEGIN {
+	use lib qw(/exports/kickstart/lib);
+	require 'sbks.pm';
+}
+
+use strict;
+use Term::ANSIColor qw(:constants);
+
+sub do_tftp {
+    my $input = shift();
+    my $logfmt = "macaddr=%s pxe=%s osload=%s status=%s";
+    my $logstring;
+    my $ipaddr;
+    my $macaddr;
+    if ($input !~ /pxelinux.cfg/) { return 0; }
+    if ( $input  =~  /((?:\d{1,3}\.){3}\d{1,3})/ ){ $ipaddr = $1; }
+    if ( $input  =~  /01-((?:[0-9a-f]{2}-){5}[0-9a-f]{2})/ ){ $macaddr = $1; }
+    (($ipaddr) && ($macaddr)) || return 0;
+
+    print "* $input\n\n";
+
+	$macaddr =~ s/-/:/g;
+
+    my $now = localtime();
+    print "", RESET;
+    print BOLD "\tProcessed:      ", RESET;
+    print BLUE "$now\n", RESET;
+
+	print BOLD "\tMAC Address:    ", RESET;
+    print BLUE "$macaddr\n", RESET;
+	print BOLD "\tIP Address:     ", RESET;
+    print BLUE "$ipaddr\n", RESET;
+
+	$ksdbh->ping() || ($ksdbh = ks_dbConnect());
+	my $mobj = MACFun->new(dbh => $ksdbh, macaddr => $macaddr);
+	my $pxe = $mobj->pxe();
+	my $osload = $mobj->osload();
+	my $status = $mobj->status();
+
+    print BOLD "\tPrevious status:", RESET;
+    print BLUE "$status\n", RESET;
+
+	if ($pxe eq "localboot") {
+		# Simple case.  Don't update servers that are online
+		if ($status =~ /^(kickstarted|online)$/) {
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "online");
+		}
+		# If the server is in the process of rebooting, mark online
+		elsif ($status =~ /^online_reboot.*$/) {
+			$mobj->status("online");
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "rebooted");
+		}
+		# If the server is in the process of rebooting, mark online
+		elsif ($status eq "online_rescue") {
+			$mobj->status("online");
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "rescued");
+		}
+        # Still provisioning .. 
+		elsif ($status eq "win2k_copydone") {
+		    # Refresh the timestamp
+			$mobj->status("win2k_copydone");
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "win2k_copydone");
+		}
+		# Almost done provisioning
+		elsif ($status =~ /^(ks|cpl|esm|psa)_wait$/) {
+			$mobj->status("booting");
+			$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "booting");
+		}
+	}
+	else {
+		# Anything else
+		$mobj->status("booting");
+		$logstring = sprintf($logfmt, $macaddr, $pxe, $osload, "booting");
+	}
+
+
+    $mobj->set_rebooted();
+	$mobj->update();
+    print BOLD "\tCurrent status: ", RESET;
+    print BLUE "".$mobj->status()."\n", RESET;
+    print BOLD "\tPXE:            ",RESET;
+    print BLUE "$pxe\n", RESET;
+    print BOLD "\tOS load:        ",RESET;
+    print BLUE "$osload\n", RESET;
+
+	if ($logstring) {
+		# print $logstring."\n";
+		logks('info', $logstring);
+	}
+
+    print "\n";
+	return 0;
+}
+
+# MAIN
+
+if (is_running()) { exit 0; }
+
+logks("INFO", "Starting $0");
+
+print BOLD "Connecting to kickstart...\n";
+$ksdbh = ks_dbConnect();
+print BOLD "Done\n";
+print BOLD "Reading logs now...\n";
+while (<>) {
+	chomp $_;
+	do_tftp($_);
+}
+print BOLD "Quitting!\n";
+print BOLD "Closing connection to kickstart...\n";
+$ksdbh->disconnect();
+print BOLD "Done\n";
+
+1;

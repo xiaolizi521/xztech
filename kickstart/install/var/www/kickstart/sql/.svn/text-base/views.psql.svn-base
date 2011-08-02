@@ -1,0 +1,29 @@
+SET SESSION AUTHORIZATION 'kickstart';
+
+-- dm@12-01-2006: a view that makes reading the state of mac addressers MUCH easier
+CREATE VIEW VIEW_MAC_STATUS AS 
+        SELECT 
+		x3.date_added as status_updated,
+                mac_address, 
+                vlan_id, 
+                ip_address, 
+                osload, 
+                pxefile, 
+                taskfile,
+                old_status.status as last_status,
+                new_status.status as current_status
+        FROM 
+                xref_macid_osload x 
+                join mac_list ON (x.mac_list_id=mac_list.id) 
+                join os_list ON (x.os_list_id=os_list.id) 
+                join task_list ON (x.task_list_id=task_list.id)
+                join pxe_list ON (x.pxe_list_id=pxe_list.id)
+                left join xref_macid_ipaddr x2 ON (x.mac_list_id=x2.mac_list_id)
+                left join macid_status_current x3 ON (x.mac_list_id=x3.mac_list_id)
+                left join status_list old_status ON (x3.old_status_id=old_status.id)
+                left join status_list new_status ON (x3.new_status_id=new_status.id)
+        ORDER BY 
+		status_updated DESC,
+                vlan_id ASC, 
+                ip_address ASC;
+

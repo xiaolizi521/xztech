@@ -1,0 +1,30 @@
+send MAC to reboot.cgi
+
+reboot.cgi
+- connects to admin database and fetches:
+  - datacenter
+  - switch
+  - port
+  - base
+- connects to kickstart database and fetches:
+  - ipaddr
+- must know ipaddr of reboot server and location of hardboot.cgi
+- ping IP - check port 225 - software reboot
+- no ping - hardware reboot
+
+- get ipaddr from ksdb
+- get dc_abbr, switch, port, base from admdb
+  - return failure if no info
+- turn on port (this isn't portable yet .. grr)
+
+softboot($info) {
+  - ping IP
+    - return failure if ping fails
+  - check 225
+    - return failure if port closed
+  - perform software reboot
+}
+
+hardboot($info) {
+  - get ipaddr of reboot server and location of hardboot.cgi
+}
