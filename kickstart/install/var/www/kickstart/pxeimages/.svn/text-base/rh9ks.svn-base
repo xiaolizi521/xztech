@@ -1,2 +1,0 @@
-KERNEL rh9/vmlinuz
-APPEND ks=http://MYIPADDR/cgi-bin/ks.cgi?ks=rh9ks kssendmac lang=en_US text initrd=rh9/initrd.img root=/dev/ram0 ramdisk_size=10240 hdc=none

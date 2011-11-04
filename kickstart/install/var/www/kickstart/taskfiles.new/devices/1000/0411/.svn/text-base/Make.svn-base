@@ -1,1 +1,0 @@
-tar -czvf tools.tgz burnin.sh audit.pm cli.tgz

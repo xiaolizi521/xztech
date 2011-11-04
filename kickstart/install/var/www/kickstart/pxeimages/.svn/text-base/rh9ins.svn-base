@@ -1,2 +1,0 @@
-KERNEL rh9/vmlinuz
-APPEND initrd=rh9/initrd.img root=/dev/ram0 ramdisk_size=10240 text

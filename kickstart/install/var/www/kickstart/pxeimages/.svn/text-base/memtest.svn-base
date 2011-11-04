@@ -1,2 +1,0 @@
-KERNEL memdisk
-APPEND initrd=memtest/memtest86+.bin

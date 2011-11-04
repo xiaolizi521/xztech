@@ -1,5 +1,0 @@
-sbpost/
-sbpost/lib/ - perl libraries common to all post install scripts
-sbpost/logs/ - post install log files
-sbpost/pre.boot/ - post install scripts that run before the first reboot
-sbpost/post.boot/ - post install scripts that run after the first reboot

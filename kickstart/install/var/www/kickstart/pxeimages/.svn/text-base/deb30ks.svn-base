@@ -1,2 +1,0 @@
-KERNEL sbrescue/vmlinuz
-APPEND initrd=sbrescue/initrd.img init=/linuxrc root=/dev/ram0 rw devfs=mount

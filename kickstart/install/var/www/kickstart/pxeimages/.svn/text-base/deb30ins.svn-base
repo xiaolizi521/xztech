@@ -1,2 +1,0 @@
-KERNEL deb30ins/tftpboot.img
-APPEND initrd=deb30ins/root.bin root=/dev/ram0

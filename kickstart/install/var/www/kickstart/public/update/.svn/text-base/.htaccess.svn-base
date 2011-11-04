@@ -1,5 +1,0 @@
-AuthUserFile /etc/apache2/.htpasswd
-AuthType Basic
-AuthName "Kickstart DB Upates"
-Require valid-user
-

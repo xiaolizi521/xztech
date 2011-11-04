@@ -1,9 +1,0 @@
-# tty12 - getty
-#
-# Converted from /etc/inittab entry
-
-start on stopped rc RUNLEVEL=[2345]
-stop on runlevel [!2345]
-
-respawn
-exec /sbin/getty -n -l /bin/bash tty12 115200
