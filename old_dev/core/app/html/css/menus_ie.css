@@ -1,0 +1,21 @@
+@media screen {
+  .menu_page_content {
+    position:          absolute;
+    overflow:          auto;
+    top:               2em;
+    left:              0em;
+    right:             0em;
+    bottom:            0em;
+    border:            0px;
+    width:             100%;
+    padding:           1em;
+  }
+
+  .menu_dropdown_active {
+    position:          absolute;
+  }
+
+  body {
+    overflow: hidden;
+  }
+}

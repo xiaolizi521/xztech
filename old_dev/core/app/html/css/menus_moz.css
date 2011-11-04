@@ -1,0 +1,13 @@
+@media screen {
+  .menu_page_content {
+    padding:           1em;
+    position:          absolute;
+    left:              0em;
+    right:             0em;
+    border:            0px;
+  }
+
+  .menu_dropdown_active {
+    position:          fixed;
+  }
+}

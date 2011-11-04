@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<?castor class-name="org.opennms.netmgt.poller.PollerConfiguration"?>
+<poller-configuration threads="90" 
+        serviceUnresponsiveEnabled="false"
+        nextOutageId="SELECT nextval('outageNxtId')"
+        xmlrpc="true">
+	<node-outage status="off" 
+	             pollAllIfNoCriticalServiceDefined="true">
+		<critical-service name="ICMP"/>
+	</node-outage>
+    <package name="ICMP">
+        <filter>serviceMapName == "ICMP"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="ICMP" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="timeout" value="5000"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="DNS">
+        <filter>serviceMapName == "DNS"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="DNS" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="timeout" value="5000"/>
+            <parameter key="port" value="53"/>
+            <parameter key="lookup" value="localhost"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="FTP">
+        <filter>serviceMapName == "FTP"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="FTP" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="timeout" value="10000"/>
+            <parameter key="port" value="21"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="SMTP">
+        <filter>serviceMapName == "SMTP"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="SMTP" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="timeout" value="10000"/>
+            <parameter key="port" value="25"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="SNMP">
+        <filter>serviceMapName == "SNMP"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="SNMP" interval="300000" user-defined="false" status="off">
+            <parameter key="retry" value="3"/>
+            <parameter key="timeout" value="5000"/>
+            <parameter key="port" value="161"/>
+            <parameter key="oid" value=".1.3.6.1.2.1.1.2"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="HTTP">
+        <filter>serviceMapName == "HTTP"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="HTTP" interval="300000" user-defined="false" status="on">
+            <parameter key="timeout" value="10000"/>
+            <parameter key="retry" value="3"/>
+            <parameter key="ports" value="80"/>
+            <parameter key="url" value="/"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="HTTPS">
+        <filter>serviceMapName == "HTTPS"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="HTTPS" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="timeout" value="10000"/>
+            <parameter key="ports" value="443"/>
+            <parameter key="url" value="/"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="MySQL">
+        <filter>serviceMapName == "MySQL"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="MySQL" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="timeout" value="5000"/>
+            <parameter key="port" value="3306"/>
+            <parameter key="banner" value="*"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="SQLServer">
+        <filter>serviceMapName == "SQLServer"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="SQLServer" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="timeout" value="5000"/>
+            <parameter key="port" value="1433"/>
+            <parameter key="banner" value="*"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="Postgres">
+        <filter>serviceMapName == "Postgres"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="Postgres" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="banner" value="*"/>
+            <parameter key="port" value="5432"/>
+            <parameter key="timeout" value="5000"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="SSH">
+        <filter>serviceMapName == "SSH"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="SSH" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="banner" value="SSH"/>
+            <parameter key="port" value="22"/>
+            <parameter key="timeout" value="5000"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="IMAP">
+        <filter>serviceMapName == "IMAP"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="IMAP" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="port" value="143"/>
+            <parameter key="timeout" value="5000"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="POP3">
+        <filter>serviceMapName == "POP3"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="POP3" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="port" value="110"/>
+            <parameter key="timeout" value="5000"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="ColdFusion">
+        <filter>serviceMapName == "ColdFusion"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="ColdFusion" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="timeout" value="10000"/>
+            <parameter key="port" value="80"/>
+            <parameter key="url" value="/cfide/administrator/index.cfm"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+    <package name="Webport">
+        <filter>serviceMapName == "Webport"</filter>
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+        <exclude-range begin="64.39.2.180" end="64.39.2.180"/>
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:4464</rra>
+            <rra>RRA:MIN:0.5:12:4464</rra>
+            <rra>RRA:MAX:0.5:12:4464</rra>
+        </rrd>
+        <service name="Webport" interval="300000" user-defined="false" status="on">
+            <parameter key="retry" value="3"/>
+            <parameter key="banner" value="*"/>
+            <parameter key="port" value="80"/>
+            <parameter key="timeout" value="10000"/>
+        </service>
+        <downtime begin="0" end="300000" interval="30000"/>
+        <downtime begin="300000" end="43200000" interval="300000"/>
+        <downtime begin="43200000" interval="600000"/>
+    </package>
+
+   	<monitor service="ICMP" 	class-name="org.opennms.netmgt.poller.monitors.IcmpMonitor"/>
+   	<monitor service="StrafePing" 	class-name="org.opennms.netmgt.poller.monitors.StrafePingMonitor"/>
+	<monitor service="HTTP" 	class-name="org.opennms.netmgt.poller.monitors.HttpMonitor"/>
+	<monitor service="HTTP-8080"    class-name="org.opennms.netmgt.poller.monitors.HttpMonitor"/>
+	<monitor service="HTTP-8000"    class-name="org.opennms.netmgt.poller.monitors.HttpMonitor"/>
+	<monitor service="HTTPS" 	class-name="org.opennms.netmgt.poller.monitors.HttpsMonitor"/>
+	<monitor service="SMTP" 	class-name="org.opennms.netmgt.poller.monitors.SmtpMonitor"/>
+	<monitor service="DHCP" 	class-name="org.opennms.netmgt.poller.monitors.DhcpMonitor"/>
+	<monitor service="DNS"  	class-name="org.opennms.netmgt.poller.monitors.DnsMonitor" />
+	<monitor service="FTP"  	class-name="org.opennms.netmgt.poller.monitors.FtpMonitor"/>
+	<monitor service="SNMP"         class-name="org.opennms.netmgt.poller.monitors.SnmpMonitor"/>
+	<monitor service="Oracle" 	class-name="org.opennms.netmgt.poller.monitors.TcpMonitor"/>
+	<monitor service="Postgres" 	class-name="org.opennms.netmgt.poller.monitors.TcpMonitor"/>
+	<monitor service="MySQL" 	class-name="org.opennms.netmgt.poller.monitors.TcpMonitor"/>
+	<monitor service="SQLServer" 	class-name="org.opennms.netmgt.poller.monitors.TcpMonitor"/>
+	<monitor service="SSH"		class-name="org.opennms.netmgt.poller.monitors.TcpMonitor"/>
+	<monitor service="IMAP" 	class-name="org.opennms.netmgt.poller.monitors.ImapMonitor"/>
+	<monitor service="POP3" 	class-name="org.opennms.netmgt.poller.monitors.Pop3Monitor"/>
+	<monitor service="NSClient" 	class-name="org.opennms.netmgt.poller.monitors.NsclientMonitor"/>
+	<monitor service="NSClientpp"	class-name="org.opennms.netmgt.poller.monitors.NsclientMonitor"/>
+	<monitor service="ColdFusion" 	class-name="org.opennms.netmgt.poller.monitors.HttpMonitor"/>
+	<monitor service="Webport"	class-name="org.opennms.netmgt.poller.monitors.TcpMonitor"/>
+</poller-configuration>

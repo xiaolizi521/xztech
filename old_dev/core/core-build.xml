@@ -1,0 +1,558 @@
+<?xml version="1.0" ?>
+
+<project default="main">
+
+    <!-- Project Settings -->
+    <!-- Settings for svnAnt -->
+
+    <taskdef resource="svntask.properties">
+        <classpath>
+            <pathelement location="/usr/java/apache-ant-1.7.0/lib/svnant.jar" />
+            <pathelement location="/usr/java/apache-ant-1.7.0/lib/svnjavah1.jar" />
+            <pathelement location="/usr/java/apache-ant-1.7.0/lib/svnClientAdapter.jar" />
+        </classpath>
+    </taskdef>
+    
+    <taskdef resource="net/sf/antcontrib/antlib.xml" />
+    
+    <!-- Define required properties (variables) for execution at runtime -->
+    
+    <!-- Build User Properties. -->
+    <!-- Note: If different than core, hardcode the core crontab properties. -->
+    <property name="build.user" value="core" />
+    <property name="build.base" value="/home/${build.user}" />
+    <property name="build.key" value="${build.base}/.ssh/id_dsa" />
+    
+    <!-- Project Properties -->
+    <property name="project.base" value="/home/${build.user}" />
+    <property name="project.source" value="${build.base}/core.rackspace.com" />
+    <property name="project.root" value="${build.base}/core.rackspace.com" />
+    <proeprty name="svnroot" value="http://source.core.rackspace.com/svnroot" />
+    
+    <!-- MC Issue and Release Version are defined in build.properties. -->
+    <!-- mc.issue - MC Issue for release (MC-123) -->
+    <!-- release.version - Release version - example core-release-2009.02.16 -->
+    
+    <property file="${build.base}/build.properties" />
+    
+    <loadfile property="release.rev" srcFile="${project.source}/REVISION" >
+        <filterchain>
+            <striplinebreaks />
+        </filterchain>
+    </loadfile>
+    
+    <!-- The deploy-to directory -->
+    
+    <property name="deploy.dir" value="/home/${build.user}/${release.version}-${release.rev}" />
+    
+    <!-- Server Definitions (All are defined, not all are used)-->
+    
+    <!-- Production -->
+    
+    <property name="pyweb1" value="pyweb1.sat1.core.rackspace.com" />
+    <property name="pyweb2" value="pyweb2.sat1.core.rackspace.com" />
+    <property name="pyweb3" value="pyweb3.sat1.core.rackspace.com" />
+    <property name="pyweb4" value="pyweb4.sat1.core.rackspace.com" />
+    <property name="pyws1" value="pyws1.sat1.core.rackspace.com" />
+    <property name="pyws2" value="pyws2.sat1.core.rackspace.com" />
+    <property name="extranet" value="extranet.sat1.core.rackspace.com" />
+    <property name="jobs" value="jobs.sat1.core.rackspace.com" />
+    
+    <!-- Backup/CERT -->
+    
+    <property name="b-pyweb1" value="b-pyweb1.dfw1.core.rackspace.com" />
+    <property name="b-pyweb2" value="b-pyweb2.dfw1.core.rackspace.com" />
+    <property name="b-pyweb3" value="b-pyweb3.dfw1.core.rackspace.com" />
+    <property name="b-pyweb4" value="b-pyweb4.dfw1.core.rackspace.com" />
+    <property name="b-pyws1" value="b-pyws1.dfw1.core.rackspace.com" />
+    <property name="b-pyws2" value="b-pyws2.dfw1.core.rackspace.com" />
+    <property name="b-extranet" value="b-extranet.dfw1.core.rackspace.com" />
+    <property name="b-jobs" value="b-jobs.dfw1.core.rackspace.com" />
+    
+    <!-- Test CORE -->
+    
+    <property name="t-pyweb1" value="t-pyweb1.sat1.core.rackspace.com" />
+    <property name="t-pyweb2" value="t-pyweb2.sat1.core.rackspace.com" />
+    <property name="t-pyweb3" value="t-pyweb3.sat1.core.rackspace.com" />
+    <property name="t-pyweb4" value="t-pyweb4.sat1.core.rackspace.com" />
+    <property name="t-pyws1" value="t-pyws1.sat1.core.rackspace.com" />
+    <property name="t-pyws2" value="t-pyws2.sat1.core.rackspace.com" />
+    <property name="t-extranet" value="t-extranet.sat1.core.rackspace.com" />
+    <property name="t-jobs" value="t-jobs.sat1.core.rackspace.com" />
+    
+    <!-- Old CERT -->
+    
+    <property name="c-pyweb1" value="c-pyweb1.sat1.core.rackspace.com" />
+    <property name="c-pyweb2" value="c-pyweb2.sat1.core.rackspace.com" />
+    <property name="c-pyweb3" value="c-pyweb3.sat1.core.rackspace.com" />
+    <property name="c-pyweb4" value="c-pyweb4.sat1.core.rackspace.com" />
+    <property name="c-pyws1" value="c-pyws1.sat1.core.rackspace.com" />
+    <property name="c-pyws2" value="c-pyws2.sat1.core.rackspace.com" />
+    <property name="c-extranet" value="c-extranet.sat1.core.rackspace.com" />
+    <property name="c-jobs" value="c-jobs.sat1.core.rackspace.com" />
+    
+    <!-- Training CORE -->
+    
+    <property name="l-pyweb1" value="l-pyweb1.sat1.core.rackspace.com" />
+    <property name="l-pyweb2" value="l-pyweb2.sat1.core.rackspace.com" />
+    <property name="l-pyweb3" value="l-pyweb3.sat1.core.rackspace.com" />
+    <property name="l-pyweb4" value="l-pyweb4.sat1.core.rackspace.com" />
+    <property name="l-pyws1" value="l-pyws1.sat1.core.rackspace.com" />
+    <property name="l-pyws2" value="l-pyws2.sat1.core.rackspace.com" />
+    <property name="l-extranet" value="l-extranet.sat1.core.rackspace.com" />
+    <property name="l-jobs" value="l-jobs.sat1.core.rackspace.com" />
+    
+    <!-- Property Lists for Each Looped Through Target -->
+    
+    <property name="prod.hosts" value="${pyweb1},${pyweb2},${pyweb3},${pyweb4},${pyws1},${pyws2},${jobs},${extranet}" />
+    <property name="back.hosts" value="${b-pyweb1},${b-pyweb3},${b-pyws1},${b-jobs}" />
+    <property name="test.hosts" value="${t-pyweb1}" />
+    <property name="cert.hosts" value="${c-pyweb1},${c-pyweb2},${c-pyweb3},${c-pyws1},${c-pyws2},${c-jobs}" />
+    <property name="train.hosts" value="${l-pyweb1},${l-pyweb2},${l-jobs}" />
+    
+    <!-- Catch All for All Hosts -->
+    
+    <property name="all.hosts" value="${prod.hosts},${back.hosts},${test.hosts},${cert.hosts},${train.hosts}" />
+    
+    <!-- Remote Directory To Use For Reverting (This is provided at the command line) -->
+    
+    <property name="revert.dir" value="null" />
+    
+    <!-- All Variables Defined - Logic Time -->
+    
+    <!-- Begin: Main Target -->
+    
+    <target name="main">
+        <echo>CORE Change/Release Deployment Script.</echo>
+        <echo>Authorized Users Only.</echo>
+        <echo>Enter "ant -projecthelp" for detailed usage.</echo>
+        <echo>To update individual targets, use:</echo>
+        <echo>link-single, stop-single, start-single, restart-single</echo>
+        <echo>sync-single, update-crontab-single, lb-add-single, lb-remove-single</echo>
+        <echo> </echo>
+        <echo>Usage: ant start-single -Dhostname='hostname' </echo>
+        <echo>Where 'hostname' is one of the following: </echo>
+        <for list="${all.hosts}" param="hostname">
+            <sequential>
+                <echo>@{hostname}</echo>
+            </sequential>
+        </for>
+        <echo> </echo>
+        <echo>To revert to a previous release, please use: </echo>
+        <echo>ant revert-production -Drevert-directory='old_release_directory'</echo>
+    </target>
+    
+    <!-- End Main Target -->
+    
+    <target 
+        name="deploy-backup"
+        depends="confirm-deploy-backup,predeploy-backup,sync-backup,link-backup,update-crontab-backup,update-splash-backup"
+        description="Full Backup CORE Deployment."
+    />
+    
+    <target name="confirm-deploy-backup" depends="check" description="Prompt user to verify deployment needs.">
+        <input
+            message="You are about to deploy CORE to the backup servers. Do you want to continue?"
+            validargs="y,n"
+            addproperty="do.continue"
+        />
+        <condition property="do.abort">
+            <equals arg1="n" arg2="${do.continue"/>
+        </condition>
+        <fail if="do.abort">Deployment to Backup Servers aborted.</fail>
+    </target>
+    
+    <target name="predeploy-backup" depends="check" description="Verify servers are up and access capable.">
+        <echo>Predeploy Check All Backup Servers</echo>
+        <for list="${back.hosts}" param="hostname">
+            <sequential>
+                <predeploy-macro hostname="@{hostname}" />
+            </sequential>
+        </for>
+    </target>
+    
+    <target name="sync-backup" depends="check" description="Transmit CORE code directory to backup servers.">
+        <echo>Syncing CORE code to Backup Servers</echo>
+        <for list="${back.hosts}" param="hostname">
+            <sequential>
+                <sync-macro hostname="@{hostname}"/>
+            </sequential>
+        </for>
+    </target>
+    
+    <target name="link-backup" depends="check" description="Link deployed directory on backup servers.">
+        <echo>Updating Backup Servers</echo>
+        <for list="${back.hosts}" param="hostname">
+            <sequential>
+                <link-macro hostname="@{hostname}" />
+            </sequential>
+        </for>
+    </target>
+    
+    <target name="update-crontab-backup" depends="check" description="Update cron on Backup">
+        <echo>Update Crontab</echo>
+        <for list="${back.hosts}" param="hostname">
+            <sequential>
+                <crontab-macro hostname="@{hostname}" />
+            </sequential>
+        </for>
+    </target>
+    
+    <target name="update-splash-backup" depends="check" description="Update cron on Backup">
+        <echo>Update splash page</echo>
+        <for list="${back.hosts}" param="hostname">
+            <sequential>
+                <crontab-macro hostname="@{hostname}" />
+            </sequential>
+        </for>
+    </target>
+    
+    <!-- Begin: Macro Definitions -->
+    
+    <!-- Macro to test connections before deployment -->
+    
+    <macrodef name="connection-tests">
+        <attribute name="hostname" />
+        <sequential>
+            <echo>Testing Connection to @{hostname}</echo>
+            <sshexec 
+                host="@{hostname}" 
+                username="${build.user}" 
+                keyfile="${build.key}" 
+                passphrase="" 
+                command="echo logged into `hostname`" 
+            />
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro for Syncing CORE -->
+    
+    <macrodef name="sync-code">
+        <attribute name="hostname" />
+        <sequential>
+            <echo>RSync code to @{hostname}</echo>
+            <chmod dir="." perm="g+w" />
+            <exec dir="${project.source}" executable="/usr/bin/rsync" os="Linux" failonerror="true">
+                <arg value="-aulzv" />
+                <arg value="--stats" />
+                <arg value="--progress" />
+                <arg value="-e ssh" />
+                <arg value="--exclude-from=${project.source}/deployment/rsync_excludes" />
+                <arg value="${project.source}/" />
+                <arg value="@{hostname}:${deploy.dir}" />
+            </exec>
+            
+            <!-- Connect to host and force permissions -->
+            
+            <sshexec 
+                host="@{hostname}"
+                username="${build.user}"
+                keyfile="${build.key}"
+                passphrase=""
+                command="chmod -R g+w ${deploy.dir}"
+            />
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro for Linking CORE -->
+    <!-- Prepare for linking by moving pre-existing files, directories, or links. -->
+    <!-- Using timestamp task to give moved file a unique name. -->
+    
+    <macrodef name="link-code">
+        <attribute name="hostname" />
+        <sequential>
+            <echo>Preparing to Link CORE Code</echo>
+            <tstamp />
+            <apache-control host="@{hostname}" action="stop" />
+            <sshexec 
+                host="@{hostname}"
+                username="${build.user}"
+                keyfile="${build.key}"
+                passphrase=""
+                command="
+                        if [ -h ${project.root} ];
+                        then 
+                            rm ${project.root}; 
+                        fi; 
+                        if [ -e ${project.root} ]; 
+                        then 
+                            mv -f ${project.root} ${project.root}.${DSTAMP}${TSTAMP}; 
+                        fi " 
+            />
+            
+            <!-- Link ${deploy.dir} to ${project.root} on target machine -->
+            
+            <echo>Linking files on @{hostname}</echo>
+            
+            <sshexec 
+                host="@{hostname}"
+                username="${build.user}"
+                keyfile="${build.key}"
+                passphrase=""
+                command="
+                        if [ -d ${deploy.dir} ];
+                        then
+                            ln -s ${deploy.dir} ${project.root};
+                        else
+                            exit 1;
+                        fi"
+            />
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro to Enable CORE -->
+    <macrodef name="enable-core">
+        <attribute name="hostname" />
+        <sequential>
+            <echo>Enable CORE on @{hostname}</echo>
+            <sshexec
+                host="@{hostnme}"
+                username="${build.user}"
+                keyfile="${build.key}"
+                passphrase=""
+                command="rm -f ${project.root}/NOLOGIN"
+            />
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro to Disable CORE -->
+    <macrodef name="disable-core">
+        <attribute name="hostname" />
+        <sequential>
+            <echo>Disable CORE on @{hostname}</echo>
+            <sshexec
+                host="@{hostnme}"
+                username="${build.user}"
+                keyfile="${build.key}"
+                passphrase=""
+                command="ln -sf ${project.root}/NOLOGIN.standard ${project.root}/NOLOGIN"
+            />
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro for Controlling Apache -->
+    
+    <macrodef name="apache-control">
+        <attribute name="hostname" />
+        <attribute name="action" />
+        <sequential>
+            <if>
+                <and>
+                    <equals arg1="@{hostname}" arg2="${jobs}" />
+                    <or>
+                        <equals arg1="@{action}" arg2="start" />
+                        <equals arg1="@{action}" arg2="restart" />
+                    </or>
+                </and>
+                <then>
+                    <echo>Skipping Apache "@{action}" on ${jobs}</echo>
+                </then>
+                <else>
+                    <sshexec
+                        host="@{hostname}"
+                        username="${build.user}"
+                        keyfile="$build.key}"
+                        passphrase=""
+                        command="sudo /etc/init.d/apache2 @{action}"
+                        failonerror="false"
+                    />
+                    <if>
+                        <equals arg1="@{action}" arg2="stop" />
+                        <then>
+                            <echo>Stopping apahce twice just to make sure</echo>
+                            <sshexec
+                                host="@{hostname}"
+                                username="${build.user}"
+                                keyfile="$build.key}"
+                                passphrase=""
+                                command="sudo /etc/init.d/apache2 @{action}"
+                                failonerror="false"
+                            />
+                        </then>
+                    </if>
+                </else>
+            </if>
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro to update CRON files -->
+    <macrodef name="update-crontab">
+        <attribute name="hostname" />
+        <sequential>
+            <echo>Attempting to update crontab on "@{hostname}"</echo>
+            <sshexec
+                host="@{hostname}"
+                username="${build.user}"
+                keyfile="$build.key}"
+                passphrase=""
+                command="
+                        if [ -f ${project.root}/cron/CRONTAB.`hostname --short` ];
+                        then
+                            echo Found CRON file CRONTAB.`hostname --short`;
+                            crontab ${project.root}/cron/CRONTAB.`hostname --short`;
+                        fi"
+            />
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro to update splash.py -->
+    
+    <macrodef name="update-splash">
+        <attribute name="hostname" />
+        <sequential>
+            <sshexec
+                host="@{hostname}"
+                username="${build.user}"
+                keyfile="$build.key}"
+                passphrase=""
+                command="
+                        export PYTHONPATH='${project.root}/python/lib';
+                        python ${project.root/cron/splash.py;
+                        echo Updating splash on `hostname`"
+            />
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro for reverting to previous release -->
+    <!-- Note, the "version" is in the form of core-release-$version-$revision -->
+    
+    <macrodef name="revert-release" description="Revert to previous CORE version.">
+        <attribute name="hostname" />
+        <attribute name="version" />
+        <sequential>
+            <echo>Reverting to release ${version} on @{hostname}</echo>
+            <sshexec
+                host="@{hostname}"
+                username="${build.user}"
+                keyfile="$build.key}"
+                passphrase=""
+                command="
+                        if [ -h ${project.root} ];
+                        then
+                            rm ${project.root};
+                            ln -s @{version} ${project.root};
+                        elif [ -e ${project.root} ];
+                        then
+                            echo ${project.root} exists, cannot revert;
+                            exit 1;
+                        else
+                            ln -s @{version} ${project.root};
+                        fi"
+            />
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro to validate previous version exists before reverting. -->
+    <!-- This is a CYA macro. This prevents from causing trouble. -->
+    
+    <macrodef name="revert-validate" description="Validate previous version exists.">
+        <attribute name="hostname" />
+        <attribute name="version" />
+        <sequential>
+            <echo>Verifying that @{version} exists on @{hostname}</echo>
+            <sshexec
+                    host="@{hostname}"
+                    username="${build.user}"
+                    keyfile="$build.key}"
+                    passphrase=""
+                    command="
+                            if [ -e @{version} ];
+                            then
+                                echo Previous version exists.;
+                            else
+                                echo Previous version does not exist.;
+                                exit 1;
+                            fi"
+            />
+        </sequential>
+    </macrodef>
+    
+    <!-- Macro to add or remove a CORE Python Head from the load balancers -->
+    
+    <macrodef name="lb-control" description="Add/Remove from Load Balancers">
+        <attribute name="hostname" />
+        <attribute name="action" />
+        <sequential>
+            <if>
+                <equals arg1="@{action}" arg2="add" />
+                <then>
+                    <sshexec
+                            host="@{hostname}"
+                            username="${build.user}"
+                            keyfile="$build.key}"
+                            passphrase=""
+                            command="
+                                    if [ -f ${project.root/python/app/lbcheck.pt.out ];
+                                    then
+                                        mv ${project.root}/python/app/lbcheck.pt.out ${project.root}/python/app/lbcheck.pt;
+                                    fi"
+                    />
+                </then>
+            </if>
+            <if>
+                <equals arg1="@{action}" arg2="remove" />
+                <then>
+                    <sshexec
+                            host="@{hostname}"
+                            username="${build.user}"
+                            keyfile="$build.key}"
+                            passphrase=""
+                            command="
+                                    if [ -f ${project.root/python/app/lbcheck.pt ];
+                                    then
+                                        mv ${project.root}/python/app/lbcheck.pt ${project.root}/python/app/lbcheck.pt.out;
+                                    fi"
+                    />
+                </then>
+            </if>
+        </sequential>
+    </macrodef>
+    
+    <!-- Macros to start/stop the Python Session Daemon -->
+    
+    <macrodef name="stop-pysession">
+        <attribute name="hostname" />
+        <sequential>
+            <sshexec
+                    host="@{hostname}"
+                    username="${build.user}"
+                    keyfile="$build.key}"
+                    passphrase=""
+                    command="
+                            export HOME=/home/core/;
+                            export PYTHONPATH=${project.root}/python/lib;
+                            if [ -f ${project.base}/var/run/python_session_daemon.pid ];
+                            then
+                                ${project.root}/init.d/python_session_daemon stop;
+                            else
+                                echo Cannot stop: PID file does not exist;
+                            fi"
+                    failonerror="false"
+                    timeout="50000"
+            />
+        </sequential>
+    </macrodef>
+    
+    <macrodef name="start-pysession">
+        <attribute name="hostname" />
+        <sequential>
+            <sshexec
+                    host="@{hostname}"
+                    username="${build.user}"
+                    keyfile="$build.key}"
+                    passphrase=""
+                    command="
+                            export HOME=/home/core/;
+                            export PYTHONPATH=${project.root}/python/lib;
+                            if [ -f ${project.base}/var/run/python_session_daemon.pid ];
+                            then
+                                echo Cannot start: PID file already exists;
+                            else
+                                ${project.root}/init.d/python_session_daemon start;
+                            fi"
+                    failonerror="false"
+                    timeout="5000"
+            />
+        </sequential>
+    </macrodef>
+</project>

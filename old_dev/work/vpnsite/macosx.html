@@ -1,0 +1,148 @@
+<HTML>
+
+	<head>
+		<title>RITS - Rackspace Information Technology Services</title>
+		<style type="text/css" media="all">@import "style2.css";</style>
+	</head>
+
+	<body>
+		
+		<div id="Header">RITS - Setting up VPN on Mac OS X</div>
+		
+		<div id="Content">
+
+			<h1>Setting up the Cisco VPN Client on Mac OS X</h1>
+			
+			<p>The installation file that is made available from this site is compatible with Mac OS X 10.5 "Leopard", Mac OS X 10.4 "Tiger", and Mac OS X 10.3 "Jaguar." Also, this version is "Universal," which means that it runs properly on both the Intel based Macs (MacBook, MacBook Pro, Mac Pro), and the Power PC based Macs (Powerbook, iBook, Power Mac G4/G5).</p>
+			
+			<blockquote>
+			
+				<h2>Obtaining the Mac OS X VPN Client</h2>
+			
+					<p>If you have not downloaded the Cisco VPN Client for Mac OS X from the previous page, you can download the file by clicking here: <a href = "https://ftp.rackspace.com/vpn/vpnclient-darwin-4.9.01.0080-universal-k9.dmg">Mac OS X VPN Client (Universal - Works on both Intel and PPC)</a>.<p>
+			
+				<h2>Installing the Mac OS X VPN Client</h2>
+			
+					<p>To install the Mac OS X VPN Client, double click on the file you downloaded. This will "mount" the archive so that you can proceed with the installation. After running this, you should have a new location that you can access called "CiscoVPNClient." This is the location of the set up files. Open this up, and you will see a few objects. You will want to run the "Cisco VPN Client.mpkg"</p>
+			
+					<p>Double Click on the "Cisco VPN Client.mpkg" file and you will be presented with a window that welcomes you to the installation for the Cisco VPN Client. After a few seconds, you will be presented with a warning message that looks like this: <br /> <img src="images/macosx/warning.png"><br /> 
+					This message is just informing you that the installer will be verifying that your system has enough space and is capable of running the software. After clicking Continue and Continue again on the Introduction screen, you will see the User Agreement, which you are free to read through. Once you have finished, click "Continue" and "Agree." The next screen is where you select the location that you will be installing the VPN Client to, and looks similar to this: <br /> <img src="images/macosx/disks.png"> <br /> 
+					Select the drive that you have Mac OS X installed on. This should be the first drive listed on the screen. After selecting a drive, click "Continue." You will now be presented with the final screen before the install, which at this point all you need to do is hit the button that says "Install." After clicking the install button, you will begin installing the application. You may, however, be prompted with a window that looks similar to:<br />
+					<img src="images/macosx/authinst.png"><br />
+					This is simply a precaution that requires you to enter your password when installing an application that will modify system files. Enter the username and password you use to log onto the system and click ok. Once everything is finished installing, you will be presented with the final screen of the installer, in which you will click the Continue button.</p>
+					
+					<p>You've now installed the VPN Client and are ready to configure it! </p>
+					
+				<h2>Configuring the Mac OS X VPN Client</h2>
+				
+					<p>To begin with configuring the VPN Client, we will need to open it. The default location to which the client is installed is your Applications folder. You can get to this by opening up a "Finder" window, which is accessed from the quick bar at the bottom of the screen, shown below.</p>
+					
+					<img src="images/macosx/finder.png">
+					
+					<p>Once you have opened the window, select the "Applications" folder and look for the icon labeled "VPN Client." This is how you will open the VPN Client. If you would like to make it easy to access, you can click and drag this icon to that same quick launch bar at the bottom of the screen where you found the finder. If you drop it on to that bar, you will create a shortcut; much like in Windows, this allows for easy access in the future. Go ahead and open up the VPN Client now and we will begin configuring it.</p>
+					
+					<p>When you open the VPN Client for the first time, you will be presented with the following screen:<br /><img src="images/macosx/firstrun.png"></p>
+					
+					<p>We will need to create a new connection, so  click on the "New" button. This will open the new connection window, in which you need to enter the following information:</p>
+					
+  <ul>
+							<li>Connection Entry: <strong>Rackspace</strong></li>
+							<li>Description: <strong>Rackspace</strong></li>
+							<li>Host: <strong>vpn1.sat.rackspace.com</strong></li>
+							<li>Authentication Tab</li>
+							<ul>
+								<li>Select: <strong>Group Authentication</strong></li>
+								<li>Name: <strong>rackspace</strong></li>
+								<li>Password: <strong>rackspace</strong></li>
+							</ul>
+							<li>Transport Tab</li>
+							<ul>
+								<li>Checkmark <strong>Enable Transparent Tunneling</strong></li>
+								<li>Select: <strong>IPSec over UDP(NAT / PAT)</strong></li>
+							</ul>
+						</ul>
+					
+					<p>Which will look like this: (<strong>Authentication</strong> tab is selected)</p>
+					<img src="images/macosx/vpnsettings1.png"><br />
+					
+					<p>And the <strong>Transport</strong> tab:</p>
+					<img src="images/macosx/vpnsettings2.png"><br />
+					
+					<p>Once you have these settings in, click the save button. Doing this will add it to the window that you were in previously, which should now look like this:</p>
+					
+	    <img src="images/macosx/finished2.png"><br />
+					
+					<p>You are now ready to connect! Go ahead and click the "Connect" button in the top left corner. This may take a few minutes depending on your computer and the speed of your internet connection. Once the client makes a connection with the servers here in Rackspace, you will be presented with the following login prompt:</p>
+					
+					<img src="images/macosx/connauth.png"><br />
+					
+					<p>Enter your SSO (Single Sign-On) username and password as you would if you were logging into any other system here in Rackspace (IE: CORE) and click ok. After this, you will be displayed with one final window:</p>
+					
+					<img src="images/macosx/Disclaimer.png"><br />
+					
+					<p>This disclaimer is there to remind you that you are connecting to a secure system and that only authorized users are allowed to connect. Please read through this disclaimer and be aware of what it says. Take care not to leave your computer unlocked or available in situations where you are currently connected to VPN and someone could easily walk by and compromise either confidential data or utilize your account to do anything malicious. Once you have read the message, click "Connect" to finish connecting. After a moment, you will be connected to the Rackspace internal network!</p>
+			</blockquote>
+					
+				<h1>Ok so I am connected, now what?!</h1>
+				
+				<p>You have now connected to the Rackspace internal network, however there are some things that are different for the Mac than when you are using a PC. These are sometimes daunting as the majority of the systems we use within rackspace to do our work are in fact windows PCs. I will outline some of the things you need to remember, as well as how you can still remote into your box on your mac, using the Mac remote desktop client from Microsoft.</p>
+				
+				<blockquote>
+					
+					<h2>Important things to remember</h2>
+					
+						<p>While connected to the Rackspace network, you are able to access all of the file shares as well as all of the internal web sites. While the internal web sites follow the same addresses you normally use (for example, http://core.rackspace.com), file shares do not.</p>
+						
+						<h3>Accessing File Servers</h3>
+						
+							<p>Normally, accessing the file servers in Windows is as simple as going to Start, Run, and typing in "\\fileserver-sat." This is not the case in Mac OS X. There are a few extra steps, and a different location you must go to.</p>
+							<p>&nbsp;</p>
+		  <p>To begin with, while on your desktop, click on the "Go" menu at the top of the screen, and select "Connect to Server" as you see in the below image.</p>
+							
+							<img src="images/macosx/servconn.png">
+							
+							<p>When you select this, you will be presented with a window. In the box under the "Server Address:" text, you'll want to enter the following address: <strong>smb://fileserver.sat.corp.rackspace.com/</strong>. The result should resemble what you see below.</p>
+							
+							<img src="images/macosx/servaddrs.png">
+							
+							<p>After inputting this, click the connect button. This may take a few minutes depending on your computer and your internet connection speed. As soon as it finds and connects to the server, it will prompt you for authentication. You'll want to input the following information:</p>
+							
+							<ul>
+								<li>Domain: <strong>RACKSPACE</strong></li>
+								<li>Username: <strong>Your SSO Username</strong></li>
+								<li>Password: <strong>Your SSO Password</strong></li>
+							</ul>
+							
+							<img src="images/macosx/fscred.png">
+							
+							<p>After you input your credentials, click OK. It will take a moment to authenticate you. Once it is finished, you will be presented with a screen where you can select the folder you would like to mount. This is the specific share that you would like to access. The most common one is "PUBLIC." You can select the one you want by clicking on the drop down, selecting it, and clicking OK. There are a number of them, so it may take a little while to find the one you want.</p>
+							
+							<img src="images/macosx/fslist.png">
+							
+							<p>At this point, once you have selected a proper share, you will be able to browse the files on that share so long as you have proper permissions.</p>
+						
+						<h3>How to Get Help</h3>
+							
+							<p>If you run into any issues with installing, configuring, or using the VPN client at any time, please feel free to contact the help desk at any time at x4357, or (210) 312-4357. We will do our best to assist you as quickly as possible. If you are running into any other issues after connecting with VPN, you are more than welcome to open a GENIE support ticket or give us a call as well.</p>							
+			</div>
+		
+	
+			<div id="Menu">
+				
+				<a href="index.html">Index</a><br />
+				
+				<a href="windows.html">Windows XP/Vista Setup</a><br />
+				
+				<a href="macosx.html">Mac OS X Setup</a><br />
+				
+				<a href="linux.html">Linux Setup</a><br />
+				
+				<a href="rsa.html">RSA Setup</a>
+			
+			</div>
+			
+<p>Last Updated: Thursday, Oct 18th @ 4:19pm by <a href="mailto:adam.hubscher@rackspace.com">Adam Hubscher</a> - RITS Desktop Solutions</p>
+	
+	</body>
+
+</html>

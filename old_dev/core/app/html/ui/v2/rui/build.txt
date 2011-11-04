@@ -1,0 +1,41 @@
+production rack-all.js
+debug rack-all-debug.js
+spiderlint lint-report.txt
+
+preprocess
+
+// Core
+source/rack-core.js
+source/js-additions.js
+
+// Language-y additions
+source/implements.js
+source/intercept.js
+source/dynamicproperty.js
+source/rackproperty.js
+
+// Patch Me Up
+source/ext-patches.js
+
+// Functional functionality?
+source/cookie.js
+//source/stack.js
+source/msg.js
+
+// Persistant Client Storage
+source/local-storage.js
+
+// Utility Classes
+source/util/
+
+// Abstract Classes
+source/abstract/
+
+// Drag & Drop
+//source/dd.js
+
+// 3rd Party Widgets
+source/ux/
+
+// Our Own Widgets
+source/widgets/

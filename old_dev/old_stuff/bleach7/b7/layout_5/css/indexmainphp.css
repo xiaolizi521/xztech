@@ -1,0 +1,45 @@
+/* Main php import section */
+td.mainphpouter {
+	width: 512px;
+	height: 712px;
+	background-color: #FFFFFF;
+	vertical-align: top;
+}
+
+#AutoNumber5 {
+	border: none;
+	border-collapse: collapse;
+	border-color: #111111;
+	width: 500px;
+}
+
+td.mainphpinnerspace1 {
+	width: 12px;
+	vertical-align: top;
+}
+
+td.mainphpinnermain {
+	width: 483px;
+	vertical-align: top;
+	text-align: left;
+}
+
+td.mainphpinnerspace2 {
+	width: 5px;
+	vertical-align: top;
+}
+
+td.mainsidenavigation {
+	width: 188px;
+	height: 715px;
+	background-color: #FFFFFF;
+	background-image: url(../images/navbg.gif);
+	vertical-align: top;
+}
+
+#AutoNumber4 {
+	border: none;
+	border-collapse: collapse;
+	border-color: #111111;
+	width: 177px;
+}

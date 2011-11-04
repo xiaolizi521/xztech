@@ -1,0 +1,153 @@
+/* Start Rack Header */
+#rack-header {
+    background-color:#e5e5d7;
+}
+/* End Rack Header */
+
+
+/* Start General Rack Styles */
+table.rack-fancy th {
+    background:#EBEADB url(../../../ext/resources/images/gray/grid/grid-hrow.gif) repeat-x scroll 0%;
+}
+
+table.rack-fancy td.header {
+    background-color:#FCFAF6;
+}
+
+table.rack-bordered th {
+    border-right:1px solid #aca899;
+}
+/* End General Rack Styles */
+
+
+/* Start Rack Panel */
+.rack-panel {
+    background-color:#fff;
+    border:1px solid #aca899;
+}
+/* End Rack Panel */
+
+/* Start Titlebar */
+.rack-titlebar-dlg {
+    background:transparent url(../../../ext/resources/images/gray/basic-dialog/hd-sprite.gif) repeat-x 0px -83px;
+    border-bottom:1px solid #aca899;
+}
+
+.rack-titlebar-lyt {
+    background:transparent url(../../../ext/resources/images/gray/layout/panel-title-light-bg.gif) repeat-x 0px 0px;
+    border-bottom:1px solid #aca899;
+}
+
+.rack-titlebar-text-dlg {
+    color:#fff;
+}
+
+.rack-titlebar-text-lyt {
+    color:#15428b;
+}
+
+.rack-titlebar-icon-on-dlg {
+    border:1px solid #aca899;
+    background-color:#666;
+}
+
+.rack-titlebar-icon-on-lyt {
+    border:1px solid #aca899;
+    background:#fff;
+}
+
+/*
+Icon color offsets
+0 - white
+48 - blue
+96 - gray
+*/
+
+/*
+dlg - blue
+lyt - blue
+*/
+
+.rack-tbicon-down-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px 0px;
+}
+
+.rack-tbicon-down-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -96px;
+}
+
+.rack-tbicon-up-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -12px;
+}
+
+.rack-tbicon-up-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -108px;
+}
+
+.rack-tbicon-reload-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -24px;
+}
+
+.rack-tbicon-reload-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -120px;
+}
+
+.rack-tbicon-left-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px 0px;
+}
+
+.rack-tbicon-left-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -96px;
+}
+
+.rack-tbicon-right-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -12px;
+}
+
+.rack-tbicon-right-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -108px;
+}
+
+.rack-tbicon-close-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -24px;
+}
+
+.rack-tbicon-close-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -120px;
+}
+
+.rack-tbicon-min-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -22px -24px;
+}
+
+.rack-tbicon-min-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -22px -120px;
+}
+
+.rack-tbicon-max-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -33px -24px;
+}
+
+.rack-tbicon-max-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -33px -120px;
+}
+/* End Titlebar */
+
+
+/* Start Simple Page Styles  */
+.simple-layout {
+    background:#e5e5d7 url(../images/gray/simple-body-bg.jpg) repeat-x fixed 0px 0px;
+}
+
+.simple-layout div.body-one,
+.simple-layout div.body-one-fluid {
+    border:1px solid #aca899;
+    background-color:#fff;
+}
+
+.simple-layout div.body-two,
+.simple-layout div.body-two-fluid {
+    border:1px solid #aca899;
+    background:#fff url(../images/gray/simple-body-two-bg.gif) repeat-y 0px 0px;
+}
+/* End Simple Page Styles */

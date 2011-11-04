@@ -1,0 +1,56 @@
+/* Layout Bot */
+td.layoutbot {
+	width: 700px;
+	background-color: #FFFFFF;
+	height:23px;
+}
+
+img.layoutbot {
+	width: 700px;
+	height: 21px;
+}
+
+/* Copyright */
+td.copyright {
+	width: 512px;
+	height: 12px;
+	background-color: #FFFFFF;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+/* Contact Info */
+td.contact {
+	width: 188px;
+	height: 12px;
+	background-color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+/* Bottom Spacing */
+td.bottomspacing1 {
+	height: 1px;
+	background-color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+td.bottomspacing2 {
+	width: 188px;
+	height: 1px;
+	background-color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+/* Extream Tracker */
+img.extracker {
+	width: 1px;
+	height: 1px;
+}
+
+img.extrackermain {
+	width: 1px;
+	height: 1px;
+}

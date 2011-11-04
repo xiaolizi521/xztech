@@ -1,0 +1,16 @@
+The prebuilt system should allow order any of the standard configurations. It should also allow for multiple configurations.
+
+build two special tables
+	preconfigured_server
+	preconfigured_server_parts
+
+store the info for everything in these two tables. Then when someone wants to buy the configuration just copy the computers . as the select is occuring set the customer/computer number so there is no conflict - may want to wrapt this is a transaction.
+
+
+Need to be able to view all of the configurations from the admin tools. Need to be able to edit/create/delete them on the fly.
+
+Also need to be able to dynamically display all the info about the configuration
+
+Need to be able to test if two carts (server_cart/server_cart_parts) are identical
+
+May need to add back in the 0ne Hour product - need to be able to pull a one hour cart from the system

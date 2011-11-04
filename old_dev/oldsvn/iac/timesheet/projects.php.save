@@ -1,0 +1,18 @@
+<?
+	session_start();
+		
+	$p_level = $_SESSION['p_level'];
+	
+	switch( $p_level )
+	{
+		case( "manager" ):
+			include( "projects_M.php" );
+			break;
+		case( "super-manager"):
+			include( "projects_SM.php" );
+			break;
+		case( "employee" ):
+			include( "projects_E.php" );
+			break;
+	}
+?>

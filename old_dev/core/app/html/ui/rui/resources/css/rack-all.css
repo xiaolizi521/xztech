@@ -1,0 +1,527 @@
+/* Start Rack Header */
+.x-layout-panel-north {
+    z-index:9000;
+}
+
+/* override overflow of panel so
+we can see the menu come down */
+div.x-layout-panel-north,
+div.x-layout-panel-north div.x-layout-panel-body  {
+    overflow:visible !important;
+}
+
+#rack-menu-container {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    padding:0 0 0 0;
+    margin:0 0 0 0;
+    color:#000;
+}
+
+#rack-header {
+    background-color:#bdd5f6;
+}
+
+#rack-header-body {
+    color:#000;
+}
+
+#rack-header-body a:link,
+#rack-header-body a:active,
+#rack-header-body a:visited,
+#rack-header-body a:hover {
+    color:#000;
+}
+
+#rack-header-body h1 {
+    font-size:200%;
+    padding:5px 5px 0px 5px;
+}
+
+#rack-header-body h2 {
+    font-size:110%;
+    font-weight:bold;
+    padding:5px 10px 0px 10px;
+}
+
+#rack-header-body h3 {
+    font-size:110%;
+    padding:5px 10px 0px 10px;
+}
+
+#rack-header-spacer {
+    height:27px;
+}
+/* End Rack Header */
+
+/* Start General Rack Styles */
+table.rack-fancy {
+    margin:0px;
+    padding:0px;
+    position:relative;
+}
+
+table.rack-bordered {
+    outline:1px solid #aca899;
+    border-collapse:separate;
+    border-spacing:0px;
+}
+
+body.ext-ie table.rack-bordered {
+    border:1px solid #aca899;
+    border-collapse:collapse;
+}
+
+table.rack-bordered th {
+    border-top:1px none #000;
+    border-left:1px solid #fff;
+    border-right:1px solid #aca899;
+    border-bottom:1px none;
+}
+
+table.rack-bordered td {
+    border-top:1px none #000;
+    border-left:1px none #000;
+    border-right:1px solid #ebebeb;
+    border-bottom:1px solid #ebebeb;
+}
+
+table.rack-fancy th,
+table.rack-fancy td,
+table.rack-emergency th,
+table.rack-emergency td {
+    padding:3px;
+    font-size:11px;
+    font-size-adjust:none;
+}
+
+table.rack-fancy th {
+    background:#EBEADB url(../../../ext/resources/images/default/grid/grid-hrow.gif) repeat-x scroll 0%;
+    height:22px;
+}
+
+table.rack-fancy td,
+table.rack-emergency td {
+    padding-left:5px;
+    padding-right:5px;
+}
+
+table.rack-fancy td.header {
+    background-color:#f1f1f1;
+}
+
+table.rack-emergency th {
+    background:#f66 none repeat 0px 0px;
+    color:#000;
+}
+
+table.rack-emergency th,
+table.rack-emergency td {
+    border:5px solid #ec0909;
+    background-color:#fff4f4;
+}
+
+table.rack-fancy th input {
+    font-size:90%;
+    position:absolute;
+    top:-3px;
+}
+/* End General Rack Styles */
+
+
+/* Start Generic Rack Styles */
+.rack-hide {
+    position:absolute;
+    left:-20000px;
+    top:-20000px;
+    visibility:hidden;
+}
+
+.rack-display-hide {
+    display:none;
+}
+/* End Generic Rack Styles */
+
+
+/* Start Rack Accordion */
+.rack-accordion-panel-on {
+
+}
+
+.rack-accordion-panel-title {
+    cursor: pointer;
+}
+
+.rack-accordion-panel-ghost {
+    width:400px;
+    height:150px;
+    overflow:hidden;
+}
+
+.rack-accordion-panel-ghost-inner {
+    width:600px;
+    height:160px;
+    overflow:hidden;
+}
+/* End Rack Accordion */
+
+/* Start Rack Themes */
+.rack-themes-btn {
+    display:block;
+    color:#fff;
+    width:245px;
+    margin:10px;
+    padding:10px;
+    text-align:center;
+    text-decoration:none;
+}
+.rack-themes-default-btn {
+    background:#0000aa url(../../../ext/resources/images/default/basic-dialog/hd-sprite.gif) repeat-x 0px -83px;
+}
+.rack-themes-aero-btn {
+    color:#000;
+    background:#fff url(../../../ext/resources/images/aero/basic-dialog/hd-sprite.gif) repeat-x 0px -83px;
+}
+.rack-themes-gray-btn {
+    background:#000 url(../../../ext/resources/images/gray/basic-dialog/hd-sprite.gif) repeat-x 0px -83px;
+}
+.rack-themes-vista-btn {
+    background:#000 url(../../../ext/resources/images/vista/basic-dialog/hd-sprite.gif) repeat-x 0px -83px;
+}
+/* End Rack Themes */
+
+
+/* Start Rack Builder */
+.rack-cbuilder-field {
+    
+}
+
+.rack-cbuilder-field-hidden {
+    visibility:hidden;
+}
+/* End Rack Builder */
+
+
+/* Start Rack Panel */
+.rack-panel {
+    background-color:#fff;
+    border:1px solid #1b376c;
+}
+
+.rack-panel-toolbar {
+}
+
+.rack-panel-body {
+}
+
+.rack-panel-body-setheight {
+    overflow:auto;
+}
+
+.rack-panel-body-clip {
+    overflow:hidden;
+}
+
+.rack-panel-body-widget {
+    padding:5px 10px 10px 10px;
+}
+
+.rack-panel-footer {
+}
+/* End Rack Panel */
+
+/* Start Titlebar */
+.rack-titlebar {
+    position:relative;
+}
+
+.rack-titlebar-dlg {
+    background:#0000aa url(../../../ext/resources/images/default/basic-dialog/hd-sprite.gif) repeat-x 0px -83px;
+    border-bottom:1px solid #1b376c;
+}
+
+.rack-titlebar-lyt {
+    background:transparent url(../../../ext/resources/images/default/layout/panel-title-light-bg.gif) repeat-x 0px 0px;
+    border-bottom:1px solid #98c0f4;
+}
+
+.rack-titlebar-text-dlg {
+    color:#fff;
+    font-size:11px;
+    line-height:12px;
+    font-family:tahoma,verdana,helvetica;
+    padding:4px;
+    display:block;
+}
+
+.rack-titlebar-text-lyt {
+    color:#000;
+    font-size:11px;
+    line-height:12px;
+    font-family:tahoma,verdana,helvetica;
+    padding:4px;
+    display:block;
+}
+
+.rack-titlebar-tools {
+    position:absolute; 
+    right:0px; 
+    top:0px; 
+    padding-right:2px;
+    padding-top:2px;
+}
+
+.rack-titlebar-icon {
+    cursor:pointer;
+    float:right;
+    padding:2px;
+    z-index:6;
+    background:transparent;
+}
+
+.rack-titlebar-icon-on-dlg {
+    padding:1px;
+    border:1px solid #ddd;
+    background:#4a74bc;
+}
+
+.rack-titlebar-icon-on-lyt {
+    padding:1px;
+    border:1px solid #98c0f4;
+    background:#fff;
+}
+
+.rack-titlebar-icon-inner {
+    background-repeat:no-repeat;
+    font-size:1px;
+    height:12px;
+    line-height:1px;
+    width:12px;
+}
+
+/*
+Icon color offsets
+0 - white
+48 - blue
+96 - gray
+*/
+
+/*
+dlg - white
+lyt - blue
+*/
+
+.rack-tbicon-down-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px 0px;
+}
+
+.rack-tbicon-down-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -48px;
+}
+
+.rack-tbicon-up-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -12px;
+}
+
+.rack-tbicon-up-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -60px;
+}
+
+.rack-tbicon-reload-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -24px;
+}
+
+.rack-tbicon-reload-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -72px;
+}
+
+.rack-tbicon-left-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px 0px;
+}
+
+.rack-tbicon-left-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -48px;
+}
+
+.rack-tbicon-right-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -12px;
+}
+
+.rack-tbicon-right-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -60px;
+}
+
+.rack-tbicon-close-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -24px;
+}
+
+.rack-tbicon-close-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -72px;
+}
+
+.rack-tbicon-min-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -22px -24px;
+}
+
+.rack-tbicon-min-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -22px -72px;
+}
+
+.rack-tbicon-max-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -33px -24px;
+}
+
+.rack-tbicon-max-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -33px -72px;
+}
+/* End Titlebar */
+
+
+/* Start Simple Page Styles  */
+.simple-layout {
+    background:#bdd5f6 url(../images/default/simple-body-bg.jpg) repeat-x fixed 0px 0px;
+}
+
+.simple-layout div.body-one {
+    position:relative;
+    width:720px;
+    border:1px solid #98c0f4;
+    margin:19px;
+    background-color:#fff;
+}
+
+.simple-layout div.body-one-fluid {
+    position:relative;
+    zoom:1;
+    overflow:hidden;
+    min-width:230px;
+    border:1px solid #98c0f4;
+    margin:19px;
+    padding:0px 10px 0px 10px;
+    background-color:#fff;
+}
+
+.simple-layout div.body-two {
+    position:relative;
+    float:left;
+    width:960px;
+    border:1px solid #98c0f4;
+    margin:19px;
+    background:#fff url(../images/default/simple-body-two-bg.gif) repeat-y 0px 0px;
+    overflow:hidden;
+}
+
+.simple-layout div.body-two-fluid {
+    position:relative;
+    zoom:1;
+    overflow:hidden;
+    min-width:230px;
+    border:1px solid #98c0f4;
+    margin:19px;
+    padding:0px 10px 0px 250px;
+    background:#fff url(../images/default/simple-body-two-bg.gif) repeat-y 0px 0px;
+}
+
+.simple-layout div.body-one div.col-rail,
+.simple-layout div.body-one-fluid div.col-rail {
+    display:none;
+}
+
+.simple-layout div.body-two div.col-rail {
+    position:relative;
+    float:left;
+    width:230px;
+    padding:0px 5px 0px 5px;
+    margin-bottom:10px;
+}
+
+.simple-layout div.body-two-fluid div.col-rail {
+    position:relative;
+    float:left;
+    width:230px;
+    padding:0px 5px 0px 5px;
+    margin-bottom:10px;
+    margin-left:-250px;
+}
+
+.simple-layout div.body-one div.col-content {
+    position:relative;
+    width:700px;
+    padding:0px 10px 0px 10px;
+    background-color:#fff;
+    margin-bottom:10px;
+}
+
+.simple-layout div.body-one-fluid div.col-content {
+    position:relative;
+    width:100%;
+    background-color:#fff;
+    margin-bottom:10px;
+}
+
+.simple-layout div.body-two div.col-content {
+    position:relative;
+    float:left;
+    width:700px;
+    padding:0px 10px 0px 10px;
+    background-color:#fff;
+    margin-bottom:10px;
+}
+
+.simple-layout div.body-two-fluid div.col-content {
+    position:relative;
+    float:left;
+    width:100%;
+    background-color:#fff;
+    margin-bottom:10px;
+}
+
+.simple-layout h1 {
+    font-size:200%;
+    line-height:200%;
+    margin-top:15px;
+    padding-left:5px;
+}
+
+.simple-layout h2 {
+    font-size:160%;
+    line-height:160%;
+    margin-top:15px;
+    padding-left:5px;
+}
+
+.simple-layout h3 {
+    font-size:110%;
+    line-height:110%;
+    font-weight:bold;
+    margin-top:15px;
+    padding-left:5px;
+}
+
+.simple-layout p {
+    font-size:110%;
+    line-height:130%;
+    margin-top:15px;
+    padding-left:10px;
+    padding-right:5px;
+}
+/* End Simple Page Styles */
+
+/* Start Rack Overrides */
+.x-layout-panel-hd-text a,
+.x-layout-panel-hd-text a.active,
+.x-layout-panel-hd-text a.visited,
+.x-layout-panel-hd-text a.hover {
+    color:inherit;
+}
+
+table.x-btn, 
+table.x-btn tr,
+table.x-btn td {
+    padding:0px;
+    margin:0px;
+    border:0px none;
+}
+/* End Rack Overrides */

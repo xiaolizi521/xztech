@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule ^sig/(.*).png wsi-sigs.php?uid=$1
+RewriteRule ^usr/(.*)$ wsi-account.php?uid=$1
+RewriteRule ^admin/(.*)$ wsi-admin.php?func=$1

@@ -1,0 +1,40 @@
+.MangaTitle {
+	font-family: Verdana;
+	font-size: 10px;
+}
+
+.MangaChapterNumber {
+	width: 120px;
+	font-family: Verdana;
+	font-size: 10px;
+}
+
+.MangaMirror { 
+	width: 89px;
+	font-family: Verdana;
+	font-size: 10px;
+}
+
+.MangaMirror2 { 
+	width: 198px;
+	font-family: Verdana;
+	font-size: 10px;
+}
+
+.MangaMirror2 { 
+	width: 178px;
+	font-family: Verdana;
+	font-size: 10px;
+}
+
+.MangaDonation {
+	width: 85px;
+	font-family: Verdana;
+	font-size: 10px;
+}
+
+.MangaPic {
+	width: 100px;
+	font-family: Verdana;
+	font-size: 10px;
+}

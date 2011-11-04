@@ -1,0 +1,52 @@
+<?
+/**
+ * Author:   	Cory Becker
+ * Date:   	 	September 21, 2007
+ * Company:		Becker Web Solutions, LLC
+ * Website:	 	www.beckerwebsolutions.com
+ *
+ * Description:
+ *					Header
+ */
+
+// Include
+include( "code/config.php" );
+
+session_start();
+
+// Check user
+if( strlen( $_POST['username']) > 0 )
+{
+	$user = new user;
+	if( $user->checkUser( $_POST['username'], md5( $_POST['password'] ) ) )
+	{
+		$_SESSION['username'] = $_POST['username'];
+		$_SESSION['password'] = md5( $_POST['password'] );
+		$_SESSION['p_level'] = $user->getPermissionLevel( $_POST['username'] );
+		$_SESSION['p_leveltype'] = $user->getPermissionType( $_POST['username'] );
+		$success = true;
+	}
+	else
+	{
+		$error = "credentials";
+	}
+}
+
+?>
+<html>
+	<head>
+		<title>Project Management System - IAC Professionals</title>
+		<link href="style/style.css" rel="stylesheet" type="text/css" />
+		<? if( $success == true ) echo "<meta http-equiv=\"refresh\" content=\"1;url=home.php\" />"; ?>
+	</head>
+	<body>
+		<div id="header">
+			<div class="center">
+				<img src="images/headerLogo.jpg" alt="Time Sheets">
+			</div>
+		</div>
+		<div id="navigation">
+			<? include( "navigation_login.php" ); ?>
+		</div>
+		<div class="center">
+			<div id="content">

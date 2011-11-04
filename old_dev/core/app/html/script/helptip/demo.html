@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<title>HelpTip Demo</title>
+<script type="text/javascript" src="js/helptip.js"></script>
+<link type="text/css" rel="StyleSheet" href="css/helptip.css" />
+<style type="text/css">
+
+body {
+	font:		Small Verdana; 
+	background:	White;
+	color:		Black;
+}
+
+</style>
+<script type="text/javascript">
+
+var oneHelp = "One is the result of three minus two. \"One\" is also the result of 'O' + 'n' + 'e'.";
+var linkHelp = "The help tool tip was made by Erik Arvidsson for <a href='http://webfx.eae.net' target='_new'>WebFX</a>";
+
+</script>
+</head>
+<body>
+
+<p style="padding-bottom: 1px;">This is some text and <a id="test" class="helpLink" href="?" onclick="showHelpTip(event, '<b>this</b> is also a keyword in a lot of Object Oriented programming languages :-)', true); return false">this</a>
+is a help tip. Here is another <a class="helpLink" href="?" onclick="showHelpTip(event, oneHelp, false); return false">one</a>.
+Here is <a class="helpLink" href="?" onclick="showHelpTip(event, linkHelp, true); return false">one</a> with a link inside it.</p>
+
+<p><select><option>select sucks</option></select></p>
+
+<p><a href="javascript:void(document.location='view-source:' + document.location)">View source</a> or 
+<a href="http://webfx.eae.net/dhtml/helptip/helptip.html">go back</a>.</p>
+
+</body>
+</html>

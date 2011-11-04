@@ -1,0 +1,21 @@
+<?
+	session_start();
+		
+	$p_level = $_SESSION['p_level'];
+	
+	switch( $p_level )
+	{
+		case( "manager" ):
+			include( "navigation_manager.php" );
+			break;
+		case( "super-manager"):
+			include( "navigation_super_manager.php" );
+			break;
+		case( "employee" ):
+			include( "navigation_employee.php" );
+			break;
+		case( "reports" ):
+			include( "navigation_reports.php" );
+			break;
+	}
+?>

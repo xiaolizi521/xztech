@@ -1,0 +1,18 @@
+a { 
+    color: white;
+    font-family:"Verdana,Arial,Helvetica";
+    font-size: 150%;
+    font-weight:800;
+    text-decoration:none;
+}
+p { 
+    margin:0px;
+}
+body {
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+}
+form {
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+}

@@ -1,0 +1,56 @@
+/*Veranda size 1*/
+.VerdanaSize1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	line-height: normal;
+	text-align: left;
+}
+
+/* Main Section Verdana */
+.VerdanaSize1Main {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	line-height: normal;
+	color: #2B5C85;
+	text-align: left;
+}
+
+/*Veranda size 2*/
+.VerdanaSize2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1.4em;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: left;
+}
+
+.VerdanaSize2Main {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1.4em;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	line-height: normal;
+	color: #2B5C85;
+	text-align: left;
+}
+
+/* Tahoma Copyright */
+.TahomaSize1 {
+	font-family:Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: left;
+}
+arabic {
+	text-align: center;
+}

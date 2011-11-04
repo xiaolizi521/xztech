@@ -1,0 +1,42 @@
+<?
+function hex2rgb($hex)
+{
+	$int = hexdec($hex);
+	return array("red" => 0xFF & ($int >> 0x10), "green" => 0xFF & ($int >> 0x8), "blue" => 0xFF & $int);
+}
+
+function createImage()
+{
+	/* This creates an image with text specified in $_GET and other options, then
+ 	* puts the text on a transparent background and outputs it.
+ 	*/
+	$text 	= isset($_GET['z']) ? base64_decode($_GET['z']) : "Error";
+	$a		= isset($_GET['a']) ? base64_decode($_GET['a']) : "";
+	$font	= isset($_GET['b']) ? base64_decode($_GET['b']) : "rammstein.ttf";
+	$size 	= isset($_GET['r']) ? base64_decode($_GET['r']) : 10;
+	$color	= isset($_GET['g']) ? base64_decode($_GET['g']) : "000000";
+	$color  = hex2rgb($color);
+
+	$bounds = imageTTFBBox($size, 0, $font, $text);
+	$image  = imageCreateTrueColor(abs($bounds[2]) + abs($bounds[0]), abs($bounds[7]) + abs($bounds[1]));
+
+	imageSaveAlpha($image, true);
+	imageAlphaBlending($image, false);
+
+	$transparent = imagecolorallocatealpha($image, 200, 200, 200, 127);
+
+	imageFill($image, 0, 0, $transparent);
+
+	$color = imagecolorallocate($image, $color['red'], $color['green'], $color['blue']);
+
+	imageTTFText($image, $size, 0, 0, abs($bounds[5]), $color, $font, $text);
+
+	header("Content-type: image/png");
+
+	imagepng($image);
+
+	imagedestroy($image);
+}
+
+createImage();
+?>

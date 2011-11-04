@@ -1,0 +1,265 @@
+<?php
+####################################################################
+# AR Memberscript 				                                   #
+# Created By: Thomas of Anime Reporter - http://animereporter.com  #
+# Copyright Anime Reporter. All Rights Reserved.                   # 
+# THIS IS A PAID SCRIPT AND MAY NOT BE REDISTRIBUTED TO OTHERS.    #
+####################################################################
+
+$site_path = "$site_url/$main_filename?$ident=$script_folder";
+$current_location = "$site_url$_SERVER[REQUEST_URI]";
+$timenow = time();
+
+if ( !ereg ( "/member.php", "$_SERVER[SCRIPT_NAME]" ) ) {
+echo "";
+}
+?>
+
+body {
+	font-size: 11px;
+	color: black;
+	font-family: Verdana;
+}
+
+table {
+	font-size: 10px;
+	color: #000000;
+	font-family: Verdana;
+}
+
+a:link,
+a:visited,
+a:active {
+	COLOR: #A60000;
+	TEXT-DECORATION: none;
+	font-weight: normal;
+}
+
+a:hover {
+	COLOR: #121212;
+	TEXT-DECORATION: none;
+}
+
+a.news:link,
+a.news:visited,
+a.news:active {
+	COLOR: #A60000;
+	font-weight: normal;
+	TEXT-DECORATION: underline;
+}
+
+a.news:hover {
+	COLOR: #121212;
+	TEXT-DECORATION: underline;
+}
+
+a.OnBlack:link,
+a.OnBlack:visited,
+a.OnBlack:active {
+	font-size: 10px;
+	COLOR: #000000;
+	font-weight: normal;
+	TEXT-DECORATION: none;
+}
+
+a.OnBlack:hover {
+	COLOR: #0B5918;
+	TEXT-DECORATION: none;
+	border-bottom: 0px solid #FFFFFF;
+}
+
+a.feat:link,
+a.feat:visited,
+a.feat:active {
+	font-size: 10px;
+	COLOR: #FFFFFF;
+	font-weight: normal;
+	TEXT-DECORATION: none;
+}
+
+a.feat:hover {
+	COLOR: #C2B8A5;
+	TEXT-DECORATION: none;
+}
+
+a.OnBlack2a:link,
+a.OnBlack2a:visited,
+a.OnBlack2a:active {
+	font-size: 10px;
+	COLOR: #000000;
+	font-weight: normal;
+	TEXT-DECORATION: none;
+}
+
+a.OnBlack2a:hover {
+	COLOR: #0B1459;
+	TEXT-DECORATION: none;
+}
+
+a.OnRed:link,
+a.OnRed:visited,
+a.OnRed:hover,
+a.OnRed:active {
+	font-weight: normal;
+	COLOR: #FFFFFF;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+
+a.OnWhite:link,
+a.OnWhite:visited,
+a.OnWhite:active {
+	font-weight: normal;
+	COLOR: #121212;
+	TEXT-DECORATION: none;
+}
+
+a.OnWhite:hover {
+	COLOR: #84852B;
+	TEXT-DECORATION: none;
+}
+
+a.OnWhite3:link,
+a.OnWhite3:visited,
+a.OnWhite3:active {
+	font-weight: normal;
+	COLOR: #121212;
+	TEXT-DECORATION: none;
+}
+
+a.OnWhite3:hover {
+	COLOR: #E28D06;
+	TEXT-DECORATION: none;
+}
+
+a.OnWhite4:link,
+a.OnWhite4:visited,
+a.OnWhite4:active {
+	font-weight: normal;
+	COLOR: #121212;
+	TEXT-DECORATION: none;
+}
+
+a.OnWhite4:hover {
+	COLOR: #610F83;
+	TEXT-DECORATION: none;
+}
+
+a.OnWhite2:link,
+a.OnWhite2:visited,
+a.OnWhite2:active {
+	font-weight: normal;
+	COLOR: #121212;
+	TEXT-DECORATION: none;
+}
+
+a.OnWhite2:hover {
+	COLOR: #A60000;
+}
+
+.OnWhite {
+	font-weight: normal;
+	color: #000000;
+	font-weight: normal;
+	font-family: Verdana;
+}
+
+.OnBlack {
+	font-weight: normal;
+	font-size: 10px;
+	color: #FFFFFF;
+	font-family: Verdana, Helvetica, sans-serif;
+}
+
+.OnBlack2t {
+	font-weight: normal;
+	color: #F1D04A;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.OnRed {
+	font-size: 11px;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.switchbox {
+	font-weight: normal;
+	font-family: Verdana, Helvetica, sans-serif;
+}
+
+.InfoTdClassM1 {
+	color: #FFFFFF;
+	background-color: #121212;
+}
+
+.InfoTdClassM2 {
+	color: #121212;
+	background-color: #FFFFFF;
+}
+
+.InfoTdClass1 {
+	color: #121212;
+	background-color: #C2B8A5;
+}
+
+.RateBg1 {
+	color: #FFFFFF;
+	background-color: #121212;
+}
+
+.RateBg2 {
+	color: #FFFFFF;
+	background-color: #A60000;
+}
+
+.form { 
+	text-decoration: none; 
+	font-family: Verdana; 
+	font-size: 10px; 
+	color: #000000;
+}
+
+.main { 
+	text-decoration: none; 
+	font-family: <?php echo $mainfontface ?>; 
+	font-size: <?php echo $mainfontsize ?>; 
+	color: <?php echo $mainfontcolor ?>;
+}
+
+.secondary { 
+	text-decoration: none; 
+	font-family: <?php echo $secondaryfontface ?>; 
+	font-size: <?php echo $secondaryfontsize ?>; 
+	color: <?php echo $secondaryfontcolor ?>;
+}
+
+.secondary a:link { 
+	text-decoration: none; 
+	font-family: <?php echo $secondaryfontface ?>; 
+	font-size: <?php echo $secondaryfontsize ?>; 
+	color: <?php echo $secondaryfontcolor ?>; 
+}
+
+.secondary a:active { 
+	text-decoration: none; 
+	font-family: <?php echo $secondaryfontface ?>; 
+	font-size: <?php echo $secondaryfontsize ?>; 
+	color: <?php echo $secondaryfontcolor ?>; 
+}
+
+.secondary a:visited { 
+	text-decoration: none; 
+	font-family: <?php echo $secondaryfontface ?>; 
+	font-size: <?php echo $secondaryfontsize ?>; 
+	color: <?php echo $secondaryfontcolor ?>; 
+}
+
+.secondary a:hover { 
+	text-decoration: underline; 
+	font-family: <?php echo $secondaryfontface ?>; 
+	font-size: <?php echo $secondaryfontsize ?>; 
+	color: <?php echo $secondaryfontcolor ?>; 
+}

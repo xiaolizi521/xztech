@@ -1,0 +1,432 @@
+<?
+	session_start();
+		
+	$p_level = $_SESSION['p_level'];
+	$p_levelType = $_SESSION['p_leveltype'];
+
+	if( $p_level != "super-manager" 
+		&& $p_levelType != 'manager'
+		&& $p_levelType != 'human resources' )
+	{
+		header( "Location: home.php" );
+		exit();
+	}
+	else
+		include( "header_functions.php" );
+
+	// Page specific functions
+	$id = $_REQUEST['id'];
+	$db->query( "SELECT project.id as project_id, client.id as client_id, client.organization, project.name, project.status, project.description, project.invoice, project.deadline FROM project, client WHERE project.client_id = client.id AND project.id = $id" );
+	$row = mysql_fetch_assoc( $db->result['ref'] );
+	
+	// Include header TEMPLATE
+	include( "header_template.php" );
+	
+?>
+<script language=""javascript">
+	function displayHiddenEmployees(){
+		document.all['hidden_emps'].style.display = 'block';
+	}
+</script>
+
+<div style="border-bottom: 3px solid #DDD; padding-bottom: 10px;"><h1>Project Information</h1>
+	<div class="details">
+		<p><strong>Project:</strong> <?= $row['name'] ?></p>
+		<p><strong>Description:</strong> <?= stripslashes( str_replace( "\n", "<br>", $row['description'] ) ) ?></p>
+		<p><strong>Client:</strong> <?= $row['organization'] ?></p>
+		<p><strong>Status:</strong> <?= status( $row['status'] ) ?></p>
+		<? if( $row['invoice'] > 0 ): ?>
+			<p><strong>Invoice:</strong> <a href="invoice_view.php?id=<?= $row['invoice'] ?>">#<?= $row['invoice'] ?></a></p>
+		<? elseif( $row['status'] == "completed" ): ?>
+			<p><strong>Invoice: </strong> <a href="invoice_preview.php?id=<?= $row['project_id'] ?>">Create Invoice</a>
+		<? endif; ?>
+
+		<p><a href="project_edit.php?id=<?= $id ?>" class="large_link">Edit Project Information &raquo;</a></p>
+	</div>
+</div>
+
+<? if( !( $row['invoice'] > 0) ): ?>
+<div style="padding-top: 15px;">
+<h1>Current Tasks</h1>
+<?
+$db->query( "SELECT project_task.*, employee.name as employee_name FROM employee, project_task WHERE project_task.employee_id = employee.id AND project_task.project_id = $id AND status != 'completed'" );
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>Employee</td>
+			<td>Name</td>
+			<td>Description</td>
+			<td>Hourly Rate</td>
+			<td>Time Limit</td>
+			<td>Deadline</td>
+			<td>Status</td>
+			<td>&nbsp;</td>
+		</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+		<tr class="table_row">
+			<td><?= $row['employee_name'] ?></td>
+			<td><a href="project_task.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a></td>
+			<td><?= strlen( $row['description'] ) > 0 ? substr( $row['description'], 0, 20 )."..." : "&nbsp;" ?></td>			
+			<td>$<?= $row['rate'] ?> ($<?= $row['rate_billable'] ?>)</td>
+			<td><? if( $row['time_limit'] > 0 ) echo $row['time_limit']; else echo "-" ?></td>
+			<td><? if( strlen( $row['deadline'] ) > 0 ) echo $row['deadline']; else echo "-" ?></td>
+			<td><?= status( $row['status'] ) ?></td>
+			<td class="link_button"><a href="project_task.php?id=<?= $row['id'] ?>">View Details</a></td>
+		</tr>
+	<? endwhile; ?>
+	</table>
+<? else: ?>
+<p><em>No current tasks have been added for this project</em></p>
+<? endif; ?>
+<p><a href="project_tasks_add.php?id=<?= $id ?>" class="large_link">Add Task</a></p>
+</div>
+
+<?
+//$db->query( "SELECT * FROM messages
+//	LEFT OUTER JOIN project_task ON messages.task_id = project_task.id
+//	LEFT OUTER JOIN project ON project_task.project_id = project.id
+//	WHERE project.id = $id
+//	ORDER BY messages.date DESC" );
+$db->query( "SELECT * FROM messages
+		LEFT OUTER JOIN project ON messages.project_id = project.id
+		LEFT OUTER JOIN message_recipients ON messages.id = message_recipients.message_id
+		WHERE message_recipients.employee_id = ".$employeeArray['id']."		
+		ORDER BY messages.date DESC" );
+?>
+
+<div style="padding-top: 10px;">
+<h1>Messages</h1>	
+<? if( isset( $_REQUEST['success'] ) ): ?>
+<p class="color_blue">Message sent successfully</p>
+<? endif; ?>
+<? if( $db->result['rows'] > 0 ): ?>
+<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+	<tr class="table_heading">
+		<td>&nbsp;</td>
+		<td>From</td>
+		<td>Project</td>
+		<td>Task</td>
+		<td>Sent</td>
+		<td>Attachment</td>
+		<td>&nbsp;</td>
+	</tr>
+	<? for( $i = 0; $i < $db->result['rows']; $i++ ): ?>
+	<? $row = mysql_fetch_assoc_join( $db->result['ref'] ); ?>
+	<!-- <? var_dump( $row ) ?> -->
+	<tr>
+		<td nowrap><img src="images/misc_icons/email-<?= $row['messages.priority'] ?>.gif"></td>
+		<td nowrap><strong><?= $row['messages.sent_by_name'] ?></strong></td>
+		<td><a href="project_task.php?id=<?= $row['project_task.id'] ?>"><?= $row['project_task.name'] ?></a></td>
+		<td nowrap><?= date( "g:i A", $row['messages.date'] ) ?> on <?= date( "m/d/y", $row['messages.date'] ) ?></td>
+		<td nowrap><? if( strlen( $row['messages.filename'] ) > 0 ): ?> <a href="./uploads/<?= $row['messages.filename']?>"><img src="images/misc_icons/file.gif"> Download</a><? endif; ?> &nbsp;</td>
+		<td nowrap><a href="message_delete.php?id=<?= $row['messages.id'] ?>"><img src="images/misc_icons/email-delete.gif"> Delete</a></td>
+	</tr>
+	<tr class="email_end">
+		<td>&nbsp;</td>
+		<td colspan="6"><?= stripslashes( $row['messages.message'] ) ?>&nbsp;</td>
+	</tr>
+	<? endfor; ?>
+</table>
+<? else: ?>
+<p><em>There are no messages</em></p>
+<? endif; ?>
+<p><a href="message_new.php" class="large_link">Compose Message &raquo;</a></p>
+</div>
+
+<?
+	$db->query( "SELECT project.name as project_name,
+		files.filename, 
+		files.mime, 
+		files.name, 
+		files.date, 
+		files.id, 
+		files.audio_length, 
+		files.project_id,
+		files.uploaded_by_name
+	FROM files INNER JOIN project ON files.project_id = project.id
+	WHERE files.size > 10 AND project.id = $id
+	ORDER BY files.date DESC" );
+	
+?>
+
+<div style="padding-top: 10px;">
+<h1>Files</h1>
+<? if( isset( $_REQUEST['success'] ) ): ?>
+<p class="color_blue">File uploaded successfully</p>
+<? endif; ?>
+<? if( $db->result['rows'] > 0 ): ?>
+<table cellpadding="0" cellspacing="0" border="0" class="data_table" width="100%">
+	<tr class="table_heading">
+		<td>&nbsp;</td>
+		<td>File</td>
+		<td>Name</td>
+		<td>Project</td>
+		<td>Created</td>
+		<td>Owner</td>
+		<td>&nbsp;</td>
+	</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+	<tr class="table_row">
+		<td><img src="images/file_icons/<?= fileTypeImage( $row['mime'] ) ?>"></td>
+		<td><a href="./uploads/<?= $row['filename']?>"><?= $row['filename'] ?></a></td>
+		<td><a href="./uploads/<?= $row['filename']?>"><?= $row['name'] ?>&nbsp;</a></td>
+		<td><a href="project_manage.php?id=<?= $row['project_id'] ?>"><?= $row['project_name'] ?></a></td>
+		<td nowrap><?= date( "m/d/y", $row['date'] ) ?> at <?= date( "g:i:s A", $row['date'] ) ?></td>
+		<td><?= $row['uploaded_by_name'] ?>&nbsp;</td>
+		<td nowrap><a href="file_delete.php?id=<?= $row['id'] ?>"><img src="images/misc_icons/email-delete.gif"> Delete</a></td>
+	</tr>
+	<? endwhile; ?>
+</table>
+<? else: ?>
+<p><em>There are no files</em></p>
+<? endif; ?>
+<p><a href="file_new.php" class="large_link">Upload File &raquo;</a></p>
+</div>
+
+
+<div style="padding-top: 15px;">
+<h1>Recent Employee Activity</h1>
+<?
+$db->query( "SELECT employee.id, 
+	employee.name, 
+	project_task_hours.hours, 
+	project_task_hours.date,
+	project_task.rate,
+	project_task.name as task_name,
+	project_task_hours.id as project_task_hours_id,
+	project_task_hours.approved
+FROM project_task INNER JOIN employee ON project_task.employee_id = employee.id
+	 INNER JOIN project_task_hours ON project_task_hours.project_task_id = project_task.id
+WHERE project_task.project_id = $id AND project_task_hours.approved = 0" );
+
+$amount = 0;
+
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>Date</td>
+			<td>Employee</td>
+			<td>Task</td>
+			<td>Hours</td>
+			<td>Status</td>
+			<td>&nbsp;</td>
+		</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+		<? $total_hours += $row['hours'] ?>
+		<? $amount += $row['hours'] * $row['rate']; ?>
+		<? if( $row['approved'] == "0" ): ?>
+		<tr class="table_row">
+			<td><?= $row['date'] ?></td>
+			<td><?= $row['name'] ?></td>
+			<td><?= $row['task_name'] ?></td>
+			<td><?= $row['hours'] ?></td>			
+			<td><?= approved( $row['approved'] ) ?></td>
+			<? if ( $p_levelType != 'human resources' ){ ?>
+			<td class="link_button"><a href="project_task_hours_edit.php?id=<?= $row['project_task_hours_id'] ?>&project_id=<?= $id ?>">Adjust</a> | <a href="project_task_hours_approve.php?id=<?= $row['project_task_hours_id'] ?>&project_id=<?= $id ?>">Approve Hours</a></td>
+			<? }?>
+		</tr>
+		<? endif; ?>
+	<? endwhile; ?>
+	</table>
+	<p><strong><?= $total_hours ?></strong> Total Hours ( $<?= number_format( $amount ) ?> Earned )
+	<p><a href="project_activity.php?id=<?= $id ?>" class="large_link">View All Activity &raquo;</a></p>
+<? else: ?>
+<p><em>No employees have unapproved time for this project</em></p>
+<p><a href="project_activity.php?id=<?= $id ?>" class="large_link">View All Activity &raquo;</a></p>
+<? endif; ?>
+</div>
+
+<div style="padding-top: 15px;">
+<h1>Active Employees</h1>
+<?
+$db->query( "SELECT project_task_clock.task_id, 
+	project_task_clock.timestamp_start, 
+	employee.id AS employee_id, 
+	employee.name AS employee_name, 
+	project_task.name AS task_name, 
+	project_task.id AS task_id
+FROM project_task_clock INNER JOIN project_task ON project_task_clock.task_id = project_task.id
+	 INNER JOIN employee ON project_task.employee_id = employee.id
+	WHERE project_task.project_id = $id" );
+
+$now = time();
+	
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>Date</td>
+			<td>Started</td>
+			<td>Employee</td>
+			<td>Task</td>
+			<td>Hours</td>
+			<td>&nbsp;</td>
+		</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+		<tr class="table_row">
+			<td><?= tsDate( "m/d/Y", $row['timestamp_start'] ) ?></td>
+			<td><?= tsDate( "g:i A", $row['timestamp_start'] ) ?></td>
+			<td><?= $row['employee_name'] ?></td>
+			<td><?= $row['task_name'] ?></td>
+			<td><?= round( floor( ( $now - $row['timestamp_start'] ) / 60 ) / 60, 2 ); ?></td>			
+			<td class="link_button"><a href="project_task_clock.php?id=<?= $row['task_id']; ?>&ret=pm&pid=<?= $id ?>">Stop Clock</a></td>
+		</tr>
+	<? endwhile; ?>
+	</table>
+<? else: ?>
+<p><em>No employees are actively working on this project</em></p>
+<? endif; ?>
+</div>
+
+<div style="padding-top: 15px;">
+<h1>Completed Tasks</h1>
+<?
+$db->query( "SELECT project_task.*, employee.name as employee_name FROM employee, project_task WHERE project_task.employee_id = employee.id AND project_task.project_id = $id AND status = 'completed'" );
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>Employee</td>
+			<td>Name</td>
+			<td>Description</td>
+			<td>Rate</td>
+			<td>&nbsp;</td>
+		</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+		<tr class="table_row">
+			<td><?= $row['employee_name'] ?></td>
+			<td><?= $row['name'] ?></td>
+			<td><?= strlen( $row['description'] ) > 0 ? substr( $row['description'], 0, 20 )."..." : "&nbsp;" ?></td>			
+			<td>$<?= $row['rate'] ?>/<?= $row['unit'] ?></td>
+			<td class="link_button"><a href="project_task.php?id=<?= $row['id'] ?>">View Details</a></td>
+		</tr>
+	<? endwhile; ?>
+	</table>
+<? else: ?>
+<p><em>No tasks have been completed for this project</em></p>
+<? endif; ?>
+</div>
+
+
+<div style="padding-top: 15px;">
+<h1>Assigned Employees</h1>
+<?
+$db->query( "SELECT employee.*, project_employees.hidden FROM employee, project_employees, project WHERE employee.id = project_employees.employee_id AND project.id = project_employees.project_id AND project_employees.hidden != 1 AND project.id = $id" );
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>Name</td>
+			<td>Email</td>
+			<td>&nbsp;</td>
+		</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+		<tr class="table_row">
+			<td><?= $row['name'] ?></td>
+			<td><?= $row['email'] ?></td>
+			<? if( $row['hidden'] == 1 ): ?>
+				<td class="link_button"><a href="project_employee_hide.php?id=<?= $row['id'] ?>&project_id=<?= $id ?>&hidden=0">Unhide</a></td>
+			<? else: ?>
+				<td class="link_button"><a href="project_employee_hide.php?id=<?= $row['id'] ?>&project_id=<?= $id ?>&hidden=1">Hide</a></td>
+			<? endif; ?>
+		</tr>
+	<? endwhile; ?>
+	</table>
+<? else: ?>
+<p><em>No employees are assigned to this project</em></p>
+<? endif; ?>
+<? if ( $p_levelType != 'manager' ){?>
+<p><a href="project_employee_add.php?id=<?= $id ?>" class="large_link">Add Employee</a>&nbsp;|&nbsp;<a href="javascript:displayHiddenEmployees();" class="large_link">Show Hidden Employees</a></p>
+<? } ?>
+<!-- <p><a href="project_employee_add.php?id=<?= $id ?>" class="large_link">Add Employee</a></p> -->
+</div>
+
+<div style="padding-top: 15px;display: none;" id="hidden_emps">
+<h1>Hidden Employees</h1>
+<?
+$db->query( "SELECT employee.*, project_employees.hidden FROM employee, project_employees, project WHERE employee.id = project_employees.employee_id AND project.id = project_employees.project_id AND project_employees.hidden = 1 AND project.id = $id" );
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>Name</td>
+			<td>Email</td>
+			<td>&nbsp;</td>
+		</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+		<tr class="table_row">
+			<td><?= $row['name'] ?></td>
+			<td><?= $row['email'] ?></td>
+			<? if( $row['hidden'] == 1 ): ?>
+				<td class="link_button"><a href="project_employee_hide.php?id=<?= $row['id'] ?>&project_id=<?= $id ?>&hidden=0">Unhide</a></td>
+			<? else: ?>
+				<td class="link_button"><a href="project_employee_hide.php?id=<?= $row['id'] ?>&project_id=<?= $id ?>&hidden=1">Hide</a></td>
+			<? endif; ?>
+		</tr>
+	<? endwhile; ?>
+	</table>
+<? else: ?>
+<p><em>No hidden employees are assigned to this project</em></p>
+<? endif; ?>
+</div>
+
+<? else: ?>
+
+<div style="padding-top: 15px;">
+<h1>Tasks</h1>
+<?
+$db->query( "SELECT project_task.*, employee.name as employee_name FROM employee, project_task WHERE project_task.employee_id = employee.id AND project_task.project_id = $id AND status = 'completed'" );
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>&nbsp;</td>
+			<td>Employee</td>
+			<td>Name</td>
+			<td>Description</td>
+			<td>Rate</td>
+		</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+		<tr class="table_row">
+			<td class="link_button"><a href="project_task.php?id=<?= $row['id'] ?>">Details</a></td>
+			<td><?= $row['employee_name'] ?></td>
+			<td><?= $row['name'] ?></td>
+			<td><?= strlen( $row['description'] ) > 0 ? substr( $row['description'], 0, 20 )."..." : "&nbsp;" ?></td>			
+			<td>$<?= $row['rate'] ?>/<?= $row['unit'] ?></td>
+		</tr>
+	<? endwhile; ?>
+	</table>
+<? else: ?>
+<p><em>No tasks were completed for this project</em></p>
+<? endif; ?>
+</div>
+
+<div style="padding-top: 15px;">
+<h1>Employees</h1>
+<?
+$db->query( "SELECT employee.* FROM employee, project_employees, project WHERE employee.id = project_employees.employee_id AND project.id = project_employees.project_id AND project.id = $id" );
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>Name</td>
+			<td>Email</td>
+		</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+		<tr class="table_row">
+			<td><?= $row['name'] ?></td>
+			<td><?= $row['email'] ?></td>
+		</tr>
+	<? endwhile; ?>
+	</table>
+<? else: ?>
+<p><em>No employees were assigned to this project</em></p>
+<? endif; ?>
+</div>
+
+<? endif; ?>
+
+
+<? include( "footer.php" ); ?>

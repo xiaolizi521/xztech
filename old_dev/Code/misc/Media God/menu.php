@@ -1,0 +1,68 @@
+</div>
+<div class='menu'>
+Welcome<?
+
+require_once "functions/user.php";
+if($_SESSION['username']) {
+	echo ", <b>" . $_SESSION['username'] . "</b>!";
+	echo "<br>
+	<a href='index.php'>Home</a><br>
+	<a href='custom.php'>Customise</a><br>
+	<a href='fonts.php'>Upload a Font</a><br>
+	<a href='viewfonts.php'>View All Fonts</a><br>
+	<a href='viewbg.php'>View Your Backgrounds</a><br>
+	<a href='viewbg2.php'>View All Backgrounds</a><br>
+	<a href='backgrounds.php'>Upload a Background</a><br>
+	<a href='colour.php'>Colour Picker</a><br><br>
+	<a href='logout.php'>Logout</a><br>
+	
+	";
+	$level = user::level($_SESSION['username']);
+if ($level['userlvl'] == 3) {
+	echo "<br><b>Admin Options</b><br>
+<a href='#'>Change User's Password</a><br>
+<a href='admin-post.php'>Post News</a><br>
+<a href='#'>Check Image Sizes</a><br>";
+}
+}
+else {
+	echo "!";
+	
+	echo "<br>	<a href='index.php'>Home</a><br>
+	<a href='login.php'>Login</a><br>
+	<a href='register.php'>Register</a><br>
+	<a href='lostpassword.php'>Lost Password</a><br>";
+}
+?>
+<a href='stats.php'>Statistics</a><br><br>
+<a href='forum'><b>Report a Bug/Ask a Question</b></a><br><br><br>
+<?
+$next =  filectime("sigs.xml.gz") + 21600;
+$now = date("U");
+$till = $next - $now;
+echo "LU: " . date("F d Y H:i:s", filectime("sigs.xml.gz"));
+echo "<br>TN: " . date("F d Y H:i:s");
+echo "<br>NU: " . round($till / 60 / 60,2) . " hours.";
+?>
+<br><div align='center'>
+<script type="text/javascript"><!--
+google_ad_client = "pub-3449924361907127";
+google_alternate_color = "97e1ff";
+google_ad_width = 120;
+google_ad_height = 240;
+google_ad_format = "120x240_as";
+google_ad_type = "text_image";
+//2006-11-13: Views
+google_ad_channel = "8886672881";
+google_color_border = "6699CC";
+google_color_bg = "003366";
+google_color_link = "FFFFFF";
+google_color_text = "AECCEB";
+google_color_url = "AECCEB";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div>
+

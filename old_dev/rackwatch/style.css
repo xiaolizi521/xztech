@@ -1,0 +1,57 @@
+html {
+
+	text-align: justify;
+}
+
+td {
+
+margin: auto;
+
+}
+
+p {
+
+	font: 85% 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}
+
+.containerRight{
+	border: 1px solid black;
+	padding: 2px; 
+	font: 85% 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}
+
+.containerLeft{
+	border: 1px solid black;
+	padding: 2px; 
+	font: 85% 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}
+
+.localRight{
+	border: 1px solid black;
+	padding: 2px; 
+	font: 85% 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}
+
+.localLeft{
+	border: 1px solid black;
+	padding: 2px; 
+	font: 85% 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}
+
+.inputForm{
+
+border: 1px solid black; 
+padding: 2px;
+margin: 1px 1px 1px 1px;
+
+}
+
+.pollerheader{
+
+	text-decoration: underline;
+	font: 90% 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	font-weight: bold;
+	text-align: center;
+	margin: auto;
+	border: none;
+}

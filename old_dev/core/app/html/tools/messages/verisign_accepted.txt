@@ -1,0 +1,34 @@
+Dear Rackspace Customer:
+
+Your Verisign Certificate application was accepted by Verisign.
+Rackspace technical support will be installing this certificate on your
+server.  If you should have additional questions, please do not hesitate
+to contact your Rackspace Customer Care Team.
+
+One feature you may want along with your new certificate is a Verisign
+logo on your site.  Their brand is widely recognized as a symbol of
+security on the Internet.
+
+Verisign has instituted a "self-serve" feature on the web site to allow
+you to obtain your customer Issuer Digest (ID) number, which then allows
+you to obtain your new Secure Site Seal.
+
+For an explanation of the new program and installation instructions for
+the new seal, please go to:
+http://www.verisign.com/seal/secure/index.html
+
+In this process, please pay special attention to copying the "Issuer
+Digest" ID number (not the serial number or order number or any other
+number).  To locate the Issuer Digest #, use the following link's
+directions:
+
+http://www.verisign.com/seal/secure/index.html?sl=071101
+
+If you have any further questions or comments about the Seal program,
+please contact Rackspace Customer Care or Verisign Secure Seal Support
+at (877) 438-8776 seal-support@verisign.com
+
+Thank you,
+
+Rackspace Customer Care
+

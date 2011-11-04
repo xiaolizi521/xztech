@@ -1,0 +1,57 @@
+Length: 117 - ID: 1032
+Data: 
+C8 BB 26 00 id
+51 00 x
+48 00 y
+06 01 ??
+00 06 ??
+00 05 ??
+17 reborn count
+51 ??
+14 05 level
+00 00 ??
+01 00 00 00 pk_enable
+
+59 12 00 00 00 00 00 00 32 00 00 00 08 3F 11 20 0A 08 3E 22 40 09 08 3B 28 60 18 08 3B 3C 80 06 08 3F 3B 06
+
+08 length of name
+6A 61 63 6B 79 79 6C 6C name
+0C length of nickname
+46 61 62 75 6C 6F 75 73 CC EC CF C2
+09 length of spouse
+78 64 65 76 69 6C 69 73 68 
+0C length of guild
+43 72 6F 77 6E 65 64 43 6C 6F 77 6E 00 
+06 length of guild position
+6C 6F 6C 77 75 74
+
+Length: 85 - ID: 1032
+Data: 
+A6 22 29 00 id
+51 00 x
+48 00 y
+05 01 ??
+00 06 ??
+00 05 ??
+08 reborn count
+51 ??
+14 05 level 
+00 00 ??
+FF FF FF FF pk_enable 
+
+00 00 00 00 00 00 00 00 00 00 00 08 08 35 19 20 22 08 33 32 40 1D 08 0A 23 60 63 08 1E 37 80 97 08 3C 2C 06 
+
+07 length of name
+46 61 63 65 6D 61 6E name
+04 length of nickname
+46 61 63 65 nickname
+04 length of spouse
+4E 6F 6E 65 
+00 length of guild 
+00  
+00 
+
+
+Length: 24 - ID: 1007
+Data: 
+C8 BB 26 00 55 00 47 00 06 00 00 00 02 00 00 00 08 F9 30 07

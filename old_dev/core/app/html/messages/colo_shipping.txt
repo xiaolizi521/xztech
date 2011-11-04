@@ -1,0 +1,25 @@
+Instructions for configuring and shipping your server to Rackspace.com are below.  You will not be billed until we receive your server.
+
+The server OS should be configured and ready to be placed on our network.
+The server must meet the following size requirements:
+	The server you colocate cannot be larger than
+	21" Wide (53.34cm) X 40" Tall (101.60cm) X 41" deep (104.96cm)
+
+Network Information:
+Ip: ${net_ip}
+Netmask: ${net_netmask}
+Gateway IP: ${net_gateway}
+
+Primary DNS: ${net_dns1}
+Secondary DNS: ${net_dns2}
+
+
+Please ship the server to:
+	Rackspace Ltd. 
+	Attn: Production
+	Colocation Server #${account_number} - ${computer_number}
+	112 East Pecan St. Suite 600
+	San Antonio, TX  78205
+		USA
+
+Please make sure that your Customer Number - Server Number (${account_number}-${computer_number}) is clearly marked on the box you ship your server in.

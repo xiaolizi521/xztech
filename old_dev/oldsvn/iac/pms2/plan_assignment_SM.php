@@ -1,0 +1,296 @@
+<?
+	session_start();
+	
+	$p_level = $_SESSION['p_level'];
+	$p_levelType = $_SESSION['p_leveltype'];
+
+	if( $p_level != "super-manager" 
+		&& $p_levelType != 'manager'
+		&& $p_levelType != 'human resources' )
+	{
+		header( "Location: home.php" );
+		exit();
+	}
+	else
+		include( "header_functions.php" );
+
+	// Page specific functions
+	$id = $_REQUEST['id'];
+
+	/*
+	$db->query( "SELECT project_task.name, 
+		project_task.description, 
+		project_task.notes, 
+		project_task.status, 
+		project_task.unit, 
+		project_task.rate, 
+		client.organization,
+		employee.name as employee_name,
+		employee.id as employee_id,
+		client.id as client_id,
+		project.name as project,
+		project.id as project_id,
+		project.invoice as project_invoice,
+		project_task.rate_billable,
+		project_task.time_limit,
+		project_task.deadline
+	FROM project_task INNER JOIN employee ON project_task.employee_id = employee.id
+		 INNER JOIN project ON project_task.project_id = project.id
+		 INNER JOIN client ON project.client_id = client.id
+	WHERE project_task.id = $id"); 
+	*/
+	
+	$db->query( "SELECT plan_assignment.*, client.id as client_id, client.organization FROM plan_assignment
+				 INNER JOIN client_plan ON plan_assignment.plan_id = client_plan.id
+				 INNER JOIN client ON client_plan.client_id = client.id
+				 WHERE plan_assignment.id = $id");
+	$row = mysql_fetch_assoc( $db->result['ref'] );
+	$rate = $row['rate'];
+	//$project_id = $row['project_id'];
+	//$task_id = $id;
+	
+	// Include header TEMPLATE
+	include( "header_template.php" );
+
+?>
+
+<? if( !( $row['project_invoice'] > 0 ) ): ?>
+
+<div style="border-bottom: 3px solid #DDD; padding-bottom: 10px;">
+	<h1>Assignment Information</h1>
+	<div class="details">
+		<p><strong>Client:</strong> <a href="client_manage.php?id=<?= $row['client_id'] ?>"><?= $row['organization'] ?></a></p>
+		<p><strong>Assignment:</strong> <?= $row['name'] ?></p>
+		<? if( strlen( $row['description'] ) > 0 ): ?><p><strong>Description:</strong> <?= stripslashes( str_replace( "\n", "<br>", $row['description'] ) ) ?></p><? endif; ?>
+		<? if( strlen( $row['notes'] ) > 0 ): ?><p><strong>Notes:</strong> <?= stripslashes( str_replace( "\n", "<br>", $row['notes'] ) ) ?></p><? endif; ?>
+		<p><strong>Rate:</strong> $<?= $row['rate']."/".$row['unit'] ?></p>
+		<p><strong>Billable Rate:</strong> $<?= $row['rate_billable']."/".$row['unit'] ?></p>
+		<p><strong>Status:</strong> <?= status( $row['status'] ) ?></p>
+		<? if( strlen( $row['time_limit'] ) > 0 ): ?>
+		<p><strong>Time Limit:</strong> <?= stripslashes( $row['time_limit'] ) ?> Hours</p>
+		<? endif; ?>
+		
+		<? if( strlen( $row['deadline'] ) > 0 ): ?>
+		<p><strong>Deadline:</strong> <?= $row['deadline'] ?></p>
+		<? endif; ?>
+		
+		<p><a href="plan_assignment_edit.php?id=<?= $id ?>&plan_id=<?= $row['plan_id'] ?>" class="large_link">Edit Assignment Information &raquo;</a></p>
+	</div>
+</div>
+
+<div style="padding-top: 15px;">
+<h1>Time Sheet</h1>
+<?
+
+$db->query( "SELECT plan_assignment_hours.hours, 
+	plan_assignment_hours.notes, 
+	plan_assignment_hours.date, 
+	plan_assignment_hours.approved, 
+	plan_assignment_hours.approved_date, 
+	plan_assignment_hours.approved_by, 
+	plan_assignment_hours.id as plan_assignment_hours_id,
+	plan_assignment.id as plan_assignment_id,
+	plan_assignment_hours.timestamp_start,
+	plan_assignment_hours.timestamp_end,
+	plan_assignment_hours.fb_import,
+	plan_assignment_hours.manual_entry_date,
+	plan_assignment_hours.original_hours
+FROM plan_assignment_hours INNER JOIN plan_assignment ON plan_assignment_hours.plan_assignment_id = plan_assignment.id
+WHERE plan_assignment.id = $id" );
+
+$total_hours = 0;
+
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>Date</td>
+			<td>Time</td>
+			<td>Hours</td>
+			<td>Status</td>
+			<td>&nbsp;</td>
+			<td>Notes</td>
+		</tr>
+		<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+			<? $row['return'] = "plan_assignment.php?id=".$id; ?>
+			<? $total_hours += $row['hours'] ?>
+			<? $amount += $row['hours'] * $row['rate']; ?>
+			<tr class="table_row">
+				<td><?= tsDate( "m/d/Y", $row['timestamp_start'] ) ?></td>
+				<td nowrap><?= tsDate( "g:i A", $row['timestamp_start'] ) ?> - <?= tsDate( "g:i A", $row['timestamp_end'] ) ?></td>
+				<? if( $row['manual_entry_date'] > 0 ): ?>
+					<td class="modified"><?= $row['hours'] ?> (<?= $row['original_hours']?>)</td>	
+				<? else: ?>
+					<td><?= $row['hours'] ?></td>
+				<? endif; ?>				<td nowrap><?= approved( $row['approved'] ) ?></td>
+				<td class="link_button">
+					<? if ( $p_levelType != 'human resources' ){?>
+					<a href="plan_assignment_hours_edit.php?id=<?= $row['plan_assignment_hours_id'] ?>&plan_id=<?= $plan_id ?>">Adjust</a>
+					<? if( $row['approved'] == "0" ): ?> | <a href="plan_assignment_hours_approve.php?id=<?= $row['plan_assignment_hours_id'] ?>&plan_id=<?= $plan_id ?>">Approve Hours</a><? endif; ?>
+					<? if( $row['fb_import'] == "0" ): ?> | <a href="plan_assignment_hours_import.php?hours_id=<?= $row['plan_assignment_hours_id'] ?>&return=<?= base64_encode( "plan_assignment.php?id=$id" ) ?>">Import</a><? endif; ?>
+					<? }else{?>					
+					<a href="project_task_hours_edit.php?id=<?= $row['plan_assignment_hours_id'] ?>&plan_id=<?= $plan_id ?>">Edit</a>
+					<?}?>					
+				</td>
+				<td><? if( strlen( $row['notes'] ) > 0 ): ?><?= $row['notes'] ?><? else: ?>&nbsp;<? endif; ?></td>
+			</tr>
+		<? endwhile; ?>
+	</table>
+	<p><strong><?= $total_hours ?></strong> Total Hours ( $<?= number_format( $rate * $total_hours ) ?> Earned )
+<? else: ?>
+<p><em>No time has been added for this task</em></p>
+<? endif; ?>
+<? if ( $p_levelType != 'human resources' ){?>
+<p><a href="project_task_hours_add.php?id=<?= $id ?>" class="large_link">Add Time &raquo;</a></p>
+<? }?>
+</div>
+
+
+<div style="padding-top: 15px; border-top: 3px solid #DDD;">
+<h1>Current Activity</h1>
+<? 
+
+$db->query( "SELECT * FROM project_task_clock WHERE task_id = $id" );
+
+if( $db->result['rows'] > 0 ): ?>
+<? $row = mysql_fetch_assoc( $db->result['ref'] ); ?>
+<?
+
+	$start = $row['timestamp_start'];
+	$now = time();
+
+	echo "<p><strong>Employee clocked in at ".tsDate( "g:i A", $start )." on ".tsDate( "M. jS, Y", $start )."</strong><br>";
+	echo "Current time is ".tsDate( "g:i A", $now )." on ".tsDate( "M. jS, Y", $start )."</p>";
+	echo "<p>Elapsed time: <strong>".round( floor( ( $now - $start ) / 60 ) / 60, 2 )." hours ( or ".round( ( $now - $start) / 60, 1 )." minutes )</strong></p>";
+?>
+<p><a href="project_task_clock.php?id=<?= $id ?>" alt="Clock out"><img src="images/stopclock.gif" alt="Start Clock"></a></p>
+<? else: ?>
+<p><em>No employee is currently working on this task</em></p>
+<? endif; ?>
+</div>
+
+<? else: ?>
+
+<div style="border-bottom: 3px solid #DDD; padding-bottom: 10px;">
+	<h1>Assignment Information</h1>
+	<div style="padding: 0 10px 0 10px; background: #EEE; border: 2px solid #DDD;">
+		<p><strong>Project:</strong> <a href="project_manage.php?id= <?= $row['project_id'] ?>"><?= $row['project'] ?> </a></p>
+		<p><strong>Client:</strong> <a href="client_manage.php?id=<?= $row['client_id'] ?>"><?= $row['organization'] ?></a></p>
+		<p><strong>Task:</strong> <?= $row['name'] ?></p>
+		<? if( strlen( $row['description'] ) > 0 ): ?><p><strong>Description:</strong> <?= $row['description'] ?></p><? endif; ?>
+		<? if( strlen( $row['notes'] ) > 0 ): ?><p><strong>Notes:</strong> <?= $row['notes'] ?></p><? endif; ?>
+		<p><strong>Rate:</strong> $<?= $row['rate']."/".$row['unit'] ?></p>
+		<p><strong>Status:</strong> <?= status( $row['status'] ) ?></p>
+	</div>
+</div>
+
+<div style="padding-top: 15px;">
+<h1>Time Sheet</h1>
+<?
+
+$db->query( "SELECT project_task_hours.hours, 
+	project_task_hours.notes, 
+	project_task_hours.date, 
+	project_task_hours.approved, 
+	project_task_hours.approved_date, 
+	project_task_hours.approved_by, 
+	project_task_hours.id,
+	project_task_hours.timestamp_start,
+	project_task_hours.timestamp_end
+FROM project_task_hours INNER JOIN project_task ON project_task_hours.project_task_id = project_task.id
+WHERE project_task.id = $id" );
+
+$total_hours = 0;
+
+?>
+<? if( $db->result['rows'] > 0 ): ?>
+	<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+		<tr class="table_heading">
+			<td>Date</td>
+			<td>Time</td>
+			<td>Hours</td>
+			<td>Status</td>
+		</tr>
+		<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+			<? $total_hours += $row['hours'] ?>
+			<? $amount += $row['hours'] * $row['rate']; ?>
+			<tr class="table_row">
+				<td><?= tsDate( "m/d/Y", $row['timestamp_start'] ) ?></td>
+				<td><?= tsDate( "g:i A", $row['timestamp_start'] ) ?> - <?= tsDate( "g:i A", $row['timestamp_end'] ) ?></td>
+				<td><?= $row['hours'] ?> hours</td>			
+				<td><?= approved( $row['approved'] ) ?></td>
+			</tr>
+		<? endwhile; ?>
+	</table>
+	<p><strong><?= $total_hours ?></strong> Total Hours ( $<?= number_format( $rate * $total_hours ) ?> Earned )
+<? else: ?>
+<p><em>No time has been added for this task</em></p>
+<? endif; ?>
+</div>
+
+<? endif; ?>
+
+<?
+	$db->query( "SELECT messages.employee_id, 
+		messages.project_id, 
+		messages.task_id, 
+		messages.file_id, 
+		messages.filename, 
+		messages.message, 
+		messages.date, 
+		messages.global, 
+		messages.priority, 
+		messages.sent_by, 
+		messages.status, 
+		messages.sent_by_name, 
+		messages.id,
+		project.name as project_name,
+		project.id as project_id,
+		project_task.id as task_id,
+		project_task.name as task_name
+	FROM project_employees INNER JOIN messages ON project_employees.project_id = messages.project_id
+		 INNER JOIN project ON messages.project_id = project.id
+		 INNER JOIN project_task ON project_task.project_id = project.id AND messages.task_id = project_task.id
+	WHERE project_task.id = $id
+	ORDER BY messages.date DESC" );
+?>
+
+<div style="border-top: 3px solid #DDD; padding-top: 10px;">
+<h1>Messages</h1>
+<? if( isset( $_REQUEST['success'] ) ): ?>
+<p class="color_blue">Message sent successfully</p>
+<? endif; ?>
+<? if( $db->result['rows'] > 0 ): ?>
+<table cellpadding="0" cellspacing="0" border="0" class="data_table">
+	<tr class="table_heading">
+		<td>&nbsp;</td>
+		<td>From</td>
+		<td>Task</td>
+		<td>Sent</td>
+		<td>Attachment</td>
+		<td>&nbsp;</td>
+	</tr>
+	<? while( $row = mysql_fetch_assoc( $db->result['ref'] ) ): ?>
+	<tr>
+		<td nowrap><img src="images/misc_icons/email-<?= $row['priority'] ?>.gif"></td>
+		<td nowrap><strong><?= $row['sent_by_name'] ?></strong></td>
+		<td><a href="project_task.php?id=<?= $row['task_id'] ?>"><?= $row['task_name'] ?></a></td>
+		<td nowrap><?= date( "g:i A", $row['date'] ) ?> on <?= date( "m/d/y", $row['date'] ) ?></td>
+		<td nowrap><? if( strlen( $row['filename'] ) > 0 ): ?> <a href="./uploads/<?= $row['filename']?>"><img src="images/misc_icons/file.gif"> Download</a><? endif; ?> &nbsp;</td>
+		<td nowrap><a href="message_delete.php?id=<?= $row['id'] ?>"><img src="images/misc_icons/email-delete.gif"> Delete</a></td>
+	</tr>
+	<tr class="email_end">
+		<td>&nbsp;</td>
+		<td colspan="5"><?= stripslashes( $row['message'] ) ?>&nbsp;</td>
+	</tr>
+	<? endwhile; ?>
+</table>
+<? else: ?>
+<p><em>There are no messages</em></p>
+<? endif; ?>
+<p><a href="message_new.php" class="large_link">Compose Message &raquo;</a></p>
+</div>
+
+
+
+<? include( "footer.php" ); ?>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE Index [
+
+<!ELEMENT Index (Donation, Releases)>
+<!ELEMENT Donation (Current, Goal, Server, Media1, Media2, Month, Year, Donate)>
+<!ELEMENT Current (#PCDATA)>
+<!ELEMENT Goal (#PCDATA)>
+<!ELEMENT Server (#PCDATA)>
+<!ELEMENT Media1 (#PCDATA)>
+<!ELEMENT Media2 (#PCDATA)>
+<!ELEMENT Month (#PCDATA)>
+<!ELEMENT Year (#PCDATA)>
+<!ELEMENT Donate (Donator, Amount)*>
+<!ELEMENT Donator (#PCDATA)>
+<!ELEMENT Amount (#PCDATA)>
+<!ELEMENT Releases (Anime, Manga)>
+<!ELEMENT Anime (aRAW, aSUB)>
+<!ELEMENT aRAW (#PCDATA)>
+<!ELEMENT aSUB (#PCDATA)>
+<!ELEMENT Manga (mRAW, mSUB)>
+<!ELEMENT mRAW (#PCDATA)>
+<!ELEMENT mSUB (#PCDATA)>
+]>

@@ -1,0 +1,15 @@
+/*
+Bug: Scrollbars on the canvas
+Versions: IE 5 through 6
+Workaround: Pad the right side so the scroll bars cover blank canvas
+Description:
+   If a page is too long to fit in a window, a scrollbar is added 
+   on the left ON TOP OF the canvas.  It should reduce the size
+   of the canvas instead.
+
+   This produces horizontal scrollbars in places where it should not
+   be needed, and pages that can never fit fully (left to right) on
+   the screen.
+*/
+body { margin-right: 2ex
+}

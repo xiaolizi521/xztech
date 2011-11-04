@@ -1,0 +1,140 @@
+<?
+	session_start();
+		
+	$p_level = $_SESSION['p_level'];
+	$p_levelType = $_SESSION['p_leveltype']; 
+	
+	if( $p_level != "super-manager" && $p_levelType != 'human resources')
+	{
+		header( "Location: home.php" );
+		exit();
+	}
+	else
+		include( "header_functions.php" );
+
+	// Check to see if anything was posted from a form
+	$post = $_POST;
+	if( sizeof( $post ) > 0 )
+		if( checklen( $post ) )
+		{
+			// Check for duplicates
+			$array = array( "username" => $post['username'] );
+			$db->get( "employee", $array );
+			if( $db->result['rows'] > 0 )
+				$dup_username_error = true;
+			else
+			{
+				$array = array( "username" => $post['username'],
+									 "password" => md5( $post['password'] ),
+									 "name" => $post['name'],
+									 "email" => $post['email'],
+									 "email_paypal" => $post['email_paypal'],
+									 "telephone" => $post['telephone'],
+									 "permission" => $post['permission'],
+									 "rate" => $post['rate'],
+									 "type" => "employee",
+									 "payment_reference" => $post['payment_reference'],
+									 "manager_id" => "0" );
+
+				$db->add( "employee", $array );
+				header( "Location: employees.php" );
+			}
+		}
+		else
+		{
+			$error = true;
+		}
+
+	function checklen( $data )
+	{
+		foreach( $data as $key => $value )
+		{
+			if( strlen( $value ) < 1 )
+				return false;
+		}
+		
+		return true;
+	}
+	// Start of page-specific actions
+	
+	// Include header TEMPLATE
+	include( "header_template.php" );
+?>
+
+<!-- Start of New Employee -->
+<div>
+<h1>Add Employee</h1>
+<form action="employees_addemployee.php" method="post">
+<? if( $error ) echo "<p class=\"color_red\">All fields must be completed.</p>"; ?>
+<? if( $dup_username_error ) echo "<p class=\"color_red\">That username has already been used.</p>"; ?>
+
+<table cellpadding="5">
+	<tr>
+		<td>Name:</td>
+		<td><input type="text" name="name" size="30" value="<?= $post['name'] ?>"></td>
+	</tr>
+	<tr>
+		<td>Email:</td>
+		<td><input type="text" name="email" size="30" value="<?= $post['email'] ?>"></td>
+	</tr>
+	<tr>
+		<td>PayPal Email:</td>
+		<td><input type="text" name="email_paypal" size="30" value="<?= $post['email_paypal'] ?>"></td>
+	</tr>
+	<tr>
+		<td>Telephone:</td>
+		<td><input type="text" name="telephone" size="30" value="<?= $post['telephone'] ?>"></td>
+	</tr>	
+	<tr>
+		<td>Username:</td>
+		<td><input type="text" name="username" size="30" value="<?= $post['username'] ?>"></td>
+	</tr>
+	<tr>
+		<td>Password:</td>
+		<td><input type="text" name="password" size="30" value="<?= $post['password'] ?>"></td>
+	</tr>
+	<tr>
+		<td>Default Rate:</td>
+		<td>$ <input type="text" name="rate" size="5" value="<?= $post['rate'] ?>"></td>
+	</tr>
+	<tr>
+		<td valign="top">Access:</td>
+		<td style="background: #EEE;">
+			<input type="radio" name="permission" value="full"><strong>Full access</strong></input> - can view rate and most project information<br>
+			<input type="radio" name="permission" value="limited" checked><strong>Limited access</strong></input> - cannot view rate or other project information<br/>
+                        <!--
+  			<input type="radio" name="permission" value="timekeeper"><strong>Timekeeper</strong></input> - limited + can approve and import all time<br/> 
+			<input type="radio" name="permission" value="manager"><strong>Manager</strong></input> - limited + create/edit projects, create/edit tasks<br/>
+                        --> 
+			<input type="radio" name="permission" value="human resources"><strong>Human Resources</strong></input> - limited + create/edit projects, create/edit tasks, create/edit employees<br/>
+			<input type="radio" name="permission" value="system administrator"><strong>System Administrator</strong></input> - limited + can view all files
+		</td>
+	</tr>
+	<!--<tr>
+		<td>Manager:</td>
+	</tr>-->
+	<tr>
+		<td>Payment Reference:</td>
+		<td>
+			<select name="payment_reference">
+			<?
+				$types = array( "Direct Deposit" => "direct-deposit", "PayPal" => "paypal", "Check" => "check", "GURU Safe Pay" => "guru" );
+		
+				foreach( $types as $key => $value )
+				{
+					if( $row['type'] == $value )
+						echo "<option value=\"$value\" selected=\"true\">$key</option>\n";
+					else
+						echo "<option value=\"$value\">$key</option>\n";
+				}
+			?>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right"><input type="submit" value="Add Employee &raquo;"></td>
+	</tr>
+</table>
+</form>
+</div>
+<? include( "footer.php" ); ?>

@@ -1,0 +1,15 @@
+Server Online/Complete
+
+Name: ${primary_contact_name}
+Org: ${primary_contact_org}
+Account Number: ${account_number}
+Email: ${primary_contact_email}
+
+Computer Number: ${computer_number}
+OS: ${os}
+Monthly Fee: ${final_monthly}
+Profile Available: https://core.rackspace.com/tools/display_computer.php3?customer_number=${account_number}&computer_number=${computer_number}
+
+This has been an automated message from CORE.
+
+message: internal_rep_online_notice.txt

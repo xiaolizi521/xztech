@@ -1,0 +1,37 @@
+.col_hide {
+    display: none;
+}
+
+.col_menu_hide {
+    display: none;
+    position: absolute;0
+}
+
+.col_menu_show {
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    background-color: #ccc;
+    border: solid 1px;
+    border-color: #ffffff #333333 #333333 #ffffff;
+    padding: 3px;
+}
+
+.col_menu_title {
+    background-color: #003399;
+    color: #ffffff;
+    padding: 1px;
+    border: solid 1px #ffffff;
+    font-size: smaller;
+}
+
+.col_menu_body {
+    font-size: smaller;
+}
+
+.roller_hide {
+    display: none;
+}
+
+.roller_show {
+}

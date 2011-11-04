@@ -1,0 +1,112 @@
+Test results for link to load a functional page.
+
+MAIN
+	OK   - Bug Report
+	OK   - Voice of Customer
+	OK   - Create Account
+	OK   - Reports -> Sales Stats
+	OK   - Reports -> Monthly Server Stats	
+	OK   - Reports -> Monthly Revenue Stats
+	OK   - Reports -> Monthly Customer Stats		
+	OK   - Reports -> Sales Rep Stats
+	OK   - Reports -> Platform Stats	
+	OK   - Reports -> Value Added Stats	
+	OK   - Reports -> All Submission Stats		
+	OK   - Reports -> Dedicated Submission Stats		
+	OK   - Reports -> Complex Submission Stats		
+	OK   - Reports -> Sales List		
+	OK   - Reports -> Parts Usage	
+	OK   - Reports -> Builder Stats	
+	OK   - Reports -> PrivateNet Stats	
+	OK   - Reports -> Unison Stats
+	OK   - Reports -> Support Team Stats		
+	OK   - Account Exec -> Suspend Servers
+	OK   - Account Exec -> Cancellation Queue
+	OK   - Billing -> Pre-configured Servers
+	OK   - Billing -> 1 Hour Servers
+	OK   - Billing -> New Orders
+	OK   - Billing -> New 1 Hour Orders
+	OK   - Billing -> Current Customers
+	OK   - Billing -> Delinquent Customers
+	OK   - Billing -> Inactive Servers
+	OK   - Billing -> Main -> In Progress
+	OK   - Billing -> Main -> Bad Location
+	OK   - Billing -> Main -> Rotation Schedule
+	OK   - Billing -> London -> In Progress
+	OK   - Billing -> London -> Bad Location
+	OK   - Billing -> London -> Rotation Schedule
+	OK   - Billing -> Servers in Migration
+	OK   - Billing -> Servers Under Repair/Upgrade
+	OK   - Billing -> Servers Suspended
+	OK   - Billing -> Cancellation Queue
+	OK   - Marketing -> PR Search
+	FAIL - Networking -> Edit DNS Configuration
+	OK   - Networking -> Switch Assignment
+	OK   - Networking -> IP Accounting
+	OK   - Networking -> Create IP Space
+	OK   - Networking -> Switch IP List
+	OK   - Production -> Part Audit
+	OK   - Production -> License Tracking
+	OK   - Production -> Verisign Approval/Rejection
+	OK   - Sales -> New Orders
+	OK   - Sales -> New 1 Hour Orders	
+	OK   - Sales -> Site Submissions	
+	OK   - Sales -> MyRackspace Referrals
+
+SEARCH	
+	OK   - Account #
+	OK   - Computer #	
+	OK   - Sales -> Agg Product
+	OK   - Sales -> Session #
+	OK   - Sales -> Supper Search
+	
+CUSTOMER ACTION
+	OK   - Edit Account
+	OK   - Delete Account	
+	OK   - Add Contact
+	FAIL - Launch DNS	
+	OK   - Register Reminder
+	OK   - MyRackspace Login
+	OK   - Add Server to Account -> Main Office
+	OK   - Add Server to Account -> London
+	OK   - Add Preconfigure Server
+	OK   - Add Aggregate Product ->	DAS
+	OK   - Add Aggregate Product ->	EpicRealm
+	OK   - Add Aggregate Product ->	Verisign
+	OK   - Edit Customer Number
+	OK   - Edit PR Info	
+		
+COMPUTER ACTION
+	Search Computer # -> Left frame fails after refresh
+	
+	OK   - Edit Emergency Instructions
+	OK   - Register Reminder
+	OK   - Resend Online Notification
+	OK	 - Add DNS Entry
+	OK   - Assign Primary IP Address
+	OK	 - Add IP Route
+	FAIL - Edit DNS Data
+	OK	 - Assign Rep
+	OK 	 - Change Owner
+	OK	 - Edit Computer Info
+	OK   - View Edit Product Configurations
+    OK	 - Edit Computer Parts/Platform
+	OK   - Server Cancellation Schedule
+ 	OK	 - View MRTG Graph
+	OK	 - View Total Transfer
+	OK	 - View Password Info
+	OK	 - Ping Server
+    OK	 - Remove Computer	
+	
+	
+		 
+	
+	
+	
+	
+		
+	
+		
+		
+		
+		

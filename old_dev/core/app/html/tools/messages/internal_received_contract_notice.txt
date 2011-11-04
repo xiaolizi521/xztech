@@ -1,0 +1,13 @@
+The contract for server #${computer_number} has been received.
+Name: ${primary_contact_name}
+Account Number: ${account_number}
+Email: ${primary_contact_email}
+
+Server Number: ${computer_number}
+Profile Available: https://core.rackspace.com/tools/display_computer.php3?customer_number=${account_number}&computer_number=${computer_number}
+
+If there are any special details that have not been recorded in the customers profile or if anything is unusual about this server please contact the customer's support team, ${support_team}, ASAP.
+
+This has been an automated message from CORE.
+
+message: internal_received_contract_notice.txt

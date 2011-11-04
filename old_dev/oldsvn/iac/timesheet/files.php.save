@@ -1,0 +1,21 @@
+<?
+	session_start();
+		
+	$p_level = $_SESSION['p_level'];
+	
+	switch( $p_level )
+	{
+		case( "manager" ):
+			include( "files_M.php" );
+			break;
+		case( "super-manager"):
+			include( "files_SM.php" );
+			break;
+		case( "employee" ):
+			include( "files_E.php" );
+			break;
+ 		default:
+ 			header( "Location: index.php" );
+ 			break;
+	}
+?>

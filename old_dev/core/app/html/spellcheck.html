@@ -1,0 +1,48 @@
+<html>
+<head>
+<script type="text/javascript" src="/script/spellcheck.js"></script>
+<link href="/css/spellcheck.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<form action="javascript:void%200" onsubmit="spellCheck( 'comment' );return false" name="ticketmsg">
+    <p>Text: <textarea name="comment" id="comment" cols="50" rows="15" style="border: 1px solid black;">Thsi is somee mispelled data to passe to aspel in the hopess it wil fixe teh words Thsi teh</textarea>
+    <p><input type="submit" name="submit" value="Submit"></p>
+    <select name="blah">
+        <option>blah</option>
+    </select>
+    
+    <select name="blah" multiple>
+        <option>blah</option>
+        <option>blah</option>
+        <option>blah</option>
+        <option>blah</option>
+        <option>blah</option>
+    </select>
+    
+    <div id="json"></div>
+    <div id="props"></div>
+    <p/>
+<!-- for spellchecker -->
+<div id="waiting" class="waiting">Checking Spelling, Please Wait...</div>
+<div id="spellcheck" class="spellcheck">
+    <div id="title_bar">
+        CORE: Spellcheck
+    </div>
+    <div id="usertext">
+    </div>
+    <div id="buttons">
+        <input type="button" value="Change" class="sc_button" onclick="replaceWord(); return false" /><p/>
+        <input type="button" value="Change All" class="sc_button" onclick="replaceAllWords(); return false" /><p/>
+        <input type="button" value="Cancel" class="sc_button" onclick="cancelSpellCheck(); return false" /><p/>
+        <input type="button" value="Done" class="sc_button" onclick="hideSpellCheck('__NewSupportTeam_problem_value'); return false" /><p/>
+    </div>
+    <div id="s_title">Suggestions:</div>
+    <div id="suggest">
+    </div>
+</div>
+<!-- end for spellchecker -->
+    <pre id="code">
+    </pre>
+</form>
+</body>
+</html>

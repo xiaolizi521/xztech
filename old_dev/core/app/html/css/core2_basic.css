@@ -1,0 +1,1048 @@
+/*
+Core 2(python) CSS2 style sheets
+*/
+
+/*
+ * Default styling
+ */
+address, blockquote, body, caption, center, dd, dir, div, dl, dt, form, li, menu, ol, p, td, th, tr, ul { font-family: Arial, Helvetica, sans-serif;
+font-weight: normal
+}
+
+body { background: white;
+color: black;
+padding: 0.2ex;
+margin: 2px;
+}
+
+/* Turn off EI's always present scroll bar (or margin)
+   IE: basically, sucks.  This is commented out.  Leave it alone. -CGH
+body,html { 
+  overflow-y: auto
+}
+*/
+
+img {vertical-align: middle
+}
+
+th { text-align: left;
+font-weight: normal;
+border: none;
+padding: 1px;
+}
+
+pre {font-family: neep, courier, monospace;
+white-space: pre
+}
+
+p {
+margin: 0.5ex;
+padding: 0.3ex 0.5ex;
+line-height: 1.2;
+}
+
+a img {border: none
+}
+
+textarea { font-family: Courier, monospace;
+font-size: medium
+}
+
+fieldset {
+  border-style: groove; 
+  border-width: 3px;
+  border-color: #039;
+  padding: 0.4ex 0.5ex;
+  margin: 0.4ex;
+}
+legend {
+  color: black;
+  border: 1px solid #039;
+}
+
+optgroup[label] {
+  font-style: normal
+}
+
+/*
+ * Abbreviations and Acronyms 
+ */
+abbr, acronym {
+  border-bottom: 2px dotted #333;
+  cursor: help;
+  }
+
+/*
+ * small fonts
+ */
+
+.smallfont {
+  font-size: small;
+  }
+
+/*
+ * Popup HelpItems
+ */
+.helpitem {
+  border: 1px solid #cc9933;
+  font-weight: bold;
+  background-color: #fff999;
+  color: black;
+  cursor: help;
+  padding: 1px;
+  padding-left: 0.3ex;
+  padding-right: 0.3ex;
+  font-size: small;
+  text-decoration: none;
+  }  
+
+a.helpLink, .menu_page_content a.helpLink  {
+	color:				Green;
+	text-decoration:	none;
+	border-bottom:		1px dashed Green;
+	cursor:				help;
+}
+
+a.helpLink:hover, .menu_page_content a.helpLink:hover  {
+	color:				Red;
+	text-decoration:	none;
+	border-bottom:		1px dashed Red;
+}
+
+.help-tooltip {
+    border: 1px solid #cc9933;
+    background-color: #fff999;
+    color: black;
+    width: auto;                
+    max-width: 60ex;
+}
+
+.helpitem:link { text-decoration: none; color: black; }
+.helpitem:active { text-decoration: none; color: black; }
+.helpitem:visited { text-decoration: none; color: black; }
+.helpitem:hover { text-decoration: none; color: black; }
+
+.helpitem-para-list 
+{ 
+  margin: 0.1ex 0.3ex;
+  padding: 0 0.3ex;
+
+  /* anti-indent trick */
+  padding-left: 2.6ex;
+  text-indent: -2ex;
+}
+
+/*
+ * Links (by default, info links)
+ */
+.menu_page_content a:link {color: blue;
+text-decoration: none}
+
+.menu_page_content a:visited {color: blue;
+text-decoration: none}
+
+.menu_page_content a:active {color: blue;
+text-decoration: none}
+
+.menu_page_content a:hover {color: blue;
+text-decoration: underline}
+
+/*
+ * Action Links
+ */
+a.action {color: blue;
+text-decoration: none;
+margin-left: 1px;
+margin-right: 1px
+}
+
+a.action:hover {border: 1px solid black;
+text-decoration: none;
+margin-left: 0px;
+margin-right: 0px }
+
+a.action:link {text-decoration: none }
+
+a.action:visited {text-decoration: none }
+
+a.action:active {text-decoration: none }
+
+/*
+ * Misc. styles
+ */
+.blackonwhite { background: white; color: black }
+.hilite { background: #FFCCCC; color: black }
+.padless { margin: 0ex; padding: 0ex; border: none }
+
+
+/*
+ * Core Blue Dialog
+ */
+table.core_blue_dialog {background-color:#ccc; margin:auto; border:3px ridge #ccc;}
+table.core_blue_dialog th {background-color:#039; color:#fff; font-weight:bold; padding:1px 5px;}
+table.core_blue_dialog td {padding:5px;}
+table.core_blue_dialog .small {font-size:70%;}
+table.core_blue_dialog .buttons {padding:5px; text-align:right;}
+
+/*
+ * New BlueMan
+ */
+
+.blueman_span_title {
+display: block;
+border: solid thin grey;
+color: white;
+background: #039;
+font-weight: bold;
+margin-top: 0;
+margin-left: 0;
+margin-right:  0;
+margin-bottom: 1ex;
+padding: 0.3ex 0.4ex;
+}
+
+.blueman_span_title a { color: white }
+.blueman_span_title a:active {color: white;
+text-decoration: underline}
+.blueman_span_title a:link {color: white;
+text-decoration: underline}
+.blueman_span_title a:visited {color: white;
+text-decoration: underline}
+.blueman_span_title a:hover {color: white;
+text-decoration: underline}
+
+
+.blueman_div_border {
+border-color: #ccc;
+border-style: solid;
+border-width: 2px;
+margin-top: 0.2ex;
+margin-bottom: 0.2ex;
+padding: 2px;
+}
+
+/*
+ * Old BlueMan
+ */
+
+.blueman_title_bar {
+/* float can only be left or right
+    float: top; 
+*/
+    border: solid thin grey;
+    color: white;
+    background: #039;
+    font-weight: bold;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right:  0;
+    margin-bottom: 1ex;
+    padding: 0.3ex 0.4ex;
+}
+
+table.blueman { border-spacing: 0;
+border-color: #ccc;
+border-style: solid;
+border-width: 2px;
+margin-top: 0.2ex;
+margin-bottom: 0.2ex;
+padding: 2px;
+width: auto;
+}
+
+th.blueman { border: thin solid #003399;
+background: #003399;
+color: white;
+font-weight: bold
+}
+
+th.blueman a { color: white
+}
+
+th.blueman a:active {color: white;
+text-decoration: underline}
+th.blueman a:link {color: white;
+text-decoration: underline}
+th.blueman a:visited {color: white;
+text-decoration: underline}
+th.blueman a:hover {color: white;
+text-decoration: underline}
+
+
+/*
+public
+*/
+th.comment_field1 { background: #87CEFA;
+border: 1px solid #999;
+color: black;
+width: 20ex}
+table.comment_background1 { background: #D8F0FA;
+border: 1px solid #999;
+color: black }
+
+/*
+private
+*/
+th.comment_field0 { background: #FFF999;
+border: 1px solid #999;
+color: black;
+width: 20ex}
+table.comment_background0 { background: #FFFBE0;
+border: 1px solid #999;
+color: black }
+
+
+
+/*
+ * DataTable
+ */
+.datatable { border-spacing: 1px 1px;
+border: none;
+width: 100%
+}
+
+.datatable th { background: #CCCCCC;
+color: black;
+border: 1px solid #999;
+padding: 1px;
+font-size: small;
+font-weight: 600;
+white-space : nowrap;
+vertical-align: top;
+}
+
+.datatable tr.even { background: #dce6f0 ;
+color: black
+}
+
+.datatable tr.odd { background: #fbfbfb;
+color: black
+} 
+.datatable tr.oddred { background: #FFE4E2;
+color: #000000
+}
+
+.datatable tr.evenred { background: #FFD6D5;
+color: #000000}
+
+.datatable tr td b { font-size: 120%; color: red }
+
+.datatable td { 
+padding: 0.3ex 0.5ex;
+}
+
+.datatable th.subhead1 { background: #6699ff;
+color: white;                                     
+font-weight: bold;
+border: 1px solid #3366cc;
+}
+
+.datatable td.counter {
+background-color : #e6e6e6;    
+text-align : center;
+border: #999 solid 1px;
+padding: 1px
+} 
+
+.datatable th.active {
+background: #CDE;
+}
+
+.active {
+background: #DEF;
+}
+
+.datatable th.inactive {
+background: lightgrey;
+color: grey;
+}
+
+.inactive {
+color: grey;
+}
+
+/* RowTable (subclass of DataTable) */
+.rowtable_th {
+font-weight: bold;
+white-space: nowrap;
+vertical-align : top;
+}
+
+.rowtable_td { 
+padding: 0.1ex;
+}
+
+/* Centered Variant */
+.centered_rowtable_th {
+font-weight: bold;
+white-space: nowrap;
+vertical-align : middle;
+text-align: center;
+}
+
+
+/*
+ * Table Reporter (used in SQL Reports)
+ */
+
+table.reporter { border-spacing: 1px 1px;
+border: none;
+width: 100%
+}
+
+th.reporter { background: #CCCCCC;
+color: black;
+border: 1px solid #999;
+padding: 1px
+}
+
+.reporter {border-spacing: 0}
+
+table.reporter TD { padding: 1px
+}
+tr.reporter    { background: #dce6f0 ;
+color: black
+}
+tr.reporterodd { background: #fbfbfb;
+color: black
+} 
+  
+/*
+ * TicketLogTable
+ */
+.ticket_log_table th { color: black;
+background: #CCCCCC
+}
+
+.ticket_log_table tr.even { background: #EEEEEE;
+color: black
+}
+
+.ticket_log_table tr.odd { background: #F8F8F8;
+color: black
+}
+
+.ticket_log_table tr.even td.highlight { background: #e3e6ab;
+color: black
+}
+
+.ticket_log_table tr.odd td.highlight { background: #fcffbe;
+color: black
+}
+
+
+/*
+ * NavisionTable
+ */
+.nav_table { border-spacing: 0px 1px;
+border: none;
+width: 100%;
+display: table;
+}
+
+.nav_table_header { 
+color: black;
+border-spacing: 1px;
+}
+
+.nav_table_th { 
+vertical-align: top;
+padding: 0;
+}
+
+.nav_table_header_title { 
+background: #CCCCCC;
+color: black;
+border: 1px solid #999;
+padding: 1px;
+margin: 1px;
+margin-left: 0;
+font-size: small;
+font-weight: bolder;
+white-space : nowrap;
+}
+
+TR.nav_table { 
+padding: 0;
+color: black;
+}
+
+TD.nav_table { 
+font-size: 80%; 
+padding: 2px 2px; /* vertical horizontal */
+}
+
+.nav_table_row_even { background: #D0F0E0 }
+.nav_table_row_odd { background: #FFFFF0 }
+
+.nav_table_payment { color: red }
+
+
+
+/*
+ * TicketTable
+ */
+.ticket_table { border-spacing: 0px 1px;
+border: none;
+width: 100%
+}
+
+.ticket_table_header { 
+color: black;
+border-spacing: 1px;
+}
+
+.ticket_table_header_th { 
+vertical-align: top;
+padding: 0;
+}
+
+.ticket_table_header_th_span { background: #CCCCCC;
+color: black;
+border: 1px solid #999;
+padding: 1px;
+margin: 1px;
+margin-left: 0;
+font-size: small;
+font-weight: bolder;
+white-space : nowrap;
+}
+
+.ticket_table_row { 
+padding: 0;
+color: black;
+}
+
+.ticket_table_td { 
+font-size: 80%; 
+padding: 2px 2px; /* vertical horizontal */
+}
+
+.ticket_table_row_even { background: #D0E0F0 }
+.ticket_table_row_odd { background: #FFFFF0 }
+
+.ticket_table_td b { font-size: 120%; color: red }
+
+
+/*
+ *   Notes
+ */
+ 
+.note {
+	background-color: #FFCC33;
+	padding: 0px;
+    border: 0px;
+    width: 100%;
+}
+
+.note th {
+	background-color: #FFCC33;
+    padding: 1px;
+    font-size: 85%;
+}
+
+.note th.date {
+	background-color: #FFCC33;
+    padding: 1px;
+	text-align: right;    
+    font-size: 85%;
+} 
+                  
+.note td {
+    font-size: 85%;
+    background-color: #FFF999;
+}
+
+
+/*
+ * New Emergency
+ */
+
+.emergency_span_title {
+display: block;
+border: outset thin #F30;
+color: black;
+background: #F66;
+font-weight: bold;
+margin-top: 0;
+margin-left: 0;
+margin-right:  0;
+margin-bottom: 1ex;
+padding: 0.3ex 0.4ex;
+}
+
+.emergency_div_border {
+color: black;
+background: #FCC;
+border-color: #F30;
+border-style: outset;
+border-width: 2px;
+margin-top: 0.2ex;
+margin-bottom: 0.2ex;
+padding: 2px;
+white-space: pre;
+}
+
+/*
+ * Old Emergency
+ */
+table.emergency { 
+margin: 0px;
+/* margin: 0.5ex 2ex; */
+border-spacing: 0px;
+border-style: outset;
+border-color: #FF3300;
+border-width: 2px;
+width: 100%;
+}
+
+table.emergency th { background: #FF6666;
+color: black
+}
+table.emergency td { background: #FFCCCC;
+color: black;
+font-family: monospace;
+font-size: medium;
+}
+
+/*
+ * ESPy
+ */
+.ESPy PRE { font-family: monospace;
+            color: black;
+            background-color: #EEEEEE; 
+            border: thin solid grey;
+            font-size: medium;
+            white-space: pre }
+
+/*
+ * WebWidgets
+ */
+table.form_wizard { border-spacing: 0px;
+margin: 0.5ex
+}
+table.form_wizard .selected { padding: 1ex;
+background: #C0D0FF;
+color: black;
+
+}
+table.form_wizard .tab { padding: 1ex 0ex;
+background: #E0E9FF;
+color: black;
+}
+table.form_wizard input { font-family: Arial, Helvetica, sans-serif;
+font-size: medium;
+font-weight: bold;
+margin: 0ex;
+padding: .5ex;
+border: none
+}
+table.form_wizard .tab input { background: #E0E9FF;
+color: black;
+}
+table.form_wizard .selected input { background: #C0D0FF;
+color: black;
+}
+table.form_wizard .lasttab { padding: 0ex 3ex
+}
+table.form_wizard .body { padding: 0.7ex;
+background: #C0D0FF;
+color: black;
+}
+ 
+/*
+ * Splash
+ */
+table.splashstats { 
+font-family: Arial, Helvetica, sans-serif;
+border-spacing: 0px;
+font-weight: bold;
+font-size : 110%;
+width: 100%
+}
+
+table.news { 
+font-family: Arial, Helvetica, sans-serif;
+border-spacing: 0px;
+font-size : 75%;
+width: 100%
+}
+
+
+
+/*
+ * Text Button
+ */
+a.text_button,
+input.text_button {
+    background: #6699FF;
+    border: double 3px #DBD6CD;
+    color: white ! important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight: bold;
+    line-height: 4.2ex;
+    margin: 9px;
+    margin-top: 9px;
+    margin-right: 1.2ex; /* This fixes button overlap. */
+    padding: 1px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: 0px;
+}
+
+a.disabled_text_button {
+    background: #aaaaaa;
+    border: double 3px #DBD6CD;
+    color: white ! important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight: bold;
+    line-height: 4.2ex;
+    margin: 9px;
+    margin-top: 9px;
+    margin-right: 1.2ex; /* This fixes button overlap. */
+    padding: 1px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: 0px;
+}
+
+
+a.disabled_text_button:hover { 
+    background: #aaaaaa;
+    color: white;
+    text-decoration: none ! important;
+}
+a.disabled_text_button:link { 
+    background: #aaaaaa;
+    color: white ! important;
+    text-decoration: none ! important ;
+}
+a.disabled_text_button:visited { 
+    background: #aaaaaa;
+    color: white ! important;
+    text-decoration: none ;
+}
+a.disabled_text_button:active { 
+    background: #aaaaaa;
+    color: white ! important;
+    text-decoration: none ;
+}
+
+
+
+
+
+
+
+a.text_button:hover,
+ input.text_button:hover { 
+    background: #3366cc;
+    color: white ! important;
+    text-decoration: none
+}
+a.text_button:link { 
+    color: white ! important;
+    text-decoration: none 
+}
+a.text_button:visited { 
+    color: white ! important;
+    text-decoration: none 
+}
+a.text_button:active { 
+    color: white ! important;
+    text-decoration: none 
+}
+
+th.blueman a.text_button:hover { 
+    background: #3366cc;
+    color: white;
+    text-decoration: none
+}
+th.blueman a.text_button:link { 
+    color: white;
+    text-decoration: none 
+}
+th.blueman a.text_button:visited { 
+    color: white;
+    text-decoration: none 
+}
+th.blueman a.text_button:active { 
+    color: white;
+    text-decoration: none 
+}
+
+/* Highlighted Version */
+a.text_button_hi { font-weight: bold;
+font-family: Arial, Helvetica, sans-serif;
+border: double 3px #dbd6cd;
+text-decoration: none;
+font-size: small;
+background: #FF8855;
+color: white;
+white-space: nowrap;
+line-height: 4ex
+}
+
+a.text_button_hi:hover { background: #CC6633;
+color: white;
+text-decoration: none
+}
+a.text_button_hi:link { color: white;
+text-decoration: none }
+a.text_button_hi:visited { color: white;
+text-decoration: none }
+a.text_button_hi:active { color: white;
+text-decoration: none }
+
+th.blueman a.text_button_hi:hover { background: #CC6633;
+color: white;
+text-decoration: none
+}
+th.blueman a.text_button_hi:link { color: white;
+text-decoration: none }
+th.blueman a.text_button_hi:visited { color: white;
+text-decoration: none }
+th.blueman a.text_button_hi:active { color: white;
+text-decoration: none }
+
+/*
+ * Text_Button_Light
+ */
+a.text_button_light {
+color: black ! important;
+background-color: #BBDDff;
+font-size: small;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+width: 13em;
+text-decoration: none;
+border:3px outset #CCEEFF;
+display: table;
+padding: 0.3ex 0.5ex;
+margin: 1px;
+text-align: center;
+}
+a.text_button_light:hover {
+background-color: #99BBC0;
+color: black;
+border:3px inset #CCEEFF;
+text-decoration: none;
+}
+
+/*
+ * Form Button
+ */ 
+button.sort_button {
+    line-height : 10px;
+	white-space: nowrap;
+    border: none; 
+    padding: 0px;
+    background: none;    
+} 
+button.form_button {
+    background: #6699FF;
+    border: double 3px #DBD6CD;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight: bold;
+    line-height: 4.2ex;
+    white-space: nowrap;
+    margin: 0.3ex;
+    margin-right: 1.2ex; /* This fixes button overlap. */
+    padding: 1px;
+    padding-top: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    vertical-align: 50%;
+}
+
+button.form_button:hover { 
+    background: #3366cc;
+    color: white;
+    text-decoration: none
+}
+
+input.form_button { background: #69F;
+    color: white;
+    white-space: nowrap;
+    /*line-height: 4.2ex;*/
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.2ex;
+    padding-bottom: 0px;
+    border: double 3px #dbd6cd;
+    font-size: small;
+}
+
+input.gimpyButton { 
+    background: #EEE;
+    color: silver;
+}
+
+#EditDomainButton {
+    margin-top: 5px;
+}
+
+input.form_button:hover { background: #36C;
+color: white;
+text-decoration: none
+}
+
+/*
+ * TicketBox's Page Numbers
+ */
+.ticket_page_button {
+  border: dotted 1px #333333;
+  color: blue;
+  background: white;
+  padding: 0;
+  margin: 0;
+  font-size: small;
+  text-decoration: none;
+}
+
+.ticket_page_button:hover, a.ticket_page_button:hover {
+  border: dotted 1px #000000;
+  color: black;
+  background: #DDF;
+  text-decoration: none;
+}
+
+.ticket_page_button_disabled, span.ticket_page_button_disabled {
+  border: dotted 1px #000000;
+  color: #000000;
+  background: #cccccc;
+  padding: 0;
+  margin: 0;
+  font-size: small;
+  text-decoration: none;
+  cursor: default;
+}
+
+.ticket_page_button_disabled:hover, span.ticket_page_button_disabled:hover {
+  text-decoration: none;
+}
+
+
+/*
+ * BrowserTree
+ */
+table.browsertree TD { font-size: x-small }
+
+/*
+ * red notes
+ */
+table.rednote { border-spacing: 0px; width: 160px }
+th.rednote { font-size: x-small; background: #FF6666; padding: 0px;
+             vertical-align: top; font-weight: normal }
+th.rednote a { color: black; text-decoration: underline; }
+td.rednote { font-size: x-small; background: #FFCCCC; padding: 0px }
+
+/*
+ * Sugar Notes
+ */
+table.sugarNote {
+padding: 0px;
+margin: 0.4ex 0.5ex;
+border-spacing: 0px;
+border-collapse: collapse;
+table-layout: fixed;
+empty-cells: show;
+border-right: solid 2px lightgrey;
+border-bottom: solid 2px lightgrey;
+}
+
+table.sugarNote TH {
+margin: 0px;
+vertical-align: top;
+padding: 0ex;
+background: #fc3;
+}
+
+table.sugarNote TD {
+margin: 0px;
+background: #FFF999;
+}
+
+
+/*
+ * Formable CSS Stylings
+ */
+/* RadioButtonList */
+SPAN.FormableRadioButtonList {
+  display: block;
+}
+SPAN.FormableRadioButtonList:hover {
+  background: #dce6f0;
+}
+DIV.FormableRadioButtonList {
+  display: table;
+}
+
+/* RadioButtonList -- Horizontal Version
+ * Just do: rbl_obj.klass += "Horizontal"
+ */
+SPAN.FormableRadioButtonListHorizontal:hover {
+  background: #dce6f0;
+}
+DIV.FormableRadioButtonListHorizontal {
+  display: table;
+}
+
+
+/* CheckBoxList */
+DIV.FormableCheckBoxList SPAN.FormableCheckBoxList {
+  display: block;
+}
+DIV.FormableCheckBoxList SPAN.FormableCheckBoxList:hover {
+  background: #dce6f0;
+}
+DIV.FormableCheckBoxList {
+  display: table;
+}
+
+/* CheckBoxList -- Horizontal Version
+ * Just do: rbl_obj.klass += "Horizontal"
+ */
+DIV.FormableCheckBoxListHorizontal SPAN.FormableCheckBoxListHorizontal:hover {
+  background: #dce6f0;
+}
+DIV.FormableCheckBoxListHorizontal {
+  display: table;
+}
+
+/* CheckBox -- With a Label */
+.FormableCheckBox:hover {
+  background: #dce6f0;
+}
+
+/* Spin Text */
+.spintext {
+  margin: 0px;
+}
+
+pre.emergency {
+    overflow-x: auto; /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    /*table-layout: fixed;*/
+    white-space: normal;
+    /*width: 80%; */
+}
+

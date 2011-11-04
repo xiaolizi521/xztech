@@ -1,0 +1,9 @@
+
+RewriteEngine on
+
+AddType video/x-matroska mkv
+
+RewriteCond %{HTTP_HOST} ^gallery.bleach7.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www.gallery.bleach7.com$
+RewriteRule ^(.*)$ http://www.bleach7.com/?page=member/gallery [R=301,L]
+

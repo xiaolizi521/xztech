@@ -1,0 +1,18 @@
+Dear $first_name $last_name,
+
+At Rackspace Managed Hosting we are constantly striving to give Fanatical 
+Service to our customers.  To help us evaluate our current levels of 
+service, please follow the link below to fill out a short survey on your 
+experience with us.  
+
+To express our appreciation, a $10.00 Amazon.com gift certificate will be 
+automatically emailed to you once the survey is submitted.
+
+http://www.rackspace.com/support/monthly_cust_survey.php?survid=-$customer_number
+
+Thank you for your cooperation.
+
+Sincerely,
+
+Robert Miggins
+V.P. of Marketing

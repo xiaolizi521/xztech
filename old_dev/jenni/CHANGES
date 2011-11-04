@@ -1,0 +1,71 @@
+$Id: CHANGES,v 1.12 2001/04/13 11:05:56 jenni Exp $
+
+1.0.0
+-----
+* Imported sources to cvs
+* Now uses fork() instead of system()
+* Shows as "jenni 1.0 - irc bot (perl)" in ps
+* maxlinelen set to 450, which is more compatible with bahamut/dreamforge
+* Rewrote getdiff(), now shows months when possible.
+* is_admin() modified to support % wildcards in hostmasks.
+* Modules modified to use LibUtil version of is_admin().
+* stripforsql() modified to prevent the use of BENCHMARK :-)
+* Modules using SQL modified to use table names prefixed with irc_
+* Modules modified to be more nick-completion friendly.
+* Shows channel of messages in debug mode
+* Writes pid
+* If a module does not have a private() function defined, public() will now
+  automatically be called. Modules rewritten to use $to instead of @to to
+  allow commands to work as private messages as well as channel messages.
+* Util library
+  - Changed to allow wildcards in hostmasks
+* Administration module
+  - version command added
+  - uptime command modified to use `uptime` when possible
+  - uptime command shows amount of time connected
+  - now finally has dynamic join list (no more hard coding)
+  - modules are disabled if a syntax error is found during load
+  - init() function called on dynamic load/reload
+  - +chan/-chan, join, part
+* Currency module
+  - fixed html change made by yahoo, now fetches CSV format
+  - modified to correctly handle currency singular/plural forms
+* Database module
+  - added inline expansion feature which allows you to have a definition
+    expanded when requested by completing it with $inltriggerX. For example,
+    adding word with definition >> jenni << would be automatically replaced
+    with the definition of the word "jenni". Maximum amount of recursion
+    is specified with $inlineexpansionmax.
+  - added random definition feature.
+  - made module ignore --- some.ip ping statistics ---
+  - added time since definition was added
+  - updated to use LibUtil's is_admin function instead of hardcoded nick
+    checking (hee hee)
+  - added configurable maximum definition length
+* Dictionary module
+  - streamlined word retrieval, added suggestion to spell
+* IMDb module
+  - first appearance
+* LastSeen module
+  - made it so bot does not respond to seen <botname> requests (as funny
+    as that is)
+  - fixed regexp to only match valid IRC nicknames
+  - fixed so bot responds if you refer to it by name
+* Quotes module
+  - required admin status to use validquotes command
+  - added option to quote command where you can give it a nickname/words and
+    it will return a random quote containing that nickname/those words.
+  - included quote id in message after an addquote
+* Reminder module
+  - allows time units, example: remind me in 3h: do something
+  - acknowleges with a notice instead of a privmsg
+* Weather module
+  - completely rewritten using yahoo! weather, old module is still available
+    as Weather-Wunderground.pm
+* Web interface
+  - now chops long urls into smaller text
+  - now automatically highlights links
+
+0.9.0
+-----
+* Initial release

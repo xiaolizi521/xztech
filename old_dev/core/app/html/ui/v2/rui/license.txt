@@ -1,0 +1,22 @@
+Extensions to the Ext JS JavaScript Library
+Copyright (c) 2007-8, Rackspace.
+Author: Steve Kollars
+Licensed under the GNU Lesser General Public License V3.
+
+See lgpl.txt for license details.
+
+
+Some extensions rely on code from other sources, which 
+was included with the code:
+
+The code for certain type detecting functions was taken from 
+Douglas Crockford's website <javascript.crockford.com>.
+
+<http://javascript.crockford.com/remedial.html>
+
+
+The code for certain extensions to the Array object was taken 
+from the Mozilla Developer Center <developer.mozilla.org> and 
+is licensed under the terms of the MIT License.
+
+<http://developer.mozilla.org/en/docs/MDC:Copyrights>

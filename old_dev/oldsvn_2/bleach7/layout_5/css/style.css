@@ -1,0 +1,797 @@
+@import url("indexheader.css");
+@import url("fonts.css"); 
+@import url("misc.css");
+@import url("information.css");
+@import url("manga.css");
+@import url("indexsidebar.css");
+@import url("indexbottominfo.css");
+
+/* Version for Firefox browser */
+body {
+	font-family:		Verdana, Arial, Helvetica, sans-serif;
+	color:				#000000;
+	font-size:			11px;
+	text-decoration:	none;
+	background-image: url(../images/bg.jpg);
+}
+
+/*The Main section of the layout*/
+div#layout {
+	width:				750px;
+	height:				475px;
+	margin-right:		auto;
+	margin-left:		auto;
+	margin-top: -14px;
+/*	background-image: url(../images/Layout5_top2.png);*/
+}
+
+/*setting layout position and images*/
+img, div#layout div.pos {
+	padding:			0px;
+	border:				none;
+	margin: 0px;
+}
+
+#layout #i02 object {
+	margin-bottom: -1px;
+}
+#layout #monthly_donation #donation_main {
+	margin-bottom: -60px;
+}
+#layout #donation #donate_table {
+	background-image: url(../images/donation_bg.jpg);
+	height: 45px;
+	width: 71px;
+	text-align:			right;
+	font-family:		Tahoma, Verdana, Arial, sans-serif;
+	font-size:			10px;
+	margin-top: -45px;
+	margin-left: 76px;
+}
+#layout #donation #donate_main {
+	margin-top: -96px;
+	margin-left: 76px;
+	width: 70px;
+	height: 45px;
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+	font-size: 9px;
+}
+#layout #donation #donate_main #donate_cur {
+	width: 65px;
+	text-align: right;
+	margin-top: -42px;
+}
+#layout #donation #donate_main #donate_goal {
+	width: 65px;
+	text-align: right;
+	margin-top: 4px;
+}
+#layout #donation #donate_main #donate_amo {
+	text-align: right;
+	width: 65px;
+	margin-top: 3px;
+}
+#layout #donation_post {
+	margin-top: -45px;
+	margin-left: 146px;
+}
+#layout #donation #i27 {
+	margin-left: 1px;
+}
+#layout #member {
+	margin-top: -93px;
+	margin-left: 146px;
+	height: 75px;
+	width: 604px;
+}
+#layout #member #member_login {
+	height: 20px;
+	width: 590px;
+	margin-top: 0px;
+}
+#layout #member #member_login form {
+	height: 21px;
+}
+#layout #member #member_login #input_username {
+	margin-top: -20px;
+	margin-left: 160px;
+	height: 20px;
+	width: 88px;
+}
+#layout #member #member_login #display_username {
+	width: 160px;
+	height: 20px;
+}
+#layout #member #member_login #input_username #username {
+	font-family: "Courier New", Courier, monospace;
+	font-size: larger;
+	background-image: url(../images/index_20.jpg);
+	background-repeat: repeat-x;
+	height: 18px;
+	width: 88px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+#layout #member #member_login #i21 {
+	margin: 0px;
+}
+#layout #member #member_login #password {
+	font-family: "Courier New", Courier, monospace;
+	font-size: larger;
+	background-image: url(../images/index_22.jpg);
+	background-repeat: repeat-x;
+	height: 18px;
+	width: 88px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+#layout #member #member_login #i23 {
+	vertical-align: top;
+}
+#layout #member #member_login #submit {
+	background-image: url(../images/index_24.jpg);
+	width: 55px;
+	height: 20px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+#layout #member #member_login #i25 {
+	vertical-align: top;
+}
+#layout #donation {
+	width: 146px;
+	height: 93px;
+}
+#layout #donation #i29 {
+}
+#layout #top_nav #top_nav_bar {
+	margin-top: -31px;
+	margin-left: 85px;
+}
+#layout #donation #i32 {
+	margin-left: 0px;
+}
+#layout #donation #i33 {
+}
+#layout #member #member_bar {
+	margin-top: 1px;
+	width: 590px;
+}
+#layout #top_nav {
+	margin-left: 85px;
+	width: 651px;
+	height: 23px;
+}
+#layout #main_release #latest_release #release_background {
+	margin-top: -141px;
+	margin-left: 16px;
+}
+#layout #main_release #latest_release #release_background {
+	width: 177px;
+	height: 141px;
+}
+#layout #main_release #latest_release #right_bar {
+	margin-top: -123px;
+	margin-left: 193px;
+}
+#layout #main_release #banner_rotation {
+	margin-left: 193px;
+	width: 395px;
+	height: 139px;
+	margin-top: -2px;
+}
+#layout #main_release #top_banner_bar {
+	margin-top: -150px;
+	margin-left: 193px;
+	width: 543px;
+}
+#layout #main_release #banner_rotation #br_main {
+	background-image: url(../images/index_56.jpg);
+	height: 75px;
+	width: 384px;
+	margin-top: -121px;
+	margin-left: 11px;
+}
+#layout #main_release #banner_rotation #br_bottom_bar {
+	margin-left: 11px;
+}
+#layout #main_release #latest_release #lr_main {
+	text-align:center;
+	width: 123px;
+	margin-left: 65px;
+	margin-top: -111px;
+	font-weight: normal;
+	font-variant: normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+#layout #main_release #latest_release #release_background #lr_episode_raw {
+	height: 18px;
+}
+#layout #main_release #latest_release #release_background #lr_episode_sub {
+	height: 26px;
+}
+#layout #main_release #latest_release #release_background #lr_manga_raw {
+	height: 20px;
+}
+#layout #main_release #latest_release #release_background #lr_manga_sub {
+	height: 20px;
+}
+#layout #main_release #bleach_forum {
+	height: 139px;
+	margin-top: -139px;
+	margin-left: 588px;
+	width: 148px;
+}
+#layout #main_release #bleach_forum #bf_main_img {
+	margin-top: -139px;
+	margin-left: 6px;
+}
+#layout #main_release #bleach_forum #bf_title {
+	margin-left: 6px;
+}
+#layout #main_release #bleach_forum #bf_bottom_bar {
+	margin-top: -23px;
+	margin-left: 6px;
+}
+#layout #middle_bar {
+	width: 736px;
+	height: 14px;
+}
+#layout #main_release {
+	width: 736px;
+	margin-top: -1px;
+}
+#layout #main_div {
+	width: 731px;
+}
+#layout #main_div #main_right_bar {
+	width: 45px;
+	float: left;
+}
+#layout #main_div #main_top #i72 {
+	margin-left: 534px;
+}
+#layout #main_div {
+	background-image: url(../images/main_sec_bg.jpg);
+	width: 731px;
+	border: none;
+}
+#layout #main_div #main_top {
+	width: 731px;
+}
+#layout #main_div #main_left_bar {
+	width: 19px;
+	vertical-align: top;
+	margin-top: -12px;
+	float: left;
+	height: inherit;
+}
+#layout #main_div #left_main #main_section {
+	width: 515px;
+	vertical-align: top;
+	float: right;
+}
+#layout #main_div #main_table #main_left_bar #i70 {
+	vertical-align: top;
+}
+#layout #main_div #left_main #main_section #i71 {
+	vertical-align: top;
+	top: auto;
+	width: 100%;
+}
+#layout #main_div #right_main #main_navigation_section {
+	width: 152px;
+	font-size: 9px;
+	float: right;
+}
+#layout #main_div #left_main #main_section #main_text {
+	width: 515px;
+	margin-top: -370px;
+	color: #2B5C85;
+}
+#layout #main_div #right_main {
+	float: right;
+	width: 197px;
+}
+#layout #main_div #right_main #main_navigation_section #main_navigation {
+	height: 83px;
+	list-style-type: lower-roman;
+}
+#layout #main_div #right_main #main_navigation_section #bleach_information {
+	height: 209px;
+}
+#layout #main_div #right_main #main_navigation_section #bleach_multimedia {
+	height: 119px;
+}
+#layout #main_div #right_main #main_navigation_section #fan_interaction {
+	height: 73px;
+}
+#layout #main_div #right_main #main_navigation_section #help_section {
+	height: 96px;
+}
+#layout #main_div #right_main #main_navigation_section #good_buddies {
+	height: 114px;
+}
+#layout #main_div #right_main #main_navigation_section #bleach_fansites {
+	height: 146px;
+}
+#layout #footer {
+	width: 731px;
+	margin-top: 5px;
+}
+#layout #member #member_login #display_password {
+	width: 91px;
+	margin-top: -20px;
+	margin-left: 248px;
+	height: 20px;
+}
+#layout #member #member_login #input_password {
+	width: 88px;
+	margin-top: -20px;
+	margin-left: 339px;
+	height: 20px;
+}
+#layout #member #member_login #login_spacer {
+	height: 20px;
+	width: 10px;
+	margin-top: -20px;
+	margin-left: 427px;
+}
+#layout #member #member_login #input_login {
+	height: 20px;
+	width: 55px;
+	margin-top: -20px;
+	margin-left: 437px;
+}
+#layout #member #member_login #login_end {
+	height: 20px;
+	width: 98px;
+	margin-top: -20px;
+	margin-left: 492px;
+}
+#layout #main_div #main_table #main_ns_top {
+	vertical-align: top;
+	height: 12px;
+	width: 197px;
+}
+#layout #main_div #main_top_spacer {
+	margin-left: 534px;
+}
+#layout #main_div #main_table #nav_part {
+	background-image: url(../images/nav_bar-bg.jpg);
+	background-repeat: repeat-y;
+	vertical-align: top;
+}
+#layout #main_div #main_navigation_section #member_stats {
+	height: 54px;
+}
+#layout #donation #divi12 {
+	height: 45px;
+	width: 76px;
+}
+#layout #donation #donate_main_bg {
+	height: 45px;
+	width: 70px;
+	margin-top: -45px;
+	margin-left: 76px;
+}
+#layout #member div {
+	margin-top: 0px;
+}
+#layout #member #member_login #input_cookie {
+	margin-top: -20px;
+	display: none;
+}
+#layout #i02 {
+	height: 60px;
+	width: 736px;
+}
+#layout #donation_top {
+	height: 115px;
+	width: 750px;
+}
+#layout #donate {
+	height: 40px;
+	width: 750px;
+}
+#layout #main_release #latest_release {
+	height: 141px;
+	width: 193px;
+}
+#layout #i02 #divi03 {
+	margin-top: -61px;
+	margin-left: 312px;
+	width: 424px;
+	height: 60px;
+}
+#layout #donation_top #divi06 {
+	height: 67px;
+	width: 14px;
+	margin-top: -67px;
+	margin-left: 736px;
+}
+#layout #i02 #shockwave {
+	height: 60px;
+	width: 312px;
+	background-image: url(../images/index_02.jpg);
+}
+#layout #donation_top #divi05 {
+	height: 115px;
+	width: 736px;
+}
+#layout #donate #divi08 {
+	height: 35px;
+	width: 37px;
+}
+#layout #donate #divi09 {
+	height: 35px;
+	width: 97px;
+	margin-top: -35px;
+	margin-left: 37px;
+}
+#layout #divi10 {
+	height: 35px;
+	width: 616px;
+	margin-top: -35px;
+	margin-left: 134px;
+}
+#layout #donate #divi11 {
+	height: 6px;
+	width: 750px;
+	margin-top: -6px;
+}
+#layout #donation #donate_main_bg #divi13 {
+	height: 14px;
+	width: 70px;
+}
+#layout #donation #donate_main_bg #divi17 {
+	height: 17px;
+	width: 70px;
+}
+#layout #donation #donate_main_bg #divi18 {
+	height: 14px;
+	width: 70px;
+}
+#layout #donation #donate_list #divi27 {
+	height: 17px;
+	width: 93px;
+}
+#layout #donation #donate_list #divi28 {
+	height: 17px;
+	width: 52px;
+	margin-top: -17px;
+	margin-left: 94px;
+}
+#layout #donation #donate_list #divi29 {
+	height: 6px;
+	width: 145px;
+	margin-top: -5px;
+	margin-left: 1px;
+}
+#layout #donation #donate_list #divi32 {
+	height: 31px;
+	width: 85px;
+	margin-top: 5px;
+}
+#layout #donation #donate_list #divi33 {
+	height: 7px;
+	width: 61px;
+	margin-top: -35px;
+	margin-left: 85px;
+}
+#layout #donation #donate_list {
+	height: 54px;
+	width: 145px;
+}
+#layout #member #member_top #divi14 {
+	height: 11px;
+	width: 604px;
+}
+#layout #member #member_top #divi15 {
+	height: 32px;
+	width: 590px;
+}
+#layout #member #member_top {
+	height: 43px;
+	width: 604px;
+}
+#layout #member #member_bar #divi31 {
+	height: 11px;
+	width: 160px;
+}
+#layout #member #member_bar #divi30 {
+	height: 12px;
+	width: 430px;
+	margin-top: -12px;
+	margin-left: 160px;
+}
+#layout #top_nav #divi34 {
+	height: 23px;
+	width: 82px;
+}
+#layout #top_nav #divi35 {
+	margin-top: -23px;
+	margin-left: 82px;
+	width: 26px;
+	height: 23px;
+}
+#layout #top_nav #divi36 {
+	height: 23px;
+	width: 101px;
+	margin-top: -23px;
+	margin-left: 108px;
+}
+#layout #top_nav #divi37 {
+	height: 23px;
+	width: 13px;
+	margin-top: -23px;
+	margin-left: 209px;
+}
+#layout #top_nav #divi38 {
+	height: 23px;
+	width: 89px;
+	margin-top: -23px;
+	margin-left: 222px;
+}
+#layout #top_nav #divi39 {
+	height: 23px;
+	width: 26px;
+	margin-top: -23px;
+	margin-left: 311px;
+}
+#layout #top_nav #divi40 {
+	height: 23px;
+	width: 75px;
+	margin-top: -23px;
+	margin-left: 337px;
+}
+#layout #top_nav #divi41 {
+	height: 23px;
+	width: 28px;
+	margin-top: -23px;
+	margin-left: 412px;
+}
+#layout #top_nav #divi42 {
+	height: 23px;
+	width: 83px;
+	margin-top: -23px;
+	margin-left: 440px;
+}
+#layout #top_nav #divi43 {
+	height: 23px;
+	width: 35px;
+	margin-top: -23px;
+	margin-left: 523px;
+}
+#layout #top_nav #divi44 {
+	height: 23px;
+	width: 61px;
+	margin-top: -23px;
+	margin-left: 558px;
+}
+#layout #top_nav #divi45 {
+	height: 23px;
+	width: 32px;
+	margin-top: -23px;
+	margin-left: 619px;
+}
+#layout #middle_bar #divi47 {
+	height: 13px;
+	width: 85px;
+}
+#layout #middle_bar #divi46 {
+	height: 14px;
+	width: 651px;
+	margin-top: -14px;
+	margin-left: 85px;
+}
+#layout #main_release #latest_release #divi49 {
+	height: 141px;
+	width: 16px;
+}
+#layout #main_release #latest_release #lr_bg {
+	height: 141px;
+	width: 177px;
+	margin-top: -141px;
+	margin-left: 16px;
+}
+#layout #main_release #latest_release #lr_bg #divi50 {
+	height: 23px;
+	width: 177px;
+}
+#layout #main_release #latest_release #lr_bg #divi57 {
+	height: 22px;
+	width: 177px;
+}
+#layout #main_release #latest_release #lr_bg #divi58 {
+	height: 20px;
+	width: 177px;
+}
+#layout #main_release #latest_release #lr_bg #divi59 {
+	height: 4px;
+	width: 177px;
+	margin-top: -7px;
+}
+#layout #main_release #latest_release #lr_bg #divi60 {
+	height: 19px;
+	width: 177px;
+	margin-top: 7px;
+}
+#layout #main_release #latest_release #lr_bg #divi61 {
+	height: 20px;
+	width: 177px;
+}
+#layout #main_release #latest_release #lr_bg #divi65 {
+	height: 15px;
+	width: 177px;
+}
+#layout #main_release #latest_release #lr_main #lr_episode_sub {
+	margin-top: 6px;
+}
+#layout #main_release #latest_release #lr_main #lr_manga_raw {
+	margin-top: 14px;
+}
+#layout #main_release #latest_release #lr_main #lr_manga_sub {
+	margin-top: 8px;
+}
+#layout #main_release #banner_rotation #divi52 {
+	height: 18px;
+	width: 395px;
+}
+#layout #main_release #banner_rotation #divi55 {
+	height: 121px;
+	width: 11px;
+}
+#layout #main_release #banner_rotation #divi64 {
+	height: 46px;
+	width: 384px;
+	margin-left: 11px;
+}
+#layout #main_release #bleach_forum #divi53 {
+	height: 139px;
+	width: 6px;
+}
+#layout #main_release #bleach_forum #divi54 {
+	height: 86px;
+	width: 142px;
+	margin-top: -139px;
+	margin-left: 6px;
+}
+#layout #main_release #bleach_forum #divi62 {
+	height: 23px;
+	width: 130px;
+	margin-left: 6px;
+}
+#layout #main_release #bleach_forum #divi66 {
+	height: 30px;
+	width: 130px;
+	margin-left: 6px;
+}
+#layout #main_release #bleach_forum #divi63 {
+	height: 53px;
+	width: 12px;
+	margin-top: -53px;
+	margin-left: 136px;
+}
+#main_div #divi68 {
+	height: 60px;
+	width: 731px;
+}
+#layout #main_div #main_table #nav_part #main_right_bar #i73 {
+	vertical-align: top;
+}
+#layout #main_div #left_main #main_section #divi71 {
+	background-image: url(../images/index_71.jpg);
+	background-repeat: repeat-x;
+	background-position: top;
+	width: 515px;
+	height: 386px;
+}
+#layout #main_div #main_table #nav_part #divi72 {
+	height: 12px;
+	width: 197px;
+}
+#layout #main_footer {
+	width: 731px;
+}
+#layout #main_footer #divi93a {
+	height: 21px;
+	width: 19px;
+}
+#layout #main_footer #divi93b {
+	height: 21px;
+	width: 515px;
+	margin-top: -21px;
+	margin-left: 19px;
+}
+#layout #main_footer #divi93c {
+	height: 21px;
+	width: 45px;
+	margin-top: -21px;
+	margin-left: 534px;
+}
+#layout #main_footer #divi93d {
+	height: 21px;
+	width: 152px;
+	margin-top: -21px;
+	margin-left: 579px;
+}
+#layout #footer #divi96 {
+	height: 16px;
+	width: 731px;
+}
+#layout #footer #divi97 {
+	height: 34px;
+	width: 564px;
+}
+#layout #footer #divi98 {
+	height: 34px;
+	width: 137px;
+	margin-left: 564px;
+	margin-top: -34px;
+}
+#layout #footer #divi99 {
+	height: 34px;
+	width: 30px;
+	margin-left: 701px;
+	margin-top: -34px;
+}
+#layout #member #member_section {
+	width: 590px;
+	height: 20px;
+}
+#layout #member #member_section #divimember_section2a {
+	height: 23px;
+	width: 160px;
+}
+#layout #member #member_section #divimember_section2b {
+	height: 23px;
+	width: 332px;
+	margin-left: 160px;
+	margin-top: -23px;
+}
+#layout #member #member_section #divi25 {
+	height: 20px;
+	width: 98px;
+	margin-top: -23px;
+	margin-left: 492px;
+}
+.ulin {
+	margin-top: 0px;
+	margin-left: -28px;
+	list-style-type: none;
+	list-style-image: url(../images/ulin.gif);
+	list-style-position: outside;
+}
+.ulout {
+	margin-top: 0px;
+	margin-left: -28px;
+	list-style-type: none;
+	list-style-image: url(../images/ulout.gif);
+	list-style-position: outside;
+}
+.ulstat {
+	margin-top: 0px;
+	margin-left: -28px;
+	list-style-type: square;
+	list-style-position: outside;
+}
+#layout #main_div #left_main {
+	float: left;
+	width: 534px;
+}
+#layout #main_div #right_main #main_navigation_section #divi74 {
+	height: 36px;
+	width: 152px;
+}
+#layout #main_div #right_main #divi72 {
+	height: 12px;
+	width: 197px;
+}

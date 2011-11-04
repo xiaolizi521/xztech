@@ -1,0 +1,183 @@
+<?
+/*	Offline Reason Code
+		() Group Number
+		
+	Market Trends: (100)
+		In-House 50
+		Budget Constraints 11
+		Out of Business 51
+		No Traffic 52
+		Project Ended 7
+	
+	Service Failures: (200)
+		Billing 53
+		Support 54
+		Web Site 55
+		Network 56
+		Production 57
+		Products/Services 58
+	
+	Competition: (300)
+		Found Better Price 12
+		Faster Connection 59
+		Cheaper Bandwidth 60
+		Geographic Location 61	
+	
+	Non-Payment: (400)
+		Bankruptcy (Chapter 11) 62
+		Partners Seperate 63
+		Fraud Accounts 64
+	
+	AUP: (500)
+		AUP 5
+	
+	Migration: (600)
+		Migration 2
+
+*/
+
+?>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!--
+if (document.images) 
+{
+	
+<?
+	//Build Javascript arrays to define selector options
+    //Get list of all offline reason types
+if( !empty( $selected_group ) ) {
+        $cat_where = "or category_group = $selected_group";
+} else {
+        $cat_where = "";
+}
+	# Offline reasons with these category numbers should not be presented.
+	$excluded_category_groups=array(2000,2100,2200,2300,2400,2500,2700,3100,3200,3300,3400,3500);
+	# Only AUP members should see the AUP category.
+	if (!in_dept('AUP')) $excluded_category_groups[]=2900;
+	$excluded_category_groups_list=implode(",", $excluded_category_groups);
+
+	$query="
+  SELECT
+     DISTINCT ON (category_group,category_group_name)
+     category_group, category_group_name
+  FROM
+     offline_reasons join offline_reason_groups using (category_group)
+  WHERE
+     (selectable = 't' $cat_where) AND category_group not in ($excluded_category_groups_list)
+  ORDER BY
+     category_group ASC;
+        ";
+
+	$offline_group_list = $db->SubmitQuery( $query );
+	$offline_group_count = $db->NumRows($offline_group_list);
+	//For each category, get list of categories and print Javascript for selector
+	//Only grabs categories that are 'selectable'
+	print("\tsource = new Array();\n");
+    print("\tsource[0] = new Object();\n");
+    print("\tsource[0].category = '-- SELECT --';\n");
+    print("\tsource[0].list = new Array();\n");
+	for( $row = 0; $row < $offline_group_count ; $row++ ) 		
+	{
+		$group_array = $db->FetchArray( $offline_group_list, $row );
+		$group = $group_array['category_group'];
+		$query2="
+			select 
+				reason_category,reason_number,category_group
+			from 
+				offline_reasons
+			where 
+				category_group = '$group'
+				and selectable = 'true'
+			order by
+				reason_number ASC
+				";
+				
+		$offline_category_list = $db->SubmitQuery( $query2 );
+		$offline_category_count = $db->NumRows( $offline_category_list );
+			
+		//begin text name javascript array
+        $index = $row + 1; // "--SELECT--" is index zero
+		print("\tsource[$index] = new Object();\n");
+        print("\tsource[$index].category = " 
+            . $group_array['category_group'] . ";\n");
+        print("\tsource[$index].list = new Array();\n");
+		//loop through category names
+		for( $rowc = 0; $rowc < $offline_category_count ; $rowc++ )
+		{
+			$category_array = $db->FetchArray( 
+                            $offline_category_list, $rowc );
+			print("\tsource[$index].list[$rowc] = new Array("
+                . "\"$category_array[reason_number]\", "
+                . "\"$category_array[reason_category]\");");
+			$end = $offline_category_count-1;
+		}
+		//close text name array
+	}
+
+?>
+}
+function updateMenus(type) 
+{
+    if (document.images) 
+    {
+        sel = type.selectedIndex;
+	
+        s = source[sel].list;
+
+        type.form.reason_number.length = s.length;
+        for(i=0;i<s.length;i++)
+        {
+            type.form.reason_number.options[i].value = s[i][0];
+            type.form.reason_number.options[i].text = s[i][1];
+            //type.form.source.options[0].selected = 'true';
+        }
+    } 
+    else 
+    {
+        alert("Your browser does not allow this script to modify the "
+        +"type and source selection lists. Get a newer browser.");
+    }
+}
+// -->
+</SCRIPT>
+<TABLE>
+	<TR>
+		<TD VALIGN="top"><B>Category:</B></TD>
+		<TD VALIGN="top">
+		<SELECT name="group" size="1" onChange="updateMenus(this)">
+            <OPTION>-- SELECT --
+			<?
+            for ($i = 0; $i < $offline_group_count; $i++) {
+                $row = $offline_group_list->fetchArray($i);
+
+						print("<option");
+                		if(isset($selected_group) 
+                        		&& $selected_group == $row['category_group']) {
+                    		print(" selected ");
+                		}
+                		print(">" . $row['category_group_name'] . "</option>\n");
+			}
+			?>
+		</SELECT></TD>
+	</TR>
+	<TR>
+		<TD VALIGN="top"><B>Type:</B></TD>
+
+		<TD VALIGN="top">
+		<SELECT name="reason_number" size="7">
+			<?
+			if(!isset($selected_type))
+			{
+				print "<option value=\"0\">&nbsp;</option>";
+			}
+			else
+			{
+				print "<option value=\"$reason_number\" selected>$selected_type</option>" ;
+			}
+			?>		
+		</SELECT></TD>
+	</TR>
+</TABLE>
+
+

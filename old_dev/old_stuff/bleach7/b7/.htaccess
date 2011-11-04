@@ -1,0 +1,103 @@
+RewriteEngine on
+# -FrontPage-
+
+IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
+<Limit GET POST>
+order deny,allow
+deny from all
+allow from all
+</Limit>
+<Limit PUT DELETE>
+order deny,allow
+deny from all
+</Limit>
+AuthName bleach7.com
+AuthUserFile /home/bleach7/public_html/_vti_pvt/service.pwd
+AuthGroupFile /home/bleach7/public_html/_vti_pvt/service.grp
+AddType video/x-matroska mkv
+Options -Indexes
+ErrorDocument 403 /403.php
+
+RewriteCond %{REQUEST_URI} !^/linking.jpg$
+RewriteCond %{REQUEST_URI} !^/linkus1.gif$
+RewriteCond %{REQUEST_URI} !^/linkus2.gif$
+RewriteCond %{REQUEST_URI} !^/linkus3.jpg$
+RewriteCond %{REQUEST_URI} !^/linkus4.jpg$
+RewriteCond %{REQUEST_URI} !^/linkus5.jpg$
+
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://bleach7.ath.cx/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://bleach7.ath.cx$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://bleach7.maximum7.net/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://bleach7.maximum7.net$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://gallery.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://gallery.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m1.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m1.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m10.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m10.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m2.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m2.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m3.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m3.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m4.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m4.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m5.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m5.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m6.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m6.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m7.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m7.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m8.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m8.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m9.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://m9.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://manga.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://manga.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://randomc.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://randomc.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://test.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://test.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.bleach7.ath.cx/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.bleach7.ath.cx$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.bleach7.maximum7.net/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.bleach7.maximum7.net$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.gallery.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.gallery.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m1.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m1.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m10.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m10.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m2.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m2.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m3.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m3.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m4.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m4.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m5.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m5.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m6.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m6.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m7.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m7.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m8.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m8.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m9.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.m9.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.manga.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.manga.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.randomc.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.randomc.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.test.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.test.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.toshokan.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.toshokan.bleach7.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://toshokan.bleach7.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://toshokan.bleach7.com$      [NC]
+RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ http://www.bleach7.com/linking.jpg [R,NC]
+

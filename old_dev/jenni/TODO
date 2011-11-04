@@ -1,0 +1,16 @@
+$Id: TODO,v 1.13 2002/03/03 08:55:37 jenni Exp $
+
+- Finish IMDb module
+- Start statistics module
+- Fix pid writing on jenni: rehash
+- Rewrite can() module system for efficiency to store modules for each event
+  in an array on load, instead of calling can() repeatedly.
+- Add ability for Modules to set priorities, so logging modules can set the
+  highest priority to assure they get all messages.
+- Move from Mysql modules to DBI
+- Add channels to seen results
+- Add permissions to quote addition/removal
+- Add channel specifics to quotes module
+- +ignore, -ignore, ignore list, etc
+- Add jenni: tell <blah> about <blah>
+- Add handling for actors/actresses to IMDb module

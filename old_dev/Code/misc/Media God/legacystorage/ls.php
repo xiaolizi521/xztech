@@ -1,0 +1,3 @@
+<?
+echo system("ls fonts/");
+?>

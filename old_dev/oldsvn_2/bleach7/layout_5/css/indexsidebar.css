@@ -1,0 +1,95 @@
+/*Side Bar title display*/
+td.sidebar1 {
+	width: 11px;
+	vertical-align: top;
+}
+
+td.mainside {
+	width: 166px;
+	vertical-align: top;
+	text-align: left;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.sidebartitle {
+	text-decoration: underline;
+}
+
+/*Bleach Multimedia*/
+a.OnBlack:link,
+a.OnBlack:visited,
+a.OnBlack:active {
+	color: #000000;
+	text-decoration: none;
+}
+
+a.OnBlack:hover {
+	color: #0B5918;
+	text-decoration: none;
+	border-bottom: 0px solid #FFFFFF;
+}
+
+/*Fan Interaction*/
+a.OnBlack2a:link,
+a.OnBlack2a:visited,
+a.OnBlack2a:active {
+	color: #000000;
+	text-decoration: none;
+}
+
+a.OnBlack2a:hover {
+	color: #0B1459;
+	text-decoration: none;
+}
+
+/*Main Navigation*/
+a.OnWhite:link,
+a.OnWhite:visited,
+a.OnWhite:active {
+	color: #121212;
+	text-decoration: none;
+}
+
+a.OnWhite:hover {
+	color: #84852B;
+	text-decoration: none;
+}
+
+/*Bleach Information*/
+a.OnWhite2:link,
+a.OnWhite2:visited,
+a.OnWhite2:active {
+	color: #121212;
+	text-decoration: none;
+}
+
+a.OnWhite2:hover {
+	color: #A60000;
+}
+
+/*Good Buddies*/
+a.OnWhite3:link,
+a.OnWhite3:visited,
+a.OnWhite3:active {
+	color: #121212;
+	text-decoration: none;
+}
+
+a.OnWhite3:hover {
+	color: #E28D06;
+	text-decoration: none;
+}
+
+/*Bleach Fansites*/
+a.OnWhite4:link,
+a.OnWhite4:visited,
+a.OnWhite4:active {
+	color: #121212;
+	text-decoration: none;
+}
+
+a.OnWhite4:hover {
+	color: #610F83;
+	text-decoration: none;
+}

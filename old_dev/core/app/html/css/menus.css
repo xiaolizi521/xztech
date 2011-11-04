@@ -1,0 +1,202 @@
+/*
+  This CSS file contains CSS for the New CORE Menu System.
+*/
+
+@media screen {
+  /* Required for some reason */
+  img {
+    vertical-align: middle;
+    border: 0px;
+  }
+
+  /*------------------------------------------------------------ Fonts ----*/
+  /* Setup some generally sweet fonts for menus */
+  div.menu_menubar, a.menu_button, a.menu_button:hover, a.menu_menuitem {
+    font-family:       "MS Sans Serif", Arial, sans-serif;
+    font-style:        normal;
+    font-weight:       normal;
+    color:             #000000;
+    text-decoration:   none;
+  }
+  
+  /*--------------------------------------------------------- Menu Bar ----*/
+  /* This is the main bar across the top of the screen. */
+  .menu_menubar {
+    background-color:  #d0d0d0;
+    border:            1px solid;
+    border-color:      #f0f0f0 #909090 #909090 #f0f0f0;
+    padding:           .2em .1em .2em .1em;
+    text-align:        left;
+    position:          fixed;
+    top:               0px;
+    left:              0px;
+    right:             0px;
+    z-index:           5000;
+    margin:            0px;
+    font-size:         90%;
+  }
+  
+  /*------------------------------------------------- Menu Bar Buttons ----*/
+  /* These are the buttons to drop down the menus (File, Edit, etc) */
+  .menu_button {
+    background-color:  transparent;
+    border:            1px solid #d0d0d0;
+    color:             #000000;
+    cursor:            pointer;
+    left:              0px;
+    margin:            .1em;
+    padding:           0px .2em 0px .2em;
+    position:          relative;
+    text-decoration:   none;
+    top:               0px;
+    z-index:           5500;
+    font-size:         90%;
+  }
+  
+  /* bevel when hovering */
+  .menu_button:hover {
+    border-color:      #f0f0f0 #909090 #909090 #f0f0f0;
+    background-color:  #eeeeee;
+  }
+  
+  /* 
+  .menu_button_active, .menu_button_active:hover {
+    border-color:      #909090 #f0f0f0 #f0f0f0 #909090;
+  }
+  
+  /*-------------------------------------------------- Drop-Down Menus ----*/
+  /* Actual dropdown menu itself -- this is kinda funky */
+  .menu_dropdown {
+    visibility:        hidden;
+    display:           none;
+  }
+  
+  .menu_dropdown_active {
+    background-color:  #d0d0d0;
+    border:            1px solid;
+    border-color:      #f0f0f0 #909090 #909090 #f0f0f0;
+    left:              0px;
+    padding:           0px 1px 1px 0px;
+    position:          fixed;
+    top:               0px;
+    z-index:           10000;
+    display:           block;
+  }
+  
+  /* Menu items (New, Open, etc) */
+  .menu_menuitem {
+    color:             #000000;
+    cursor:            pointer;
+    display:           block;
+    padding:           .1em 1em;
+    text-decoration:   none;
+    white-space:       nowrap;
+    font-size:         90%;
+  }
+  .menu_menuitem:hover, .menu_menuitem_highlight {
+    background-color:  #000080;
+    color:             #ffffff;
+  }
+  
+  /* Menu separators */
+  div.menuItemSep {
+    border-top:        1px solid #909090;
+    border-bottom:     1px solid #f0f0f0;
+    margin:            4px 2px;
+  }
+  
+  .menu_menuitem_highlight .menu_menuitemtext {
+    color:             #ffffff;
+  }
+  .menu_menuitem_highlight .menu_arrow {
+    color:             #ffffff;
+  }
+  
+  .menu_arrow {
+    margin-right: -.75em;
+  }
+  
+  /*------------------------------------------------------ Other Stuff ----*/
+  body {
+    margin:            0;
+    padding:           0;
+  }
+  
+  .menu_tools {
+    position: absolute;
+    display: block;
+    right: 2px;
+    top: 2px;
+    bottom: 2px;
+    padding: 0px 2px 0px 2px;
+    font-family: "MS Sans Serif", Arial, sans-serif;
+    font-size: 90%;
+  }
+  
+  .menu_tools .spacer {background-image:url(/images/toolbar/splitter.gif); width:5px; height:16px;}
+  
+  .menu_tools_relative {
+    position: relative;
+    display: inline;
+    padding: 0px 2px 0px 2px;
+    font-family: "MS Sans Serif", Arial, sans-serif;
+    font-size: 90%;
+  }
+  
+  select.menu_tools_form {
+    background-color: #FFFFFF;
+  }
+  
+  .menu_tools_form {
+    font-family: "MS Sans Serif", Arial, sans-serif;
+    font-size: 90%;
+  }
+  
+  .menu_menubutton {
+    border: 1px solid #d0d0d0;
+    color: #000000;
+    position: relative;
+    margin: 0px;
+    display: inline;
+    top: 0px;
+    padding: 1px;
+    font-size: 90%;
+    background-repeat:no-repeat;
+  }
+  
+  .menu_menubutton img {width:16px; height:16px;}
+  
+  .menu_menubutton .go {background-image:url(/images/toolbar/go.gif);}
+  .menu_menubutton .home {background-image:url(/images/toolbar/home.gif);}
+  .menu_menubutton .tickets {background-image:url(/images/toolbar/tickets.gif);}
+  .menu_menubutton .rackwatch {background-image:url(/images/toolbar/rackwatch.gif);}
+  .menu_menubutton .employees {background-image:url(/images/toolbar/employees.gif);}
+  .menu_menubutton .print {background-image:url(/images/toolbar/print.gif);}
+  .menu_menubutton .logout {background-image:url(/images/toolbar/logout.gif);}
+  
+  .menu_menubutton_img {
+    top: 0px;
+  }
+  
+  .menu_menubutton:hover {
+    border-color:      #f0f0f0 #909090 #909090 #f0f0f0;
+    background-color:  #eeeeee;
+  }
+  
+  /* Fix z-layer issue by hiding elements CSS */
+  .menu_zlayer_hide {
+    visibility: hidden;
+  }
+  
+  .hiddenMenu {
+    visibility: hidden;
+    position: absolute;
+    top: 0px;
+  }
+}
+
+@media print {
+  div.menu_menubar {
+    display: none;
+  }
+}

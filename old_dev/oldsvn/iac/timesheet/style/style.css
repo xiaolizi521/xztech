@@ -1,0 +1,381 @@
+body
+{
+	background: #E4E4E4;
+	text-align: center;
+	color: #000;
+	font-family: "Lucida Grande", Arial, Tahoma, sans-serif;
+	margin: 0;
+}
+
+a img
+{
+	border: none;
+}
+
+a
+{
+	color: #000;
+	text-decoration: none
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+.center
+{
+	margin: 0 auto;
+	text-align: left;
+	width: 1100px;
+}
+
+#header
+{
+	height: 90px;
+	background: url("../images/headerBg.jpg") repeat-x #555;
+}
+
+#navigation
+{
+	background: url("../images/navigationBg.jpg") repeat-x;
+	height: 40px;
+	line-height: 40px;
+	color: #EEE;
+	border-bottom: 2px solid #675814;
+	font-size: 13px;
+}
+
+#navigation ul {
+	padding: 0;
+	margin: 0;
+}
+
+#navigation li {
+	display: inline;
+	list-style-type: none;
+}
+
+#navigation a {
+	font-weight: bold;
+	color: #FFF;
+	text-decoration: none;
+	padding: 0 3px;
+}
+
+#navigation a:hover {
+	text-decoration: underline;
+}
+
+#content
+{
+	background: #FFF;
+	padding: 30px;
+	border-left: 5px solid #DDD;
+	border-right: 5px solid #DDD;
+}
+
+#footer
+{
+	font-size: small;
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 15px;
+	border-top: 5px solid #DDD;
+	padding-bottom: 20px;
+}
+
+#footer a
+{
+	color: #BBB;
+	text-decoration: none;
+}
+
+#footer a:hover
+{
+	color: #43539E;
+	text-decoration: underline;
+}
+
+h1
+{
+	font-size: 1.4em;
+	padding: 0px;
+	margin: 5px 0 10px 0;
+	color: #43539E;
+}
+
+/*.table_heading
+{
+	background: url("images/tableHeaderBg.jpg") repeat-x;
+	color: #FFF;
+	font-size: small;
+	font-weight: bold;
+}*/
+
+.report_table td
+{
+	font-size: 12px;
+	padding: 5px 15px 5px 10px;
+}
+
+.report_row_end td
+{
+	border-top: 3px solid #CCC;
+}
+
+.report_row_total td
+{
+	border-top: 2px solid #999;
+	color: #000;
+	background: #EEE;
+}
+
+.report_heading
+{
+	background: #EEE;
+	color: #333;
+	font-weight: bold;
+}
+
+.report_heading td
+{
+	border-bottom: 2px solid #DDD;
+}
+
+.table_heading
+{
+	background: #EEE;
+	color: #333;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.table_heading td
+{
+	border-top: 1px solid #E0E0E0;
+	/*border-bottom: 3px solid #79d600;*/
+	border-bottom: 3px solid #43539E;
+}
+
+.table_footer td
+{
+	background: #EEE;
+	border-top: 3px solid #43539E;
+	border-bottom: 1px solid #E0E0E0;
+}
+
+.data_table {
+	width: 95%;
+}
+
+.data_table td
+{
+	font-size: 12px;
+	padding: 5px 15px 5px 10px;
+}
+
+.table_row td
+{
+	border-bottom: 2px solid #EEE;
+}
+
+.color_green
+{
+	font-weight: bold;
+	background: url("../images/colorGreenBg.jpg") #79d600;
+	padding: 2px 5px 2px 5px;
+	color: #edffd5;
+}
+
+#content a.color_green
+{
+	color: #edffd5;
+}
+
+.color_red
+{
+	font-weight: bold;
+	background: url("../images/colorRedBg.jpg") repeat-x #d60000;
+	padding: 2px 5px 2px 5px;
+	color: #ffc7c7;
+}
+
+.color_red_light
+{
+	font-weight: bold;
+	background: url("../images/colorGrayBg.jpg") repeat-x #5d5d5d;
+	padding: 2px 5px 2px 5px;
+	color: #333;
+}
+
+#content a.color_red
+{
+	color: #ffc7c7;
+}
+
+.color_blue
+{
+	font-weight: bold;
+	background: url("../images/colorBlueBg.jpg") repeat-x #0079d6;
+	padding: 2px 5px 2px 5px;
+	color: #b6ecf7;
+}
+
+.color_gray
+{
+	font-weight: bold;
+	background: url("../images/colorGrayBg.jpg") repeat-x #858585;
+	padding: 2px 5px 2px 5px;
+	color: #EEE;
+}
+
+.color_black
+{
+	font-weight: bold;
+	background: url("../images/colorBlackBg.jpg") repeat-x #858585;
+	padding: 3px 5px 3px 5px;
+	color: #EEE;
+	border-bottom: 3px solid #000;
+	border-right: 3px solid #000;
+	border-top: 2px solid #888;
+	border-left: 2px solid #888;
+	
+}
+
+.color_yellow
+{
+	font-weight: bold;
+	background: url("../images/colorYellowBg.jpg") repeat-x #d6ce00;
+	padding: 2px 5px 2px 5px;
+	color: #fffed8;
+}
+
+.large_link
+{
+	font-size: normal;
+	padding: 2px;
+}
+
+a.large_link
+{
+	text-decoration: underline;
+	color: #43539E;
+}
+
+a.large_link:hover
+{
+	color: #FFF;
+	background: #43539E;
+}
+
+/*.large_link
+{
+	font-size: medium;
+	background: #EEE;
+	border: 1px solid #DDD;
+	padding: 2px 4px 2px 4px;
+}
+
+a.large_link
+{
+	text-decoration: none;
+	color: #666;
+}
+
+a.large_link:hover
+{
+	color: #FFF;
+	background: #0079d6;
+	border: 1px solid #0079d6;
+}*/
+
+#content table a
+{
+	color: #000;
+	text-decoration: none;
+}
+
+#content table a:hover
+{
+	text-decoration: underline;
+}
+
+#content table .link_button a
+{
+	color: #000;
+	font-size: small;
+	padding: 2px;
+	text-decoration: none;
+}
+
+#content table .link_button a:hover
+{
+	color: #FFF;
+	background: url( "../images/colorGrayBg.jpg" ) repeat-x #858585;
+	text-decoration: none;
+}
+
+.details
+{
+	background: url( "../images/taskBg.jpg" ) repeat-x #FFF;
+	padding: 0 10px 0 10px; 
+	border: 2px solid #DEDEDE;
+}
+
+#newClient legend
+{
+	font-size: normal;
+	padding: 2px;
+	color: #666;
+	font-weight: bold;
+}
+#newClient table
+{
+	font-size: small;
+	color: #333;
+}
+
+#newClient .formTitle
+{
+	font-weight: bold;
+}
+
+#newClient .example
+{
+	color: #666;
+}
+
+#newClient .formAreaThin
+{
+	border: 1px solid #666;
+	width: 220px;
+}
+
+.large_button input
+{
+	width: 200px;
+	height: 30px;
+	border-bottom: 2px solid #999;
+	border-right: 2px solid #999;
+	border-top: 2px solid #DDD;
+	border: 2px solid #DDD;
+	background: #EEE;
+	font-weight: bold;
+	font-size: normal;
+	color: #444;
+}
+
+.email_end td
+{
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 2px solid #DDD;
+}
+
+.modified
+{
+	color: red;
+	font-weight: bold;
+}

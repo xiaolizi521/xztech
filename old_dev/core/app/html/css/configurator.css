@@ -1,0 +1,31 @@
+/*
+For the Configurator pages.
+*/
+.maincontent select {
+    min-width: 30em;
+    border: lightblue;
+    background: #F0F0FF;
+}
+
+td.config_label {
+   border: solid thin lightgrey;
+   width: 20ex;
+   background: #EEE;
+   color: black;
+   text-align: right;
+}
+
+td.config_value {
+    padding-right: 1ex;
+    vertical-align: top;
+}
+
+p.rules {
+   font-size: small;
+   border: thin solid navy;
+   text-align: center;
+   margin-left: auto;
+   margin-right: auto;
+   color: black;
+   background: lightyellow;
+}

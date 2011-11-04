@@ -1,0 +1,188 @@
+a:link {
+	color : #003399;
+}
+
+a:link.nav {
+	color : #000000;
+}
+
+a:visited {
+	color : #3366CC;
+}
+
+a:visited.nav {
+	color : #000000;
+}
+
+a:hover {
+	color : #666666;
+	text-decoration : none;
+}
+
+a:hover.nav {
+	color : #CC9933;
+}
+
+body {
+	background : #3266CC;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : normal;
+}
+
+form {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 80%;
+}
+
+h1 {
+	font-size : 28px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family : sans-serif;
+	font-weight : bold;
+}
+
+h2 {
+	font-size : 26px;
+}
+
+h3 {
+	font-size : 24px;
+}
+
+h4 {
+	font-size : 21px;
+}
+
+h5 {
+	font-size : 18px;
+}
+
+h6 {
+	font-size : 16px;
+}
+
+td {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 10px;
+}
+
+th {
+	background-color : #FFFFFF;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 14px;
+	font-weight : bold;
+}
+
+.data {
+	color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	font-weight : normal;
+}
+
+.emerg {
+	color : #990033;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	font-weight : bold;
+}
+
+.fixed {
+	color : #000000;
+	font-family : monospace;
+	font-size : 11px;
+	font-weight : normal;
+}
+
+.hd {
+	color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 21px;
+	font-weight : bold;
+}
+
+.hd1 {
+	color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 18px;
+	font-weight : bold;
+}
+
+.hd1rev {
+	color : #FFFFFF;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 18px;
+	font-weight : bold;
+}
+
+.hd2 {
+	color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 16px;
+	font-weight : bold;
+}
+
+.hd2rev {
+	color : #FFFFFF;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 16px;
+	font-weight : bold;
+}
+
+.hd3 {
+	color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 14px;
+	font-weight : bold;
+}
+
+.hd3rev {
+	color : #FFFFFF;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 14px;
+	font-weight : bold;
+}
+
+.hdrev{
+	color : #FFFFFF;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 21px;
+	font-weight : bold;
+}
+
+.label {
+	color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	font-weight : bold;
+}
+
+.shd {
+	color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	font-weight : bold;
+}
+
+.shdrev {
+	color : #FFFFFF;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	font-weight : bold;
+}
+
+.smhd {
+	color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	font-weight : normal;
+}
+
+.titlebar {
+	color : #CCCCCC;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 20px;
+	font-weight : bold;
+}

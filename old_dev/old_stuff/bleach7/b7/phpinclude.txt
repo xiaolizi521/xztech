@@ -1,0 +1,14 @@
+<?php   
+ If(!$id || $id == "" || file_exists("$id") == false)   
+ {   
+ include("news/show_news.php");   
+ } else {   
+ include("$id");   
+ }   
+ ?>
+
+<?PHP
+ $number = "5";
+ $category = "1";
+ include("news/show_news.php");
+?>

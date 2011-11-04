@@ -1,0 +1,12 @@
+<div class="center">
+	<ul>
+		<li><a href="home.php">Home</a></li> |
+		<li><a href="messages.php">Messages</a></li> |
+		<li><a href="files.php">Files</a></li> |
+		<li><a href="report_employee.php">Reports</a></li> |
+		<li><a href="/calendar/login.php" target="_BLANK">Calendar</a></li> |
+		<li><a href="resources.php">Resources</a></li> |
+		<li><a href="account.php">My Account</a></li> |
+		<li><a href="signout.php">Sign Out</a></li>
+	</ul>
+</div>

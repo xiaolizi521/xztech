@@ -1,0 +1,17 @@
+<?
+	session_start();
+	$p_level = $_SESSION['p_level'];
+	include( "header_functions.php" );	
+
+	if( $p_level != "super-manager" )
+	{
+		header( "Location: home.php" );
+		exit();
+	}		
+
+	// Start of page-specific actions
+	$db->update( "employee", array( "active" => "0" ), array( "id" => $_REQUEST['id'] ) );
+	
+	// Redirect
+	header( "Location: employees.php" );
+?>

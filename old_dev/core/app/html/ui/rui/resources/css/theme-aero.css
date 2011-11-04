@@ -1,0 +1,168 @@
+/* Start Rack Header */
+#rack-header {
+    background-color:#deecfd;
+    border-bottom:1px solid #f3f7fb;
+    padding-top:-1px;
+}
+/* End Rack Header */
+
+
+/* Start General Rack Styles */
+table.rack-fancy th {
+    background:transparent url(../../../ext/resources/images/aero/grid/grid-hrow.gif) repeat scroll 0% 0%;
+    color:#15428b;
+    font-weight:bold;
+}
+
+table.rack-fancy td.header {
+    background-color:#f5f5f5;
+}
+
+table.rack-bordered {
+    outline:1px solid #6f99cf;
+}
+
+body.ext-ie table.rack-bordered {
+    border:1px solid #6f99cf;
+}
+
+table.rack-bordered th {
+    border-right:1px solid #9ac6ff;
+    border-bottom:1px solid #6f99cf;
+}
+/* End General Rack Styles */
+
+
+/* Start Rack Panel */
+.rack-panel {
+    background-color:#fff;
+    border:1px solid #98c0f4;
+}
+/* End Rack Panel */
+
+/* Start Titlebar */
+.rack-titlebar-dlg {
+    background:transparent url(../../../ext/resources/images/aero/basic-dialog/hd-sprite.gif) repeat-x 0px -83px;
+    border-bottom:1px solid #98c0f4;
+}
+
+.rack-titlebar-lyt {
+    /* Why do they use the grid image instead of the layout image?  */
+    /*background:transparent url(../../../ext/resources/images/aero/layout/panel-title-light-bg.gif) repeat-x 0px 0px;*/
+    background:transparent url(../../../ext/resources/images/aero/grid/grid-hrow.gif) repeat-x 0px 0px;
+    border-bottom:1px solid #98c0f4;
+}
+
+.rack-titlebar-text-dlg {
+    color:#15428b;
+    font-weight:bold;
+}
+
+.rack-titlebar-text-lyt {
+    color:#15428b;
+    font-weight:bold;
+}
+
+.rack-titlebar-icon-on-dlg {
+    border:1px solid #98c0f4;
+    background:#fff;
+}
+
+.rack-titlebar-icon-on-lyt {
+    border:1px solid #98c0f4;
+    background:#fff;
+}
+
+/*
+Icon color offsets
+0 - white
+48 - blue
+96 - gray
+*/
+
+/*
+dlg - blue
+lyt - blue
+*/
+
+.rack-tbicon-down-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -48px;
+}
+
+.rack-tbicon-down-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -48px;
+}
+
+.rack-tbicon-up-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -60px;
+}
+
+.rack-tbicon-up-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -60px;
+}
+
+.rack-tbicon-reload-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -72px;
+}
+
+.rack-tbicon-reload-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat 0px -72px;
+}
+
+.rack-tbicon-left-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -48px;
+}
+
+.rack-tbicon-left-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -48px;
+}
+
+.rack-tbicon-right-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -60px;
+}
+
+.rack-tbicon-right-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -60px;
+}
+
+.rack-tbicon-close-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -72px;
+}
+
+.rack-tbicon-close-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -11px -72px;
+}
+
+.rack-tbicon-min-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -22px -72px;
+}
+
+.rack-tbicon-min-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -22px -72px;
+}
+
+.rack-tbicon-max-dlg {
+    background:transparent url(../images/iconsprite.gif) no-repeat -33px -72px;
+}
+
+.rack-tbicon-max-lyt {
+    background:transparent url(../images/iconsprite.gif) no-repeat -33px -72px;
+}
+/* End Titlebar */
+
+
+/* Start Simple Page Styles  */
+.simple-layout {
+    background:#deecfd url(../images/aero/simple-body-bg.jpg) repeat-x fixed 0px 0px;
+}
+
+.simple-layout div.body-one {
+    border:1px solid #99bbe8;
+    background-color:#fff;
+}
+
+.simple-layout div.body-two {
+    border:1px solid #99bbe8;
+    background:#fff url(../images/aero/simple-body-two-bg.gif) repeat-y 0px 0px;
+}
+/* End Simple Page Styles */

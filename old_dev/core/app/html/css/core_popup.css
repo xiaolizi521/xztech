@@ -1,0 +1,93 @@
+body { font-family: Arial, Helvetica, sans-serif;
+font-size: 80%;
+background: #FFFFFF;
+margin: 1ex 1ex 1ex 1ex }
+TH { font-family: Arial, Helvetica, sans-serif;
+font-size: 100%;
+font-weight: bold;
+background-color: #FFFFFF }
+TD { font-family: Arial, Helvetica, sans-serif;
+font-size: 100%}
+FORM { font-family: Arial, Helvetica, sans-serif;
+font-size: 100%}
+H1, H2, H3, H4, H5, H6 { font-weight: bold;
+font-family: sans-serif }
+H1 { font-size: 150%}
+H2 { font-size: 125%}
+H3 { font-size: 110%}
+H4 { font-size: 100%}
+H5 { font-size: 95%}
+H6 { font-size: 90%}
+A:link { 
+color: #003399 }
+A:visited {
+color: #3366CC }
+A:hover { text-decoration: none;
+color: #666666 }
+A:link.nav { color: #000000 }
+A:visited.nav { color: #000000 }
+A:hover.nav { color: #CC9933 }
+.TITLEBAR { font-family: Arial, Helvetica, sans-serif;
+font-size: 20px;
+color: #CCCCCC;
+font-weight: bold }
+.hd { font-family: Arial, Helvetica, sans-serif;
+font-size: 100%;
+color: Black;
+font-weight: bold }
+.hdrev{font-family: Arial, Helvetica, sans-serif;
+font-size: 100%;
+color: White;
+font-weight: bold }
+.hd1 { font-family: Arial, Helvetica, sans-serif;
+font-size: 100%;
+color: Black;
+font-weight: bold }
+.hd1rev { font-family: Arial, Helvetica, sans-serif;
+font-size: 100%;
+color: White;
+font-weight: bold }
+.hd2 { font-family: Arial, Helvetica, sans-serif;
+font-size: 95%;
+color: Black;
+font-weight: bold }
+.hd2rev { font-family: Arial, Helvetica, sans-serif;
+font-size: 95%;
+color: White;
+font-weight: bold }
+.hd3 { font-family: Arial, Helvetica, sans-serif;
+font-size: 90%;
+color: Black;
+font-weight: bold }
+.hd3rev { font-family: Arial, Helvetica, sans-serif;
+font-size: 90%;
+color: White;
+font-weight: bold }
+.shd { font-family: Arial, Helvetica, sans-serif;
+font-size: 85%;
+color: #000000;
+font-weight: bold }
+.shdrev { font-family: Arial, Helvetica, sans-serif;
+font-size: 85%;
+color: #FFFFFF;
+font-weight: bold }
+.smhd { font-family: Arial, Helvetica, sans-serif;
+font-size: 75%;
+color: #000000;
+font-weight: normal }
+.label {font-family: Arial, Helvetica, sans-serif;
+font-size: 110%;
+color: #000000;
+font-weight: bold }
+.data {font-family: Arial, Helvetica, sans-serif;
+font-size: 80%;
+color: #000000;
+font-weight: normal }
+.fixed {font-family: monospace;
+font-size: 100%;
+color: #000000;
+font-weight: normal }
+.emerg {font-family: Arial, Helvetica, sans-serif;
+font-size: 80%;
+color: #990033;
+font-weight: bold }

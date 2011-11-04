@@ -1,0 +1,19 @@
+@import url("indexbottominfo.css");
+@import url("indexheader.css");
+@import url("indexmainphp.css");
+@import url("indexsidebar.css");
+@import url("indextop.css");
+@import url("fonts.css");
+@import url("misc.css");
+@import url("information.css");
+@import url("manga.css");
+
+/* Login2 Height Break */
+td.Login2Width {
+	width: 7px;
+}
+
+/* Login2 Height Break */
+td.Login2Height {
+	height: 7px;
+}

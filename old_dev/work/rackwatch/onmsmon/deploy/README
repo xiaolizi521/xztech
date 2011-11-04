@@ -1,0 +1,19 @@
+README OPENNMS MONITORING SOLUTION
+
+This file will go into the details for deploying and managing the opennms monitoring solution.
+
+The following modifications need to be done:
+
+Place 'monitor' and 'onmsmon.php' into /opt/opennms
+
+Place 'onmsmon' into /etc/init.d
+
+Replace 'opennms' in /etc/init.d with included 'opennms' file
+
+Make sure that all instances of onmsmon.php that are currently running are closed.
+
+Do /etc/init.d/onmsmon start
+
+Done!
+
+

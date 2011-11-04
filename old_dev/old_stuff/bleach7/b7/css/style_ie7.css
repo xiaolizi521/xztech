@@ -1,0 +1,407 @@
+@import url("css/indexheader.css");
+@import url("css/fonts.css"); 
+@import url("css/misc.css");
+@import url("css/information.css");
+@import url("css/manga.css");
+@import url("css/indexsidebar.css");
+@import url("css/indexbottominfo.css");
+
+/* Version for IE 7 or Mazilla */
+body {
+    background-image:	url('images/bg.jpg');
+    margin:				0px;
+    padding-left:		0px;
+    padding-right:		0px;
+    padding-bottom:		0px;
+    padding-top:		0px;
+}
+
+/*The Main section of the layout*/
+div#layout {
+    background-image:	url('images/Layout5_top.jpg');
+    width:				752px;
+    height:				552px;
+    margin-right:		auto;
+    margin-left:		auto;
+}
+
+/*setting layout position and images*/
+img, div#layout div.pos {
+    margin:				0px;
+    padding:			0px;
+    border:				none;
+}
+
+/*The Shockwave image*/
+div#layout div.pos#i02 {
+    width:				312px;
+    height:				60px;
+    margin-left:		2px;
+    margin-top:			1px;
+}
+
+/*The Donation image*/
+div#layout div.pos#i09 {
+    width:				97px;
+    height:				25px;
+    margin-left:		39px;
+    margin-top:			114px;
+}
+
+/*Donation information*/
+div#layout div.pos_donate {
+    width:				50px;
+    margin-left:		83px;
+    margin-top:			3px;
+    text-align:			right;
+    font-size:			10px;
+    font-family:		Tahoma, Verdana, Serif;
+}
+
+/*Donation information - Current*/
+div#layout div.pos_donate#donate_cur {
+    margin-top:			18px;
+}
+
+/*Donation information - Goal*/
+div#layout div.pos_donate#donate_goal {
+}
+
+/*Donation information - Amount Remaining*/
+div#layout div.pos_donate#donate_amo {
+}
+
+/*Donation List*/
+div#layout div.pos#i28 {
+    width:				52px;
+    height:				17px;
+    margin-left:		96px;
+    margin-top:			1px;
+}
+
+/*Member Section After User Logs in*/
+div#layout div.pos#member_sec {
+    background-image:	url('images/member_section.png');
+    width:				504px;
+    height:				30px;
+    margin-left:		152px;
+    margin-top:			-25px;
+    font-family:		Tahoma, Verdana, Serif;
+    font-size:			10px;
+}
+
+/*Member Section Table*/
+div#layout div.pos#member_sec table#Member_Sec{
+	margin-left:		97px;
+	width:				407px;
+	height:				30px;
+	text-align:			center;
+}
+
+/*Member Login Bar*/
+div#layout div.pos#login_bar {
+    background-image:	url('images/login_bar.png');
+    background-repeat:	no-repeat;
+	width:				509px;
+    height:				30px;
+    margin-left:		152px;
+    margin-top:			-44px;
+}
+
+/*Input Tag settings for Login Bar*/
+div#layout div.pos#login_bar input {
+    border:				none;
+    margin-top:			5px;
+    padding:			0px;
+    font-family:		monospace;
+    font-size:			16px;
+    color:				#000000;
+}
+
+/*Username Label tag image*/
+div#layout div.pos#login_bar img#i19_2 {
+	margin-bottom:		2px;
+    margin-left:		91px;
+}
+
+/*Username Input Tag information*/
+div#layout div.pos#login_bar input#username {
+	margin-left:		-5px;
+	margin-bottom:		6px;
+    background-image:	url('images/index_20.jpg');
+	width:				84px;
+	height:				19px;
+	border:				0px;
+}
+
+/*Password Label tag image*/
+div#layout div.pos#login_bar img#i21_2 {
+    margin-left:		20px;
+}
+
+/*Password Input Tag information*/
+div#layout div.pos#login_bar input#password {
+    background-image:	url('images/index_22.jpg');
+    margin-left:		-1px;
+	margin-bottom:		6px;
+	border:				0px;
+	width:				88px;
+	height:				20px;
+}
+
+/*Submit Button Tag information*/
+div#layout div.pos#login_bar input#submit {
+    width:				55px;
+    height:				20px;
+	border:				0px;	
+    background-image:	url('images/index_24.jpg');
+	margin-bottom:		5px;
+    margin-left:		7px;
+}
+
+/*Remember Checked Box (always checked)*/
+div#layout div.pos#login_bar input hidden {
+}
+
+/*Menu image*/
+div#layout div.pos#mainlinks {
+	margin-top:			-11px;
+}
+
+/*General Image*/
+div#layout img#i32 {
+    width:				85px;
+    height:				31px;
+    margin-left:		2px;
+    margin-top:			-15px;
+}
+
+/*Information Image*/
+div#layout img#i34 {
+    width:				82px;
+    height:				23px;
+    margin-left:		-4px;
+    margin-bottom:		1px;
+}
+
+/*Media Image*/
+div#layout img#i36 {
+    width:				101px;
+    height:				23px;
+    margin-left:		22px;
+	margin-bottom:		1px;
+}
+
+/*Interaction Image*/
+div#layout img#i38 {
+    width:				89px;
+    height:				23px;
+    margin-left:		9px;
+	margin-bottom:		1px;
+}
+
+/*Help Image*/
+div#layout img#i40 {
+    width:				75px;
+    height:				23px;
+    margin-left:		22px;
+	margin-bottom:		1px;
+}
+
+/*Links Image*/
+div#layout img#i42 {
+    width:				83px;
+    height:				23px;
+    margin-left:		24px;
+	margin-bottom:		1px;
+}
+
+/*Release Information*/
+div#layout img#i44 {
+    width:				61px;
+    height:				23px;
+    margin-left:		31px;
+	margin-bottom:		1px;
+}
+
+/*Ad Information*/
+div#layout img#i56 {
+    width:				385px;
+    height:				74px;
+    margin-left:		204px;
+    margin-top:			31px;
+}
+
+/*Link information for Releases*/
+div#layout div.pos_release {
+    width:				119px;
+    margin-left:		68px;
+    text-align:			center;
+    font-family:		Tahoma, Verdana, Serif;
+    font-size:			9px;
+}
+
+/*Link information for Releases*/
+div#layout div.pos_release a {
+    text-decoration:	none;
+}
+
+/*Release Information for Anime RAW*/
+div#layout div.pos_release#anime_raw {
+    margin-top:			-66px;
+}
+
+/*Release Information for Anime Sub*/
+div#layout div.pos_release#anime_sub {
+    margin-top:			9px;
+}
+
+/*Release Information for Manga RAW*/
+div#layout div.pos_release#manga_raw {
+    margin-top:			14px;
+}
+
+/*Release Information for Manga Sub*/
+div#layout div.pos_release#manga_sub {
+    margin-top:			9px;
+}
+
+/*BleachForums.com information*/
+div#layout div#bleachforums {
+	margin-left:		595px;
+}
+
+/*Upper BleachForum Information*/
+div#layout div#bleachforums img#i54 {
+	width:				142px;
+	height:				86px;
+	margin-top:			-104px;
+}
+
+/*Lower BleachForum Information*/
+div#layout div#bleachforums img#i62 {
+	width:				130px;
+	height:				23px;
+	margin-top:			-37px;
+}
+
+/*Information on the Main Section of the site*/
+div#main_sec { 
+	border:				none;
+    width:				752px;
+    margin-right:		auto;
+    margin-left:		auto;
+	font-family:		Verdana, Arial, Helvetica, sans-serif;
+	font-size:			10px;
+}
+
+/*Information on the overall Table of the Main Section*/
+div#main_sec table#MainTable {
+	background-image:	url('images/Layout5_Mainback.jpg');
+	width:				752px;
+}
+
+/*Main Section's Top-Left image*/
+div#main_sec td.MainTopLeft {
+	background-image:	url('images/Layout5_Maintopleft.jpg');
+	background-repeat:	no-repeat;
+	width:				14px;
+}
+
+/*Information on the main part of the Main Section*/
+div#main_sec td.Main {
+	background-image:	url('images/Layout5_Maintop.jpg');
+	background-repeat:	no-repeat;
+	width:				522px;
+	vertical-align:		top;
+	color:				#2B5C85;
+}
+
+/*information on the overall Side Bar*/
+div#main_sec td.side_bar {
+	background-image:	url('images/Layout5_google.jpg');
+	width:				216px;
+	vertical-align:		top;
+}
+
+/*Information on the Table for the Side Bar*/
+div#main_sec table#Side_Bar {
+	border:				none;
+}
+
+/*Information on the Navigation part of the Side Bar*/
+div#main_sec td.side_bar_main {
+	background-image:	url('images/Layout5_sidebar.jpg');
+	width:				216px;
+	height:				1238px;
+}
+
+/*Navigation Bar's overall information*/
+div#main_sec div.side_bar {
+    font-family:		Tahoma, Verdana, Serif;
+    font-size:			9px;
+	margin-left:		45px;
+	width:				152px;
+}
+
+/*Navigation Bar - Main Navigation*/
+div#main_sec div#side_Main_Nav {
+	margin-top:			0px;
+	height:				83px;
+}
+
+/*Navigation Bar - Information*/
+div#main_sec div#side_Info {
+	margin-top:			38px;
+	height:				209px;
+}
+
+/*Navigation Bar - Multimedia*/
+div#main_sec div#side_Multi {
+	margin-top:			44px;
+	height:				118px;
+}
+
+/*Navigation Bar - Fan Interaction*/
+div#main_sec div#side_Fan {
+	margin-top:			41px;
+	height:				74px;
+}
+
+/*Navigation Bar - Help Section*/
+div#main_sec div#side_Help {
+	margin-top:			41px;
+	height:				99px;
+}
+
+/*Navigation Bar - Good Buddies*/
+div#main_sec div#side_Good {
+	margin-top:			41px;
+	height:				114px;
+}
+
+/*Navigation Bar - Bleach Fansites*/
+div#main_sec div#side_Fansites {
+	margin-top:			41px;
+	height:				148px;
+}
+
+/*Navigation Bar - Member Stats*/
+div#main_sec div#side_Stats {
+	margin-top:			38px;
+	height:				54px;
+}
+
+/*Google Ad Bar*/
+div#main_sec div#google {
+	margin-top:			15px;
+    font-family:		Tahoma, Verdana, Serif;
+    font-size:			9px;
+	margin-left:		57px;
+}
+
+/*Tracker Information*/
+div#main_sec div#tracker {
+	margin-top:			-50px;
+	margin-left:		-6px;
+}

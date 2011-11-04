@@ -1,0 +1,13 @@
+2002-11-13 Karen Avila - Append Responses
+2002-11-12 Shannon Forester - Add a table to the reporting database
+2002-11-12 Michelle Ortegon Gutierrez - Change Rackspace Contacts
+2002-10-22 Ruth Whitenton - Report mapping account numbers to contact names, roles
+2001-10-23 Dennis Boline - Contract Received IP Admin notifications sent via ticketing system, not email
+2002-10-22 Hilary Davies - New variables to the text message module
+2002-10-22 Rob Jackson - New Plesk PSA 5.0 SKUs
+2002-10-22 Rob Jackson - Ticket is created for support to configure server for Hostware
+2002-10-22 Rob Jackson - New Mailmax 5.0 SKUs
+2002-10-22 Shawn Romines - Ticket is created for Professional servers when firewalls or loadbalancers go to Received Contract status
+2002-10-21 Stacy Salinas - New accounts under $200/month assigned to Team G
+2002-10-02 Sean Patterson - granted permission to set status on Intensive servers.
+

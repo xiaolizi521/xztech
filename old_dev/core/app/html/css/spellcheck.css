@@ -1,0 +1,96 @@
+.spellcheck {
+    font-size: 11pt;
+    background: #fff;
+    padding: 2px;
+    border: 2px solid #000;
+    z-index: 200;
+    height: 392px;
+    width: 540px;
+    top: 50px;
+    left: 50px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.misspell {
+    text-decoration: underline;
+    color: #f00;
+}
+
+.over {
+    background: #fff;
+}
+
+.notover {
+    background: #ccc;
+}
+
+.clicked {
+    background: #063;
+}
+
+.waiting {
+    font-size: 16pt;
+    color: black;
+    border: 1px solid black;
+    position: absolute;
+    z-index: 200;
+    top: 200px;
+    left: 250px;
+    visibility: hidden;
+    background: #eee;
+    padding: 10px;
+}
+
+input.sc_button {
+    background: #ccc;
+    border: 1px solid #000;
+    width: 100px;
+}
+
+#title_bar {
+    position: relative;
+    width: 99%;
+    padding: 2px;
+    background: lightsteelblue;
+}
+#buttons {
+    position: absolute;
+    text-align: center;
+    top: 253px;
+    left: 420px;
+}
+#usertext {
+    position: relative;
+    font-size: 11pt;
+    background: #ccc;
+    padding: 5px;
+    border: 1px solid #000;
+    width: 375px;
+    height: 200px;
+    top: 5px;
+    left: 10px;
+    overflow-y: auto;
+    display: block;
+}
+#suggest {
+    position: relative;
+    font-size: 11pt;
+    background: #ccc;
+    padding: 5px;
+    border: 1px solid #000;
+    width: 375px;
+    height: 110px;
+    left: 10px;
+    top: 7px;
+    overflow-y: auto;
+    display: block;
+}
+#s_title {
+    position: relative;
+    height: 20px;
+    top: 7px;
+    left: 10px;
+}
+
+

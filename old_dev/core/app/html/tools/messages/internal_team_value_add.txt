@@ -1,0 +1,7 @@
+Computer Provisioning Alert #${account_number}-${computer_number}
+
+This computer's configuration requires attention to insure that all
+additional services and software packages are installed and configured
+correctly. They are listed below along with any additional instructions.
+
+

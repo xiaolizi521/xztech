@@ -1,0 +1,1 @@
+<?php header('Location: http://www.bleach7.com'); ?>

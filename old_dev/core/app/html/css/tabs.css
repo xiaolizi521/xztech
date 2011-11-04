@@ -1,0 +1,61 @@
+.active_tab {
+    background-image: url('/img/tabs/tab_active.png');
+    width: 110px;
+    height: 25px;
+    font-size: 80%;
+    text-align: center;
+    padding-top: 2px;
+    cursor: pointer;
+}
+.inactive_tab {
+    background-image: url('/img/tabs/tab.png');
+    width: 110px;
+    height: 25px;
+    font-size: 80%;
+    text-align: center;
+    padding-top: 2px;
+    cursor: pointer;
+    border-bottom: solid 1px #9db1ba;
+}
+td.inactive_tab:hover {
+    background-image: url('/img/tabs/tab_hover.png');
+}
+.tab_spacer {
+    border-bottom: solid 1px #9db1ba;
+}
+.tab_showing {
+    border-left: solid 1px #9db1ba;
+    border-right: solid 1px #9db1ba;
+    border-bottom: solid 1px #9db1ba;
+    background-color: #FFFFFF;
+}
+.tab_hiding {
+    display: none;
+}
+
+.active_tab_bottom {
+    background-image: url('/img/tabs/tab_active_bottom.png');
+    width: 110px;
+    height: 25px;
+    font-size: 80%;
+    text-align: center;
+    padding-bottom: 2px;
+    cursor: pointer;
+}
+.inactive_tab_bottom {
+    background-image: url('/img/tabs/tab_bottom.png');
+    width: 110px;
+    height: 25px;
+    font-size: 80%;
+    text-align: center;
+    padding-bottom: 2px;
+    cursor: pointer;
+    border-bottom: solid 1px #9db1ba;
+}
+td.inactive_tab_bottom:hover {
+    background-image: url('/img/tabs/tab_hover_bottom.png');
+}
+.tab_spacer_bottom {
+    border-top: solid 1px #9db1ba;
+}
+

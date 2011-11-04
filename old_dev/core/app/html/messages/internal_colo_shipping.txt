@@ -1,0 +1,10 @@
+Server - Colo - Wating for Server
+
+Name: ${primary_contact_name}
+Email: ${primary_contact_email}
+Account Number: ${account_number}
+Computer Number: ${computer_number}
+Profile Available:
+https://core.rackspace.com/tools/display_computer.php3?customer_number=${account_number}&computer_number=${computer_number}
+
+This has been an automated message from CORE.

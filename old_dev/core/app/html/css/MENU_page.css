@@ -1,0 +1,52 @@
+a { 
+    color: white;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size: 90%;
+    font-weight:600;
+    text-decoration:none;
+    margin:3px;
+}
+
+div.navigator a:hover { 
+}
+
+.abread {  
+    color: #3266cc;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size: .9em;
+    font-weight:bold;
+    text-decoration:none;
+    margin-left:2px;
+    margin-right:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+p { 
+    color: white;
+    font-family:"sans-serif,arial,helvetica";
+    font-size: 80%;
+    font-weight:600;
+    text-decoration:none;
+    margin:0px;
+}
+
+.prev {
+    color: #3266cc;
+    font-family:"sans-serif,arial,helvetica";
+    font-size: 90%;
+    font-weight:600;
+    text-decoration:none;
+    margin:0px;
+}
+
+body {
+    margin:0px 0px 0px 0px; 
+    padding:0px 0px 0px 0px;
+}
+
+.dumbNSLayer {
+background-color: #FFFFFF
+padding=0px;
+margin:0px;
+}

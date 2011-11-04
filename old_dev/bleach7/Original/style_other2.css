@@ -1,0 +1,378 @@
+@import url("css/indexheader.css");
+@import url("css/fonts.css"); 
+@import url("css/misc.css");
+@import url("css/information.css");
+@import url("css/manga.css");
+@import url("css/indexsidebar.css");
+@import url("css/indexbottominfo.css");
+
+/* Version for Netscape, Opera, Other browsers */
+body {
+    background-image:	url('images/bg.jpg');
+    margin:				0px;
+    padding-left:		0px;
+    padding-right:		0px;
+    padding-bottom:		0px;
+    padding-top:		0px;
+}
+
+div#layout {
+    background-image:	url('images/Layout5_top.jpg');
+    width:				752px;
+    height:				552px;
+    margin-right:		auto;
+    margin-left:		auto;
+}
+
+img, div#layout div.pos {
+    margin:				0px;
+    padding:			0px;
+    border:				none;
+}
+
+div#layout div.pos#i02 {
+    width:				312px;
+    height:				60px;
+    margin-left:		2px;
+    margin-top:			0px;
+}
+
+div#layout div.pos#i09 {
+    width:				97px;
+    height:				25px;
+    margin-left:		39px;
+    margin-top:			115px;
+}
+
+div#layout div.pos_donate {
+    width:				50px;
+    margin-left:		83px;
+    margin-top:			3px;
+    text-align:			right;
+    font-family:		Verdana, Arial, Helvetica, sans-serif;
+    font-size:			10px;
+}
+
+div#layout div.pos_donate#donate_cur {
+    margin-top:			18px;
+}
+
+/*Donation information - Goal*/
+div#layout div.pos_donate#donate_goal {
+}
+
+/*Donation information - Amount Remaining*/
+div#layout div.pos_donate#donate_amo {
+}
+
+div#layout div.pos#i28 {
+    width:				52px;
+    height:				17px;
+    margin-left:		96px;
+    margin-top:			1px;
+}
+
+div#layout div.pos#member_sec {
+    background-image:	url('images/member_section.png');
+	background-repeat:	no-repeat;
+    width:				504px;
+    height:				41px;
+    margin-left:		152px;
+    margin-top:			-25px;
+    font-family:		Tahoma, Verdana, Serif;
+    font-size:			10px;
+}
+
+div#layout div.pos#member_sec table#Member_Sec{
+	margin-left:		97px;
+	width:				407px;
+	height:				30px;
+	text-align:			center;
+}
+
+div#layout div.pos#login_bar {
+    background-image:	url('images/login_bar.png');
+    width:				504px;
+    height:				30px;
+    margin-left:		152px;
+    margin-top:			-25px;
+}
+
+div#layout div.pos#login_bar input {
+    border:				none;
+    margin-top:			5px;
+    padding:			0px;
+    font-family:		monospace;
+    font-size:			16px;
+    color:				#000000;
+}
+
+div#layout div.pos#login_bar img#i19_2 {
+	margin-bottom:		0px;
+    margin-left:		83px;
+}
+
+div#layout div.pos#login_bar input#username {
+	width:				88px;
+	height:				20px;
+	margin-bottom:		6px;
+	border:				0px;
+    background-image:	url('images/index_20.jpg');
+}
+
+div#layout div.pos#login_bar img#i21_2 {
+    margin-left:		18px;
+}
+
+div#layout div.pos#login_bar input#password  {
+    background-image:	url('images/index_22.jpg');
+    margin-left:		0px;
+	margin-bottom:		6px;
+	border:				0px;
+	width:				88px;
+	height:				20px;
+}
+
+div#layout div.pos#login_bar input#submit {
+    width:				55px;
+    height:				20px;
+	border:				0px;
+    background-image:	url('images/index_24.jpg');
+	margin-bottom:		5px;
+    margin-left:		7px;
+}
+
+/*Remember Checked Box (always checked)*/
+div#layout div.pos#login_bar input checkbox {
+	visibility: collapse;
+}
+
+div#layout div.pos#mainlinks {
+	margin-top:			-12px;
+}
+
+div#layout img#i32 {
+    width:				85px;
+    height:				31px;
+    margin-left:		2px;
+    margin-top:			2px;
+}
+div#layout img#i34 {
+    width:				82px;
+    height:				23px;
+    margin-left:		-4px;
+    margin-bottom:		1px;
+}
+
+div#layout img#i36 {
+    width:				101px;
+    height:				23px;
+    margin-left:		22px;
+	margin-bottom:		1px;
+}
+
+div#layout img#i38 {
+    width:				89px;
+    height:				23px;
+    margin-left:		9px;
+	margin-bottom:		1px;
+}
+
+div#layout img#i40 {
+    width:				75px;
+    height:				23px;
+    margin-left:		22px;
+	margin-bottom:		1px;
+}
+
+div#layout img#i42 {
+    width:				83px;
+    height:				23px;
+    margin-left:		24px;
+	margin-bottom:		1px;
+}
+
+div#layout img#i44 {
+    width:				61px;
+    height:				23px;
+    margin-left:		31px;
+	margin-bottom:		1px;
+}
+
+/*Ad Information*/
+div#layout div#banner {
+	background-image:	url('images/index_56.jpg');
+	width:				385px;
+	height:				74px;
+    margin-left:		204px;
+    margin-top:			34px;
+}
+
+div#layout img#i56 {
+    width:				385px;
+    height:				74px;
+}
+
+div#layout div.pos_release {
+    width:				119px;
+    margin-left:		68px;
+    text-align:			center;
+    font-family:		Tahoma, Verdana, Serif;
+    font-size:			9px;
+}
+
+div#layout div.pos_release a {
+    text-decoration:	none;
+}
+
+div#layout div.pos_release#anime_raw {
+    margin-top:			-65px;
+}
+
+div#layout div.pos_release#anime_sub {
+    margin-top:			9px;
+}
+
+div#layout div.pos_release#manga_raw {
+    margin-top:			14px;
+}
+
+div#layout div.pos_release#manga_sub {
+    margin-top:			9px;
+}
+
+div#layout div#bleachforums {
+	margin-left:		595px;
+}
+
+div#layout div#bleachforums img#i54 {
+	width:				142px;
+	height:				86px;
+	margin-top:			-104px;
+}
+
+div#layout div#bleachforums img#i62 {
+	width:				130px;
+	height:				23px;
+	margin-top:			-18px;
+}
+
+div#main_sec {
+	border:				none;
+    width:				752px;
+    margin-right:		auto;
+    margin-left:		auto;
+	font-family:		Verdana, Arial, Helvetica, sans-serif;
+	font-size:			10px;
+}
+
+div#main_sec table#MainTable {
+	background-image:	url('images/Layout5_Mainback.jpg');
+	width:				752px;
+}
+
+div#main_sec td.MainTopLeft {
+	background-image:	url('images/Layout5_Maintopleft.jpg');
+	background-repeat:	no-repeat;
+	width:				14px;
+}
+
+div#main_sec td.Main {
+	background-image:	url('images/Layout5_Maintop.jpg');
+	background-repeat:	no-repeat;
+	overflow:			auto;
+	width:				522px;
+	vertical-align:		top;
+	color:				#2B5C85;
+}
+
+div#main_sec td.side_bar {
+	background-image:	url('images/Layout5_google.jpg');
+	width:				216px;
+	vertical-align:		top;
+}
+
+div#main_sec table#Side_Bar {
+	border:				none;
+}
+
+div#main_sec td.side_bar_main {
+	background-image:	url('images/Layout5_sidebar.jpg');
+	width:				216px;
+	height:				1238px;
+}
+
+div#main_sec div.side_bar {
+    font-family:		Verdana, Arial, Helvetica, sans-serif;
+	font-size:			9px;
+	margin-left:		45px;
+	width:				152px;
+}
+
+div#main_sec div#side_Main_Nav {
+	margin-top:			-3px;
+	height:				83px;
+}
+
+div#main_sec div#side_Info {
+	margin-top:			38px;
+	height:				209px;
+}
+
+div#main_sec div#side_Multi {
+	margin-top:			44px;
+	height:				118px;
+}
+
+div#main_sec div#side_Fan {
+	margin-top:			39px;
+	height:				74px;
+}
+
+div#main_sec div#side_Help {
+	margin-top:			41px;
+	height:				99px;
+}
+
+div#main_sec div#side_Good {
+	margin-top:			41px;
+	height:				114px;
+}
+
+div#main_sec div#side_Fansites {
+	margin-top:			41px;
+	height:				148px;
+}
+
+div#main_sec div#side_Stats {
+	margin-top:			40px;
+	height:				54px;
+}
+
+div#main_sec div#google {
+	margin-top:			15px;
+    font-family:		Tahoma, Verdana, Serif;
+    font-size:			9px;
+	margin-left:		57px;
+	width:				120px;
+	height:				240px;
+}
+
+div#main_sec div#tracker {
+	margin-top:			-50px;
+	margin-left:		-6px;
+}
+
+.vol
+{
+font-weight: bold;
+padding-top:20px;
+}
+
+.artg
+{
+border-width:1px;
+border:#000000;
+padding:8px;
+width:167px;
+}

@@ -1,0 +1,36 @@
+.artstitle {
+	text-decoration: underline;
+	font-style: italic;
+}
+
+.soulcutter {
+	text-decoration: underline;
+	font-style: italic;
+	font-weight: bold;
+}
+
+#characterbio {
+	border: none;
+	width: 483px;
+}
+
+#characterbio2 {
+	border: none;
+	width: 100%;
+}
+
+td.charbio1 {
+	width: 100%;
+}
+
+td.charbio2 {
+	width: 21%;
+}
+
+td.charbio3 {
+	width: 14%;
+}
+
+td.charbio4 {
+	width: 65%;
+}

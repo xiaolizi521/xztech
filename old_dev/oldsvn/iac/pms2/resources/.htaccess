@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Resources"
+AuthUserFile "/home/iac/.htpasswds/public_html/resources/passwd"
+require valid-user

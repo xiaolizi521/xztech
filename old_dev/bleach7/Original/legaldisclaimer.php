@@ -1,0 +1,22 @@
+<br />
+<span class="VerdanaSize1Main"><b>Bleach 7 &gt; Legal Disclaimer</b><br />
+<br />
+</span><span class="VerdanaSize2Main"><b>Legal Disclaimer</b></span><span class="VerdanaSize1Main"><br />
+<br />
+Bleach7.com is a fan run, non-profit website dedicated to the anime series created by Kubo Tite, BLEACH. Use of the Bleach7.com website signifies your agreeing to the terms listed on this web page, along with terms located in our [<a href="?page=privacypolicy">Privacy Policy</a>] and [<a href="?page=termsofuse">Terms of Use</a>]. Bleach7.com reserves the right to make modifications to any of these policies at any time without notice to it's users.<br />
+<br />
+Bleach7.com does not claim to be the creator of the BLEACH manga or anime series. We had absolutely no part in any creation of the series, and are just dedicated fans of this series who have taken their time to create this website. Although we did not create the BLEACH series, we did create this website to be as original as possible. We ask that you respect the originality of our work, and not take anything without expressed written permission by the owners.<br />
+<br />
+Bleach7.com and all of it's original content and images are the sole property of the webmasters of this site. Furthermore, Bleach7.com is protected by the Digital Millenium Copyright Act. Unauthorized use of any original pieces originating from the Bleach7.com are subject to criminal and civil penalties. If it is found that you have taken original work from Bleach7.com, you will be asked to remove it peacefully within 24 hours, or risk possible legal action against you or your website.<br />
+<br />
+Bleach7.com is ran on fully monitored servers for security reasons. All users who visit Bleach7.com are logged. Any unauthorized attempts at accessing (hacking) the Bleach7.com sytem(s) are strictly prohibited. Action to the fullest extent of the law under criminal and civil law under Federal Laws including but not limited to Public Laws 83-703 and 99-474 will be taken against those who attempt to hack or attack the Bleach7.com server.<br />
+<br />
+By not agreeing to these terms, you can not threaten Bleach7.com or any company hosting and storing any files related with Bleach7.com with legal action. You also may not prosecute any person(s) affiliated with Bleach7.com including, but not limited to, family, friends or individuals who maintain or visit this website.<br />
+<br />
+Information located on Bleach7.com is provided "AS IS" without warranty of any kind, either expressed or implied. This includes, but is not limited to, the implied warranties of merchantability, fitness for a particular purpose, or non-infringement. All material on Bleach7.com is believed to be original to the owners of this website, and may not be taken for use without the expressed written permission of the owner, and a link back to Bleach7.com.<br />
+<br />
+In no event will Bleach7.com, it's host(s), any any other company or individual including third party websites linking to Bleach7.com, be liable to any party for any direct, indirect, special or other consequential damages for any use of this website, or on any other hyperlinked website affiliated with the Bleach7.com website. Including, without limitation, any lost profits, loss of program or data on your information handling system or otherwise, even if Bleach7.com is expressly advised of the possibility of such damages that may occur.<br />
+<br />
+All Music Videos and other original work located on Bleach7.com are property of Bleach7.com and it's owner. All material submitted via E-mail or other methods becomes the immediate property of Bleach7.com, and may be used in any form by the owners of this website. In most cases, credit will be given where it is due for all submissions. No original work may be taken from Bleach7.com and used on another website without the written permission from the owner.<br />
+<br />
+By continuing to access Bleach7.com and any of it's affiliated websites and files, you are expressly and impliedly agreeing to all of the terms as stated above on this document. You also hereby affirm that you are in compliance with all Federal, State and Local laws in your place of residence concerning the contents of Bleach7.com, and are also in agreeance with our [<a href="?page=privacypolicy">Privacy Policy</a>] and [<a href="?page=termsofuse">Terms of Use</a>].</span>

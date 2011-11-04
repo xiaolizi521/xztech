@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<title>Help Tool Tip (WebFX)</title>
+
+<script type="text/javascript" src="webfxlayout.local.js"></script>
+<script type="text/javascript" src="js/helptip.js"></script>
+<link type="text/css" rel="StyleSheet" href="css/helptip.css" />
+<style type="text/css">
+
+a.helpLink,
+a.helpLink:hover {
+	color:				rgb(0,66,174);
+	border-bottom-color:rgb(0,66,174);
+}
+
+
+</style>
+<script type="text/javascript">
+
+var sAboutWebFX = "WebFX is a web site run by " +
+	"<a href='mailto:erik&#64;eae.net'>Erik Arvidsson</a>, " +
+	"<a href='mailto:eae&#64;eae.net'>Emil A Eklund</a> and " +
+	"<a href='mailto:eae&#64;eae.net'>Jared Nuzzolillo.</a>" +
+	"<br /><br />" +
+	"<a href='http://webfx.eae.net' target='_new'>http://webfx.eae.net</a>";
+var sJsHelp = "JavaScript is also known as JScript but the formal name is ECMAScript.";
+var sCssHelp = "CSS stands for Cascading Style Sheets and is a standard developed by the <a href='http://www.w3.org' target='_new'>W3C</a>.";
+</script>
+
+</head>
+<body>
+
+<!-- WebFX Layout Include -->
+<script type="text/javascript">
+
+var articleMenu= new WebFXMenu;
+articleMenu.left  = 384;
+articleMenu.top   = 86;
+articleMenu.width = 140;
+articleMenu.add(new WebFXMenuItem("Help Tool Tip", "helptip.html"));
+articleMenu.add(new WebFXMenuItem("Demo", "demo.html"));
+articleMenu.add(new WebFXMenuSeparator);
+articleMenu.add(new WebFXMenuItem("Download", "http://webfx.eae.net/download/helptip112.zip"));
+webfxMenuBar.add(new WebFXMenuButton("Article Menu", null, null, articleMenu));
+
+webfxLayout.writeTitle("Help Tool Tip");
+webfxLayout.writeMenu();
+webfxLayout.writeDesignedByEdger();
+
+</script>
+<div class="webfx-main-body">
+<!-- end WebFX Layout Includes -->
+
+<p><span class="date">(2002-10-04)</span> Version 1.1 - Restructured and made
+code more IE garbage collector friendly. This solved the most nasty memory leaks.</p>
+
+<h2>Introduction</h2>
+
+<p>This is a fairly simple script that allows you to create help tool tips links. This is
+a very common way to add a small description of a keyword or feature in Windows
+applications as well as in Windows help files.</p>
+
+<h2>Demo</h2>
+
+<p style="padding-bottom: 1px;">The Help Tool Tip was created by Erik Arvidsson for <a class="helpLink" href="?" onclick="showHelpTip(event, sAboutWebFX); return false;">WebFX</a>.</p>
+
+<h2>Usage</h2>
+
+<p style="padding-bottom: 1px;">To use the help tip you need to include two files. One <a class="helpLink" href="?" onclick="showHelpTip(event, sJsHelp); return false">JS</a>
+file and one <a class="helpLink" href="?" onclick="showHelpTip(event, sCssHelp); return false">CSS</a>.</p>
+
+<pre>
+&lt;script type="text/javascript" src="helptip.js"&gt;&lt;/script&gt;
+&lt;link type="text/css" rel="StyleSheet" href="helptip.css" /&gt;
+</pre>
+
+<p>The js file defines one function called <code>showHelpTip</code>that should be added to the inline HTML code.
+The CSS file defines the look of the <code>helpLink</code> as well as the look of the <code>help-tooltip</code>.
+The inline HTML code looks something like this:
+</p>
+
+<pre>
+&lt;a class="helpLink" href="?" onclick="showHelpTip(event, sJsHelp); return false"&gt;JS&lt;/a&gt;
+</pre>
+
+<p>...where <code>sJsHelp</code> is a variable of type <code>String</code> that has been defined in the head of this page.
+Notice that if you forget to return <code>false</code> in the onclick event the link will be followed and the
+user will navigate away from your page.</p>
+
+<h2>Implementation</h2>
+
+<p>The tool tip is created and shown when the user clicks the link. Once the link is blurred the tool tip is removed.
+For this to be possible we need to add an event listener to the actual anchor that was clicked. To do this we first
+need to find the anchor element that was clicked. The problem here is that IE does not follow the W3C DOM so we'll
+have to do one test to find the target node and then once we have that we walk up the tree to find the anchor element.</p>
+
+<pre>
+// find anchor element
+var el = e.target ? e.target : e.srcElement;
+while (el.tagName != "A")
+   el = el.parentNode;
+</pre>
+
+<p>We create the tooltip element in the normal way using <code>document.createElement</code>. On this element
+we set the <code>className</code> and the <code>innerHTML</code> and insert the element last into the body element.</p>
+
+<pre>
+// create element and insert last into the body
+var d = document.createElement("DIV");
+d.className = "help-tooltip";
+document.body.appendChild(d);
+d.innerHTML = s;
+</pre>
+
+<p>Like I said before the tooltip should be hidden when the anchor is blurred and therefore we add an event
+listener to the <code>blur</code> event. When blurred the tooltip is removed from the page and the <code>blur</code>
+event listener is removed again.</p>
+
+<pre>
+// add a listener to the blur event. When blurred remove tooltip and restore anchor
+el.onblur = function () {
+   document.body.removeChild(d);
+   el.onblur = null;
+   el._helpTip = null;
+};
+</pre>
+
+<h3>Positioning the Tooltip</h3>
+
+<p>There remains one important part of the tooltip script and that is to position the tooltip. This is done by
+finding out where the mouse is located and then put the tooltip div at that position. This could be done in a lot easier way than we are
+doing but we want the positioning to be fairly smart. Therefore we take the document width and the scroll position
+of the browser viewport into account.</p>
+
+<p>To get the document width we once again need to do some simple browser tests. Mozilla uses
+<code>document.width</code> but IE uses <code>offsetWidth</code> on the document canvas element. This element can
+be either the <code>BODY</code> or the <code>HTML</code> element depending on version and DOCTYPE settings but
+in IE55 and later the offsetWidth of the <code>HTML</code> element returns the correct value even if the <code>BODY</code>
+is treated as the canvas element for the page. For IE we also subtract a few pixels just in case the document is showing
+a scrollbar.</p>
+
+<pre>
+// position tooltip
+var dw = document.width ? document.width : document.documentElement.offsetWidth - 25;
+</pre>
+
+<p>To get the scroll position we must once again identify the differences between Mozilla and IE. Mozilla is
+using <code>window.pageXOffset</code> and IE is using <code>scrollLeft</code> on the page canvas element.</p>
+
+<pre>
+// returns the scroll left and top for the browser viewport.
+function getScroll() {
+   if (document.body.scrollTop != undefined) {	// IE model
+      var ieBox = document.compatMode != "CSS1Compat";
+      var cont = ieBox ? document.body : document.documentElement;
+      return {x : cont.scrollLeft, y : cont.scrollTop};
+   }
+   else {
+      return {x : window.pageXOffset, y : window.pageYOffset};
+   }
+}
+</pre>
+
+<p>Now we can finally do the actual positioning. To get the mouse position we use <code>event.clientX</code> and
+<code>event.clientY</code>. We also offset the tooltip a little to make it appear relative to the hand cursor:</p>
+
+<pre>
+// position tooltip
+var dw = document.width ? document.width : document.documentElement.offsetWidth - 25;
+var scroll = getScroll();
+if (e.clientX > dw - d.offsetWidth)
+   d.style.left = dw - d.offsetWidth + scroll.x + "px";
+else
+   d.style.left = e.clientX - 2 + scroll.x + "px";
+d.style.top = e.clientY + 18 + scroll.y + "px";
+</pre>
+
+<h3>Minor improvements</h3>
+
+<p>When the user clicks on the link twice we want the original tooltip to be hidden. This is done by checking if
+a <code>DIV</code> is already assigned to the anchor and if so we hide the tooltip and remove the temporary blur
+listener.</p>
+
+<p>When the user clicks anywhere inside the tooltip the anchor is blurred and the tooltip is hidden. This prevents
+anchors from working inside the tooltip and if we want to make anchors work inside the tooltip we can achieve this
+by listening to the <code>mousedown</code> event and in case it was triggered on an anchor we remove the <code>blur</code>
+event on the original anchor so that the tooltip is not hidden.</p>
+
+<p>The code for this can be seen in the <a href="view-source:http://webfx.eae.net/dhtml/helptip/js/helptip.js">complete code</a>.</p>
+
+
+
+<p>
+<a href="helptip.html">Help Tool Tip</a><br />
+<a href="demo.html">Demo</a><br />
+<a href="http://webfx.eae.net/download/helptip112.zip">Download</a>
+</p>
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!-- end webfx-main-body -->
+</div>
+
+</body>
+</html>

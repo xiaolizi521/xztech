@@ -1,0 +1,626 @@
+body {
+	font-size: 11px;
+	color: black;
+	font-family: Verdana;
+	background-color: #E8E8E8;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+
+div.main {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+table {
+	font-size: 10px;
+	color: #000000;
+	font-family: Verdana;
+}
+
+.form { 
+	text-decoration: none; 
+	font-family: Verdana; 
+	font-size: 10px; 
+	color: #000000;
+}
+
+a:link,
+a:visited,
+a:active {
+	color: #A60000;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+a:hover {
+	color: #121212;
+	text-decoration: none;
+}
+
+a.news:link,
+a.news:visited,
+a.news:active {
+	color: #A60000;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+a.news:hover {
+	color: #121212;
+	text-decoration: underline;
+}
+
+a.feat:link,
+a.feat:visited,
+a.feat:active {
+	font-size: 10px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.feat:hover {
+	color: #C2B8A5;
+	text-decoration: none;
+}
+
+a.OnRed:link,
+a.OnRed:visited,
+a.OnRed:hover,
+a.OnRed:active {
+	font-weight: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.OnWhite {
+	font-weight: normal;
+	color: #000000;
+	font-weight: normal;
+	font-family: Verdana;
+}
+
+.OnBlack {
+	font-weight: normal;
+	font-size: 10px;
+	color: #FFFFFF;
+	font-family: Verdana, Helvetica, sans-serif;
+}
+
+.OnBlack2t {
+	font-weight: normal;
+	color: #F1D04A;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.OnRed {
+	font-size: 11px;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.switchbox {
+	font-weight: normal;
+	font-family: Verdana, Helvetica, sans-serif;
+}
+
+.InfoTdClassM1 {
+	color: #FFFFFF;
+	background-color: #121212;
+}
+
+.InfoTdClassM2 {
+	color: #121212;
+	background-color: #FFFFFF;
+}
+
+.InfoTdClass1 {
+	color: #121212;
+	background-color: #C2B8A5;
+}
+
+.RateBg1 {
+	color: #FFFFFF;
+	background-color: #121212;
+}
+
+.RateBg2 {
+	color: #FFFFFF;
+	background-color: #A60000;
+}
+
+/*part of the header page*/
+.form { 
+text-decoration: none; 
+font-family: Verdana; 
+font-size: 10px; 
+color: #000000;
+}
+
+.main { 
+text-decoration: none; 
+font-family: Verdana, Tahoma; 
+font-size: 10px; 
+color: #000000;
+}
+
+.secondary { 
+text-decoration: none; 
+font-family: Verdana, Tahoma; 
+font-size: 11px; 
+color: #000000;
+}
+
+.secondary a:link { 
+text-decoration: none; 
+font-family: Verdana, Tahoma; 
+font-size: 11px; 
+color: #000000;
+}
+
+.secondary a:active { 
+text-decoration: none; 
+font-family: Verdana, Tahoma; 
+font-size: 11px; 
+color: #000000;
+}
+
+.secondary a:visited { 
+text-decoration: none; 
+font-family: Verdana, Tahoma; 
+font-size: 11px; 
+color: #000000;
+}
+
+.secondary a:hover { 
+text-decoration: underline; 
+font-family: Verdana, Tahoma; 
+font-size: 11px; 
+color: #000000; 
+}
+
+:link img {
+  border: none;
+}
+
+/* AutoNumber1 */
+#AutoNumber1 {
+	border-style: hidden;
+	border-color: #111111;
+	width: 700px;
+	height: 930px;
+}
+
+/* Banner */
+td.banner {
+	width: 700px;
+	height: 164px;
+}
+
+img.banner {
+	width: 700px;
+	height: 164px;
+}
+
+/* NavBar */
+td.NavBar {
+	width: 700px;
+	height: 24px;
+}
+
+img.spaceuppernavleft {
+	border: none;
+	width: 9px;
+	height: 24px;
+}
+
+img.homepage {
+	border: none;
+	width: 83px;
+	height: 24px;
+}
+
+img.information {
+	border: none;
+	width: 101px;
+	height: 24px;
+}
+
+img.multimedia {
+	border: none;
+	width: 98px;
+	height: 24px;
+}
+
+img.assorted {
+	border: none;
+	width: 70px;
+	height: 24px;
+}
+
+img.spaceuppernavright {
+	border: none;
+	width: 339px;
+	height: 24px;
+}
+
+/* Ad image */
+td.ad {
+	width: 385px;
+	height: 85px;
+	background-color: #FFFFFF;
+	vertical-align: top;
+}
+
+img.ad {
+	border: none;
+}
+
+/* Donations */
+td.donations {
+	width: 127px;
+	height: 21px;
+}
+
+img.donations {
+	border: none;
+	width: 127px;
+	height: 21px;
+}
+
+/* Latest Releases */
+td.latestreleases {
+	width: 188px;
+	height: 21px;
+}
+
+img.latestreleases {
+	border: none;
+	width: 188px;
+	height: 21px;
+}
+
+/* Donations Main */
+td.donationsmain {
+	width: 127px;
+	height: 64px;
+	background-color: #FFFFFF;
+}
+
+#AutoNumber2 {
+	background-color: #FFFFFF;
+	border: none;
+	border-collapse: collapse;
+	border-color: #111111;
+	width: 100%; 
+}
+
+tr.donationsmain {
+	background-color: #FFFFFF;
+}
+
+/* Spacing for Donations */
+td.donatspace {
+	width: 16%;
+	background-color: #FFFFFF;
+}
+
+p.donatspace {
+	text-align: right;
+}
+
+/* Donation Info */
+td.donatinfo {
+	width: 84%;
+	background-color: #FFFFFF;
+}
+
+/* Navigation background */
+td.navbg {
+	background-image: url(../images/navbg.gif);
+	vertical-align: top;
+	width: 188px;
+	height: 64px;
+}
+
+/* Table that holds the latest releases*/
+#AutoNumber3 {
+	border: none;
+	border-collapse: collapse;
+	border-color: #111111;
+	width: 178px; 
+}
+
+td.latrelspace1 {
+	width: 9px;
+}
+
+td.latrelmain {
+	width: 162px;
+}
+
+td.latrelspace2 {
+	width: 7px;
+}
+
+/* Banner Rotation Site Content*/
+td.bannerrotationsitecontent {
+	width: 512px;
+	height: 32px;
+	background-color: #FFFFFF;
+	vertical-align: top;
+}
+
+img.bannerrotationsitecontent {
+	border: none;
+	width: 512px;
+	height: 32px;
+}
+
+/* Site Navigation rod */
+td.siteNav {
+	width: 188px;
+	height: 32px;
+	background-color: #FFFFFF;
+	background-image: url(../images/navbg.gif);
+	vertical-align: top;
+}
+
+img.siteNav {
+	width: 188px;
+	height: 32px;
+	border: none;
+}
+
+/* Main php import section */
+td.mainphpouter {
+	width: 512px;
+	height: 712px;
+	background-color: #FFFFFF;
+	vertical-align: top;
+}
+
+#AutoNumber5 {
+	border: none;
+	border-collapse: collapse;
+	border-color: #111111;
+	width: 500px;
+}
+
+td.mainphpinnerspace1 {
+	width: 12px;
+	vertical-align: top;
+}
+
+td.mainphpinnermain {
+	width: 483px;
+}
+
+td.mainphpinnerspace2 {
+	width: 5px;
+	vertical-align: top;
+}
+
+td.mainsidenavigation {
+	width: 188px;
+	height: 715px;
+	background-color: #FFFFFF;
+	background-image: url(../images/navbg.gif);
+	vertical-align: top;
+}
+
+#AutoNumber4 {
+	border: none;
+	border-collapse: collapse;
+	border-color: #111111;
+	width: 177px;
+}
+
+/*Side Bar title display*/
+td.sidebar1 {
+	width: 11px;
+	vertical-align: top;
+}
+
+td.mainside {
+	width: 166px;
+	vertical-align: top;
+}
+
+.sidebartitle {
+	text-decoration: underline;
+}
+
+/*Bleach Multimedia*/
+a.OnBlack:link,
+a.OnBlack:visited,
+a.OnBlack:active {
+	font-size: 10px;
+	color: #000000;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.OnBlack:hover {
+	color: #0B5918;
+	text-decoration: none;
+	border-bottom: 0px solid #FFFFFF;
+}
+
+/*Fan Interaction*/
+a.OnBlack2a:link,
+a.OnBlack2a:visited,
+a.OnBlack2a:active {
+	font-size: 10px;
+	color: #000000;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.OnBlack2a:hover {
+	color: #0B1459;
+	text-decoration: none;
+}
+
+/*Main Navigation*/
+a.OnWhite:link,
+a.OnWhite:visited,
+a.OnWhite:active {
+	font-weight: normal;
+	color: #121212;
+	text-decoration: none;
+}
+
+a.OnWhite:hover {
+	color: #84852B;
+	text-decoration: none;
+}
+
+/*Bleach Information*/
+a.OnWhite2:link,
+a.OnWhite2:visited,
+a.OnWhite2:active {
+	font-weight: normal;
+	color: #121212;
+	text-decoration: none;
+}
+
+a.OnWhite2:hover {
+	color: #A60000;
+}
+
+/*Good Buddies*/
+a.OnWhite3:link,
+a.OnWhite3:visited,
+a.OnWhite3:active {
+	font-weight: normal;
+	color: #121212;
+	text-decoration: none;
+}
+
+a.OnWhite3:hover {
+	color: #E28D06;
+	text-decoration: none;
+}
+
+/*Bleach Fansites*/
+a.OnWhite4:link,
+a.OnWhite4:visited,
+a.OnWhite4:active {
+	font-weight: normal;
+	color: #121212;
+	text-decoration: none;
+}
+
+a.OnWhite4:hover {
+	color: #610F83;
+	text-decoration: none;
+}
+
+/* Layout Bot */
+td.layoutbot {
+	width: 700px;
+	background-gcolor: #FFFFFF;
+	height:23px;
+}
+
+img.layoutbot {
+	border: none;
+	width: 700px;
+	height: 21px;
+}
+
+/* Copyright */
+td.copyright {
+	width: 512px;
+	height: 12px;
+	background-color: #FFFFFF;
+}
+
+/* Contact Info */
+td.contact {
+	width: 188px;
+	height: 12px;
+	background-color: #FFFFFF;
+}
+
+/* Bottom Spacing */
+td.bottomspacing1 {
+	height: 1px;
+	background-color: #FFFFFF;
+}
+
+td.bottomspacing2 {
+	width: 188px;
+	height: 1px;
+	background-color: #FFFFFF;
+}
+
+/* Extream Tracker */
+img.extracker {
+	border: none;
+	width: 1px;
+	height: 1px;
+}
+
+img.extrackermain {
+	width: 1px;
+	height: 1px;
+}
+
+/*Veranda size 1*/
+.VerdanaSize1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	line-height: normal;
+}
+
+/* Main Section Verdana */
+.VerdanaSizeMain {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	line-height: normal;
+	color: #2B5C85;
+	text-align: left;
+}
+
+/*Veranda size 2*/
+.VerdanaSize2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+/* Tahoma Copyright */
+.TahomaSize1 {
+	font-family:Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+/* Login2 Height Break */
+td.Login2Width {
+	width: 7px;
+}
+
+/* Login2 Height Break */
+td.Login2Height {
+	height: 7px;
+}

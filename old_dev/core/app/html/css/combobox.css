@@ -1,0 +1,38 @@
+div.combobox {
+}
+
+button.combobox_button {
+  padding: 0px;
+  margin: 0px;
+}
+
+table.combobox_input_area {
+  background-image: url('/images/combobox/combobox-background.gif');
+  background-repeat: repeat-x;
+  padding: 0px;
+  background-color: #cccccc;
+  border: solid 1px;
+  border-color: #eeeeee #999999 #999999 #eeeeee;
+}
+
+img.combobox_img {
+  border: solid 1px #cccccc;
+}
+
+img.combobox_img:hover {
+  background-color: #efefef;
+  border: solid 1px #666666;
+}
+
+div.combobox_menu {
+  padding: 2px;
+  position: absolute;
+}
+
+div.combobox_menu_hiding {
+  display: none;
+}
+
+input.combobox_input {
+  border-width: 1px;
+}

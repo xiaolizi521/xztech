@@ -1,0 +1,15 @@
+* Colour blocks are now updated when their related input boxes lose focus, rather than when the value is changed. Seems more reliable.
+
+* Added protection to make the statistics page less spammy by checking if the $page variable is defined first.
+
+* Big-assed logo at the top of the page now actually links back to the home page.
+
+* Fonts can now be uploaded with any kind of permutation of ttf, as in tTf, Ttf and so on.
+
+* The function call to create the actual text for the users stats is now not put twice in the code.
+
+TODO!!!
+
+New Custom Page!
+
+Share team backgrounds.

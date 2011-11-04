@@ -1,0 +1,10 @@
+This directory will be structured as follows:
+
+Each user will have a unique uuid, generated upon installation of the script originally.
+
+Each users sig information will then be stored hierarchally as follows:
+
+./uuid/bgs - Background Images
+./uuid/fonts - Fonts
+./uuid/sigs - Signature(S)
+./uuid/img - This will never be used by the user, entirely for the system itself. This will be used to store the 'layers' for the sigs when generated.
