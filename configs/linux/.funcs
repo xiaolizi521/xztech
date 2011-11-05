@@ -1,0 +1,45 @@
+#!/bin/bash
+# c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kiez License
+
+# the prompt
+function prompt() {
+    local st="$?" stclr="$bfggrn" gpr=""
+    local ref="$(git symbolic-ref HEAD 2>/dev/null)"
+    (($st)) && stclr="$bfgred" st="\[$fgwht\][\[$stclr\]$st\[$fgwht\]]" || st=""
+    if [ -n "$ref" ]
+    then
+        git status -s | grep "\\s*[MD]" &>/dev/null && ref="$ref\[$fggrn\]!"
+        git status -s | grep "\\s*[?]"  &>/dev/null && ref="$ref\[$fggrn\]?"
+        gpr="\[$fgwht\]:\[$fgylw\]${ref#refs/heads/}"
+    fi
+    PS1="$st\[$bfgblu\]\h \[$bfggrn\]\W$gpr \[$fgcyn\]>>\[$stclr\]> \[$normal\]"
+    PS2=" \[$fgcyn\]> \[$normal\]"
+    PS3=" \[$bfgcyn\]> \[$normal\]"
+    PS4="[$LINENO]+"
+}
+
+## services handling
+function start() {
+    for arg in $@
+    do
+        sudo /etc/rc.d/$arg start
+    done
+}
+function stop() {
+    for arg in $@
+    do
+        sudo /etc/rc.d/$arg stop
+    done
+}
+function restart() {
+    for arg in $@
+    do
+        sudo /etc/rc.d/$arg restart
+    done
+}
+function status() {
+    for arg in $@
+    do
+        sudo /etc/rc.d/$arg status
+    done
+}

@@ -1,0 +1,828 @@
+****  Beginning of log  2009 Apr 06 23:53:42  ****
+2009 Apr 06 23:53:42  --> OffbeatAdam (triton@netadmin.irc.x-zen.cx) has joined #blah
+2009 Apr 06 23:53:42  -@- Nicks #blah: [@OffbeatAdam]
+2009 Apr 06 23:53:42  -=- Channel #blah: 1 nick (1 op, 0 halfop, 0 voice, 0 normal)
+2009 Apr 06 23:53:42  -=- Mode #blah [+ntr] by ChanServ
+2009 Apr 06 23:53:42  -=- ChanServ has unset topic for #blah
+2009 Apr 06 23:53:42  -=- Mode #blah [+q OffbeatAdam] by ChanServ
+2009 Apr 06 23:53:42  -=- Channel created on Mon Apr  6 23:56:29 2009
+2009 Apr 06 23:55:49  -=- OffbeatAdam has changed topic for #blah to: "Either I get up, or it gets up."
+2009 Apr 06 23:56:21  --> aids (Marc@xzen-81B991E0.dhcp.oxfr.ma.charter.com) has joined #blah
+2009 Apr 06 23:56:36  <aids> hi
+2009 Apr 06 23:58:00  --> jackyyll (irssi@netadmin.irc.x-zen.cx) has joined #blah
+2009 Apr 06 23:58:01  --> anpan (my@xzen-4CA07743.resnet.ucla.edu) has joined #blah
+2009 Apr 06 23:58:07  <jackyyll> cool
+2009 Apr 06 23:58:55  <OffbeatAdam> i had been running
+2009 Apr 06 23:58:57  <OffbeatAdam> screen
+2009 Apr 06 23:59:00  <OffbeatAdam> for 
+2009 Apr 06 23:59:10  <OffbeatAdam> 210 days, 38 minutes, and 22 seconds
+2009 Apr 06 23:59:11  <-- aids (Marc@xzen-81B991E0.dhcp.oxfr.ma.charter.com) has quit (Quit: )
+2009 Apr 06 23:59:14  <jackyyll> haha
+2009 Apr 06 23:59:18  <jackyyll> i had mine going for 99 days
+2009 Apr 06 23:59:32  <jackyyll> 210 days
+2009 Apr 06 23:59:36  <jackyyll> isn't that tritons uptime? lol
+2009 Apr 06 23:59:46  <OffbeatAdam> yea
+2009 Apr 06 23:59:50  <jackyyll> lol
+2009 Apr 06 23:59:58  <OffbeatAdam> i started it after i installed it
+2009 Apr 07 00:00:06  <OffbeatAdam> i had 7 screen windows open
+2009 Apr 07 00:00:07  <OffbeatAdam> lol
+2009 Apr 07 00:04:24  <OffbeatAdam> http://www.flickr.com/photos/offbeatadam/sets/72157616196967664/
+2009 Apr 07 00:04:27  <OffbeatAdam> for your viewing pleasure
+2009 Apr 07 00:04:32  <OffbeatAdam> and for that one, you pretty much owe me.
+2009 Apr 07 00:05:08  <jackyyll> haha
+2009 Apr 07 00:06:32  <OffbeatAdam> you think i'm kidding.
+2009 Apr 07 00:06:37  <-- OffbeatAdam has kicked jackyyll from #blah (rejoin.)
+2009 Apr 07 00:06:37  --> jackyyll (irssi@netadmin.irc.x-zen.cx) has joined #blah
+2009 Apr 07 00:06:37  -=- Mode #blah [+o jackyyll] by ChanServ
+2009 Apr 07 00:07:42  <OffbeatAdam> anyways
+2009 Apr 07 00:07:44  <OffbeatAdam> thats enough work for me tonight.
+2009 Apr 07 00:07:50  <OffbeatAdam> gonna go get drunk off my last $3.
+2009 Apr 07 00:07:53  <jackyyll> Haha
+2009 Apr 07 00:07:56  <OffbeatAdam> which s funny, you'd think that isn't enough
+2009 Apr 07 00:08:00  <jackyyll> i would.
+2009 Apr 07 00:08:18  <OffbeatAdam> roll with me some day buddy
+2009 Apr 07 00:08:21  <OffbeatAdam> you'll learn the ways.
+2009 Apr 07 00:08:40  <OffbeatAdam> <- winn.
+2009 Apr 07 00:08:43  <OffbeatAdam> anyways
+2009 Apr 07 00:08:43  <OffbeatAdam> yea
+2009 Apr 07 00:08:46  <jackyyll> lol
+2009 Apr 07 00:08:47  <OffbeatAdam> welcome to th new server
+2009 Apr 07 00:08:48  <OffbeatAdam> its pretty.
+2009 Apr 07 00:09:03  <OffbeatAdam> i'll move jackyyll tomorrow
+2009 Apr 07 00:09:05  <OffbeatAdam> at some point.
+2009 Apr 07 00:09:12  <OffbeatAdam> earlier than later.
+2009 Apr 07 00:09:14  <OffbeatAdam> move your fucking data over
+2009 Apr 07 00:09:17  <OffbeatAdam> not like you'll be updating it
+2009 Apr 07 00:09:22  <OffbeatAdam> and your SVN is off server anyways
+2009 Apr 07 00:09:26  <OffbeatAdam> peace
+2009 Apr 07 00:09:41  <jackyyll> haha yeah
+2009 Apr 07 01:47:39  <anpan> hey adam
+2009 Apr 07 01:47:46  <anpan> we're getting an error when trying to use pecl
+2009 Apr 07 01:47:48  <anpan> Cannot install, php_dir for channel "pecl.php.net" is not writeable by the current user
+2009 Apr 07 02:27:44  <-- anpan (my@xzen-4CA07743.resnet.ucla.edu) has quit (Connection reset by peer)
+2009 Apr 07 02:59:39  --> anpan (poo@xzen-4CA07743.resnet.ucla.edu) has joined #blah
+2009 Apr 07 14:04:17  <OffbeatAdam> um
+2009 Apr 07 14:15:05  <OffbeatAdam> you aren't using pecl
+2009 Apr 07 14:15:09  <OffbeatAdam> you're trying to install pear modules
+2009 Apr 07 14:15:21  <OffbeatAdam> what are you guys using in pear
+2009 Apr 07 14:15:27  <OffbeatAdam> because thats something that is root, not you
+2009 Apr 07 14:15:57  <jackyyll> So i put dd-wrt on my router today
+2009 Apr 07 14:16:17  <jackyyll> seems to have gone well this time
+2009 Apr 07 14:19:23  <OffbeatAdam> i hate dd-wrt
+2009 Apr 07 14:20:00  <jackyyll> why's that?
+2009 Apr 07 14:21:05  <OffbeatAdam> brb
+2009 Apr 07 15:06:31  <jackyyll> hey adam, can you nmap -sV 68.116.166.135 for me ( my ip )
+2009 Apr 07 15:06:36  <jackyyll> wanna see what's open to the outside world
+2009 Apr 07 16:27:04  <OffbeatAdam> can't get to it.
+2009 Apr 07 16:27:05  <OffbeatAdam> its blocked
+2009 Apr 07 16:27:52  <anpan> ~OffbeatAdam  what are you guys using in pear <- zip, rar, and uploadprogressbar
+2009 Apr 07 16:28:13  <anpan> also what ip should the the nameservers point to?
+2009 Apr 07 16:29:06  <OffbeatAdam> we'll do that once its set up
+2009 Apr 07 16:29:39  <OffbeatAdam> why don't you guys just include those pear packages within your script environment?
+2009 Apr 07 16:29:45  <OffbeatAdam> you'll never actually find those installed on any system
+2009 Apr 07 16:29:53  <OffbeatAdam> or, rarely will
+2009 Apr 07 16:29:59  <anpan> how do you do that?
+2009 Apr 07 16:30:00  <OffbeatAdam> its much better to include them locally than depend on the server
+2009 Apr 07 16:32:30  <OffbeatAdam> ahh
+2009 Apr 07 16:32:30  <OffbeatAdam> ew
+2009 Apr 07 16:32:34  <OffbeatAdam> you guys are using dynamic libs
+2009 Apr 07 16:33:01  <anpan> what are those?
+2009 Apr 07 16:33:07  <OffbeatAdam> pecl
+2009 Apr 07 16:33:08  <OffbeatAdam> lol
+2009 Apr 07 16:33:15  <OffbeatAdam> they're binary extensions to php
+2009 Apr 07 16:33:20  <OffbeatAdam> they're annoying
+2009 Apr 07 16:33:22  <OffbeatAdam> and people like me hate them.
+2009 Apr 07 16:33:40  <anpan> so what's a better thing to use?
+2009 Apr 07 16:34:17  <OffbeatAdam> well
+2009 Apr 07 16:34:19  <OffbeatAdam> zip and rar
+2009 Apr 07 16:34:23  <OffbeatAdam> can be handled console levle
+2009 Apr 07 16:34:28  <OffbeatAdam> using the system() function
+2009 Apr 07 16:34:31  <OffbeatAdam> or other various things
+2009 Apr 07 16:34:39  <OffbeatAdam> the upload progress bar is really
+2009 Apr 07 16:34:42  <OffbeatAdam> well
+2009 Apr 07 16:34:47  <OffbeatAdam> thast fancy javascript
+2009 Apr 07 16:34:49  <OffbeatAdam> been done billions of times
+2009 Apr 07 16:35:34  <jackyyll> i been using jQuery a bit lately, shit is pretty sexy.
+2009 Apr 07 16:36:13  <OffbeatAdam> its not bad.
+2009 Apr 07 16:36:17  <OffbeatAdam> restarted, its all installed.
+2009 Apr 07 16:36:25  <OffbeatAdam> but yea, most of that stuff can be handled in different fashions
+2009 Apr 07 16:36:31  <jackyyll> oh forgot i had to rip dvd's
+2009 Apr 07 16:36:39  <anpan> k
+2009 Apr 07 16:36:45  <anpan> and what ip shoudl the nameservers point to?
+2009 Apr 07 16:37:10  <OffbeatAdam> are you controlling DNS or am i?
+2009 Apr 07 16:37:22  <anpan> we do
+2009 Apr 07 16:37:52  <OffbeatAdam> 206.123.70.118
+2009 Apr 07 16:39:31  <anpan> k
+2009 Apr 07 16:41:08  <anpan> oh also can you point m6.bleach7.com to 76.73.8.3
+2009 Apr 07 16:41:19  <anpan> i typoed when i said it to you the first time...
+2009 Apr 07 16:43:30  <OffbeatAdam> done
+2009 Apr 07 16:43:32  <jackyyll> i wish what.cd would have a free leach
+2009 Apr 07 16:43:39  <OffbeatAdam> i wish you could give me a username
+2009 Apr 07 16:43:44  <OffbeatAdam> so i could perpetually create free leach
+2009 Apr 07 16:43:47  <OffbeatAdam> with the server that you are logged into
+2009 Apr 07 16:43:51  <jackyyll> lol
+2009 Apr 07 16:43:51  <OffbeatAdam> with its upload prowess.
+2009 Apr 07 16:44:30  <jackyyll> if i donate $7 i get two invites
+2009 Apr 07 16:44:43  <OffbeatAdam> if i donate my sperm i should get 999.
+2009 Apr 07 16:44:46  <OffbeatAdam> just saying.
+2009 Apr 07 16:44:49  <jackyyll> lol
+2009 Apr 07 16:44:55  <jackyyll> i dont get it
+2009 Apr 07 16:45:23  <jackyyll> Hmm
+2009 Apr 07 16:45:29  <jackyyll> 310 to yuma is making mactheripper crash :(
+2009 Apr 07 16:45:41  <jackyyll> Wonder if it's because the disc's name is <310 To Yuma>
+2009 Apr 07 16:46:23  <jackyyll> works with fairmount.
+2009 Apr 07 16:47:12  <jackyyll> wait
+2009 Apr 07 16:47:14  <jackyyll> [17:43] <~OffbeatAdam> so i could perpetually create free leach
+2009 Apr 07 16:47:17  <jackyyll> what do you mean? lol
+2009 Apr 07 16:48:58  <OffbeatAdam> um
+2009 Apr 07 16:49:02  <OffbeatAdam> i have unlimited bandwidth
+2009 Apr 07 16:49:03  <OffbeatAdam> on thi server
+2009 Apr 07 16:49:04  <OffbeatAdam> dumbass
+2009 Apr 07 16:49:11  <OffbeatAdam> you guys might dc
+2009 Apr 07 16:52:42  <-- anpan (poo@xzen-4CA07743.resnet.ucla.edu) has quit (No route to host)
+2009 Apr 07 16:52:43  <jackyyll> how does that create free leach?
+2009 Apr 07 16:52:49  --> anpan (poo@xzen-4CA07743.resnet.ucla.edu) has joined #blah
+2009 Apr 07 16:53:15  <OffbeatAdam> lol.
+2009 Apr 07 16:53:16  <OffbeatAdam> um
+2009 Apr 07 16:53:18  <OffbeatAdam> well
+2009 Apr 07 16:53:20  <OffbeatAdam> if i have an account
+2009 Apr 07 16:53:24  <OffbeatAdam> and, i have a password
+2009 Apr 07 16:53:27  <OffbeatAdam> and, this thing is shared
+2009 Apr 07 16:53:32  <OffbeatAdam> and like
+2009 Apr 07 16:53:34  <OffbeatAdam> we put like
+2009 Apr 07 16:53:37  <OffbeatAdam> things of uploading content things
+2009 Apr 07 16:53:40  <OffbeatAdam> on the rtorrent i have open
+2009 Apr 07 16:53:46  <OffbeatAdam> then we have a ratio of greater than infinity
+2009 Apr 07 16:53:50  <OffbeatAdam> and then well
+2009 Apr 07 16:53:51  <OffbeatAdam> you know
+2009 Apr 07 16:53:53  <OffbeatAdam> that means we're lik
+2009 Apr 07 16:53:53  <OffbeatAdam> e
+2009 Apr 07 16:53:54  <jackyyll> lol
+2009 Apr 07 16:53:55  <OffbeatAdam> upload gods
+2009 Apr 07 16:53:56  <OffbeatAdam> like my
+2009 Apr 07 16:54:35  --> bulbasoarr (poo@xzen-4CA07743.resnet.ucla.edu) has joined #blah
+2009 Apr 07 16:54:41  <jackyyll> so you wanna use this box as a seedbox?
+2009 Apr 07 16:55:00  <OffbeatAdam> 500:1 ratio on demonoid right now
+2009 Apr 07 16:55:04  <jackyyll> ....
+2009 Apr 07 16:56:58  <-- anpan (poo@xzen-4CA07743.resnet.ucla.edu) has quit (Ping timeout)
+2009 Apr 07 16:57:31  --> anpan (poo@xzen-4CA07743.resnet.ucla.edu) has joined #blah
+2009 Apr 07 16:58:02  <jackyyll> what're you doing adam? 
+2009 Apr 07 16:58:05  <jackyyll> ssh keeps freezing
+2009 Apr 07 16:59:20  <OffbeatAdam> sorry.
+2009 Apr 07 16:59:25  <OffbeatAdam> bumped it up to a higher speed.
+2009 Apr 07 16:59:27  <jackyyll> ah
+2009 Apr 07 16:59:28  <jackyyll> cool
+2009 Apr 07 16:59:36  <jackyyll> im checking to see
+2009 Apr 07 16:59:42  <jackyyll> if two what.cd accts can be used on the same ip
+2009 Apr 07 16:59:53  <-- bulbasoarr (poo@xzen-4CA07743.resnet.ucla.edu) has quit (Ping timeout)
+2009 Apr 07 17:00:14  <jackyyll> should i donate and get you an invite and we set this shit up?
+2009 Apr 07 17:02:43  <OffbeatAdam> i dunno.
+2009 Apr 07 17:02:44  <OffbeatAdam> maybe.
+2009 Apr 07 17:02:47  <OffbeatAdam> i'll think about it.
+2009 Apr 07 17:02:52  <jackyyll> ok lol
+2009 Apr 07 17:02:55  <OffbeatAdam> i do pretty good with what i've got
+2009 Apr 07 17:02:59  <OffbeatAdam> i don't really find anything i can't find.
+2009 Apr 07 17:04:47  <jackyyll> i'd sure love to use europa as a seed box :p
+2009 Apr 07 17:05:54  <jackyyll> yay dinner time. brb
+2009 Apr 07 17:06:50  <OffbeatAdam> I'm sure you would.
+2009 Apr 07 17:16:58  <OffbeatAdam>   --- Volume group ---
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG Name               vg02
+2009 Apr 07 17:16:58  <OffbeatAdam>   System ID             
+2009 Apr 07 17:16:58  <OffbeatAdam>   Format                lvm2
+2009 Apr 07 17:16:58  <OffbeatAdam>   Metadata Areas        3
+2009 Apr 07 17:16:58  <OffbeatAdam>   Metadata Sequence No  5
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG Access             read/write
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG Status             resizable
+2009 Apr 07 17:16:58  <OffbeatAdam>   MAX LV                0
+2009 Apr 07 17:16:58  <OffbeatAdam>   Cur LV                4
+2009 Apr 07 17:16:58  <OffbeatAdam>   Open LV               2
+2009 Apr 07 17:16:58  <OffbeatAdam>   Max PV                0
+2009 Apr 07 17:16:58  <OffbeatAdam>   Cur PV                3
+2009 Apr 07 17:16:58  <OffbeatAdam>   Act PV                3
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG Size               701.26 GB
+2009 Apr 07 17:16:58  <OffbeatAdam>   PE Size               4.00 MB
+2009 Apr 07 17:16:58  <OffbeatAdam>   Total PE              179523
+2009 Apr 07 17:16:58  <OffbeatAdam>   Alloc PE / Size       48640 / 190.00 GB
+2009 Apr 07 17:16:58  <OffbeatAdam>   Free  PE / Size       130883 / 511.26 GB
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG UUID               r3rvWl-aLMG-NHU5-qgE0-o2lN-7V7K-NKbsrx
+2009 Apr 07 17:16:58  <OffbeatAdam>    
+2009 Apr 07 17:16:58  <OffbeatAdam>   --- Volume group ---
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG Name               vg01
+2009 Apr 07 17:16:58  <OffbeatAdam>   System ID             
+2009 Apr 07 17:16:58  <OffbeatAdam>   Format                lvm2
+2009 Apr 07 17:16:58  <OffbeatAdam>   Metadata Areas        1
+2009 Apr 07 17:16:58  <OffbeatAdam>   Metadata Sequence No  2
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG Access             read/write
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG Status             resizable
+2009 Apr 07 17:16:58  <OffbeatAdam>   MAX LV                0
+2009 Apr 07 17:16:58  <OffbeatAdam>   Cur LV                1
+2009 Apr 07 17:16:58  <OffbeatAdam>   Open LV               1
+2009 Apr 07 17:16:58  <OffbeatAdam>   Max PV                0
+2009 Apr 07 17:16:58  <OffbeatAdam>   Cur PV                1
+2009 Apr 07 17:16:58  <OffbeatAdam>   Act PV                1
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG Size               170.20 GB
+2009 Apr 07 17:16:58  <OffbeatAdam>   PE Size               4.00 MB
+2009 Apr 07 17:16:58  <OffbeatAdam>   Total PE              43570
+2009 Apr 07 17:16:58  <OffbeatAdam>   Alloc PE / Size       12800 / 50.00 GB
+2009 Apr 07 17:16:58  <OffbeatAdam>   Free  PE / Size       30770 / 120.20 GB
+2009 Apr 07 17:16:58  <OffbeatAdam>   VG UUID               xBeWaR-xcKG-fXdy-H1MA-8EHX-vey0-iBYXGV
+2009 Apr 07 17:25:42  <jackyyll> lol
+2009 Apr 07 17:25:45  <jackyyll> not to mention the b/w
+2009 Apr 07 17:31:26  <OffbeatAdam> i've had i'm yours on repeat for 48 hours now.
+2009 Apr 07 17:31:27  <OffbeatAdam> brb
+2009 Apr 07 17:37:49  <OffbeatAdam> god our datacenter ops people suck.
+2009 Apr 07 17:40:55  <jackyyll> why's that?
+2009 Apr 07 17:48:31  <OffbeatAdam> they're idiots.
+2009 Apr 07 17:48:34  <OffbeatAdam> afk
+2009 Apr 07 18:03:54  <anpan> where are errors logged on your server?
+2009 Apr 07 19:49:54  <OffbeatAdam> um
+2009 Apr 07 19:49:56  <OffbeatAdam> the error logs
+2009 Apr 07 19:49:56  <OffbeatAdam> :O
+2009 Apr 07 19:50:18  <jackyyll> hmm
+2009 Apr 07 19:50:51  <anpan> where are the error logs?
+2009 Apr 07 19:51:48  <OffbeatAdam> if you're talking about the rewrite problems
+2009 Apr 07 19:51:49  <OffbeatAdam> check again.
+2009 Apr 07 19:52:08  <anpan> dunno what the problem is
+2009 Apr 07 19:52:13  <anpan> it's still giving a 500 error
+2009 Apr 07 19:52:19  <OffbeatAdam> for what.
+2009 Apr 07 19:52:29  <anpan> manga toshokan
+2009 Apr 07 19:53:11  <OffbeatAdam> so
+2009 Apr 07 19:53:12  <OffbeatAdam> like
+2009 Apr 07 19:53:14  <OffbeatAdam> this thing called earth
+2009 Apr 07 19:53:15  <OffbeatAdam> has like
+2009 Apr 07 19:53:18  <OffbeatAdam> 500 errors all the time
+2009 Apr 07 19:53:20  <OffbeatAdam> because its fucking HUGE
+2009 Apr 07 19:53:29  <OffbeatAdam> i'm browsing mangatoshokan.com just fine
+2009 Apr 07 19:53:34  <OffbeatAdam> and i'm not seeing whatever error you're talking about
+2009 Apr 07 19:53:39  <anpan> on your server
+2009 Apr 07 19:53:41  <OffbeatAdam> so, specifics helps me in diagnosing the issue that i'm most likely going to fix
+2009 Apr 07 19:53:45  <OffbeatAdam> right
+2009 Apr 07 19:53:47  <OffbeatAdam> i know that
+2009 Apr 07 19:53:58  <anpan> you're viewing it from the old server cuz we haven't changed the dns yet
+2009 Apr 07 19:54:11  <OffbeatAdam> ok
+2009 Apr 07 19:54:11  <OffbeatAdam> so
+2009 Apr 07 19:54:40  <anpan> all the files should be 757
+2009 Apr 07 19:56:47  <OffbeatAdam> try accessing it again
+2009 Apr 07 19:57:07  <anpan> ah it's working now
+2009 Apr 07 19:57:44  <OffbeatAdam> i have my moments.
+2009 Apr 07 19:57:49  <anpan> lol
+2009 Apr 07 20:02:04  <anpan> can you add www3.mangatoshokan.com to public_html so we can forward people there whose dns is slow to update
+2009 Apr 07 20:04:23  <OffbeatAdam> done
+2009 Apr 07 20:04:36  <jackyyll> hmm
+2009 Apr 07 20:04:42  <jackyyll> why the fuck isn't nickcolor coloring this channel
+2009 Apr 07 20:04:44  <-- jackyyll (irssi@netadmin.irc.x-zen.cx) has left #blah
+2009 Apr 07 20:04:44  --> jackyyll (irssi@netadmin.irc.x-zen.cx) has joined #blah
+2009 Apr 07 20:04:44  -=- Mode #blah [+o jackyyll] by ChanServ
+2009 Apr 07 20:04:49  <jackyyll> someone talk :(
+2009 Apr 07 20:05:05  <OffbeatAdam> talk?
+2009 Apr 07 20:05:08  <jackyyll> wtf
+2009 Apr 07 20:05:12  <jackyyll> piece of shit script
+2009 Apr 07 20:05:21  <jackyyll> you remove a fucking color and everything breaks >.>
+2009 Apr 07 20:06:33  <OffbeatAdam> huh?
+2009 Apr 07 20:06:53  <jackyyll> i got a script to color peoples nicknames
+2009 Apr 07 20:07:21  <jackyyll> think its good now
+2009 Apr 07 20:07:25  <OffbeatAdam> ok...
+2009 Apr 07 20:07:30  <jackyyll> yup.
+2009 Apr 07 20:07:33  <jackyyll> lol
+2009 Apr 07 20:25:10  <OffbeatAdam> lay lady lay...
+2009 Apr 07 20:25:19  <OffbeatAdam> laid across my big brass bed
+2009 Apr 07 20:25:23  <OffbeatAdam> lay lady lay.......
+2009 Apr 07 20:25:27  <OffbeatAdam> lay across big brass bed
+2009 Apr 07 20:44:01  <OffbeatAdam> just downloaded the latest house.
+2009 Apr 07 20:44:11  <jackyyll> watch watch
+2009 Apr 07 20:49:45  <OffbeatAdam> haha.
+2009 Apr 07 20:50:35  <OffbeatAdam> gotta be perfect.
+2009 Apr 07 20:50:38  <OffbeatAdam> mommy doesnt.
+2009 Apr 07 20:50:56  <jackyyll> hahaha
+2009 Apr 07 20:51:04  <OffbeatAdam> meatloaf.
+2009 Apr 07 20:51:07  <OffbeatAdam> funny.
+2009 Apr 07 20:52:44  <OffbeatAdam> saw that one coming.
+2009 Apr 07 20:52:53  <jackyyll> what one?
+2009 Apr 07 20:55:58  <OffbeatAdam> kutner
+2009 Apr 07 20:56:05  <jackyyll> i saw it a little
+2009 Apr 07 20:56:08  <jackyyll> didn't expect it though
+2009 Apr 07 20:56:17  <OffbeatAdam> oh no i expected it from the first time he mentioned the family thing.
+2009 Apr 07 20:56:29  <jackyyll> well
+2009 Apr 07 20:56:32  <jackyyll> last few episodes
+2009 Apr 07 20:56:33  <jackyyll> he was all
+2009 Apr 07 20:56:36  <jackyyll> "your my friend.. right"
+2009 Apr 07 20:56:43  <jackyyll> with the bald one whos name i cant spell
+2009 Apr 07 20:56:47  <OffbeatAdam> taub
+2009 Apr 07 20:56:51  <jackyyll> ya
+2009 Apr 07 21:06:41  <OffbeatAdam> but
+2009 Apr 07 21:06:41  <OffbeatAdam> yea
+2009 Apr 07 21:06:42  <OffbeatAdam> ultimately
+2009 Apr 07 21:06:59  <OffbeatAdam> he was also appointed to a government position
+2009 Apr 07 21:07:02  <OffbeatAdam> means he couldn't act anymore
+2009 Apr 07 21:07:07  <OffbeatAdam> so it was expected to be written out
+2009 Apr 07 21:07:11  <OffbeatAdam> how? easiest one was suicied
+2009 Apr 07 21:09:29  <jackyyll> oh
+2009 Apr 07 21:28:34  <OffbeatAdam> yep
+2009 Apr 07 21:28:38  <OffbeatAdam> ended just as i thought too.
+2009 Apr 07 21:28:42  <OffbeatAdam> ok episode, not great.
+2009 Apr 07 21:28:50  <OffbeatAdam> i can tell that they wrote it fast
+2009 Apr 07 21:28:53  <OffbeatAdam> and that it was acted fast
+2009 Apr 07 21:29:00  <OffbeatAdam> but, ultimately that it was not fully planned out for the future.
+2009 Apr 07 21:29:10  <OffbeatAdam> in that, they don't truly know where they're going with the house pain issue.
+2009 Apr 07 21:35:45  <jackyyll> man
+2009 Apr 07 21:35:47  <jackyyll> i love irc
+2009 Apr 07 21:35:54  <jackyyll> irssi, even
+2009 Apr 07 21:36:16  <jackyyll> /foreach_user /kick $0 bye
+2009 Apr 08 11:30:41  <jackyyll> lmao
+2009 Apr 08 11:30:42  <jackyyll> A.Womans.Orgasm.2.[English].4792027.TPB.torrent
+2009 Apr 08 11:30:42  <jackyyll> Schoolgirl_POV_6_(2009__DVD.xvid).4816191.TPB.torrent
+2009 Apr 08 11:30:43  <jackyyll> The_Office_A_XXX_Parody_(2009)_-_Ashlynn_Brooke_Stephanie_Swift.4763118.TPB.torrent
+2009 Apr 08 12:04:09  <OffbeatAdam> hmm?
+2009 Apr 08 12:10:23  <jackyyll> ps aux | grep rtorrent
+2009 Apr 08 12:12:16  <jackyyll> downloading some porn at super fast speeds, eh? :p
+2009 Apr 08 12:23:32  <OffbeatAdam> oh no its already done
+2009 Apr 08 12:23:35  <OffbeatAdam> finished a while ago
+2009 Apr 08 12:23:40  <OffbeatAdam> deleted the torrents too
+2009 Apr 08 12:23:48  <OffbeatAdam> they sucked.
+2009 Apr 08 12:25:02  <jackyyll> hah
+2009 Apr 08 12:28:02  <OffbeatAdam> what can i say. i'm picky.
+2009 Apr 08 12:28:08  <OffbeatAdam> across the universe soundtrack rocks.
+2009 Apr 08 12:28:26  <OffbeatAdam> some of the best beatles covers i've ever heard.
+2009 Apr 08 14:13:57  <OffbeatAdam> ahh
+2009 Apr 08 14:13:59  <OffbeatAdam> sitting by the pool.
+2009 Apr 08 14:14:10  <jackyyll> what?
+2009 Apr 08 14:14:22  <OffbeatAdam> i'm sitting by the pool.
+2009 Apr 08 14:14:27  <jackyyll> you've a pool?
+2009 Apr 08 14:14:34  <OffbeatAdam> i've an apt
+2009 Apr 08 14:14:36  <OffbeatAdam> my parents a pool
+2009 Apr 08 14:14:38  <jackyyll> ah
+2009 Apr 08 14:14:39  <OffbeatAdam> and my friends apt, a pool
+2009 Apr 08 14:14:40  <OffbeatAdam> so yes
+2009 Apr 08 14:14:45  <OffbeatAdam> i have some pools that are available to me.
+2009 Apr 08 14:14:49  <jackyyll> lol
+2009 Apr 08 14:14:53  <jackyyll> i have a pool as well.
+2009 Apr 08 14:14:55  <jackyyll> its closed.
+2009 Apr 08 14:15:06  <jackyyll> sitting by it would be silly, as it is an above ground pool.
+2009 Apr 08 14:15:31  <OffbeatAdam> we had a deck around our old above ground
+2009 Apr 08 14:15:35  <OffbeatAdam> then we just paid more to get them in ground
+2009 Apr 08 14:15:58  <jackyyll> yeah we used to at my old house
+2009 Apr 08 14:16:01  <jackyyll> now we just have a ladder.
+2009 Apr 08 14:20:33  <jackyyll> so, what do you think about seedboxin europa?
+2009 Apr 08 14:38:54  <OffbeatAdam> maybe
+2009 Apr 08 14:39:04  <OffbeatAdam> i need to really find out what my boundaries are on the free bandwidth from my friend
+2009 Apr 08 14:39:06  <OffbeatAdam> whos giving it to me.
+2009 Apr 08 14:39:12  <OffbeatAdam> now that i took off the 10mbit limit
+2009 Apr 08 14:39:15  <OffbeatAdam> its a little different
+2009 Apr 08 14:39:21  <OffbeatAdam> because if i have unmetered free 10mbps
+2009 Apr 08 14:39:23  <OffbeatAdam> and i have a 100meg link
+2009 Apr 08 14:39:29  <OffbeatAdam> i have a VERY easy time breaking 10mbps/mth
+2009 Apr 08 14:40:13  <jackyyll> ah
+2009 Apr 08 14:40:26  <jackyyll> wait what
+2009 Apr 08 14:40:30  <jackyyll> 10mbps/mnth?
+2009 Apr 08 14:44:45  <OffbeatAdam> unmetered bandwidth
+2009 Apr 08 14:44:58  <jackyyll> doesn't that equate to something like 3TB per month:
+2009 Apr 08 14:45:24  <OffbeatAdam> something like that
+2009 Apr 08 14:45:30  <OffbeatAdam> but bleach7 and bleachforums will be on ehre too
+2009 Apr 08 14:45:34  <jackyyll> yea
+2009 Apr 08 14:45:39  <jackyyll> oh
+2009 Apr 08 14:45:46  <jackyyll> b7forums aren't going to use the slice(s)?
+2009 Apr 08 15:15:57  <OffbeatAdam> no i'm gonna get rid of them
+2009 Apr 08 15:16:01  <OffbeatAdam> i don't want to pay more than i have to
+2009 Apr 08 15:16:12  <jackyyll> ah
+2009 Apr 08 15:17:46  <OffbeatAdam> trying to save money
+2009 Apr 08 15:17:49  <OffbeatAdam> so i can spend more on better things
+2009 Apr 08 15:17:50  <OffbeatAdam> like...
+2009 Apr 08 15:17:53  <OffbeatAdam> not them.
+2009 Apr 08 15:18:15  <jackyyll> haha
+2009 Apr 08 15:18:52  <OffbeatAdam> so
+2009 Apr 08 15:18:57  <OffbeatAdam> funny thing
+2009 Apr 08 15:19:01  <OffbeatAdam> this guy from bleachforums
+2009 Apr 08 15:19:04  <OffbeatAdam> emails me one day
+2009 Apr 08 15:19:06  <OffbeatAdam> with like, a resume
+2009 Apr 08 15:19:07  <OffbeatAdam> and hes like
+2009 Apr 08 15:19:09  <jackyyll> haha
+2009 Apr 08 15:19:10  <OffbeatAdam> i wanna work for you
+2009 Apr 08 15:19:18  <OffbeatAdam> i was like, dude you must be joking, i'm an asshole and you won't like that.
+2009 Apr 08 15:19:19  <OffbeatAdam> lol
+2009 Apr 08 15:19:23  <OffbeatAdam> he's persistent though
+2009 Apr 08 15:19:29  <OffbeatAdam> apparently thinks he can learn a thinger2 from me
+2009 Apr 08 15:19:49  <jackyyll> haha
+2009 Apr 08 15:19:53  <jackyyll> how was his 'resume'
+2009 Apr 08 15:21:11  <anpan> lol we get emails like that all the time from people "applying for a job" as a cleaner at maximum7
+2009 Apr 08 15:21:23  <jackyyll> that's different...
+2009 Apr 08 15:21:33  <anpan> a few of them sent us their social security numbers >_>
+2009 Apr 08 15:21:40  <jackyyll> LOL
+2009 Apr 08 15:31:18  <OffbeatAdam> hes a kid
+2009 Apr 08 15:31:19  <OffbeatAdam> in highschool
+2009 Apr 08 15:31:22  <OffbeatAdam> no real experience
+2009 Apr 08 15:31:25  <OffbeatAdam> just wants to be a nerd like me
+2009 Apr 08 15:31:27  <OffbeatAdam> i was there once
+2009 Apr 08 15:31:30  <OffbeatAdam> but i did it the right way
+2009 Apr 08 15:31:32  <OffbeatAdam> taught myself
+2009 Apr 08 15:31:35  <OffbeatAdam> told him to go do the same
+2009 Apr 08 15:31:40  <OffbeatAdam> because i'm just going to give him all the bad news
+2009 Apr 08 15:31:50  <OffbeatAdam> its not glorious, the jobs suck, you get stressed out, and you don't have much of a life
+2009 Apr 08 21:04:00  <OffbeatAdam> wow
+2009 Apr 08 21:04:02  <OffbeatAdam> i'm fucking burnt.
+2009 Apr 08 21:04:03  <OffbeatAdam> NICE
+2009 Apr 08 21:04:17  <jackyyll> ?
+2009 Apr 08 21:04:20  <jackyyll> sun burn?
+2009 Apr 08 22:17:56  <jackyyll> wasted released the new mac version?
+2009 Apr 08 22:19:18  <jackyyll> ...
+2009 Apr 08 22:19:22  <jackyyll> its powerpc...
+2009 Apr 08 22:29:43  <jackyyll> oh shi
+2009 Apr 08 22:29:44  <jackyyll> works
+2009 Apr 08 22:31:41  <jackyyll> or not
+2009 Apr 08 22:34:07  <jackyyll> says invalid pass :/
+2009 Apr 08 22:34:14  <jackyyll> cry :(
+2009 Apr 08 22:34:42  <jackyyll> now it works..
+2009 Apr 08 22:34:47  <jackyyll> changed my password lol
+2009 Apr 08 22:35:38  <jackyyll> oh nice, the geek window actually looks somewhat nice
+2009 Apr 08 22:36:57  <jackyyll> and pulsing works
+2009 Apr 08 22:36:58  <jackyyll> fuck yeah wasted.
+2009 Apr 09 12:52:25  <anpan> does your server have mod rewrite installed?
+2009 Apr 09 12:56:50  <OffbeatAdam> yes
+2009 Apr 09 12:57:07  <OffbeatAdam> otherwise
+2009 Apr 09 12:57:13  <OffbeatAdam> toshokan wouldn't work
+2009 Apr 09 12:57:24  <OffbeatAdam> which is why you were having 500 errors the other day.
+2009 Apr 09 14:39:10  <anpan> http://www.mangatoshokan.com/rss/series/onepiece.xml
+2009 Apr 09 14:39:11  <anpan> http://www2.mangatoshokan.com/rss/series/onepiece.xml
+2009 Apr 09 14:39:25  <anpan> any idea why it isn't working on your server?
+2009 Apr 09 14:39:33  <anpan> it's the exact same .htaccess file...
+2009 Apr 09 17:22:01  <jackyyll> adam, where's the vimrc that vim is using on this server? O_o
+2009 Apr 09 17:27:50  <jackyyll> blah, i really need to write up a vimrc later
+2009 Apr 09 19:12:02  <anpan> hey jackyyll
+2009 Apr 09 19:47:50  <OffbeatAdam> um
+2009 Apr 09 19:47:57  <OffbeatAdam> you could always like
+2009 Apr 09 19:48:00  <OffbeatAdam> make your own local vimrc.
+2009 Apr 09 19:48:04  <OffbeatAdam> and like
+2009 Apr 09 19:48:05  <OffbeatAdam> write in it.
+2009 Apr 09 19:48:07  <OffbeatAdam> because like
+2009 Apr 09 19:48:10  <OffbeatAdam> i'm not changing it.
+2009 Apr 09 19:48:11  <OffbeatAdam> dood.
+2009 Apr 09 19:50:02  <anpan> hey adam
+2009 Apr 09 19:50:10  <anpan> any idea why the rewrite isn't working?
+2009 Apr 09 19:51:58  <jackyyll> OffbeatAdam: i didn't want to change it, i wanted to look at it
+2009 Apr 09 19:52:05  <OffbeatAdam> liar.
+2009 Apr 09 19:52:09  <jackyyll> no
+2009 Apr 09 19:52:17  <jackyyll> trying to make one for my compuer lol
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 12:34:42 2009] [error] [client 76.122.31.193] File does not exist: /home/toshokan/public_html/read, referer: http://www.mangatoshokan.com/read/rappirangai/35/8/28
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 12:35:06 2009] [error] [client 66.249.71.2] File does not exist: /home/toshokan/public_html/read
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 12:35:06 2009] [error] [client 84.255.228.30] File does not exist: /home/toshokan/public_html/read, referer: http://www.mangatoshokan.com/read/fullmetalpanicsigma/0/9/8
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 12:35:07 2009] [error] [client 199.207.253.101] File does not exist: /home/toshokan/public_html/read, referer: http://www.mangatoshokan.com/read/claymore/0/30/9
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 12:35:07 2009] [error] [client 190.232.65.111] File does not exist: /home/toshokan/public_html/read, referer: http://www.mangatoshokan.com/read/naruto/14/325/16
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 16:56:12 2009] [error] [client 24.187.35.50] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/toloveru/0/80/6
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 16:56:12 2009] [error] [client 75.169.245.208] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/veritas/201/10/17
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 16:56:12 2009] [error] [client 76.26.107.29] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/bleach/1/348/20
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 16:56:12 2009] [error] [client 69.62.238.116] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/ichigo100/0/57/17
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 16:56:12 2009] [error] [client 128.111.222.135] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/icerevolution/0/3/16
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 16:58:18 2009] [error] [client 74.78.52.176] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/haruyokoi/609/1/34
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 16:58:18 2009] [error] [client 66.69.105.211] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/berserk/0/50/4
+2009 Apr 09 19:53:05  <OffbeatAdam> [Thu Apr 09 16:58:18 2009] [error] [client 66.216.227.245] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/bleach/1/352/2
+2009 Apr 09 19:53:06  <OffbeatAdam> [Thu Apr 09 16:58:18 2009] [error] [client 76.212.159.125] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/airen/13/35/5
+2009 Apr 09 19:53:06  <OffbeatAdam> [Thu Apr 09 16:58:58 2009] [error] [client 217.159.185.126] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/honeyxhoneydrops/520/2/23
+2009 Apr 09 19:53:06  <OffbeatAdam> [Thu Apr 09 16:58:58 2009] [error] [client 68.199.71.153] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/07ghost/0/7/9
+2009 Apr 09 19:53:06  <OffbeatAdam> [Thu Apr 09 16:58:58 2009] [error] [client 68.9.140.239] script '/home/toshokan/public_html/index.php' not found or unable to stat, referer: http://www.mangatoshokan.com/read/elfenlied/0/10
+2009 Apr 09 19:53:06  <OffbeatAdam> [Thu Apr 09 19:02:06 2009] [error] [client 169.232.107.106] Directory index forbidden by Options directive: /home/toshokan/public_html/test/
+2009 Apr 09 19:53:13  <OffbeatAdam> methinks you has bad.
+2009 Apr 09 19:53:20  <jackyyll> how the hell do i auto match brackets/parenthesis in vim -.-
+2009 Apr 09 19:54:03  <OffbeatAdam> http://www.x-zen.cx/vimrc.txt
+2009 Apr 09 19:55:14  <anpan> bad conditions?
+2009 Apr 09 19:56:06  <anpan> Options +FollowSymLinks
+2009 Apr 09 19:56:08  <anpan> IndexIgnore */*
+2009 Apr 09 19:56:10  <anpan> # Turn on the RewriteEngine
+2009 Apr 09 19:56:12  <anpan> RewriteEngine On
+2009 Apr 09 19:56:14  <anpan> # Rules
+2009 Apr 09 19:56:16  <anpan> RewriteRule ^rss/([A-Za-z]+)/([A-Za-z0-9]+).xml$ rss.php?do=$1&what=$2
+2009 Apr 09 19:56:18  <anpan> RewriteRule ^rss.xml$ rss.php
+2009 Apr 09 19:56:20  <anpan> RewriteCond %{REQUEST_FILENAME} !-f
+2009 Apr 09 19:56:22  <anpan> RewriteCond %{REQUEST_FILENAME} !-d
+2009 Apr 09 19:56:24  <anpan> RewriteCond %{REQUEST_URI} !="/forum/"
+2009 Apr 09 19:56:26  <anpan> RewriteCond %{REQUEST_URI} !="/flat/"
+2009 Apr 09 19:56:28  <anpan> RewriteRule . index.php
+2009 Apr 09 21:59:33  <anpan> jackyyll
+2009 Apr 09 21:59:45  <jackyyll> yes?
+2009 Apr 09 22:00:08  <anpan> any suggestions about the mod rewrite problem?
+2009 Apr 09 22:00:23  <anpan> the only thing i can come up with is that we came from apache 2.0 and we're on 2.2 now
+2009 Apr 09 22:00:38  <anpan> but i dunno what kind of fix that would require
+2009 Apr 09 22:00:45  <jackyyll> i dont know what hte problem is
+2009 Apr 09 22:02:31  <jackyyll> (what's hte problem)
+2009 Apr 09 22:03:20  <anpan> 12:39:03 pm anpan  http://www.mangatoshokan.com/rss/series/onepiece.xml
+2009 Apr 09 22:03:20  <anpan> 12:39:04 pm anpan  http://www2.mangatoshokan.com/rss/series/onepiece.xml
+2009 Apr 09 22:03:28  <anpan> same exact .htaccess file
+2009 Apr 09 22:03:41  <anpan> works on our old server, not on adam's
+2009 Apr 09 22:05:32  <anpan> google shows a lot of results for people having trouble with mod rewrite going from 2.0 to 2.2
+2009 Apr 09 22:05:41  <anpan> haven't been able to find any solutions though
+2009 Apr 09 22:08:55  <jackyyll> i mean
+2009 Apr 09 22:08:58  <jackyyll> it looks like it should work to me..
+2009 Apr 09 22:10:56  <anpan> yah that's what i thought
+2009 Apr 09 22:11:21  <anpan> the actual path is http://www.mangatoshokan.com/rss?do=series&what=bleach
+2009 Apr 09 22:11:47  <anpan> but if you look at the script when it's rewritten, it thinks the get variables are undefined
+2009 Apr 09 22:11:47  <jackyyll> whats hte url
+2009 Apr 09 22:11:48  <jackyyll> on his server
+2009 Apr 09 22:12:07  <anpan> the path?
+2009 Apr 09 22:12:15  <jackyyll> the url where it doesn't work
+2009 Apr 09 22:12:33  <anpan> http://www.mangatoshokan.com/rss/series/onepiece.xml
+2009 Apr 09 22:12:38  <anpan> weirdly enough
+2009 Apr 09 22:12:41  <jackyyll> that works..
+2009 Apr 09 22:12:47  <anpan> http://www.mangatoshokan.com/rss.xml
+2009 Apr 09 22:12:48  <anpan> works
+2009 Apr 09 22:12:57  <jackyyll> http://www.mangatoshokan.com/rss/series/onepiece.xml works as well
+2009 Apr 09 22:13:20  <anpan> no that's what rss.xml is supposed to do
+2009 Apr 09 22:13:31  <anpan> what the series is defined it should only show those releases
+2009 Apr 09 22:13:38  <anpan> http://www2.mangatoshokan.com/rss/series/onepiece.xml
+2009 Apr 09 22:13:39  <anpan> like this
+2009 Apr 09 22:14:06  <jackyyll> i'm not following..
+2009 Apr 09 22:15:28  <anpan> http://www.mangatoshokan.com/rss.xml
+2009 Apr 09 22:15:34  <anpan> this is the front page rss feed
+2009 Apr 09 22:15:40  <anpan> it shows all the latest releases sitewide
+2009 Apr 09 22:15:59  <anpan> http://www2.mangatoshokan.com/rss/series/bleach.xml
+2009 Apr 09 22:16:03  <anpan> this is the bleach rss feed
+2009 Apr 09 22:16:13  <anpan> it should only show bleach releases
+2009 Apr 09 22:16:19  <jackyyll> it does
+2009 Apr 09 22:16:20  <jackyyll> lol
+2009 Apr 09 22:16:29  <anpan> that's on the old server
+2009 Apr 09 22:16:32  <jackyyll> ah
+2009 Apr 09 22:16:32  <anpan> http://www.mangatoshokan.com/rss/series/bleach.xml
+2009 Apr 09 22:16:39  <jackyyll> okay so
+2009 Apr 09 22:16:44  <anpan> on adam's it shows all the latest releases
+2009 Apr 09 22:16:50  <anpan> which it does when the series is undefined
+2009 Apr 09 22:16:57  <jackyyll> okay make rss2.php
+2009 Apr 09 22:17:10  <jackyyll> and make it echo the do and the what
+2009 Apr 09 22:17:30  <anpan> they don't echo anything
+2009 Apr 09 22:17:39  <jackyyll> oh
+2009 Apr 09 22:17:39  <jackyyll> so
+2009 Apr 09 22:17:47  <jackyyll> the rewrite isn't doing $1 or $2
+2009 Apr 09 22:18:39  <anpan> that's what it looks like
+2009 Apr 09 22:18:53  <jackyyll> interesting
+2009 Apr 09 22:22:04  <jackyyll> hmm
+2009 Apr 09 22:22:38  <jackyyll> i dont know
+2009 Apr 09 22:22:39  <jackyyll> RewriteRule ^rss\/([A-Za-z]+)\/([A-Za-z0-9]+)\.xml$ rss.php?do=$1&what=$2
+2009 Apr 09 22:22:41  <jackyyll> maybe? lol
+2009 Apr 09 22:24:09  <anpan> hmm appears not
+2009 Apr 09 22:24:22  <anpan> is 2.2 more strict about how rewrite is done or something?
+2009 Apr 09 22:24:24  <jackyyll> ya didn't think so
+2009 Apr 09 22:24:28  <jackyyll> i have no idea
+2009 Apr 09 22:26:01  <anpan> is there a way for me to echo out the url that's it's being rewritten as?
+2009 Apr 09 22:26:56  <jackyyll> $_SERVER['QUERY_STRING'}
+2009 Apr 09 22:26:58  <jackyyll> $_SERVER['QUERY_STRING']
+2009 Apr 09 22:27:46  <jackyyll> but it's likely just
+2009 Apr 09 22:27:52  <jackyyll> rss.php?do=&what=
+2009 Apr 09 22:28:14  <jackyyll> er
+2009 Apr 09 22:28:22  <jackyyll> $_SERVER['REQUEST_URI']
+2009 Apr 09 22:28:24  <jackyyll> works as well
+2009 Apr 09 22:29:54  <anpan> /rss/series/bleach.xml
+2009 Apr 09 22:30:02  <anpan> does that mean it's not rewriting at all?
+2009 Apr 09 22:30:05  <jackyyll> O_o
+2009 Apr 09 22:30:16  <anpan> hmm
+2009 Apr 09 22:30:31  <jackyyll> what is that echoing from?
+2009 Apr 09 22:30:34  <jackyyll> rss.php?
+2009 Apr 09 22:30:43  <anpan> yah
+2009 Apr 09 22:30:50  <jackyyll> hmm
+2009 Apr 09 22:30:58  <anpan> echo '<!-- ' . $_SERVER['REQUEST_URI'] . ' -->';
+2009 Apr 09 22:31:00  <jackyyll> well that means the rule is working
+2009 Apr 09 22:31:43  <jackyyll> just.. not doing the regex groups
+2009 Apr 11 22:25:28  <jackyyll> talking to softlayer support with my friend, lol
+2009 Apr 11 22:42:54  <jackyyll> fucking kernel
+2009 Apr 12 00:22:00  <-- anpan (poo@xzen-4CA07743.resnet.ucla.edu) has quit (Connection reset by peer)
+2009 Apr 12 00:23:09  --> anpan (poo@xzen-4CA07743.resnet.ucla.edu) has joined #blah
+2009 Apr 12 00:45:08  <jackyyll> yay finally got hte kernels recompiled correctly
+2009 Apr 12 03:52:56  <anpan> hey jackyyll can you install stuff on adam's server?
+2009 Apr 12 09:19:53  <jackyyll> no i dont have root
+2009 Apr 12 17:11:12  <jackyyll> i hate centos
+2009 Apr 12 20:47:46  <OffbeatAdam> ugh.
+2009 Apr 12 20:54:09  <OffbeatAdam> fuck me
+2009 Apr 12 21:00:39  <jackyyll> whats up
+2009 Apr 12 21:00:46  <jackyyll> yo what's your email.. i got a what.cd invite for you
+2009 Apr 12 21:05:45  <OffbeatAdam> offbeatadam@gmail.com
+2009 Apr 12 21:05:49  <OffbeatAdam> i ....
+2009 Apr 12 21:05:55  <OffbeatAdam> have been fucked up for 24 hours straight.
+2009 Apr 12 21:06:00  <jackyyll> lmfao
+2009 Apr 12 21:06:05  <OffbeatAdam> so much jager..
+2009 Apr 12 21:06:09  <OffbeatAdam> so much vodka...
+2009 Apr 12 21:06:15  <OffbeatAdam> so... many... boobs
+2009 Apr 12 21:06:33  <jackyyll> sounds fun
+2009 Apr 12 21:06:56  <OffbeatAdam> i don't know yet
+2009 Apr 12 21:07:00  <OffbeatAdam> i'll let you know when i come out the other side
+2009 Apr 12 21:07:06  <jackyyll> lol
+2009 Apr 12 21:08:23  <OffbeatAdam> seriously.
+2009 Apr 12 21:08:32  <OffbeatAdam> i'm lucky i made it to my parents house
+2009 Apr 12 21:08:42  <OffbeatAdam> i mean, i'm fully coherent and all
+2009 Apr 12 21:08:43  <OffbeatAdam> but
+2009 Apr 12 21:08:51  <OffbeatAdam> fuck the world needs to stop moving for a second
+2009 Apr 12 21:08:52  <OffbeatAdam> lol
+2009 Apr 12 21:09:44  <jackyyll> haha
+2009 Apr 12 21:10:44  <OffbeatAdam> anpan
+2009 Apr 12 21:10:47  <OffbeatAdam> what do you need installed
+2009 Apr 12 21:18:16  <OffbeatAdam> or don't?
+2009 Apr 12 21:18:25  <jackyyll> heh
+2009 Apr 12 21:18:34  <OffbeatAdam> cool.
+2009 Apr 12 21:18:40  <OffbeatAdam> wow
+2009 Apr 12 21:18:45  <OffbeatAdam> that was possibly the most disgusting fart
+2009 Apr 12 21:18:48  <OffbeatAdam> i've ever performed.
+2009 Apr 12 21:18:49  <jackyyll> lmfao.
+2009 Apr 12 21:18:54  <jackyyll> good to know.
+2009 Apr 12 21:19:10  <OffbeatAdam> not really
+2009 Apr 12 21:19:12  <OffbeatAdam> fucking raunchy
+2009 Apr 12 21:19:38  <OffbeatAdam> good thing i have no fucking tastebuds right now
+2009 Apr 12 21:19:46  <jackyyll> yeah, that might be .. bad
+2009 Apr 12 21:19:46  <OffbeatAdam> fucking christ
+2009 Apr 12 21:22:51  <jackyyll> <3 Lazy Eye
+2009 Apr 12 21:23:08  <OffbeatAdam> yes.
+2009 Apr 12 23:08:00  <OffbeatAdam> hm.
+2009 Apr 12 23:08:08  <OffbeatAdam> let me tell you
+2009 Apr 12 23:08:16  <OffbeatAdam> after being drunk for over 1 full day straight
+2009 Apr 12 23:08:39  <OffbeatAdam> it would have been better if i could have passed out
+2009 Apr 12 23:08:49  <OffbeatAdam> becasue coming off the alcohol
+2009 Apr 12 23:08:57  <OffbeatAdam> is not only painful but depressing
+2009 Apr 12 23:09:00  <OffbeatAdam> becasue its all gone :
+2009 Apr 12 23:09:00  <OffbeatAdam> :(
+2009 Apr 13 01:17:54  <anpan> the unrar thing for shell
+2009 Apr 13 10:39:26  <OffbeatAdam> done
+2009 Apr 13 21:51:39  <jackyyll> cool
+2009 Apr 13 21:51:43  <jackyyll> free private movie tracker invites
+2009 Apr 13 21:51:46  <jackyyll> to anyone who uses what.cd
+2009 Apr 13 21:53:44  <jackyyll> https://tehconnection.eu/whatsignup.php
+2009 Apr 14 00:04:37  <-- anpan (poo@xzen-4CA07743.resnet.ucla.edu) has quit (Connection reset by peer)
+2009 Apr 14 00:04:55  --> anpan (poo@xzen-4CA07743.resnet.ucla.edu) has joined #blah
+2009 Apr 14 00:36:00  <jackyyll> wow
+2009 Apr 14 12:50:21  <-- anpan (poo@xzen-4CA07743.resnet.ucla.edu) has quit (Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com ))
+2009 Apr 14 13:16:47  <OffbeatAdam> what
+2009 Apr 14 14:13:00  <jackyyll> dont remember 
+2009 Apr 14 14:14:02  <jackyyll> i love how i cant get ssh to work with public key authentication on this server
+2009 Apr 14 14:50:39  --> anpan (poo@xzen-4CA07743.resnet.ucla.edu) has joined #blah
+2009 Apr 14 14:52:13  <jackyyll> man, my "s" key is so worn down
+2009 Apr 14 15:57:59  <OffbeatAdam> man my fucking head
+2009 Apr 14 17:37:45  <-- jackyyll (irssi@netadmin.irc.x-zen.cx) has quit ([irc.x-zen.cx] Local kill by OffbeatAdam (meh.))
+2009 Apr 14 17:38:49  --> jackyyll (irssi@netadmin.irc.x-zen.cx) has joined #blah
+2009 Apr 14 17:38:49  -=- Mode #blah [+o jackyyll] by ChanServ
+2009 Apr 14 17:38:52  <jackyyll> :(
+2009 Apr 14 17:59:21  <OffbeatAdam> it seemed appropriate.
+2009 Apr 14 18:00:55  <jackyyll> how so?
+2009 Apr 14 18:00:55  <jackyyll>  lol
+2009 Apr 14 18:03:31  <OffbeatAdam> who knows.
+2009 Apr 14 19:00:41  <jackyyll> i see.
+2009 Apr 15 01:20:38  <OffbeatAdam> i don't think you do.
+2009 Apr 15 01:22:41  <-- jackyyll (irssi@netadmin.irc.x-zen.cx) has quit ([irc.x-zen.cx] Local kill by OffbeatAdam (meh.))
+2009 Apr 15 12:59:05  <OffbeatAdam> still hasn't come back eh
+2009 Apr 15 14:33:05  <anpan> lol
+2009 Apr 15 14:33:14  <anpan> hey adam
+2009 Apr 15 14:33:32  <anpan> could you install mtop or enable slow query logging in mysql
+2009 Apr 15 15:42:03  --> jackyyll (irssi@netadmin.irc.x-zen.cx) has joined #blah
+2009 Apr 15 15:42:03  -=- Mode #blah [+o jackyyll] by ChanServ
+2009 Apr 15 16:52:03  <OffbeatAdam> i jsut got fired.
+2009 Apr 15 16:52:04  <OffbeatAdam> so
+2009 Apr 15 16:52:06  <OffbeatAdam> yea.
+2009 Apr 15 17:03:23  <jackyyll> what..?
+2009 Apr 15 17:03:25  <jackyyll> seriosuly?
+2009 Apr 15 17:06:49  <OffbeatAdam> um
+2009 Apr 15 17:06:49  <OffbeatAdam> yea
+2009 Apr 15 17:06:50  <OffbeatAdam> seriously
+2009 Apr 15 17:07:32  <jackyyll> how'd that happen...
+2009 Apr 16 12:45:13  <-- anpan (poo@xzen-4CA07743.resnet.ucla.edu) has quit (Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com ))
+2009 Apr 16 15:09:58  --> anpan (rawr@xzen-2736F318.resnet.ucla.edu) has joined #blah
+2009 Apr 16 15:38:09  <OffbeatAdam> blah.
+2009 Apr 16 15:38:14  <OffbeatAdam> this fucking sucks.
+2009 Apr 16 15:50:33  <anpan> what does?
+2009 Apr 16 15:50:43  <jackyyll> so what are you gonna do now adam?
+2009 Apr 16 20:44:52  <jackyyll> http://www.eff.org/deeplinks/2009/04/boston-college-prompt-commands-are-suspicious
+2009 Apr 16 20:44:53  <jackyyll> wow.
+2009 Apr 17 14:21:28  <jackyyll> ugh
+2009 Apr 17 14:21:29  <jackyyll> i fucking
+2009 Apr 17 14:21:29  <jackyyll> HATE
+2009 Apr 17 14:21:31  <jackyyll> AKFHKSDJKGLDG
+2009 Apr 17 14:21:34  <jackyyll> I FUCKING HATE STUPID PEOPLE
+2009 Apr 17 14:21:38  <jackyyll> WHO DELETES THE FUCKING HOME FOLDER?
+2009 Apr 17 14:21:39  <jackyyll> WHAT HTE FUCK
+2009 Apr 17 14:21:41  <jackyyll> SDGKLJSDKGJLSDGFL:"
+2009 Apr 17 14:43:57  <jackyyll> AND WHO THE FUCK SSH'S IN AS ROOT
+2009 Apr 17 14:44:01  <jackyyll> FFFUCKING A
+2009 Apr 17 20:32:34  <OffbeatAdam> wjat happened? im at a strip club.
+2009 Apr 17 20:32:50  <OffbeatAdam> with april :)
+2009 Apr 17 20:33:09  <jackyyll> basically, the assholes server im one lets his friend login as root... friend is installing lighttpd apparently.
+2009 Apr 17 20:33:14  <jackyyll> which apparently requires him to delete /home
+2009 Apr 17 20:33:20  <jackyyll> and delete all users
+2009 Apr 17 20:33:34  <OffbeatAdam> ummmmmmmmmmmmmmm
+2009 Apr 17 20:33:39  <OffbeatAdam> no?
+2009 Apr 17 20:33:40  <jackyyll> seems logical.
+2009 Apr 17 20:33:47  <jackyyll> oh you mean you dont have to do that!?
+2009 Apr 17 20:33:49  <jackyyll> all these years..
+2009 Apr 17 20:33:58  <jackyyll> i guess he thought
+2009 Apr 17 20:34:00  <jackyyll> yum install lighttpd
+2009 Apr 17 20:34:04  <jackyyll> was way too difficult
+2009 Apr 17 20:34:05  <OffbeatAdam> wtf
+2009 Apr 17 20:34:06  <jackyyll> and wouldn't fuck enough shit up
+2009 Apr 17 20:34:38  <OffbeatAdam> fuck that
+2009 Apr 17 20:34:45  <jackyyll> so i've been listening to armin van buuren and the likes all day, to be less pissed off
+2009 Apr 17 20:34:57  <jackyyll> ASOT 400 and shit
+2009 Apr 17 20:35:19  <jackyyll> and i'm installing ubuntu 9.04 RC to fool around with it
+2009 Apr 18 22:45:49  <OffbeatAdam> why
+2009 Apr 18 22:45:56  <OffbeatAdam> the 9 release isn't an LTS release
+2009 Apr 18 22:45:58  <OffbeatAdam> its not going to live long
+2009 Apr 18 22:46:00  <OffbeatAdam> maybe a year or os
+2009 Apr 18 22:46:01  <OffbeatAdam> max
+2009 Apr 18 22:54:03  <anpan> hey adam
+2009 Apr 18 22:56:23  <OffbeatAdam> hey
+2009 Apr 18 22:56:25  <OffbeatAdam> i extended the time.
+2009 Apr 18 22:56:26  <OffbeatAdam> sice igot fired
+2009 Apr 18 22:56:30  <OffbeatAdam> i don't have a computer to transfer things over
+2009 Apr 18 22:56:39  <OffbeatAdam> i had to extend the time.
+2009 Apr 18 22:56:41  <OffbeatAdam> it fucking pisses me off
+2009 Apr 18 22:56:43  <OffbeatAdam> it costs me a lot more money
+2009 Apr 18 22:56:45  <OffbeatAdam> that i don't have right now
+2009 Apr 18 22:56:47  <OffbeatAdam> but i really couldn't do it.
+2009 Apr 18 22:56:49  <OffbeatAdam> i don't have a laptop right now
+2009 Apr 18 22:56:52  <OffbeatAdam> i'm at a friends house
+2009 Apr 18 22:56:54  <OffbeatAdam> so... if you need something
+2009 Apr 18 22:56:58  <OffbeatAdam> make it fast, like, in the next few minutes
+2009 Apr 18 22:57:01  <anpan> need help doing it?
+2009 Apr 18 22:57:12  <OffbeatAdam> its not a matter of help, its a matter of me having a computer long enough for me to do it
+2009 Apr 18 22:57:17  <OffbeatAdam> which i won't have until at least mid next week
+2009 Apr 18 22:57:20  <OffbeatAdam> what could really help me is money though
+2009 Apr 18 22:57:29  <OffbeatAdam> to cover this month's bill.
+2009 Apr 18 22:57:34  <OffbeatAdam> i'm literally unemployed
+2009 Apr 18 22:57:41  <OffbeatAdam> i'm trying to find a job, but literally got shit canned on wednesdya
+2009 Apr 18 22:57:48  <anpan> we're a little short on money
+2009 Apr 18 22:57:49  <OffbeatAdam> and i can't afford gas right now
+2009 Apr 18 22:57:50  <anpan> how much do you need?
+2009 Apr 18 22:57:52  <OffbeatAdam> much less the server
+2009 Apr 18 22:57:59  <OffbeatAdam> to be hones ti'm tempted to do a donation drive for myself lol
+2009 Apr 18 22:58:19  <OffbeatAdam> http://thepiratesdilemma.com/
+2009 Apr 18 22:58:21  <OffbeatAdam> great site
+2009 Apr 18 22:58:22  <OffbeatAdam> great book
+2009 Apr 18 22:58:25  <OffbeatAdam> don't worry about it
+2009 Apr 18 22:58:26  <OffbeatAdam> i'll figure it out
+2009 Apr 18 22:58:30  <OffbeatAdam> i'll get it taken care of
+2009 Apr 18 22:58:36  <OffbeatAdam> just know that triton.x-zen.cx is around for another monthy
+2009 Apr 18 22:59:10  <anpan> alright
+2009 Apr 18 22:59:32  <anpan> do you have enough time to install mtop or enable slow queries for europa?
+2009 Apr 18 22:59:38  <OffbeatAdam> its already installed
+2009 Apr 18 22:59:39  <OffbeatAdam> i did that the othr day
+2009 Apr 18 22:59:42  <OffbeatAdam> sorry forgot to tell youi
+2009 Apr 18 22:59:57  <anpan> oh alright thanks
+2009 Apr 18 23:00:40  <anpan> also rewrites are acting weird
+2009 Apr 18 23:00:49  <anpan> RewriteRule ^rss.xml$ rss.php
+2009 Apr 18 23:01:08  <anpan> this works
+2009 Apr 18 23:01:10  <anpan> http://mangatoshokan.com/rss.xml
+2009 Apr 18 23:01:15  <anpan> but for some reason
+2009 Apr 18 23:01:26  <anpan> RewriteRule ^rss/series/hanatoakuma.xml$ rss.php?do=series&what=hanatoakuma
+2009 Apr 18 23:01:32  <anpan> http://www.mangatoshokan.com/rss/series/hanatoakuma.xml
+2009 Apr 18 23:01:35  <anpan> http://www.mangatoshokan.com/rss?do=series&what=hanatoakuma
+2009 Apr 18 23:01:41  <anpan> it's not being rewritten correctly
+2009 Apr 18 23:01:50  <anpan> or at all it looks like
+2009 Apr 18 23:06:49  <OffbeatAdam> hmm.
+2009 Apr 18 23:06:50  <OffbeatAdam> i'm not sure
+2009 Apr 18 23:06:53  <OffbeatAdam> did it work in the old place?
+2009 Apr 18 23:08:09  <anpan> yah
+2009 Apr 18 23:08:21  <anpan> http://www2.mangatoshokan.com/rss/series/hanatoakuma.xml
+2009 Apr 18 23:08:46  <anpan> i read that apache 2.2 is more picky with rewriting
+2009 Apr 18 23:09:01  <anpan> the old server runs 2.0 if that matters at all
+2009 Apr 18 23:09:38  <OffbeatAdam> yes
+2009 Apr 18 23:09:40  <OffbeatAdam> 2.2 is much more picky
+2009 Apr 18 23:09:42  <OffbeatAdam> thats what it is
+2009 Apr 18 23:09:47  <OffbeatAdam> i really don't have time to help you guys write it
+2009 Apr 18 23:09:52  <OffbeatAdam> but... you'll need to write it properly
+2009 Apr 18 23:09:55  <OffbeatAdam> trial and error really
+2009 Apr 18 23:09:59  <OffbeatAdam> there a re a lot of google tuts out ther
+2009 Apr 18 23:10:00  <OffbeatAdam> e
+2009 Apr 18 23:10:06  <OffbeatAdam> i just know that its wrong the way you have it written
+2009 Apr 18 23:10:11  <OffbeatAdam> apache2.2 is more strict on the regex.
+2009 Apr 18 23:10:20  <OffbeatAdam> marc should be able to help you really
+2009 Apr 18 23:10:24  <OffbeatAdam> he can generally find a lot of shit on google
+2009 Apr 18 23:10:26  <OffbeatAdam> so ask jack
+2009 Apr 18 23:10:31  <anpan> ok
+2009 Apr 18 23:10:34  <OffbeatAdam> if he's even here
+2009 Apr 18 23:10:44  <OffbeatAdam> surprised, i'd assume he'd want to hear more about my being fired and thow things were going
+2009 Apr 18 23:10:51  <OffbeatAdam> maybe if i kill him
+2009 Apr 18 23:10:54  <-- jackyyll (irssi@netadmin.irc.x-zen.cx) has quit ([irc.x-zen.cx] Local kill by OffbeatAdam (wake up fucker))
+2009 Apr 18 23:11:03  <anpan> lol
+2009 Apr 18 23:11:22  <anpan> what are your plans for now?
+2009 Apr 18 23:11:34  <OffbeatAdam> tonight?
+2009 Apr 18 23:11:36  <OffbeatAdam> get fukced up.
+2009 Apr 18 23:11:40  <OffbeatAdam> i'm keeping my mind off it
+2009 Apr 18 23:11:45  <OffbeatAdam> getting fired on a wednesday
+2009 Apr 18 23:11:49  <OffbeatAdam> fucked over finding a new job til at least mondya
+2009 Apr 18 23:12:24  <anpan> sounds like a pretty good plan
+2009 Apr 18 23:13:22  <OffbeatAdam> really, i won't have a problem finding a job
+2009 Apr 18 23:13:25  <OffbeatAdam> just teh entire fucking situation psises me off
+2009 Apr 18 23:13:27  <OffbeatAdam> and my buddy off
+2009 Apr 18 23:13:32  <OffbeatAdam> and i'm sad for my buddy
+2009 Apr 18 23:13:33  <OffbeatAdam> he got fired
+2009 Apr 18 23:14:32  <anpan> from the same company?
+2009 Apr 19 01:38:43  <-- anpan (rawr@xzen-2736F318.resnet.ucla.edu) has quit (Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com ))
+2009 Apr 19 05:55:26  --> jackyyll (irssi@netadmin.irc.x-zen.cx) has joined #blah
+2009 Apr 19 05:55:26  -=- Mode #blah [+o jackyyll] by ChanServ
+2009 Apr 19 05:55:36  <jackyyll> :(
+2009 Apr 19 06:42:01  --> anpan (rawr@xzen-2736F318.resnet.ucla.edu) has joined #blah
+2009 Apr 20 19:34:34  <-- anpan (rawr@xzen-2736F318.resnet.ucla.edu) has quit (Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com ))
+2009 Apr 20 20:38:08  --> anpan (rawr@xzen-2736F318.resnet.ucla.edu) has joined #blah
+2009 Apr 21 14:37:22  <jackyyll> lol adam
+2009 Apr 21 14:37:28  <jackyyll> sorry didn't get back to you on twitter, been gone
+2009 Apr 21 14:37:32  <jackyyll> celebratin 4/20 :p
+2009 Apr 21 19:57:33  <jackyyll> seriously what hte fuck is wrong with bleach
+2009 Apr 21 19:57:37  <jackyyll> i am dissapoint
+2009 Apr 21 19:57:42  <jackyyll> fucking gayest filler in the fucking world
+2009 Apr 21 19:59:27  <jackyyll> oh thank god
+2009 Apr 21 19:59:32  <jackyyll> its not just a stupid fucking soccer game
+2009 Apr 22 16:30:40  <jackyyll> son of a bitch
+2009 Apr 23 03:29:52  <jackyyll> well
+2009 Apr 23 03:29:56  <jackyyll> that was a really good movie
+2009 Apr 23 03:30:00  <jackyyll> A Beautiful Mind
+2009 Apr 23 12:30:14  <-- anpan (rawr@xzen-2736F318.resnet.ucla.edu) has quit (Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com ))
+2009 Apr 23 13:02:00  --> anpan (rawr@xzen-2736F318.resnet.ucla.edu) has joined #blah
+2009 Apr 23 13:05:32  <-- anpan (rawr@xzen-2736F318.resnet.ucla.edu) has quit (Ping timeout)

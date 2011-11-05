@@ -1,0 +1,36 @@
+type:	master
+name:	12.204.164.0/24
+data-dir:	net-12.204.164.0-24/data
+schema-file:	net-12.204.164.0-24/schema
+soa-file:	net-12.204.164.0-24/soa
+---
+type:	master
+name:	12.68.140.0/24
+data-dir:	net-12.68.140.0-24/data
+schema-file:	net-12.68.140.0-24/schema
+soa-file:	net-12.68.140.0-24/soa
+---
+type:	master
+name:	12.68.137.0/24
+data-dir:	net-12.68.137.0-24/data
+schema-file:	net-12.68.137.0-24/schema
+soa-file:	net-12.68.137.0-24/soa
+---
+type:	master
+name:	12.68.139.0/25
+data-dir:	net-12.68.139.0-25/data
+schema-file:	net-12.68.139.0-25/schema
+soa-file:	net-12.68.139.0-25/soa
+---
+type:	master
+name:	12.68.141.0/25
+data-dir:	net-12.68.141.0-25/data
+schema-file:	net-12.68.141.0-25/schema
+soa-file:	net-12.68.141.0-25/soa
+---
+type:	master
+name:	12.68.136.224/27
+data-dir:	net-12.68.136.224-27/data
+schema-file:	net-12.68.136.224-27/schema
+soa-file:	net-12.68.136.224-27/soa
+---

@@ -1,0 +1,110 @@
+Oct  9 22:06:54 rwhois1.ispwidget.com rwhoisd[31485]: LOG: logging setup
+Oct  9 22:06:54 rwhois1.ispwidget.com rwhoisd[31486]: CONFIG: rwhoisd ready to answer queries
+Oct  9 22:07:12 rwhois1.ispwidget.com rwhoisd[31486]: NONE: Exiting
+Oct  9 22:07:21 rwhois1.ispwidget.com rwhoisd[31505]: LOG: logging setup
+Oct  9 22:07:21 rwhois1.ispwidget.com rwhoisd[31506]: CONFIG: rwhoisd ready to answer queries
+Oct  9 22:07:45 rwhois1.ispwidget.com rwhoisd[31508]: CONFIG: client hostname: ::ffff:206.123.70.114
+Oct  9 22:07:45 rwhois1.ispwidget.com rwhoisd[31508]: CONFIG: client tcp wrapper address: 206.123.70.114
+Oct  9 22:07:45 rwhois1.ispwidget.com rwhoisd[31508]: CLIENT: ::ffff:206.123.70.114: accepted rwhois connection
+Oct  9 22:09:00 rwhois1.ispwidget.com rwhoisd[31508]: CONFIG: client hostname: ::ffff:206.123.70.114
+Oct  9 22:09:00 rwhois1.ispwidget.com rwhoisd[31508]: CONFIG: client tcp wrapper address: 206.123.70.114
+Oct  9 22:09:04 rwhois1.ispwidget.com rwhoisd[31508]: CONFIG: client hostname: ::ffff:206.123.70.114
+Oct  9 22:09:04 rwhois1.ispwidget.com rwhoisd[31508]: CONFIG: client tcp wrapper address: 206.123.70.114
+Oct  9 22:09:04 rwhois1.ispwidget.com rwhoisd[31508]: CLIENT: ::ffff:206.123.70.114: xfer directive: 12.204.164.0/24
+Oct  9 22:09:04 rwhois1.ispwidget.com rwhoisd[31508]: MKDB: malformed data file line: 'ID NETBLK-GVO.12.204.164.0/24' (rwhoisd.auth_area:18)
+Oct  9 22:10:26 rwhois1.ispwidget.com rwhoisd[31508]: CLIENT: ::ffff:206.123.70.114: query: [A[B
+Oct  9 22:10:26 rwhois1.ispwidget.com rwhoisd[31508]: CLIENT: ::ffff:206.123.70.114: query response: 0 hits
+Oct  9 22:10:29 rwhois1.ispwidget.com rwhoisd[32010]: CONFIG: client hostname: ::ffff:206.123.70.114
+Oct  9 22:10:29 rwhois1.ispwidget.com rwhoisd[32010]: CONFIG: client tcp wrapper address: 206.123.70.114
+Oct  9 22:10:29 rwhois1.ispwidget.com rwhoisd[32010]: CLIENT: ::ffff:206.123.70.114: accepted rwhois connection
+Oct  9 22:10:30 rwhois1.ispwidget.com rwhoisd[32010]: CONFIG: client hostname: ::ffff:206.123.70.114
+Oct  9 22:10:30 rwhois1.ispwidget.com rwhoisd[32010]: CONFIG: client tcp wrapper address: 206.123.70.114
+Oct  9 22:10:36 rwhois1.ispwidget.com rwhoisd[32010]: CONFIG: client hostname: ::ffff:206.123.70.114
+Oct  9 22:10:36 rwhois1.ispwidget.com rwhoisd[32010]: CONFIG: client tcp wrapper address: 206.123.70.114
+Oct  9 22:10:36 rwhois1.ispwidget.com rwhoisd[32010]: CLIENT: ::ffff:206.123.70.114: xfer directive: 12.204.164.0/24
+Oct  9 22:10:36 rwhois1.ispwidget.com rwhoisd[32010]: MKDB: malformed data file line: 'ID NETBLK-GVO.12.204.164.0/24' (rwhoisd.auth_area:18)
+Oct 12 14:53:49 rwhois1.ispwidget.com rwhoisd[3731]: CONFIG: client hostname: ::ffff:12.204.164.246
+Oct 12 14:53:49 rwhois1.ispwidget.com rwhoisd[3731]: CONFIG: client tcp wrapper address: 12.204.164.246
+Oct 12 14:53:49 rwhois1.ispwidget.com rwhoisd[3731]: CLIENT: ::ffff:12.204.164.246: accepted rwhois connection
+Oct 12 14:54:03 rwhois1.ispwidget.com rwhoisd[3731]: CONFIG: client hostname: ::ffff:12.204.164.246
+Oct 12 14:54:03 rwhois1.ispwidget.com rwhoisd[3731]: CONFIG: client tcp wrapper address: 12.204.164.246
+Oct 12 14:54:03 rwhois1.ispwidget.com rwhoisd[3731]: CLIENT: ::ffff:12.204.164.246: xfer directive: 12.204.164.0/24
+Oct 12 14:54:03 rwhois1.ispwidget.com rwhoisd[3731]: MKDB: malformed data file line: 'ID NETBLK-GVO.12.204.164.0/24' (rwhoisd.auth_area:18)
+Oct 12 14:54:46 rwhois1.ispwidget.com rwhoisd[3731]: CLIENT: ::ffff:12.204.164.246: query: ÿôÿý
+Oct 12 14:54:46 rwhois1.ispwidget.com rwhoisd[3731]: CLIENT: ::ffff:12.204.164.246: query response: 0 hits
+Oct 12 16:00:21 rwhois1.ispwidget.com rwhoisd[22244]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:00:21 rwhois1.ispwidget.com rwhoisd[22244]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:00:21 rwhois1.ispwidget.com rwhoisd[22244]: CLIENT: ::ffff:12.68.137.2: accepted rwhois connection
+Oct 12 16:00:22 rwhois1.ispwidget.com rwhoisd[22244]: CLIENT: ::ffff:12.68.137.2: query: rwhois
+Oct 12 16:00:22 rwhois1.ispwidget.com rwhoisd[22244]: CLIENT: ::ffff:12.68.137.2: query response: 0 hits
+Oct 12 16:00:25 rwhois1.ispwidget.com rwhoisd[22306]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:00:25 rwhois1.ispwidget.com rwhoisd[22306]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:00:25 rwhois1.ispwidget.com rwhoisd[22306]: CLIENT: ::ffff:12.68.137.2: accepted rwhois connection
+Oct 12 16:00:30 rwhois1.ispwidget.com rwhoisd[22306]: CLIENT: ::ffff:12.68.137.2: query: rwhois 12.204.164.250/24
+Oct 12 16:00:30 rwhois1.ispwidget.com rwhoisd[22306]: CLIENT: ::ffff:12.68.137.2: invalid query syntax: RWHOIS 12.204.164.250/24
+Oct 12 16:02:10 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:02:10 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:02:10 rwhois1.ispwidget.com rwhoisd[23282]: CLIENT: ::ffff:12.68.137.2: accepted rwhois connection
+Oct 12 16:02:12 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:02:12 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:02:19 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:02:19 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:02:19 rwhois1.ispwidget.com rwhoisd[23282]: CLIENT: ::ffff:12.68.137.2: rwhois directive: 12.204.164.0/24
+Oct 12 16:02:19 rwhois1.ispwidget.com rwhoisd[23282]: CLIENT: ::ffff:12.68.137.2: rwhois_directive: incompatible version identifier: 12.204.164.0/24
+Oct 12 16:02:28 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:02:28 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:02:28 rwhois1.ispwidget.com rwhoisd[23282]: CLIENT: ::ffff:12.68.137.2: rwhois directive: ?
+Oct 12 16:02:28 rwhois1.ispwidget.com rwhoisd[23282]: CLIENT: ::ffff:12.68.137.2: rwhois_directive: incompatible version identifier: ?
+Oct 12 16:02:45 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:02:45 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:02:45 rwhois1.ispwidget.com rwhoisd[23282]: CLIENT: ::ffff:12.68.137.2: rwhois directive: V-1.5 NSI Client 1.2.3
+Oct 12 16:04:13 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:04:13 rwhois1.ispwidget.com rwhoisd[23282]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:04:13 rwhois1.ispwidget.com rwhoisd[23282]: CLIENT: ::ffff:12.68.137.2: query: attribute=Organization-Name
+Oct 12 16:04:13 rwhois1.ispwidget.com rwhoisd[23282]: CLIENT: ::ffff:12.68.137.2: invalid query syntax: ATTRIBUTE=ORGANIZATION-NAME
+Oct 12 16:04:19 rwhois1.ispwidget.com rwhoisd[23289]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:04:19 rwhois1.ispwidget.com rwhoisd[23289]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:04:19 rwhois1.ispwidget.com rwhoisd[23289]: CLIENT: ::ffff:12.68.137.2: accepted rwhois connection
+Oct 12 16:04:22 rwhois1.ispwidget.com rwhoisd[23289]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:04:22 rwhois1.ispwidget.com rwhoisd[23289]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:04:25 rwhois1.ispwidget.com rwhoisd[23289]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 12 16:04:25 rwhois1.ispwidget.com rwhoisd[23289]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 12 16:04:45 rwhois1.ispwidget.com rwhoisd[23289]: CLIENT: ::ffff:12.68.137.2: query: ÿôÿý
+Oct 12 16:04:45 rwhois1.ispwidget.com rwhoisd[23289]: CLIENT: ::ffff:12.68.137.2: query response: 0 hits
+Oct 13 19:37:46 rwhois1.ispwidget.com rwhoisd[31368]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:37:46 rwhois1.ispwidget.com rwhoisd[31368]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:37:46 rwhois1.ispwidget.com rwhoisd[31368]: CLIENT: ::ffff:12.68.137.2: accepted rwhois connection
+Oct 13 19:37:49 rwhois1.ispwidget.com rwhoisd[31368]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:37:49 rwhois1.ispwidget.com rwhoisd[31368]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:41:09 rwhois1.ispwidget.com rwhoisd[31368]: CLIENT: ::ffff:12.68.137.2: deadman time exceeded - terminating connection.
+Oct 13 19:41:33 rwhois1.ispwidget.com rwhoisd[406]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:41:33 rwhois1.ispwidget.com rwhoisd[406]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:41:33 rwhois1.ispwidget.com rwhoisd[406]: CLIENT: ::ffff:12.68.137.2: accepted rwhois connection
+Oct 13 19:41:36 rwhois1.ispwidget.com rwhoisd[406]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:41:36 rwhois1.ispwidget.com rwhoisd[406]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:41:46 rwhois1.ispwidget.com rwhoisd[406]: CLIENT: ::ffff:12.68.137.2: invalid directive: xer
+Oct 13 19:41:51 rwhois1.ispwidget.com rwhoisd[406]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:41:51 rwhois1.ispwidget.com rwhoisd[406]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:41:51 rwhois1.ispwidget.com rwhoisd[406]: CLIENT: ::ffff:12.68.137.2: xfer directive: 12.204.164.0/24
+Oct 13 19:42:00 rwhois1.ispwidget.com rwhoisd[406]: CLIENT: ::ffff:12.68.137.2: query: ÿôÿý:
+Oct 13 19:42:00 rwhois1.ispwidget.com rwhoisd[406]: CLIENT: ::ffff:12.68.137.2: query response: 0 hits
+Oct 13 19:55:26 rwhois1.ispwidget.com rwhoisd[3984]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:55:26 rwhois1.ispwidget.com rwhoisd[3984]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:55:26 rwhois1.ispwidget.com rwhoisd[3984]: CLIENT: ::ffff:12.68.137.2: accepted rwhois connection
+Oct 13 19:55:29 rwhois1.ispwidget.com rwhoisd[3984]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:55:29 rwhois1.ispwidget.com rwhoisd[3984]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:55:39 rwhois1.ispwidget.com rwhoisd[3984]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:55:39 rwhois1.ispwidget.com rwhoisd[3984]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:55:58 rwhois1.ispwidget.com rwhoisd[31506]: NONE: Exiting
+Oct 13 19:56:07 rwhois1.ispwidget.com rwhoisd[4742]: LOG: logging setup
+Oct 13 19:56:08 rwhois1.ispwidget.com rwhoisd[4744]: CONFIG: rwhoisd ready to answer queries
+Oct 13 19:56:18 rwhois1.ispwidget.com rwhoisd[4931]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:56:18 rwhois1.ispwidget.com rwhoisd[4931]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:56:18 rwhois1.ispwidget.com rwhoisd[4931]: CLIENT: ::ffff:12.68.137.2: accepted rwhois connection
+Oct 13 19:56:21 rwhois1.ispwidget.com rwhoisd[4931]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:56:21 rwhois1.ispwidget.com rwhoisd[4931]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:56:21 rwhois1.ispwidget.com rwhoisd[4931]: CLIENT: ::ffff:12.68.137.2: xfer directive: 12.68.140.0/24
+Oct 13 19:58:23 rwhois1.ispwidget.com rwhoisd[4931]: CONFIG: client hostname: ::ffff:12.68.137.2
+Oct 13 19:58:23 rwhois1.ispwidget.com rwhoisd[4931]: CONFIG: client tcp wrapper address: 12.68.137.2
+Oct 13 19:58:23 rwhois1.ispwidget.com rwhoisd[4931]: CLIENT: ::ffff:12.68.137.2: xfer directive: 12.68.139.0/25
+Oct 13 20:01:43 rwhois1.ispwidget.com rwhoisd[4931]: CLIENT: ::ffff:12.68.137.2: deadman time exceeded - terminating connection.

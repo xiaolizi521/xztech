@@ -1,0 +1,17 @@
+#####################################################
+GVO Git Development Tree
+
+Primary Author: Adam Hubscher
+
+Purpose:
+
+This is the location where I will mainly keep my development files
+for GVO. As time goes on and others come to use it, it will become centralized.
+
+This repository is to house all automation scripts that will be used throughout
+the progression of bringing GVO's datacenter techologies further into the future.
+
+Current Projects:
+
+Backup Inventory, Auditing & Automation
+Firewall Development for All Servers

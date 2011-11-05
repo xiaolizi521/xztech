@@ -1,0 +1,30 @@
+# AgentGreasy/OffbeatAdam's ScreenRC
+
+## Terminal Settings (for 256 Colors, thanks Lion!) ##
+term screen-256color
+
+# Just in case, additional settings for xterm
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce on
+
+# Status Bar
+backtick 1 5 5 true
+termcapinfo rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;\007'
+hardstatus string "screen (%n: %t)"
+caption string "%{= kw}%Y-%m-%d;%c %{= kw}%-Lw%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+Lw%1`"
+caption always
+
+# Prevent text-editor ghosting (visible after quit)
+altscreen on
+
+# I know how to use screen, disable the welcome.
+startup_message off
+
+# I don't like not being able to scroll easily.
+termcapinfo xterm* ti@:te@
+
+# Let's open up some default screens.
+screen -t IRC       0   irssi
+screen -t rTorrent  1   rtorrent
+

@@ -1,0 +1,11 @@
+ID:	NETBLK-GVO.12.68.137.0/24
+Auth-Area:	12.68.137.0/24
+Network-Name:	GVO-12.68.137.0
+IP-Network:	12.68.137.0/24
+IP-Network-Block:	12.68.137.0 - 12.68.137.255
+Organization: GVO
+Tech-Contact:	hostmaster@gvocom.com
+Admin-Contact:	ACH144-ARIN
+Created:	20091009
+Updated:	20091009
+Updated-By:	adam.h@gvocom.com

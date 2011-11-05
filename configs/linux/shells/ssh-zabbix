@@ -1,0 +1,1 @@
+ssh -i afkeypair.pem root@ec2-174-129-121-169.compute-1.amazonaws.com

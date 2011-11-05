@@ -1,0 +1,11 @@
+ID: NETBLK-GVO.12.68.141.0/25
+Auth-Area:	12.68.141.0/25
+Org-Name:	GVO
+Street-Address:	6701 Guada Coma
+City:	Schertz
+State:	TX
+Postal-Code: 78218
+Country-Code:	US
+Phone: 210-651-4487
+Created:	20091009
+Updated:	20091013

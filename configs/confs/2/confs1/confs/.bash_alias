@@ -1,0 +1,48 @@
+#!/bin/bash
+# sourced by .bashrc
+
+alias dir='dir --color'
+
+alias ls='ls -h --group-directories-first --color=always'
+alias ll='ls -l'
+alias la='ls -la'
+alias lt='tree'
+
+#alias df='newdf | grep -v none'
+alias cdf='cdf -h | grep -vP "(none|backup)"'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+
+alias addall='mpc clear && mpc ls | mpc add && mpc --no-status play'
+alias add='mpc add'
+alias next='mpc --no-status next'
+alias prev='mpc --no-status prev'
+alias play='mpc --no-status play'
+alias stop='mpc --no-status stop '
+alias pp='mpc --no-status toggle'
+alias np='mpc --format ".: %title% by %artist% #[%album%#] :." | head -n1'
+
+alias eject='sudo eject /dev/sr0'
+alias compress='tar cvpzf'
+alias mkdir='mkdir -p'
+alias grep='grep --color=auto'
+alias myip='lynx -dump http://tnx.nl/ip'
+alias ping='cping -c 3'
+alias sizeof='du -sh'
+alias themeinfo='perl ~/.bin/info.pl && /usr/bin/inxi -v 5'
+alias updatefonts='sudo fc-cache -vf'
+alias vncup='x11vnc -nopw -ncache 10 -display :0 -localhost'
+alias xp='xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'
+alias rscreen='screen -c ~/.rtor.screenrc'
+alias rdp='rdesktop -g 1280x1040'
+alias rdpfaf='rdesktop -g 1280x1040 -d FAF -u pbrisbin www.faf.com -p -'
+alias wers='mplayer -playlist http://wers.org/wers.asx'
+
+alias pacman='sudo pacman-color'
+alias pacsearch='pacman-color -Ss'
+alias pacin='sudo pacman-color -S'
+alias pacout='sudo pacman-color -R'
+alias pacup='sudo pacman-color -Syu'
+alias pacorphans='sudo pacman-color -Rs $(pacman -Qtdq)'
+alias pactesting='pacman -Sql testing | xargs pacman-color -Q 2>/dev/null'

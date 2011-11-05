@@ -1,0 +1,83 @@
+Tircbot
+v7
+r0
+t320254154.845062
+cCheck dependencies
+cCompileC build/ircbot.build/Debug/ircbot.build/Objects-normal/x86_64/main.o /Users/triton/dev/xzen/ircbot/ircbot/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004B99A23900000000000000EE
+t1268359737
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/arpa/inet.h
+c000000004AC31EFD0000000000001533
+t1254301437
+s5427
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/errno.h
+c000000004AC3260600000000000003EB
+t1254303238
+s1003
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004AC326060000000000004174
+t1254303238
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/utsname.h
+c000000004B56971E0000000000000F14
+t1263965982
+s3860
+
+N/Users/triton/dev/xzen/ircbot/ircbot/build/Debug/ircbot
+t2
+s0
+
+N/Users/triton/dev/xzen/ircbot/ircbot/build/ircbot.build/Debug/ircbot.build/Objects-normal/x86_64/ircbot.LinkFileList
+c000000004D66794A0000000000000068
+t1298561354
+s104
+
+N/Users/triton/dev/xzen/ircbot/ircbot/build/ircbot.build/Debug/ircbot.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Users/triton/dev/xzen/ircbot/ircbot/ircbot.h
+c000000004D6679220000000000000D2D
+t1298561314
+s3373
+
+N/Users/triton/dev/xzen/ircbot/ircbot/main.cpp
+c000000004D66794400000000000002F2
+t1298561348
+s754
+i<iostream>
+i<cstdlib>
+i<stdio.h>
+i<cstring>
+i<errno.h>
+i<arpa/inet.h>
+i<sys/utsname.h>
+i"ircbot.h"
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies320254154#320254154#0(0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileC build/ircbot.build/Debug/ircbot.build/Objects-normal/x86_64/main.o /Users/triton/dev/xzen/ircbot/ircbot/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+s320254154.827520
+e320254154.844982
+r0
+xCompileC
+xbuild/ircbot.build/Debug/ircbot.build/Objects-normal/x86_64/main.o
+x/Users/triton/dev/xzen/ircbot/ircbot/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@53"Compile /Users/triton/dev/xzen/ircbot/ircbot/main.cpp320254154#320254154#0(264"In file included from /Users/triton/dev/xzen/ircbot/ircbot/main.cpp:8:/Users/triton/dev/xzen/ircbot/ircbot/ircbot.h:27: error: new declaration 'void fork()'/Developer/SDKs/MacOSX10.6.sdk/usr/include/unistd.h:441: error: ambiguates old declaration 'pid_t fork()'2(4@29"New declaration 'void fork()'320254154#71#87#2(7@67"In file included from /Users/triton/dev/xzen/ircbot/ircbot/main.cpp320254154#18446744073709551615#0#0(6@45"/Users/triton/dev/xzen/ircbot/ircbot/main.cpp320254148#8#0#8#0#0"0(13@78"New declaration 'void fork()' in /Users/triton/dev/xzen/ircbot/ircbot/ircbot.h320254154#18446744073709551615#0#0(6@45"/Users/triton/dev/xzen/ircbot/ircbot/ircbot.h320254114#27#0#27#0#0"0(6@45"/Users/triton/dev/xzen/ircbot/ircbot/ircbot.h320254114#27#0#27#0#0"0(4@41"Ambiguates old declaration 'pid_t fork()'320254154#158#106#0(6@51"/Developer/SDKs/MacOSX10.6.sdk/usr/include/unistd.h275996038#441#0#441#0#0"0(0#0#45"/Users/triton/dev/xzen/ircbot/ircbot/main.cpp7020319295437486080#1251"    cd /Users/triton/dev/xzen/ircbot/ircbot    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/triton/dev/xzen/ircbot/ircbot/build/ircbot.build/Debug/ircbot.build/ircbot-generated-files.hmap -I/Users/triton/dev/xzen/ircbot/ircbot/build/ircbot.build/Debug/ircbot.build/ircbot-own-target-headers.hmap -I/Users/triton/dev/xzen/ircbot/ircbot/build/ircbot.build/Debug/ircbot.build/ircbot-all-target-headers.hmap -iquote /Users/triton/dev/xzen/ircbot/ircbot/build/ircbot.build/Debug/ircbot.build/ircbot-project-headers.hmap -F/Users/triton/dev/xzen/ircbot/ircbot/build/Debug -I/Users/triton/dev/xzen/ircbot/ircbot/build/Debug/include -I/Users/triton/dev/xzen/ircbot/ircbot/build/ircbot.build/Debug/ircbot.build/DerivedSources/x86_64 -I/Users/triton/dev/xzen/ircbot/ircbot/build/ircbot.build/Debug/ircbot.build/DerivedSources -c /Users/triton/dev/xzen/ircbot/ircbot/main.cpp -o /Users/triton/dev/xzen/ircbot/ircbot/build/ircbot.build/Debug/ircbot.build/Objects-normal/x86_64/main.o1#
+
+CLd /Users/triton/dev/xzen/ircbot/ircbot/build/Debug/ircbot normal x86_64
+r0
+

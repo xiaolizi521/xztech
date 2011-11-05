@@ -1,0 +1,37 @@
+# AgentGreasy/OffbeatAdam's ScreenRC
+
+## Terminal Settings (for 256 Colors, thanks Lion!) ##
+term screen-256color
+
+# Just in case, additional settings for xterm
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce on
+
+# Status Bar
+backtick 1 5 5 true
+termcapinfo rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;\007'
+hardstatus string "screen (%n: %t)"
+caption string "%{= kw}%Y-%m-%d;%c %{= kw}%-Lw%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+Lw%1`"
+caption always
+
+# Prevent text-editor ghosting (visible after quit)
+altscreen on
+
+# I know how to use screen, disable the welcome.
+startup_message off
+
+# I don't like not being able to scroll easily.
+termcapinfo xterm* ti@:te@
+
+# Let's open up some default screens.
+screen -t lb1        0   ssh adam@lb1.adfrontiers.com
+screen -t lb2        1   ssh adam@lb2.adfrontiers.com
+screen -t core1      2   ssh adam@core1.adfrontiers.com
+screen -t core2      3   ssh adam@core2.adfrontiers.com
+screen -t media1     4   ssh adam@localhost:22000
+screen -t media2     5   ssh adam@localhost:22001
+screen -t media3     6   ssh adam@localhost:22002
+screen -t media4     7   ssh adam@localhost:22003
+screen -t media5     8   ssh adam@localhost:22004
+screen -t zabbix     9   ssh-zabbix

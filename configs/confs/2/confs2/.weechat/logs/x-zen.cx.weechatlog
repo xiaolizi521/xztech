@@ -1,0 +1,145 @@
+****  Beginning of log  2009 Apr 06 23:53:11  ****
+2009 Apr 06 23:53:11  -=- WeeChat: connecting to server irc.x-zen.cx:6697 (SSL)...
+2009 Apr 06 23:53:11  -@- irc.x-zen.cx: *** Looking up your hostname...
+2009 Apr 06 23:53:11  -@- irc.x-zen.cx: *** Couldn't resolve your hostname; using your IP address instead
+2009 Apr 06 23:53:11  -@- Welcome to the X-Zen.cx IRC Network JediMastah!triton@206.123.70.115
+2009 Apr 06 23:53:11  -@- Your host is irc.x-zen.cx, running version Unreal3.2.8
+2009 Apr 06 23:53:11  -@- This server was created Mon Mar 2 2009 at 15:55:34 CST
+2009 Apr 06 23:53:11  -@- irc.x-zen.cx Unreal3.2.8 iowghraAsORTVSxNCWqBzvdHtGp lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGj
+2009 Apr 06 23:53:11  -@- UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=10 CHANLIMIT=#:10 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 MAXTARGETS=20 :are supported by this server
+2009 Apr 06 23:53:11  -@- WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTG NETWORK=X-Zen.cx CASEMAPPING=ascii EXTBAN=~,cqnr ELIST=MNUCT STATUSMSG=~&@%+ :are supported by this server
+2009 Apr 06 23:53:11  -@- EXCEPTS INVEX CMDS=KNOCK,MAP,DCCALLOW,USERIP :are supported by this server
+2009 Apr 06 23:53:11  -@- irc.x-zen.cx: *** You are connected to irc.x-zen.cx with TLSv1-AES128-SHA-128bits
+2009 Apr 06 23:53:11  -@- There are 1 users and 8 invisible on 2 servers
+2009 Apr 06 23:53:11  -@- 8 :operator(s) online
+2009 Apr 06 23:53:11  -@- I have 1 clients and 1 servers
+2009 Apr 06 23:53:11  -@- Current Local Users: 1  Max: 1
+2009 Apr 06 23:53:11  -@- Current Global Users: 9  Max: 9
+2009 Apr 06 23:53:11  =!= MOTD File is missing
+2009 Apr 06 23:53:11  -=- User mode [+iwxz] by JediMastah
+2009 Apr 06 23:53:16  -@- NickServ (services@irc.x-zen.cx): This nickname is registered and protected.  If it is your
+2009 Apr 06 23:53:16  -@- NickServ (services@irc.x-zen.cx): nick, type /msg NickServ IDENTIFY password.  Otherwise,
+2009 Apr 06 23:53:16  -@- NickServ (services@irc.x-zen.cx): please choose a different nick.
+2009 Apr 06 23:53:16  -@- NickServ (services@irc.x-zen.cx): If you do not change within one minute, I will change your nick.
+2009 Apr 06 23:53:34  -@- -nickserv- identify *********
+2009 Apr 06 23:53:34  -=- User mode [+r] by services.x-zen.cx
+2009 Apr 06 23:53:34  -@- NickServ (services@irc.x-zen.cx): Password accepted - you are now recognized.
+2009 Apr 06 23:53:41  -=- User mode [+oghaAsNt] by OffbeatAdam
+2009 Apr 06 23:53:41  -@- Server notice mask (+kcfGSso)
+2009 Apr 06 23:53:41  -@- You are now an IRC Operator
+2009 Apr 06 23:56:17  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: aids (Marc@68-116-166-135.dhcp.oxfr.ma.charter.com) [clients] 
+2009 Apr 06 23:57:55  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6697: jackyyll (irssi@206.123.70.115) [clients] [secure AES256-SHA]
+2009 Apr 06 23:57:57  -@- irc.x-zen.cx: jackyyll (irssi@netadmin.irc.x-zen.cx) [jackyyll] is now a network administrator (N)
+2009 Apr 06 23:57:59  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (my@s107-106.resnet.ucla.edu) [clients] 
+2009 Apr 06 23:59:11  -@- irc.x-zen.cx: *** Notice -- Client exiting: aids (Marc@68-116-166-135.dhcp.oxfr.ma.charter.com) [Quit: ]
+2009 Apr 07 00:04:51  -@- MSG(chanserv): help
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx): ChanServ allows you to register and control various
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx): aspects of channels.  ChanServ can often prevent
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx): malicious users from "taking over" channels by limiting
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx): who is allowed channel operator privileges.  Available
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx): commands are listed below; to use them, type
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx): /msg ChanServ command.  For more information on a
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx): specific command, type /msg ChanServ HELP command.
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):  
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     REGISTER   Register a channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     IDENTIFY   Identify yourself with your password
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     SET        Set channel options and information
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     SOP        Modify the list of SOP users
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     AOP        Modify the list of AOP users
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     HOP        Maintains the HOP (HalfOP) list for a channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     VOP        Maintains the VOP (VOicePeople) list for a channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     ACCESS     Modify the list of privileged users
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     LEVELS     Redefine the meanings of access levels
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     AKICK      Maintain the AutoKick list
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     DROP       Cancel the registration of a channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     SENDPASS   Help retrieve lost passwords
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     BAN        Bans a selected nick on a channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     UNBAN      Remove all bans preventing you from entering a channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     CLEAR      Tells ChanServ to clear certain settings on a channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     OWNER      Gives you owner status on channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     DEOWNER    Removes your owner status on a channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     PROTECT    Protects a selected nick on a channel
+2009 Apr 07 00:04:51  -@- ChanServ (services@irc.x-zen.cx):     DEPROTECT  Deprotects a selected nick on a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     OP         Gives Op status to a selected nick on a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     DEOP       Deops a selected nick on a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     HALFOP     Halfops a selected nick on a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     DEHALFOP   Dehalfops a selected nick on a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     VOICE      Voices a selected nick on a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     DEVOICE    Devoices a selected nick on a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     GETKEY     Returns the key of the given channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     INVITE     Tells ChanServ to invite you or a given nick into a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     KICK       Kicks a selected nick from a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     LIST       Lists all registered channels matching the given pattern
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     LOGOUT     This command will logout the selected nickname
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     TOPIC      Manipulate the topic of the specified channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     INFO       Lists information about the named registered channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     GETPASS    Retrieve the founder password for a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     FORBID     Prevent a channel from being used
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     SUSPEND    Prevent a channel from being used preserving
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):                channel data and settings
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     UNSUSPEND  Releases a suspended channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     STATUS     Returns the current access level of a user
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):                on a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):    APPENDTOPIC Add text to a channels topic
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     ENFORCE    Enforce various channel modes and set options
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):     OINFO      Add / Del an OperInfo line to a channel
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):  
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx): Note that any channel which is not used for 14 days
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx): (i.e. which no user on the channel's access list enters
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx): for that period of time) will be automatically dropped.
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx):  
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx): Services admins can also drop any channel without needing
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx): to identify via password, and may view the access, AKICK,
+2009 Apr 07 00:04:52  -@- ChanServ (services@irc.x-zen.cx): and level setting lists for any channel.
+2009 Apr 07 00:04:56  -@- MSG(chanserv): access
+2009 Apr 07 00:04:56  -@- ChanServ (services@irc.x-zen.cx): Syntax: ACCESS channel {ADD|DEL|LIST|CLEAR} [nick [level] | entry-list]
+2009 Apr 07 00:04:56  -@- ChanServ (services@irc.x-zen.cx): /msg ChanServ HELP ACCESS for more information.
+2009 Apr 07 00:05:05  -@- MSG(chanserv): aop
+2009 Apr 07 00:05:05  -@- ChanServ (services@irc.x-zen.cx): Syntax: AOP channel {ADD|DEL|LIST|CLEAR} [nick | entry-list]
+2009 Apr 07 00:05:05  -@- ChanServ (services@irc.x-zen.cx): /msg ChanServ HELP AOP for more information.
+2009 Apr 07 00:05:10  -@- MSG(chanserv): aop #blah add jackyyll
+2009 Apr 07 00:05:10  -@- ChanServ (services@irc.x-zen.cx): jackyyll added to #blah AOP list.
+2009 Apr 07 02:27:44  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (my@s107-106.resnet.ucla.edu) [Connection reset by peer]
+2009 Apr 07 02:59:21  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (poo@s107-106.resnet.ucla.edu) [clients] 
+2009 Apr 07 16:52:38  -@- irc.x-zen.cx: *** Notice -- WARNING: Time jumped ~171 seconds ahead! (1239141154 -> 1239141325)
+2009 Apr 07 16:52:38  -@- irc.x-zen.cx: *** Notice -- Incorrect time for IRC servers is a serious problem. Time being adjusted (either by TSCTL or by resetting the clock) more than a few seconds forward/backward can lead to serious issues.
+2009 Apr 07 16:52:38  -@- irc.x-zen.cx: *** Notice -- Please be sure your clock is always synchronized before the IRCd is started or use the built-in timesynch feature.
+2009 Apr 07 16:52:38  -@- irc.x-zen.cx: *** Notice -- [TimeShift] Resetting some timers!
+2009 Apr 07 16:52:42  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (poo@s107-106.resnet.ucla.edu) [No route to host]
+2009 Apr 07 16:52:48  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (poo@s107-106.resnet.ucla.edu) [clients] 
+2009 Apr 07 16:54:33  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: bulbasoarr (poo@s107-106.resnet.ucla.edu) [clients] 
+2009 Apr 07 16:56:58  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (poo@s107-106.resnet.ucla.edu) [Ping timeout]
+2009 Apr 07 16:57:29  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (poo@s107-106.resnet.ucla.edu) [clients] 
+2009 Apr 07 16:59:53  -@- irc.x-zen.cx: *** Notice -- Client exiting: bulbasoarr (poo@s107-106.resnet.ucla.edu) [Ping timeout]
+2009 Apr 11 16:39:19  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: Trivia (marc@68-116-166-135.dhcp.oxfr.ma.charter.com) [clients] 
+2009 Apr 12 00:22:00  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (poo@s107-106.resnet.ucla.edu) [Connection reset by peer]
+2009 Apr 12 00:23:08  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (poo@s107-106.resnet.ucla.edu) [clients] 
+2009 Apr 12 18:27:13  -@- irc.x-zen.cx: *** Notice -- Client exiting: Trivia (marc@68-116-166-135.dhcp.oxfr.ma.charter.com) [Client exited]
+2009 Apr 14 00:04:37  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (poo@s107-106.resnet.ucla.edu) [Connection reset by peer]
+2009 Apr 14 00:04:53  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (poo@s107-106.resnet.ucla.edu) [clients] 
+2009 Apr 14 12:50:21  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (poo@s107-106.resnet.ucla.edu) [Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com )]
+2009 Apr 14 14:50:34  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (poo@s107-106.resnet.ucla.edu) [clients] 
+2009 Apr 14 17:37:45  -@- irc.x-zen.cx: *** Notice -- Received KILL message for jackyyll!irssi@netadmin.irc.x-zen.cx from OffbeatAdam Path: netadmin.irc.x-zen.cx!OffbeatAdam (meh.)
+2009 Apr 14 17:37:45  -@- irc.x-zen.cx: *** Notice -- Client exiting: jackyyll (irssi@206.123.70.115) [[irc.x-zen.cx] Local kill by OffbeatAdam (meh.)]
+2009 Apr 14 17:38:44  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6697: jackyyll (irssi@206.123.70.115) [clients] [secure AES256-SHA]
+2009 Apr 14 17:38:47  -@- irc.x-zen.cx: jackyyll (irssi@netadmin.irc.x-zen.cx) [jackyyll] is now a network administrator (N)
+2009 Apr 15 01:22:41  -@- irc.x-zen.cx: *** Notice -- Received KILL message for jackyyll!irssi@netadmin.irc.x-zen.cx from OffbeatAdam Path: netadmin.irc.x-zen.cx!OffbeatAdam (meh.)
+2009 Apr 15 01:22:41  -@- irc.x-zen.cx: *** Notice -- Client exiting: jackyyll (irssi@206.123.70.115) [[irc.x-zen.cx] Local kill by OffbeatAdam (meh.)]
+2009 Apr 15 15:41:58  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6697: jackyyll (irssi@206.123.70.115) [clients] [secure AES256-SHA]
+2009 Apr 15 15:42:00  -@- irc.x-zen.cx: jackyyll (irssi@netadmin.irc.x-zen.cx) [jackyyll] is now a network administrator (N)
+2009 Apr 16 12:45:13  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (poo@s107-106.resnet.ucla.edu) [Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com )]
+2009 Apr 16 15:09:54  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (rawr@s107-157.resnet.ucla.edu) [clients] 
+2009 Apr 18 23:10:54  -@- irc.x-zen.cx: *** Notice -- Received KILL message for jackyyll!irssi@netadmin.irc.x-zen.cx from OffbeatAdam Path: netadmin.irc.x-zen.cx!OffbeatAdam (wake up fucker)
+2009 Apr 18 23:10:54  -@- irc.x-zen.cx: *** Notice -- Client exiting: jackyyll (irssi@206.123.70.115) [[irc.x-zen.cx] Local kill by OffbeatAdam (wake up fucker)]
+2009 Apr 19 01:38:43  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (rawr@s107-157.resnet.ucla.edu) [Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com )]
+2009 Apr 19 05:55:21  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6697: jackyyll (irssi@206.123.70.115) [clients] [secure AES256-SHA]
+2009 Apr 19 05:55:24  -@- irc.x-zen.cx: jackyyll (irssi@netadmin.irc.x-zen.cx) [jackyyll] is now a network administrator (N)
+2009 Apr 19 06:41:59  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (rawr@s107-157.resnet.ucla.edu) [clients] 
+2009 Apr 20 19:34:34  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (rawr@s107-157.resnet.ucla.edu) [Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com )]
+2009 Apr 20 20:37:43  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (rawr@s107-157.resnet.ucla.edu) [clients] 
+2009 Apr 21 16:29:33  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: BB (BB@66-189-13-221.dhcp.oxfr.ma.charter.com) [clients] 
+2009 Apr 21 17:57:41  -@- irc.x-zen.cx: *** Flood -- BB!BB@66-189-13-221.dhcp.oxfr.ma.charter.com (9937) exceeds 8000 recvQ
+2009 Apr 21 17:57:41  -@- irc.x-zen.cx: *** Notice -- Client exiting: BB (BB@66-189-13-221.dhcp.oxfr.ma.charter.com) [Excess Flood]
+2009 Apr 23 12:30:14  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (rawr@s107-157.resnet.ucla.edu) [Quit: ( www.nnscript.com :: NoNameScript 4.22 :: www.esnation.com )]
+2009 Apr 23 13:01:58  -@- irc.x-zen.cx: *** Notice -- Client connecting on port 6667: anpan (rawr@s107-157.resnet.ucla.edu) [clients] 
+2009 Apr 23 13:05:32  -@- irc.x-zen.cx: *** Notice -- Client exiting: anpan (rawr@s107-157.resnet.ucla.edu) [Ping timeout]
