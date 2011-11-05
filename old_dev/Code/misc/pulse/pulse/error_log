@@ -1,3 +1,0 @@
-[12-Oct-2006 06:45:02] PHP Warning:  fopen(sigs.xml.gz) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory in /home/offbea2/public_html/pulse/testupdate.php on line 32
-[08-Dec-2006 18:45:01] PHP Warning:  fopen(sigs.xml.gz) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory in /home/offbea2/public_html/pulse/testupdate.php on line 31
-[09-Dec-2006 00:45:02] PHP Warning:  fopen(sigs.xml.gz) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory in /home/offbea2/public_html/pulse/testupdate.php on line 31
