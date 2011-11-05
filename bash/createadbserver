@@ -1,0 +1,40 @@
+pvcreate /dev/cciss/c0d1
+pvcreate /dev/cciss/c0d2
+pvcreate /dev/cciss/c1d0
+pvcreate /dev/cciss/c1d1
+vgcreate c0d1 /dev/cciss/c0d1
+vgcreate c0d2 /dev/cciss/c0d2
+vgcreate c1d0 /dev/cciss/c1d0
+vgcreate c1d1 /dev/cciss/c1d1
+lvcreate -L30G -n mysqlmstlogs c0d2
+lvcreate -L30G -n mysqlslvlogs c0d2
+lvcreate -L30G -n pg_83_xlogs c0d2
+lvcreate -L40G -n pg_backup c0d2
+lvcreate -L50G -n mysqlmst c1d1
+lvcreate -L150G -n pgsqlrkv c1d1
+lvcreate -L50G -n pg_83_data c1d1
+lvcreate -L140G -n pg_data c1d1
+lvcreate -L130G -n var_log c0d1
+lvcreate -L50G -n mysqlslv c1d0
+lvcreate -L50G -n pg_83_index c1d0
+lvcreate -L280G -n pg_backup_archives c1d0
+lvcreate -L24G -n pg_xlog c1d0
+mkfs.ext3 /dev/c0d2/mysqlmstlogs
+mkfs.ext3 /dev/c0d2/mysqlslvlogs
+mkfs.ext3 /dev/c0d2/pg_83_xlogs
+mkfs.ext3 /dev/c0d2/pg_backup
+mkfs.ext3 /dev/c1d1/mysqlmst
+mkfs.ext3 /dev/c1d1/pgsqlrkv
+mkfs.ext3 /dev/c1d1/pg_8e_data
+mkfs.ext3 /dev/c1d1/pg_data
+mkfs.ext3 /dev/c0d1/var_log
+mkfs.ext3 /dev/c1d0/mysqlslv
+mkfs.ext3 /dev/c1d0/pg_83_index
+mkfs.ext3 /dev/c1d0/pg_backup_archives
+mkfs.ext3 /dev/c1d0/pg_xlog
+
+mkdir /mnt/pg_data
+mkdir /mnt/pg_xlog
+mkdir /mnt/pg_backup_archives
+mkdir /mnt/pg_xlog_archives
+mkdir /mnt/pg_backup
