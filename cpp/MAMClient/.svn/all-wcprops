@@ -1,0 +1,311 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/mamclient/!svn/ver/92/trunk
+END
+define.h
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/mamclient/!svn/ver/96/trunk/define.h
+END
+packets.h
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/mamclient/!svn/ver/86/trunk/packets.h
+END
+Player.h
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/mamclient/!svn/ver/86/trunk/Player.h
+END
+JumpPacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/mamclient/!svn/ver/86/trunk/JumpPacket.cpp
+END
+ConfigFile.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/mamclient/!svn/ver/86/trunk/ConfigFile.cpp
+END
+ActionPacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/mamclient/!svn/ver/86/trunk/ActionPacket.h
+END
+Utilities.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/mamclient/!svn/ver/110/trunk/Utilities.cpp
+END
+Dijkstra.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/mamclient/!svn/ver/107/trunk/Dijkstra.cpp
+END
+GameMap.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/mamclient/!svn/ver/108/trunk/GameMap.h
+END
+User.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/mamclient/!svn/ver/108/trunk/User.cpp
+END
+Counter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/mamclient/!svn/ver/86/trunk/Counter.cpp
+END
+Npc.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/mamclient/!svn/ver/86/trunk/Npc.cpp
+END
+IPacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/mamclient/!svn/ver/86/trunk/IPacket.cpp
+END
+NpcUpdatePacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/mamclient/!svn/ver/86/trunk/NpcUpdatePacket.h
+END
+keys.h
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/mamclient/!svn/ver/86/trunk/keys.h
+END
+MessagePacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/mamclient/!svn/ver/86/trunk/MessagePacket.h
+END
+MapFile.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/mamclient/!svn/ver/106/trunk/MapFile.h
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/mamclient/!svn/ver/120/trunk/main.cpp
+END
+NpcInfoPacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/mamclient/!svn/ver/86/trunk/NpcInfoPacket.cpp
+END
+Crypto.h
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/mamclient/!svn/ver/86/trunk/Crypto.h
+END
+CharInfoPacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/mamclient/!svn/ver/86/trunk/CharInfoPacket.h
+END
+MapInfoPacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/mamclient/!svn/ver/86/trunk/MapInfoPacket.h
+END
+Packets.txt
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/mamclient/!svn/ver/86/trunk/Packets.txt
+END
+NpcDialoguePacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/mamclient/!svn/ver/97/trunk/NpcDialoguePacket.h
+END
+WalkPacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/mamclient/!svn/ver/86/trunk/WalkPacket.h
+END
+Player.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/mamclient/!svn/ver/86/trunk/Player.cpp
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/mamclient/!svn/ver/109/trunk/Makefile
+END
+Socket.h
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/mamclient/!svn/ver/86/trunk/Socket.h
+END
+Dialogue.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/mamclient/!svn/ver/86/trunk/Dialogue.h
+END
+ActionPacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/mamclient/!svn/ver/86/trunk/ActionPacket.cpp
+END
+GameMap.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/mamclient/!svn/ver/108/trunk/GameMap.cpp
+END
+JumpPacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/mamclient/!svn/ver/86/trunk/JumpPacket.h
+END
+ConfigFile.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/mamclient/!svn/ver/86/trunk/ConfigFile.h
+END
+NpcUpdatePacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/mamclient/!svn/ver/86/trunk/NpcUpdatePacket.cpp
+END
+MessagePacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/mamclient/!svn/ver/94/trunk/MessagePacket.cpp
+END
+MapFile.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/mamclient/!svn/ver/107/trunk/MapFile.cpp
+END
+Crypto.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/mamclient/!svn/ver/86/trunk/Crypto.cpp
+END
+Utilities.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/mamclient/!svn/ver/110/trunk/Utilities.h
+END
+Dijkstra.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/mamclient/!svn/ver/101/trunk/Dijkstra.h
+END
+MapInfoPacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/mamclient/!svn/ver/86/trunk/MapInfoPacket.cpp
+END
+CharInfoPacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/mamclient/!svn/ver/86/trunk/CharInfoPacket.cpp
+END
+NpcDialoguePacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/mamclient/!svn/ver/95/trunk/NpcDialoguePacket.cpp
+END
+User.h
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/mamclient/!svn/ver/107/trunk/User.h
+END
+Counter.h
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/mamclient/!svn/ver/86/trunk/Counter.h
+END
+Npc.h
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/mamclient/!svn/ver/86/trunk/Npc.h
+END
+IPacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/mamclient/!svn/ver/86/trunk/IPacket.h
+END
+WalkPacket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/mamclient/!svn/ver/86/trunk/WalkPacket.cpp
+END
+MAMClient.1
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/mamclient/!svn/ver/86/trunk/MAMClient.1
+END
+Socket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/mamclient/!svn/ver/86/trunk/Socket.cpp
+END
+NpcInfoPacket.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/mamclient/!svn/ver/86/trunk/NpcInfoPacket.h
+END
+Dialogue.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/mamclient/!svn/ver/108/trunk/Dialogue.cpp
+END

@@ -1,0 +1,1035 @@
+TMAMClient AgentGreasy
+v3
+r1
+cCheck dependencies
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/main.o" /Users/triton/Downloads/MAMClient/main.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Counter.o" /Users/triton/Downloads/MAMClient/Counter.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Crypto.o" /Users/triton/Downloads/MAMClient/Crypto.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Socket.o" /Users/triton/Downloads/MAMClient/Socket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Utilities.o" /Users/triton/Downloads/MAMClient/Utilities.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Player.o" /Users/triton/Downloads/MAMClient/Player.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MessagePacket.o" /Users/triton/Downloads/MAMClient/MessagePacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/IPacket.o" /Users/triton/Downloads/MAMClient/IPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/User.o" /Users/triton/Downloads/MAMClient/User.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/CharInfoPacket.o" /Users/triton/Downloads/MAMClient/CharInfoPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapInfoPacket.o" /Users/triton/Downloads/MAMClient/MapInfoPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/GameMap.o" /Users/triton/Downloads/MAMClient/GameMap.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ConfigFile.o" /Users/triton/Downloads/MAMClient/ConfigFile.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/WalkPacket.o" /Users/triton/Downloads/MAMClient/WalkPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ActionPacket.o" /Users/triton/Downloads/MAMClient/ActionPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/JumpPacket.o" /Users/triton/Downloads/MAMClient/JumpPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Npc.o" /Users/triton/Downloads/MAMClient/Npc.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcInfoPacket.o" /Users/triton/Downloads/MAMClient/NpcInfoPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcUpdatePacket.o" /Users/triton/Downloads/MAMClient/NpcUpdatePacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcDialoguePacket.o" /Users/triton/Downloads/MAMClient/NpcDialoguePacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dialogue.o" /Users/triton/Downloads/MAMClient/Dialogue.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dijkstra.o" /Users/triton/Downloads/MAMClient/Dijkstra.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapFile.o" /Users/triton/Downloads/MAMClient/MapFile.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Splitter.o" /Users/triton/Downloads/MAMClient/Splitter.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+cLd /Users/triton/Downloads/MAMClient/build/Debug/MAMClient normal x86_64
+
+N/Developer/SDKs/MacOSX10.7.sdk
+c000000004E1106D400000000000000EE
+t1309738708
+s238
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/arpa/inet.h
+c000000004E0541A50000000000001533
+t1308967333
+s5427
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/ctype.h
+c000000004E05497B0000000000002C18
+t1308969339
+s11288
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/errno.h
+c000000004E05497A00000000000003EB
+t1308969338
+s1003
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/fcntl.h
+c000000004E05497A00000000000003EA
+t1308969338
+s1002
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/netdb.h
+c000000004E0541A5000000000000307F
+t1308967333
+s12415
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/netinet/in.h
+c000000004DFD01A20000000000006BC5
+t1308426658
+s27589
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/stdio.h
+c000000004E05497C0000000000004763
+t1308969340
+s18275
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/stdlib.h
+c000000004E05497C00000000000030A7
+t1308969340
+s12455
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/string.h
+c000000004E05497C0000000000001A3A
+t1308969340
+s6714
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/sys/socket.h
+c000000004DFD01DA0000000000005ACB
+t1308426714
+s23243
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/sys/time.h
+c000000004DFD01DD0000000000001E64
+t1308426717
+s7780
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/sys/types.h
+c000000004DFD01DF0000000000002905
+t1308426719
+s10501
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/time.h
+c000000004E05497C000000000000178E
+t1308969340
+s6030
+
+N/Developer/SDKs/MacOSX10.7.sdk/usr/include/unistd.h
+c000000004E05497C0000000000006662
+t1308969340
+s26210
+
+N/Users/triton/Downloads/MAMClient/ActionPacket.cpp
+c000000004CF18AA1000000000000020A
+t1290898081
+s522
+i"ActionPacket.h"
+
+N/Users/triton/Downloads/MAMClient/ActionPacket.h
+c000000004CF18AA10000000000000285
+t1290898081
+s645
+i"IPacket.h"
+i"define.h"
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/CharInfoPacket.cpp
+c000000004CF18AA10000000000000F55
+t1290898081
+s3925
+i"CharInfoPacket.h"
+i<stdio.h>
+
+N/Users/triton/Downloads/MAMClient/CharInfoPacket.h
+c000000004CF18AA10000000000000769
+t1290898081
+s1897
+i"IPacket.h"
+i"define.h"
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/ConfigFile.cpp
+c000000004CF18AA100000000000006BD
+t1290898081
+s1725
+i"ConfigFile.h"
+
+N/Users/triton/Downloads/MAMClient/ConfigFile.h
+c000000004CF18AA10000000000000264
+t1290898081
+s612
+i<string>
+i<map>
+i<fstream>
+
+N/Users/triton/Downloads/MAMClient/Counter.cpp
+c000000004CF18AA10000000000000246
+t1290898081
+s582
+i"Counter.h"
+
+N/Users/triton/Downloads/MAMClient/Counter.h
+c000000004CF18AA10000000000000182
+t1290898081
+s386
+i<stdlib.h>
+
+N/Users/triton/Downloads/MAMClient/Crypto.cpp
+c000000004CF18AA10000000000000563
+t1290898081
+s1379
+i"Crypto.h"
+i"keys.h"
+
+N/Users/triton/Downloads/MAMClient/Crypto.h
+c000000004CF18AA100000000000002C8
+t1290898081
+s712
+i"Counter.h"
+i"define.h"
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/Dialogue.cpp
+c000000004CF18AA1000000000000029E
+t1290898081
+s670
+i"Dialogue.h"
+
+N/Users/triton/Downloads/MAMClient/Dialogue.h
+c000000004CF18AA10000000000000224
+t1290898081
+s548
+i"define.h"
+i"NpcDialoguePacket.h"
+i<map>
+i<string>
+
+N/Users/triton/Downloads/MAMClient/Dijkstra.cpp
+c000000004CF18AA1000000000000095F
+t1290898081
+s2399
+i"Dijkstra.h"
+
+N/Users/triton/Downloads/MAMClient/Dijkstra.h
+c000000004CF18AA10000000000000A3F
+t1290898081
+s2623
+i<vector>
+i<string>
+i<map>
+i<list>
+i<set>
+i<limits>
+
+N/Users/triton/Downloads/MAMClient/GameMap.cpp
+c000000004CF18AA100000000000012D7
+t1290898081
+s4823
+i"GameMap.h"
+
+N/Users/triton/Downloads/MAMClient/GameMap.h
+c000000004CF18AA10000000000000640
+t1290898081
+s1600
+i"define.h"
+i"MapInfoPacket.h"
+i"Player.h"
+i"Npc.h"
+i"Socket.h"
+i"ConfigFile.h"
+i<string.h>
+i<map>
+i<vector>
+i<fstream>
+i<sstream>
+
+N/Users/triton/Downloads/MAMClient/IPacket.cpp
+c000000004CF18AA100000000000000EF
+t1290898081
+s239
+i"IPacket.h"
+
+N/Users/triton/Downloads/MAMClient/IPacket.h
+c000000004CF18AA10000000000000113
+t1290898081
+s275
+i"define.h"
+
+N/Users/triton/Downloads/MAMClient/JumpPacket.cpp
+c000000004CF18AA10000000000000548
+t1290898081
+s1352
+i"JumpPacket.h"
+
+N/Users/triton/Downloads/MAMClient/JumpPacket.h
+c000000004CF18AA10000000000000302
+t1290898081
+s770
+i"IPacket.h"
+i"define.h"
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/MapFile.cpp
+c000000004CF18AA20000000000000B31
+t1290898082
+s2865
+i"MapFile.h"
+
+N/Users/triton/Downloads/MAMClient/MapFile.h
+c000000004CF18AA20000000000000491
+t1290898082
+s1169
+i<sstream>
+i<string>
+i<vector>
+i<list>
+i<map>
+i<stdlib.h>
+i"Dijkstra.h"
+i"ConfigFile.h"
+
+N/Users/triton/Downloads/MAMClient/MapInfoPacket.cpp
+c000000004CF18AA20000000000000292
+t1290898082
+s658
+i"MapInfoPacket.h"
+i<stdio.h>
+
+N/Users/triton/Downloads/MAMClient/MapInfoPacket.h
+c000000004CF18AA2000000000000034E
+t1290898082
+s846
+i"IPacket.h"
+i"define.h"
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/MessagePacket.cpp
+c000000004CF18AA200000000000016E2
+t1290898082
+s5858
+i"MessagePacket.h"
+
+N/Users/triton/Downloads/MAMClient/MessagePacket.h
+c000000004CF18AA200000000000003DC
+t1290898082
+s988
+i"IPacket.h"
+i"define.h"
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/Npc.cpp
+c000000004CF18AA200000000000001AE
+t1290898082
+s430
+i"Npc.h"
+
+N/Users/triton/Downloads/MAMClient/Npc.h
+c000000004CF18AA200000000000001BE
+t1290898082
+s446
+i"define.h"
+i"NpcInfoPacket.h"
+
+N/Users/triton/Downloads/MAMClient/NpcDialoguePacket.cpp
+c000000004CF18AA200000000000003CB
+t1290898082
+s971
+i"NpcDialoguePacket.h"
+
+N/Users/triton/Downloads/MAMClient/NpcDialoguePacket.h
+c000000004CF18AA20000000000000286
+t1290898082
+s646
+i"IPacket.h"
+i"define.h"
+i<map>
+i<string>
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/NpcInfoPacket.cpp
+c000000004CF18AA20000000000000235
+t1290898082
+s565
+i"NpcInfoPacket.h"
+
+N/Users/triton/Downloads/MAMClient/NpcInfoPacket.h
+c000000004CF18AA200000000000002FB
+t1290898082
+s763
+i"IPacket.h"
+i"define.h"
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/NpcUpdatePacket.cpp
+c000000004CF18AA200000000000001C4
+t1290898082
+s452
+i"NpcUpdatePacket.h"
+
+N/Users/triton/Downloads/MAMClient/NpcUpdatePacket.h
+c000000004CF18AA20000000000000259
+t1290898082
+s601
+i"IPacket.h"
+i"define.h"
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/Player.cpp
+c000000004CF18AA200000000000009C8
+t1290898082
+s2504
+i"Player.h"
+
+N/Users/triton/Downloads/MAMClient/Player.h
+c000000004CF18AA2000000000000027E
+t1290898082
+s638
+i"define.h"
+i<stdio.h>
+i<iostream>
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/Socket.cpp
+c000000004CF18AA20000000000000F0E
+t1290898082
+s3854
+i"Socket.h"
+
+N/Users/triton/Downloads/MAMClient/Socket.h
+c000000004CF18AA20000000000000499
+t1290898082
+s1177
+i<sys/types.h>
+i<sys/socket.h>
+i<netinet/in.h>
+i<netdb.h>
+i<unistd.h>
+i<string>
+i<arpa/inet.h>
+i<sys/time.h>
+i<errno.h>
+i<fcntl.h>
+i<iostream>
+i"define.h"
+i"Crypto.h"
+
+N/Users/triton/Downloads/MAMClient/Splitter.cpp
+c000000004CF18AA200000000000000A4
+t1290898082
+s164
+i"Splitter.h"
+
+N/Users/triton/Downloads/MAMClient/Splitter.h
+c000000004CF18AA20000000000000215
+t1290898082
+s533
+i<vector>
+i<string>
+
+N/Users/triton/Downloads/MAMClient/User.cpp
+c000000004CF18AA20000000000001778
+t1290898082
+s6008
+i"User.h"
+
+N/Users/triton/Downloads/MAMClient/User.h
+c000000004CF18AA20000000000000730
+t1290898082
+s1840
+i<list>
+i<vector>
+i<map>
+i"define.h"
+i"CharInfoPacket.h"
+i"JumpPacket.h"
+i"Socket.h"
+i"Utilities.h"
+i"GameMap.h"
+i"Dialogue.h"
+i"MapFile.h"
+
+N/Users/triton/Downloads/MAMClient/Utilities.cpp
+c000000004EDD44330000000000001499
+t1323123763
+s5273
+i"Utilities.h"
+
+N/Users/triton/Downloads/MAMClient/Utilities.h
+c000000004CF18AA2000000000000046D
+t1290898082
+s1133
+i<sys/time.h>
+i<string.h>
+i<stdio.h>
+i<ctype.h>
+i<vector>
+i<string>
+i<sstream>
+i<fstream>
+i<stdlib.h>
+i<confuse.h>
+
+N/Users/triton/Downloads/MAMClient/WalkPacket.cpp
+c000000004CF18AA20000000000000212
+t1290898082
+s530
+i"WalkPacket.h"
+
+N/Users/triton/Downloads/MAMClient/WalkPacket.h
+c000000004CF18AA200000000000002A1
+t1290898082
+s673
+i"IPacket.h"
+i"define.h"
+i<string.h>
+
+N/Users/triton/Downloads/MAMClient/build/Debug/MAMClient
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ActionPacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/CharInfoPacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ConfigFile.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Counter.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Crypto.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dialogue.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dijkstra.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/GameMap.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/IPacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/JumpPacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MAMClient.LinkFileList
+c000000004EDD451D0000000000000BA1
+t1323123997
+s2977
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapFile.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapInfoPacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MessagePacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Npc.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcDialoguePacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcInfoPacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcUpdatePacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Player.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Socket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Splitter.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/User.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Utilities.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/WalkPacket.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Users/triton/Downloads/MAMClient/define.h
+c000000004CF18AA2000000000000067D
+t1290898082
+s1661
+
+N/Users/triton/Downloads/MAMClient/keys.h
+c000000004CF18AA20000000000000DA5
+t1290898082
+s3493
+
+N/Users/triton/Downloads/MAMClient/main.cpp
+c000000004EDB263A00000000000042E8
+t1322985018
+s17128
+i<iostream>
+i<map>
+i<vector>
+i<stdio.h>
+i<errno.h>
+i<time.h>
+i<stdlib.h>
+i"Socket.h"
+i"Crypto.h"
+i"define.h"
+i"Utilities.h"
+i"Player.h"
+i"packets.h"
+i"GameMap.h"
+i"User.h"
+i"Dialogue.h"
+i"MapFile.h"
+
+N/Users/triton/Downloads/MAMClient/packets.h
+c000000004CF18AA20000000000000458
+t1290898082
+s1112
+i"MessagePacket.h"
+i"CharInfoPacket.h"
+i"MapInfoPacket.h"
+i"WalkPacket.h"
+i"ActionPacket.h"
+i"JumpPacket.h"
+i"NpcInfoPacket.h"
+i"NpcUpdatePacket.h"
+i"NpcDialoguePacket.h"
+
+N/usr/local/include/confuse.h
+c000000004EDD3E7B000000000000A4DB
+t1323122299
+s42203
+
+CBuild AST from /Users/triton/Downloads/MAMClient/ActionPacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/CharInfoPacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/ConfigFile.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/Counter.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/Crypto.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/Dialogue.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/Dijkstra.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/GameMap.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/IPacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/JumpPacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/MapFile.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/MapInfoPacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/MessagePacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/Npc.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/NpcDialoguePacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/NpcInfoPacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/NpcUpdatePacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/Player.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/Socket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/Splitter.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/User.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/Utilities.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/WalkPacket.cpp
+r0
+
+CBuild AST from /Users/triton/Downloads/MAMClient/main.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciescd94fa9c7c8db441^79790a9d7c8db441^---0#1#0#--18"Check dependencies
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ActionPacket.o" /Users/triton/Downloads/MAMClient/ActionPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.205701
+e344816797.247470
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ActionPacket.o
+x/Users/triton/Downloads/MAMClient/ActionPacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection58"Compile /Users/triton/Downloads/MAMClient/ActionPacket.cppb4e5349d7c8db441^9f583f9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@66"file://localhost/Users/triton/Downloads/MAMClient/ActionPacket.cpp0000000000000000^1201"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ActionPacket.o" ActionPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/ActionPacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ActionPacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/CharInfoPacket.o" /Users/triton/Downloads/MAMClient/CharInfoPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.104184
+e344816797.166022
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/CharInfoPacket.o
+x/Users/triton/Downloads/MAMClient/CharInfoPacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection60"Compile /Users/triton/Downloads/MAMClient/CharInfoPacket.cpp08c91a9d7c8db441^957e2a9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@68"file://localhost/Users/triton/Downloads/MAMClient/CharInfoPacket.cpp0000000000000000^1209"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/CharInfoPacket.o" CharInfoPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/CharInfoPacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/CharInfoPacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ConfigFile.o" /Users/triton/Downloads/MAMClient/ConfigFile.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.156224
+e344816797.734462
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ConfigFile.o
+x/Users/triton/Downloads/MAMClient/ConfigFile.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection56"Compile /Users/triton/Downloads/MAMClient/ConfigFile.cppd718289d7c8db441^ea04bc9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@64"file://localhost/Users/triton/Downloads/MAMClient/ConfigFile.cpp0000000000000000^1193"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ConfigFile.o" ConfigFile.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/ConfigFile.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/ConfigFile.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Counter.o" /Users/triton/Downloads/MAMClient/Counter.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.045341
+e344816797.094030
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Counter.o
+x/Users/triton/Downloads/MAMClient/Counter.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Compile /Users/triton/Downloads/MAMClient/Counter.cpp96b30b9d7c8db441^b610189d7c8db441^---0#0#0#-19%DVTDocumentLocation2@61"file://localhost/Users/triton/Downloads/MAMClient/Counter.cpp0000000000000000^1181"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Counter.o" Counter.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/Counter.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Counter.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Crypto.o" /Users/triton/Downloads/MAMClient/Crypto.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.046875
+e344816797.111050
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Crypto.o
+x/Users/triton/Downloads/MAMClient/Crypto.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection52"Compile /Users/triton/Downloads/MAMClient/Crypto.cppef1e0c9d7c8db441^f6791c9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@60"file://localhost/Users/triton/Downloads/MAMClient/Crypto.cpp0000000000000000^1177"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Crypto.o" Crypto.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/Crypto.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Crypto.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dialogue.o" /Users/triton/Downloads/MAMClient/Dialogue.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.439132
+e344816797.779918
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dialogue.o
+x/Users/triton/Downloads/MAMClient/Dialogue.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection54"Compile /Users/triton/Downloads/MAMClient/Dialogue.cppcf86709d7c8db441^6cb1c79d7c8db441^---0#0#0#-19%DVTDocumentLocation2@62"file://localhost/Users/triton/Downloads/MAMClient/Dialogue.cpp0000000000000000^1185"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dialogue.o" Dialogue.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/Dialogue.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dialogue.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dijkstra.o" /Users/triton/Downloads/MAMClient/Dijkstra.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.466794
+e344816798.019959
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dijkstra.o
+x/Users/triton/Downloads/MAMClient/Dijkstra.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection54"Compile /Users/triton/Downloads/MAMClient/Dijkstra.cppf59d779d7c8db441^0d1b059e7c8db441^---0#0#0#-19%DVTDocumentLocation2@62"file://localhost/Users/triton/Downloads/MAMClient/Dijkstra.cpp0000000000000000^1185"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dijkstra.o" Dijkstra.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/Dijkstra.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Dijkstra.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/GameMap.o" /Users/triton/Downloads/MAMClient/GameMap.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.125416
+e344816797.945989
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/GameMap.o
+x/Users/triton/Downloads/MAMClient/GameMap.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Compile /Users/triton/Downloads/MAMClient/GameMap.cpp2639209d7c8db441^b22af29d7c8db441^---0#0#0#-19%DVTDocumentLocation2@61"file://localhost/Users/triton/Downloads/MAMClient/GameMap.cpp0000000000000000^1181"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/GameMap.o" GameMap.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/GameMap.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/GameMap.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/IPacket.o" /Users/triton/Downloads/MAMClient/IPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.047130
+e344816797.102878
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/IPacket.o
+x/Users/triton/Downloads/MAMClient/IPacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Compile /Users/triton/Downloads/MAMClient/IPacket.cpp732b0c9d7c8db441^c0591a9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@61"file://localhost/Users/triton/Downloads/MAMClient/IPacket.cpp0000000000000000^1181"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/IPacket.o" IPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/IPacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/IPacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/JumpPacket.o" /Users/triton/Downloads/MAMClient/JumpPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.248787
+e344816797.296265
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/JumpPacket.o
+x/Users/triton/Downloads/MAMClient/JumpPacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection56"Compile /Users/triton/Downloads/MAMClient/JumpPacket.cppdaca3f9d7c8db441^1bd74b9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@64"file://localhost/Users/triton/Downloads/MAMClient/JumpPacket.cpp0000000000000000^1193"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/JumpPacket.o" JumpPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/JumpPacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/JumpPacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapFile.o" /Users/triton/Downloads/MAMClient/MapFile.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.483365
+e344816798.300852
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapFile.o
+x/Users/triton/Downloads/MAMClient/MapFile.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Compile /Users/triton/Downloads/MAMClient/MapFile.cppddec7b9d7c8db441^21034d9e7c8db441^---0#0#0#-19%DVTDocumentLocation2@61"file://localhost/Users/triton/Downloads/MAMClient/MapFile.cpp0000000000000000^1181"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapFile.o" MapFile.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/MapFile.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapFile.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapInfoPacket.o" /Users/triton/Downloads/MAMClient/MapInfoPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.112391
+e344816797.154861
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapInfoPacket.o
+x/Users/triton/Downloads/MAMClient/MapInfoPacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection59"Compile /Users/triton/Downloads/MAMClient/MapInfoPacket.cpp0de11c9d7c8db441^44a3279d7c8db441^---0#0#0#-19%DVTDocumentLocation2@67"file://localhost/Users/triton/Downloads/MAMClient/MapInfoPacket.cpp0000000000000000^1205"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapInfoPacket.o" MapInfoPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/MapInfoPacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MapInfoPacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MessagePacket.o" /Users/triton/Downloads/MAMClient/MessagePacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.047097
+e344816797.124070
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MessagePacket.o
+x/Users/triton/Downloads/MAMClient/MessagePacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection59"Compile /Users/triton/Downloads/MAMClient/MessagePacket.cppc3280c9d7c8db441^16c11f9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@67"file://localhost/Users/triton/Downloads/MAMClient/MessagePacket.cpp0000000000000000^1205"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MessagePacket.o" MessagePacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/MessagePacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MessagePacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Npc.o" /Users/triton/Downloads/MAMClient/Npc.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.297603
+e344816797.336647
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Npc.o
+x/Users/triton/Downloads/MAMClient/Npc.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection49"Compile /Users/triton/Downloads/MAMClient/Npc.cppf04c4c9d7c8db441^512d569d7c8db441^---0#0#0#-19%DVTDocumentLocation2@57"file://localhost/Users/triton/Downloads/MAMClient/Npc.cpp0000000000000000^1165"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Npc.o" Npc.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/Npc.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Npc.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcDialoguePacket.o" /Users/triton/Downloads/MAMClient/NpcDialoguePacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.420578
+e344816797.772951
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcDialoguePacket.o
+x/Users/triton/Downloads/MAMClient/NpcDialoguePacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection63"Compile /Users/triton/Downloads/MAMClient/NpcDialoguePacket.cppf7c76b9d7c8db441^cadfc59d7c8db441^---0#0#0#-19%DVTDocumentLocation2@71"file://localhost/Users/triton/Downloads/MAMClient/NpcDialoguePacket.cpp0000000000000000^1221"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcDialoguePacket.o" NpcDialoguePacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/NpcDialoguePacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcDialoguePacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcInfoPacket.o" /Users/triton/Downloads/MAMClient/NpcInfoPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.338080
+e344816797.381518
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcInfoPacket.o
+x/Users/triton/Downloads/MAMClient/NpcInfoPacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection59"Compile /Users/triton/Downloads/MAMClient/NpcInfoPacket.cppcaa8569d7c8db441^22a9619d7c8db441^---0#0#0#-19%DVTDocumentLocation2@67"file://localhost/Users/triton/Downloads/MAMClient/NpcInfoPacket.cpp0000000000000000^1205"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcInfoPacket.o" NpcInfoPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/NpcInfoPacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcInfoPacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcUpdatePacket.o" /Users/triton/Downloads/MAMClient/NpcUpdatePacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.382871
+e344816797.419220
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcUpdatePacket.o
+x/Users/triton/Downloads/MAMClient/NpcUpdatePacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection61"Compile /Users/triton/Downloads/MAMClient/NpcUpdatePacket.cpp6421629d7c8db441^f84f6b9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@69"file://localhost/Users/triton/Downloads/MAMClient/NpcUpdatePacket.cpp0000000000000000^1213"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcUpdatePacket.o" NpcUpdatePacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/NpcUpdatePacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/NpcUpdatePacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Player.o" /Users/triton/Downloads/MAMClient/Player.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.047094
+e344816797.437812
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Player.o
+x/Users/triton/Downloads/MAMClient/Player.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection52"Compile /Users/triton/Downloads/MAMClient/Player.cpp46260c9d7c8db441^3b19709d7c8db441^---0#0#0#-19%DVTDocumentLocation2@60"file://localhost/Users/triton/Downloads/MAMClient/Player.cpp0000000000000000^1177"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Player.o" Player.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/Player.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Player.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Socket.o" /Users/triton/Downloads/MAMClient/Socket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.046882
+e344816797.465263
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Socket.o
+x/Users/triton/Downloads/MAMClient/Socket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection52"Compile /Users/triton/Downloads/MAMClient/Socket.cpp001b0c9d7c8db441^6119779d7c8db441^---0#0#0#-19%DVTDocumentLocation2@60"file://localhost/Users/triton/Downloads/MAMClient/Socket.cpp0000000000000000^1177"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Socket.o" Socket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/Socket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Socket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Splitter.o" /Users/triton/Downloads/MAMClient/Splitter.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.735778
+e344816797.930746
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Splitter.o
+x/Users/triton/Downloads/MAMClient/Splitter.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection54"Compile /Users/triton/Downloads/MAMClient/Splitter.cpp7079bc9d7c8db441^cc43ee9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@62"file://localhost/Users/triton/Downloads/MAMClient/Splitter.cpp0000000000000000^1185"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Splitter.o" Splitter.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/Splitter.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Splitter.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/User.o" /Users/triton/Downloads/MAMClient/User.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.095353
+e344816797.800023
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/User.o
+x/Users/triton/Downloads/MAMClient/User.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Compile /Users/triton/Downloads/MAMClient/User.cppf984189d7c8db441^10cdcc9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@58"file://localhost/Users/triton/Downloads/MAMClient/User.cpp0000000000000000^1169"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/User.o" User.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/User.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/User.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Utilities.o" /Users/triton/Downloads/MAMClient/Utilities.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.046909
+e344816797.482047
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Utilities.o
+x/Users/triton/Downloads/MAMClient/Utilities.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+o/Users/triton/Downloads/MAMClient/Utilities.cpp: In function 'AccountInfo account_info(const char*)':
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'
+o/Users/triton/Downloads/MAMClient/Utilities.cpp:142: warning: deprecated conversion from string constant to 'char*'
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection55"Compile /Users/triton/Downloads/MAMClient/Utilities.cpp261e0c9d7c8db441^88657b9d7c8db441^-1378"/Users/triton/Downloads/MAMClient/Utilities.cpp: In function 'AccountInfo account_info(const char*)':/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:138: warning: deprecated conversion from string constant to 'char*'/Users/triton/Downloads/MAMClient/Utilities.cpp:142: warning: deprecated conversion from string constant to 'char*'11(21%IDEActivityLogMessage2@53"Deprecated conversion from string constant to 'char*'-344816797#102#116#-1#-23%DVTTextDocumentLocation3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#218#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#334#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#450#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#566#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#682#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#798#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#914#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#1030#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#1146#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^137#18446744073709551615#137#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--2@53"Deprecated conversion from string constant to 'char*'-344816797#1262#116#-1#-3@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^141#18446744073709551615#141#18446744073709551615#18446744073709551615#0#49"Deprecated conversion from string constant to '*'--0#0#0#-19%DVTDocumentLocation4@63"file://localhost/Users/triton/Downloads/MAMClient/Utilities.cpp0000000000000000^1189"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Utilities.o" Utilities.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/Utilities.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/Utilities.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/WalkPacket.o" /Users/triton/Downloads/MAMClient/WalkPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.167303
+e344816797.204367
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/WalkPacket.o
+x/Users/triton/Downloads/MAMClient/WalkPacket.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection56"Compile /Users/triton/Downloads/MAMClient/WalkPacket.cpp5fef2a9d7c8db441^a04f349d7c8db441^---0#0#0#-19%DVTDocumentLocation2@64"file://localhost/Users/triton/Downloads/MAMClient/WalkPacket.cpp0000000000000000^1193"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/WalkPacket.o" WalkPacket.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/WalkPacket.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/WalkPacket.o"
+
+CCompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/main.o" /Users/triton/Downloads/MAMClient/main.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+s344816797.045334
+e344816797.807569
+r1
+xCompileC
+xbuild/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/main.o
+x/Users/triton/Downloads/MAMClient/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Compile /Users/triton/Downloads/MAMClient/main.cpp81b40b9d7c8db441^babbce9d7c8db441^---0#0#0#-19%DVTDocumentLocation2@58"file://localhost/Users/triton/Downloads/MAMClient/main.cpp0000000000000000^1169"CompileC "build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/main.o" main.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42    cd /Users/triton/Downloads/MAMClient    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -D_GLIBCXX_DEBUG_PEDANTIC=1 -isysroot /Developer/SDKs/MacOSX10.7.sdk -fasm-blocks -mmacosx-version-min=10.7 -gdwarf-2 -fvisibility=hidden -fvisibility-inlines-hidden "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/MAMClient.hmap" -I/Users/triton/Downloads/MAMClient/build/Debug/include -I/usr/local/include "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources/x86_64" "-I/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/DerivedSources" -F/Users/triton/Downloads/MAMClient/build/Debug -c /Users/triton/Downloads/MAMClient/main.cpp -o "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/main.o"
+
+CLd /Users/triton/Downloads/MAMClient/build/Debug/MAMClient normal x86_64
+s344816798.308562
+e344816798.447860
+r1
+xLd
+x/Users/triton/Downloads/MAMClient/build/Debug/MAMClient
+xnormal
+xx86_64
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection60"Link /Users/triton/Downloads/MAMClient/build/Debug/MAMClientc70d4f9e7c8db441^8fa6729e7c8db441^---0#0#0#--632"Ld build/Debug/MAMClient normal x86_64    cd /Users/triton/Downloads/MAMClient    setenv MACOSX_DEPLOYMENT_TARGET 10.7    /Developer/usr/bin/llvm-g++-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.7.sdk -L/Users/triton/Downloads/MAMClient/build/Debug -L/Developer/SDKs/MacOSX10.7.sdk/usr/local/lib -L/Users/triton/Downloads/MAMClient -F/Users/triton/Downloads/MAMClient/build/Debug -filelist "/Users/triton/Downloads/MAMClient/build/MAMClient.build/Debug/MAMClient AgentGreasy.build/Objects-normal/x86_64/MAMClient.LinkFileList" -mmacosx-version-min=10.7 -lconfuse -o /Users/triton/Downloads/MAMClient/build/Debug/MAMClient
+

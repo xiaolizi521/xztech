@@ -1,0 +1,54 @@
+8
+
+dir
+92
+http://dev.x-zen.cx/svn/mamclient/trunk/ini
+http://dev.x-zen.cx/svn/mamclient
+
+
+
+2009-05-08T17:07:21.130637Z
+66
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+1c748f9a-afb3-4506-845a-aaa652d26fcd
+
+GameMap.ini
+file
+
+
+
+
+2009-05-09T22:00:25.000000Z
+c940fa75ef91823ce8886055acf51e12
+2009-05-08T17:07:21.130637Z
+66
+
+has-props
+
+map.ini
+file
+107
+
+
+
+2009-05-11T19:34:33.000000Z
+65840118460d2e408ea8ecde06c54307
+2009-05-11T23:26:26.952937Z
+107
+
+has-props
+
