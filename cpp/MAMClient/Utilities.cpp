@@ -61,29 +61,20 @@ int _encrypt_password( unsigned char * a1, unsigned char * a2, signed int a3 )
     a3 = 8 * a3 / 8;
     if ( result > 0 )
     {
-        result = (uint64_t) a2; //140734799764088
+        result = (uint64_t) a2;
         v8 = 0;
-        v9 = (uint64_t) a2; //140734799764088
-        printf("v9 as *(_DWORD *) is %llu:\n", * (_DWORD *)v9); // 7310868740288963962
-        printf("( v9 + 4 ) as *(_DWORD *) is %llu:\n", * (_DWORD *)(v9 + 4)); // 8188951726778575970
-        printf("( a1 + 16 ) as *(_DWORD *) is %llu:\n", * (_DWORD *)((uint64_t) a1 + 16)); // 5252394605240997206
-        printf("( a1 + 20 ) as *(_DWORD *) is %llu:\n", * (_DWORD *)((uint64_t) a1 + 20)); // 11471284592827449616
-        // (greasy) 12563263345529961168 
-        // (greasy) 1010111001011001101011010111001100100001111111111011101011010000 
+        v9 = (uint64_t) a2;
+        printf("v9 as *(_DWORD *) is %llu:\n", * (_DWORD *)v9);
+        printf("( v9 + 4 ) as *(_DWORD *) is %llu:\n", * (_DWORD *)(v9 + 4));
+        printf("( a1 + 16 ) as *(_DWORD *) is %llu:\n", * (_DWORD *)((uint64_t) a1 + 16));
+        printf("( a1 + 20 ) as *(_DWORD *) is %llu:\n", * (_DWORD *)((uint64_t) a1 + 20));
         printf("v4 is %llu: \n", (*(_DWORD *)v9 + *(_DWORD *)(a1 + 16)));
         printf("v6 is %llu: \n", (*(_DWORD *)(v9 + 4) + *(_DWORD *)((uint64_t) a1 + 20)));
-        // 1213492245896473970
-        // 1000011010111001100001100010010101110010110011010110101110010
-        
-        while ( a3 / 8 > v8 ) // a3/8 == 2, v8 == 0 at beginning... therefore this runs twice.
+
+        while ( a3 / 8 > v8 )
         {
-            v4 = *(_DWORD *)v9 + *(_DWORD *)((uint64_t) a1 + 16); // 7310868740288963962 + 5252394605240997206
-            // 12563263345529961168 
-            // 1010111001011001101011010111001100100001111111111011101011010000
-            v6 = *(_DWORD *)(v9 + 4) + *(_DWORD *)((uint64_t) a1 + 20); // 7310868740288963966 + 5252394605240997206
-            // 19660236319606025586
-            // 10001000011010111001100001100010010101110010110011010110101110010
-            
+            v4 = *(_DWORD *)v9 + *(_DWORD *)((uint64_t) a1 + 16);
+            v6 = *(_DWORD *)(v9 + 4) + *(_DWORD *)((uint64_t) a1 + 20);    
             v10 = 1;
             v5 = (uint64_t) a1 + 24;
             
