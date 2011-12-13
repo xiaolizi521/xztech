@@ -17,6 +17,7 @@ class IPacket
 public:
     
     virtual CPacket pack( void );
+    virtual ~IPacket() = 0;
     
 };
 

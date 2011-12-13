@@ -24,8 +24,8 @@ public:
     CryptoStuff( void );
     ~CryptoStuff( void );
 	
-    void incoming( char *packet, int size );
-    void outgoing( char *packet, int size );
+    void incoming( char *packet, size_t size );
+    void outgoing( char *packet, size_t size );
 	
     void generate_keys( CPacket packet );
     void use_new_keys( void ) {	this->m_useNewKeys = true; }

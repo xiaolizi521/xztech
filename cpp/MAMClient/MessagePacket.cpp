@@ -9,7 +9,11 @@
 
 #include "MessagePacket.h"
 
-MessagePacket::MessagePacket( CPacket packet )
+MessagePacket::MessagePacket( CPacket packet ) :
+  m_time(0)
+, m_color(0)
+, m_channel(0)
+, m_effect(0)
 {
     MESSAGE_PACKET_HEADER header;
     
@@ -115,9 +119,14 @@ MessagePacket::MessagePacket( CPacket packet )
     }
 }
 
-MessagePacket::MessagePacket( const char *sender, const char *target, 
-                             const char *message, short channel, int color, 
-                             short effect, const char *emotion )
+MessagePacket::MessagePacket( const char *sender, const char *target
+                             ,const char *message, short channel
+                             ,int color, short effect
+                             ,const char *emotion ) :
+ m_effect(effect)
+, m_time(NULL)
+, m_color(color)
+, m_channel(channel)
 {
     strcpy( this->m_sender, sender );
     strcpy( this->m_target, target );

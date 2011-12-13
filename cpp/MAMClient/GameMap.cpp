@@ -9,7 +9,15 @@
 
 #include "GameMap.h"
 
-GameMap::GameMap( Socket *socket )
+GameMap::GameMap( Socket *socket ) :
+  m_id(0)
+, m_type(0)
+, m_mapdoc(0)
+, m_playerList()
+, m_npcList()
+, m_socket(0)
+, m_mapList(0)
+, m_portalList(0)
 {
     std::string path = GAMEFILESPATH;
     path += "ini/GameMap.ini";
@@ -17,6 +25,17 @@ GameMap::GameMap( Socket *socket )
     this->m_socket = socket;
     this->m_mapList = new ConfigFile( path );
 }
+
+GameMap::GameMap(const GameMap& other) :
+  m_id(other.m_id)
+, m_type(other.m_type)
+, m_mapdoc(other.m_mapdoc)
+, m_playerList(other.m_playerList)
+, m_npcList(other.m_npcList)
+, m_socket(other.m_socket)
+, m_mapList(other.m_mapList)
+, m_portalList(other.m_portalList)
+{}
 
 void GameMap::process( MapInfoPacket *packet )
 {
@@ -228,4 +247,21 @@ template < class T > inline std::string toString( const T &t )
 	sStream << t;
 	
 	return sStream.str();
+}
+
+GameMap& GameMap::operator=(const GameMap &other){
+    
+    if (this == &other) return *this;
+    
+    m_socket = other.m_socket;
+    m_id = other.m_id;
+    m_mapdoc = other.m_mapdoc;
+    m_type = other.m_type;
+    m_playerList = other.m_playerList;
+    m_npcList = other.m_npcList;
+    m_portalList = other.m_portalList;
+    m_mapList = other.m_mapList;
+            
+    return *this;
+    
 }

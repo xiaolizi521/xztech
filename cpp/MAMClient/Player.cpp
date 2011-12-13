@@ -9,11 +9,23 @@
 
 #include "Player.h"
 
-Player::Player( void )
+Player::Player( void ) :
+  m_y(0)
+, m_id(0)
+, m_reborn(0)
+, m_pkEnable(0)
+, m_level(0)
+, m_x(0)
 {
 }
 
-Player::Player( CPacket packet )
+Player::Player( CPacket packet ) :
+  m_y(0)
+, m_id(0)
+, m_reborn(0)
+, m_pkEnable(0)
+, m_level(0)
+, m_x(0)
 {
     BYTE nLength    = *( BYTE * )( packet.data + 0x3C );
     //BYTE mLength  = *( BYTE * )( packet.data + 0x3D + nLength );

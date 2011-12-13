@@ -9,9 +9,11 @@
 
 #include "MapFile.h"
 
-MapFile::MapFile( void )
-{
-}
+MapFile::MapFile( void ) :
+  m_adjacencyMap()
+, m_mapFile()
+, m_mapList()
+{}
 
 void MapFile::process( const std::string &map_file )
 {

@@ -9,7 +9,8 @@
 
 #include "WalkPacket.h"
 
-WalkPacket::WalkPacket( CPacket packet )
+WalkPacket::WalkPacket( CPacket packet ) :
+m_playerID(0), m_destY(0), m_destX(0), m_startY(0), m_startX(0)
 {
     WALK_PACKET walk;
     

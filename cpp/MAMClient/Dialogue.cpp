@@ -9,7 +9,7 @@
 
 #include "Dialogue.h"
 
-Dialogue::Dialogue( void )
+Dialogue::Dialogue( void ) : m_optionList(), m_nOptions(0), m_open(0)
 {
     this->m_open = false;
 }
