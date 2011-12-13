@@ -40,9 +40,9 @@ unsigned long timeGetTime( void );
 void initTime( void );
 
 //uint64_t _rotr( uint64_t a1, uint64_t a2 );
-uint64_t _rotr( uint64_t a1, uint64_t a2 );
+signed int _rotr( int a1, int a2 );
 
-int _encrypt_password( unsigned char * a1, unsigned char * a2, signed int a3 );
+int _encrypt_password( unsigned char* a1, unsigned char *a2, signed int a3 );
 void encrypt_password( char *outbuffer, char *password );
 
 void hexdump( void *ptr, int length );
