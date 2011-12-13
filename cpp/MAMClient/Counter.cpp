@@ -9,11 +9,10 @@
 
 #include "Counter.h"
 
-Counter::Counter( void )
-{
-    this->first     = NULL;
-    this->second    = NULL;
-}
+Counter::Counter( void ) :
+  first(NULL)
+, second(NULL)
+{}
 
 Counter::~Counter( void )
 {
@@ -25,8 +24,10 @@ void Counter::reset( void )
     this->second    = NULL;
 }
 
-void Counter::operator ++( int )
+const Counter Counter::operator++( int )
 {
+    Counter tmp(*this);
+    
     this->first++;
 	
     if ( this->first == 256 )
@@ -37,4 +38,6 @@ void Counter::operator ++( int )
 	
     if ( this->second == 256 )
         this->second = NULL;
+    
+    return *this;
 }

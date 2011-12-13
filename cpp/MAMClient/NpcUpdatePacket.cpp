@@ -9,7 +9,7 @@
 
 #include "NpcUpdatePacket.h"
 
-NpcUpdatePacket::NpcUpdatePacket( CPacket packet )
+NpcUpdatePacket::NpcUpdatePacket( CPacket packet ) : m_npcID(0), m_action(0)
 {
     NPC_UPDATE_PACKET update;
     

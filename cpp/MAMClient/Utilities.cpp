@@ -20,7 +20,7 @@ unsigned char rc5_cipher[] = {
     0x8D, 0xF9, 0x16, 0x64, 0x5B, 0xAB, 0x42, 0x66
 };
 
-unsigned long long server_start_time = 0;
+unsigned long server_start_time = 0;
 
 unsigned long timeGetTime( void )
 {
@@ -39,66 +39,52 @@ void initTime( void )
     server_start_time = timeGetTime();
 }
 
-uint64_t _rotr( uint64_t a1, uint64_t a2 )
+int32_t _rotr( int32_t a1, int32_t a2 )
 {
-    return (a1 << a2 % 0x20u) | ((unsigned int)a1 >> (char)(32 - a2 % 0x20u));
+    return (int32_t)((a1 << a2 % 0x20u) | ((unsigned int)a1 >> (char)(32 - a2 % 0x20u)));
 }
 
-// _DWORD now defined as uint64_t
 
-int _encrypt_password( unsigned char * a1, unsigned char * a2, signed int a3 )
+// int32_t now defined as uint64_t
+
+intptr_t _encrypt_password( intptr_t a1, intptr_t a2, int32_t a3 )
 {
-    uint64_t  v10; // [sp+10h] [bp-8h]@3
-    uint64_t         result; // eax@1
-    uint64_t         v4; // ebx@3
-    uint64_t         v5; // edi@3
-    uint64_t         v6; // esi@3
-    uint64_t         v7; // eax@4
-    uint64_t         v8; // [sp+14h] [bp-4h]@2
-    uint64_t         v9; // [sp+Ch] [bp-Ch]@2
+    signed int  v10; // [sp+10h] [bp-8h]@3
+    intptr_t         result; // eax@1
+    intptr_t         v4; // ebx@3
+    intptr_t         v5; // edi@3
+    intptr_t         v6; // esi@3
+    intptr_t         v7; // eax@4
+    intptr_t         v8; // [sp+14h] [bp-4h]@2
+    intptr_t         v9; // [sp+Ch] [bp-Ch]@2
 	
     result = 8 * a3 / 8;
     a3 = 8 * a3 / 8;
     if ( result > 0 )
     {
-        result = (uint64_t) a2;
+        result = a2;
         v8 = 0;
-        v9 = (uint64_t) a2;
-        printf("v9 as *(_DWORD *) is %llu:\n", * (_DWORD *)v9);
-        printf("( v9 + 4 ) as *(_DWORD *) is %llu:\n", * (_DWORD *)(v9 + 4));
-        printf("( a1 + 16 ) as *(_DWORD *) is %llu:\n", * (_DWORD *)((uint64_t) a1 + 16));
-        printf("( a1 + 20 ) as *(_DWORD *) is %llu:\n", * (_DWORD *)((uint64_t) a1 + 20));
-        printf("v4 is %llu: \n", (*(_DWORD *)v9 + *(_DWORD *)(a1 + 16)));
-        printf("v6 is %llu: \n", (*(_DWORD *)(v9 + 4) + *(_DWORD *)((uint64_t) a1 + 20)));
-
+        v9 = a2;
         while ( a3 / 8 > v8 )
         {
-            v4 = *(_DWORD *)v9 + *(_DWORD *)((uint64_t) a1 + 16);
-            v6 = *(_DWORD *)(v9 + 4) + *(_DWORD *)((uint64_t) a1 + 20);    
+            v4 = *(int32_t *)v9 + *(int32_t *)(a1 + 16);
+            v6 = *(int32_t *)(v9 + 4) + *(int32_t *)(a1 + 20);
             v10 = 1;
-            v5 = (uint64_t) a1 + 24;
-            
-            // runs 12 times
+            v5 = a1 + 24;
             do
             {
-                v7 = *(_DWORD *)v5 + _rotr(v6 ^ v4, v6);
+                v7 = *(int32_t *)v5 + _rotr((int32_t)(v6 ^ v4), (int32_t)v6);
                 v4 = v7;
-                v6 = *(_DWORD *)(v5 + 4) + _rotr(v7 ^ v6, v7);
-                printf("v4 at end of mid-do is %llu \n", v4);
-                
+                v6 = *(int32_t *)(v5 + 4) + _rotr((int32_t)(v7 ^ v6), (int32_t)v7);
                 ++v10;
                 v5 += 8;
             }
             while ( v10 <= 12 );
             result = v9;
-            *(_DWORD *)v9 = v4;
-            *(_DWORD *)((unsigned char *) v9 + 4) = v6;
+            *(int32_t *)v9 = (int32_t)v4;
+            *(int32_t *)(v9 + 4) = (int32_t)v6;
             ++v8;
             v9 += 8;
-            
-            printf("(End of while...) v4 is %llu: \n", v4);
-            printf("(End of while...) v6 is %llu: \n", v6);
-
         }
     }
     return result;
@@ -112,12 +98,12 @@ void encrypt_password( char *outbuffer, char *password )
 	
     memcpy( ( void * )buffer, ( void * )password, ( strlen( password ) + 1 ) );
 	
-    _encrypt_password( rc5_cipher, buffer, 16 );
+    _encrypt_password( (intptr_t) &rc5_cipher, (intptr_t) &buffer, 16 );
 	
     memcpy( ( void * )outbuffer, ( void * )buffer, 16 );
 }
 
-void hexdump( void *ptr, int length )
+void hexdump( void *ptr, int32_t length )
 {
     unsigned char *buffer = ( unsigned char * )ptr;
     
@@ -145,15 +131,15 @@ AccountInfo account_info( const char *name )
 {
     AccountInfo accountInfo;
     cfg_opt_t character_opts[] = {
-        CFG_STR( "serverip",    "64.151.106.220",   CFGF_NONE ),
-        CFG_STR( "servername",  "MythOfOrient",     CFGF_NONE ),
-        CFG_STR( "username",    "",                 CFGF_NONE ),
-        CFG_STR( "password",    "",                 CFGF_NONE ),
-        CFG_STR( "pcode",       "",                 CFGF_NONE ),
+        CFG_STR( const_cast<char *>("serverip"),    const_cast<char *>("64.151.106.220"),   CFGF_NONE ),
+        CFG_STR( const_cast<char *>("servername"),  const_cast<char *>("MythOfOrient"),     CFGF_NONE ),
+        CFG_STR( const_cast<char *>("username"),    const_cast<char *>(""),                 CFGF_NONE ),
+        CFG_STR( const_cast<char *>("password"),    const_cast<char *>(""),                 CFGF_NONE ),
+        CFG_STR( const_cast<char *>("pcode"),       const_cast<char *>(""),                 CFGF_NONE ),
         CFG_END()
     };
     cfg_opt_t opts[] = {
-        CFG_SEC( "character", character_opts, CFGF_TITLE | CFGF_MULTI ),
+        CFG_SEC( const_cast<char *>("character"), character_opts, CFGF_TITLE | CFGF_MULTI ),
         CFG_END()
     };
     cfg_t *cfg, *cfg_character;

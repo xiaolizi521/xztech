@@ -15,3 +15,7 @@ CPacket IPacket::pack( void )
     
     return packet;
 }
+
+IPacket::~IPacket() {
+    
+}

@@ -9,7 +9,7 @@
 
 #include "NpcInfoPacket.h"
 
-NpcInfoPacket::NpcInfoPacket( CPacket packet )
+NpcInfoPacket::NpcInfoPacket( CPacket packet ) : m_id(0), m_x(0), m_y(0), m_type(0), m_look(0)
 {
     NPC_INFO_PACKET info;
     

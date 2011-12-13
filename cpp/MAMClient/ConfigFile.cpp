@@ -9,18 +9,18 @@
 
 #include "ConfigFile.h"
 
-ConfigFile::ConfigFile( const std::string &configFile )
+ConfigFile::ConfigFile( const std::string &configFile ) : content()
 {
 	this->parse( configFile );
 }
 
-ConfigFile::ConfigFile( void )
-{
-}
+ConfigFile::ConfigFile( void ) : content() {}
 
-void ConfigFile::operator= ( const std::string &configFile )
+ConfigFile& ConfigFile::operator= ( const std::string &configFile )
 {
 	this->parse( configFile );
+    
+    return *this;
 }
 
 void ConfigFile::parse( const std::string &configFile )
@@ -45,7 +45,7 @@ void ConfigFile::parse( const std::string &configFile )
 		{
 			section.clear();
             
-			for ( int64_t i = 1; line[i] != ']'; i++ )
+			for ( int32_t i = 1; line[i] != ']'; i++ )
 				section += line[i];
             
 			continue;
@@ -58,10 +58,10 @@ void ConfigFile::parse( const std::string &configFile )
 			key.clear();
 			value.clear();
             
-			for ( int64_t i = 0; line[i] != '='; i++ )
+			for ( size_t i = 0; line[i] != '='; i++ )
 				key += line[i];
             
-			for ( int64_t i = found + 1; i < (int64_t)line.length(); i++ )
+			for ( size_t i = found + 1; i < (size_t)line.length(); i++ )
 				value += line[i];
             
 			std::string path = section;
