@@ -16,7 +16,6 @@
 		49D236A50FB5E639002E211A /* NpcDialoguePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49D236A40FB5E639002E211A /* NpcDialoguePacket.cpp */; };
 		49D238320FB60572002E211A /* Dialogue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49D238310FB60572002E211A /* Dialogue.cpp */; };
 		49EBEF370E97F28C003B4361 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49EBEF360E97F28C003B4361 /* Counter.cpp */; };
-		49EBEF430E97F664003B4361 /* Crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49EBEF420E97F664003B4361 /* Crypto.cpp */; };
 		49F779040FAE4D890094951A /* MessagePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49F779030FAE4D890094951A /* MessagePacket.cpp */; };
 		49F7792D0FAE7FBB0094951A /* IPacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49F7792C0FAE7FBB0094951A /* IPacket.cpp */; };
 		49F77AA30FAF11380094951A /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49F77AA20FAF11380094951A /* User.cpp */; };
@@ -30,6 +29,7 @@
 		49F77EAB0FB47F6D0094951A /* Npc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49F77EAA0FB47F6D0094951A /* Npc.cpp */; };
 		49F77EAE0FB47F950094951A /* NpcInfoPacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49F77EAD0FB47F950094951A /* NpcInfoPacket.cpp */; };
 		49FCB10E0FB4F2FF0035DD15 /* NpcUpdatePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49FCB10D0FB4F2FF0035DD15 /* NpcUpdatePacket.cpp */; };
+		62546D8C14996B4300E59697 /* CryptoStuff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62546D8A14996B4300E59697 /* CryptoStuff.cpp */; };
 		8DD76F650486A84900D96B5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
 		8DD76F6A0486A84900D96B5E /* MAMClient.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859E8B029090EE04C91782 /* MAMClient.1 */; };
 /* End PBXBuildFile section */
@@ -68,8 +68,6 @@
 		49D238310FB60572002E211A /* Dialogue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dialogue.cpp; sourceTree = "<group>"; };
 		49EBEF350E97F28C003B4361 /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
 		49EBEF360E97F28C003B4361 /* Counter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
-		49EBEF410E97F664003B4361 /* Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crypto.h; sourceTree = "<group>"; };
-		49EBEF420E97F664003B4361 /* Crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crypto.cpp; sourceTree = "<group>"; };
 		49EBEF4F0E97F734003B4361 /* keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keys.h; sourceTree = "<group>"; };
 		49EBEFDB0E983D64003B4361 /* define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		49F779020FAE4D890094951A /* MessagePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePacket.h; sourceTree = "<group>"; };
@@ -101,6 +99,8 @@
 		49FCAF990FB49DDA0035DD15 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
 		49FCB10C0FB4F2FF0035DD15 /* NpcUpdatePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NpcUpdatePacket.h; sourceTree = "<group>"; };
 		49FCB10D0FB4F2FF0035DD15 /* NpcUpdatePacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NpcUpdatePacket.cpp; sourceTree = "<group>"; };
+		62546D8A14996B4300E59697 /* CryptoStuff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CryptoStuff.cpp; sourceTree = "<group>"; };
+		62546D8B14996B4300E59697 /* CryptoStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptoStuff.h; sourceTree = "<group>"; };
 		8DD76F6C0486A84900D96B5E /* MAMClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MAMClient; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859E8B029090EE04C91782 /* MAMClient.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MAMClient.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,10 +170,10 @@
 		49EBEF340E97F27D003B4361 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
+				62546D8A14996B4300E59697 /* CryptoStuff.cpp */,
+				62546D8B14996B4300E59697 /* CryptoStuff.h */,
 				49EBEF350E97F28C003B4361 /* Counter.h */,
 				49EBEF360E97F28C003B4361 /* Counter.cpp */,
-				49EBEF410E97F664003B4361 /* Crypto.h */,
-				49EBEF420E97F664003B4361 /* Crypto.cpp */,
 				49EBEF4F0E97F734003B4361 /* keys.h */,
 			);
 			name = Crypto;
@@ -310,7 +310,6 @@
 			files = (
 				8DD76F650486A84900D96B5E /* main.cpp in Sources */,
 				49EBEF370E97F28C003B4361 /* Counter.cpp in Sources */,
-				49EBEF430E97F664003B4361 /* Crypto.cpp in Sources */,
 				490CF1EC0E9C0C70008FB895 /* Socket.cpp in Sources */,
 				49C434470E9EE76400BE385E /* Utilities.cpp in Sources */,
 				4998D1BB0F4C6BB600206FEB /* Player.cpp in Sources */,
@@ -332,6 +331,7 @@
 				491D8C490FB86A5C00CAD713 /* Dijkstra.cpp in Sources */,
 				491D8C570FB8737600CAD713 /* MapFile.cpp in Sources */,
 				497D2342100013830040098E /* Splitter.cpp in Sources */,
+				62546D8C14996B4300E59697 /* CryptoStuff.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

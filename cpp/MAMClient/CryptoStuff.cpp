@@ -35,7 +35,7 @@ void CryptoStuff::incoming( char *packet, size_t size )
 
 void CryptoStuff::outgoing( char *packet, size_t size )
 {
-    printf("In outgoing. Packet is: %s \n\n", packet);
+
     hexdump( ( void * )packet, 52);
     for ( int i = 0; i < size; i++ )
     {

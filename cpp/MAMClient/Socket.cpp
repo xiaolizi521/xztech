@@ -182,11 +182,9 @@ bool Socket::send_packet( CPacket packet )
 {
     char buffer[MAXPACKETSIZE];
     bool sent;
-	printf("Send_packet Packet %s: ", packet.data);
-    hexdump( ( void * )packet.data, (int32_t)( packet.header.size - sizeof( CPacketHeader ) ) );
+
     memcpy( ( void * )buffer, ( void * )&packet, packet.header.size );
-	printf("Send_packet Buffer %s: ", buffer);
-    hexdump( ( void * )buffer, 52);
+
     this->crypto->outgoing( buffer, packet.header.size );
 	
     sent = this->send( buffer, packet.header.size );
