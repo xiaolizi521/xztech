@@ -39,8 +39,8 @@ public:
     bool is_readable( void );
     void set_nonblock( void ) { fcntl( this->m_sock, F_SETFL, O_NONBLOCK ); }
 	
-    bool send( const char *data, int size ) const;
-    int read( const char *buffer, int size ) const;
+    bool send( const char *data, size_t size ) const;
+    ssize_t read( const char *buffer, size_t size ) const;
 	
     bool is_valid( void ) const { return m_sock != -1; }
     

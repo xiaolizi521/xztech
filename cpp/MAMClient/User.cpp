@@ -55,7 +55,7 @@ void User::jump( short x, short y, int mode, int dir )
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
         }
     };
-    int timestamp = timeGetTime() ^ ( this->m_accountID + this->m_characterID );
+    int32_t timestamp = (int32_t) timeGetTime() ^ (int32_t) ( this->m_accountID + this->m_characterID );
     int direction = ( dir >= 0 ) ? dir : rand() % 7;
 
     memcpy( ( void * )lcp.data, ( void * )&this->m_characterID, sizeof( this->m_characterID ) );
@@ -172,7 +172,7 @@ void User::move_map( int destination )
                 if ( ( it + 1 ) != transport.end() )
                 {
                     while ( !this->m_dialogue->m_open )
-                        sleep( .1 );
+                        sleep((uint32_t) .1 );
                 }
             }
         }
@@ -183,7 +183,7 @@ void User::move_map( int destination )
         
         while ( this->m_gameMap->m_id != *pit )
         {
-            sleep( .1 );
+            sleep((uint32_t) .1 );
             
             if ( difftime( wait, time( NULL ) ) > 2 )
             {

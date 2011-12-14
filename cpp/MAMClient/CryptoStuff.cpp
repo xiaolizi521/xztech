@@ -10,16 +10,13 @@
 #include "CryptoStuff.h"
 #include "keys.h"
 
-CryptoStuff::CryptoStuff( void )
-{
-    this->m_useNewKeys = false;
-}
+CryptoStuff::CryptoStuff( void ) : m_useNewKeys(false) {}
 
 CryptoStuff::~CryptoStuff( void )
 {
 }
 
-void CryptoStuff::incoming( char *packet, int size )
+void CryptoStuff::incoming( char *packet, size_t size )
 {
     for ( int i = 0; i < size; i++ )
     {
@@ -31,7 +28,7 @@ void CryptoStuff::incoming( char *packet, int size )
     }
 }
 
-void CryptoStuff::outgoing( char *packet, int size )
+void CryptoStuff::outgoing( char *packet, size_t size )
 {
     printf("In outgoing. Packet is: %s \n\n", packet);
     hexdump( ( void * )packet, 52);

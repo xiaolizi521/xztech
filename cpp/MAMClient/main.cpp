@@ -107,7 +107,7 @@ int main ( int argc, char * const argv[] )
     mapFile->process( path );
     
     initTime();
-    srand( time( NULL ) );
+    srand( (unsigned int) time( NULL ) );
     
     if ( argc != 2 )
         acct_info = account_info( "Whitey" );
@@ -335,7 +335,7 @@ int main ( int argc, char * const argv[] )
 					
                 case 1020:
                 {
-                    int response = timeGetTime() ^ ( ( user->m_characterID * user->m_characterID ) + 0x2537 );
+                    int64_t response = (int64_t) timeGetTime() ^ ( ( user->m_characterID * user->m_characterID ) + 0x2537 );
 					
                     memcpy( ( void * )( packet.data + 0x04 ), ( void * )&response, sizeof( response ) );
 					

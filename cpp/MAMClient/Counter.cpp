@@ -25,7 +25,7 @@ void Counter::reset( void )
     this->second    = NULL;
 }
 
-void Counter::operator ++( int )
+Counter& Counter::operator ++( int )
 {
     this->first++;
 	
@@ -37,4 +37,6 @@ void Counter::operator ++( int )
 	
     if ( this->second == 256 )
         this->second = NULL;
+    
+    return *this;
 }

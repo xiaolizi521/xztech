@@ -81,10 +81,10 @@ bool Socket::is_readable( void )
     return false;
 }
 
-bool Socket::send( const char *data, int size ) const
+bool Socket::send( const char *data, size_t size ) const
 {
-    int status;
-	int nSent = 0;
+    intptr_t status;
+	size_t nSent = 0;
     
     while ( nSent < size )
     {
@@ -102,11 +102,11 @@ bool Socket::send( const char *data, int size ) const
     return true;
 }
 
-int Socket::read( const char *buffer, int size ) const
+ssize_t Socket::read( const char *buffer, size_t size ) const
 {
-    int     status;
+    ssize_t     status;
     char    rBuffer[0x1000];
-	int     nRecieved = 0;
+	size_t     nRecieved = 0;
     
     memset( rBuffer, 0, 0x1000 );
 	
@@ -132,7 +132,7 @@ CPacket Socket::read_packet( void )
 {
     CPacket packet;
     char    pHeader[4];
-    int     status;
+    ssize_t     status;
 	
     status = this->read( pHeader, sizeof( pHeader ) );
 	
@@ -162,7 +162,7 @@ CPacket Socket::read_packet( void )
 	
     status = this->read( packet.data, ( packet.header.size - sizeof( CPacketHeader ) ) );
 	
-    this->crypto->incoming( packet.data, ( packet.header.size - sizeof( CPacketHeader ) ) );
+    this->crypto->incoming( packet.data, (size_t)( packet.header.size - sizeof( CPacketHeader ) ) );
     
     return packet;
 }
@@ -172,7 +172,7 @@ bool Socket::send_packet( CPacket packet )
     char buffer[MAXPACKETSIZE];
     bool sent;
 	printf("Send_packet Packet %s: ", packet.data);
-    hexdump( ( void * )packet.data, ( packet.header.size - sizeof( CPacketHeader ) ) );
+    hexdump( ( void * )packet.data, (int32_t)( packet.header.size - sizeof( CPacketHeader ) ) );
     memcpy( ( void * )buffer, ( void * )&packet, packet.header.size );
 	printf("Send_packet Buffer %s: ", buffer);
     hexdump( ( void * )buffer, 52);
