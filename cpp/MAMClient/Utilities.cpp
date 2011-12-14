@@ -20,7 +20,7 @@ unsigned char rc5_cipher[] = {
     0x8D, 0xF9, 0x16, 0x64, 0x5B, 0xAB, 0x42, 0x66
 };
 
-unsigned long long server_start_time = 0;
+unsigned long server_start_time = 0;
 
 unsigned long timeGetTime( void )
 {

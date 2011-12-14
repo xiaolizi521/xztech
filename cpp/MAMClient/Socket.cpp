@@ -9,11 +9,22 @@
 
 #include "Socket.h"
 
-Socket::Socket( CryptoStuff *crypt ) : m_sock( -1 )
+Socket::Socket( CryptoStuff *crypt ) : 
+  m_sock( -1 )
+, m_addr()
+, readfds()
+, crypto(crypt)
 {
     memset( &this->m_addr, 0, sizeof( this->m_addr ) );
     this->crypto = crypt;
 }
+
+Socket::Socket(const Socket &other) :
+  m_sock(other.m_sock)
+, m_addr(other.m_addr)
+, readfds(other.readfds)
+, crypto(other.crypto)
+{}
 
 Socket::~Socket( void )
 {
@@ -184,4 +195,16 @@ bool Socket::send_packet( CPacket packet )
         std::cout << "Error in send_packet() ... " << errno << std::endl;
 	
     return sent;
+}
+
+Socket& Socket::operator=(const Socket &other) {
+    
+    if (this == &other) return *this;
+    
+    m_sock = other.m_sock;
+    m_addr = other.m_addr;
+    readfds = other.readfds;
+    crypto = other.crypto;
+    
+    return *this;
 }

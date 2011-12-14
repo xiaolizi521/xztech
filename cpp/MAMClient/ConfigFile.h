@@ -24,7 +24,7 @@ public:
     ConfigFile( void );
     
     void parse( const std::string & );
-    void operator= ( const std::string & );
+    ConfigFile& operator= ( const std::string & );
     
     std::string operator[] ( const std::string & );
     std::string Value( const std::string  &, const std::string & );

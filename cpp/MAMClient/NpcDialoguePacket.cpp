@@ -9,7 +9,7 @@
 
 #include "NpcDialoguePacket.h"
 
-NpcDialoguePacket::NpcDialoguePacket( CPacket packet )
+NpcDialoguePacket::NpcDialoguePacket( CPacket packet ) : m_options(), m_nOptions(0)
 {
     BYTE    nStrings    = *( BYTE * )( packet.data + 0x08 );
     int     index       = 10;

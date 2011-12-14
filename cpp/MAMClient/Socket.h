@@ -30,6 +30,8 @@ class Socket
 public:
 	
     Socket( CryptoStuff *crypt );
+    Socket(const Socket&);
+    Socket& operator=(const Socket &other);
     virtual ~Socket( void );
 	
     bool create( void );
@@ -55,6 +57,7 @@ private:
     sockaddr_in m_addr;
     fd_set      readfds;
     CryptoStuff      *crypto;
+
 	
 };
 

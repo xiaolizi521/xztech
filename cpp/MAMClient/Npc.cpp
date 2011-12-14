@@ -9,17 +9,17 @@
 
 #include "Npc.h"
 
-Npc::Npc( void )
+Npc::Npc( void ) : m_y(0), m_id(0), m_look(0), m_type(0), m_x(0)
 {
 }
 
-Npc::Npc( NpcInfoPacket *info )
+Npc::Npc( NpcInfoPacket *info ) : 
+  m_y(info->m_y)
+, m_id(info->m_id)
+, m_look(info->m_look)
+, m_type(info->m_type)
+, m_x(info->m_x)
 {
-    this->m_id      = info->m_id;
-    this->m_type    = info->m_type;
-    this->m_look    = info->m_look;
-    this->m_x       = info->m_x;
-    this->m_y       = info->m_y;
     
     strcpy( this->m_name, info->m_name );
 }

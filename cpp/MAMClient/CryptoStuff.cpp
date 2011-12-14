@@ -10,7 +10,12 @@
 #include "CryptoStuff.h"
 #include "keys.h"
 
-CryptoStuff::CryptoStuff( void ) : m_useNewKeys(false) {}
+CryptoStuff::CryptoStuff( void ) :
+  m_useNewKeys(false)
+, m_localCounter()
+, m_remoteCounter()
+
+{}
 
 CryptoStuff::~CryptoStuff( void )
 {

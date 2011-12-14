@@ -9,7 +9,34 @@
 
 #include "CharInfoPacket.h"
 #include <stdio.h>
-CharInfoPacket::CharInfoPacket( CPacket packet )
+CharInfoPacket::CharInfoPacket( CPacket packet ) :
+  m_characterID(0)
+, m_level(0)
+, m_currentHP(0)
+, m_totalHP(0)
+, m_currentMana(0)
+, m_totalMana(0)
+, m_rank(0)
+, m_reborn(0)
+, m_money(0)
+, m_reputation(0)
+, m_cultivation(0)
+, m_currentEXP(0)
+, m_wuxingPoints(0)
+, m_kungfuPoints(0)
+, m_petRaisingPoints(0)
+, m_thieveryPoints(0)
+, m_availableStats(0)
+, m_life(0)
+, m_look(0)
+, m_defense(0)
+, m_attack(0)
+, m_dexterity(0)
+, m_mana(0)
+, m_mapID(0)
+, m_guildRank(0)
+, m_x(0)
+, m_y(0)
 {
     CHARINFO_PACKET_HEADER header;
     

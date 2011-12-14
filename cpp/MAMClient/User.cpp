@@ -9,13 +9,16 @@
 
 #include "User.h"
 
-User::User( Socket *socket, GameMap *gameMap, Dialogue *dialogue, MapFile *mapFile )
-{
-    this->m_socket      = socket;
-    this->m_gameMap     = gameMap;
-    this->m_dialogue    = dialogue;
-    this->m_mapFile     = mapFile;
-}
+User::User( Socket *socket, GameMap *gameMap, Dialogue *dialogue, MapFile *mapFile ) :
+m_socket(socket), m_gameMap(gameMap), m_dialogue(dialogue), m_mapFile(mapFile)
+, m_y(0), m_totalDexterity(0), m_x(0), m_totalLife(0), m_accountID(0)
+, m_baseDexterity(0), m_guildRank(0), m_cultivation(0), m_money(0)
+, m_totalEXP(0), m_baseDefense(0), m_baseMana(0), m_totalAttack(0)
+, m_currentEXP(0), m_thieveryPoints(0), m_look(0), m_rank(0), m_reputation(0)
+, m_totalDefense(0), m_kungfuPoints(0), m_virtuePoints(0), m_baseAttack(0)
+, m_totalMana(0), m_petRaisingPoints(0), m_wuxingPoints(0), m_baseLife(0)
+, m_level(0), m_characterID(0), m_reborn(0)
+{}
 
 void User::process( CharInfoPacket *packet )
 {
@@ -66,9 +69,9 @@ void User::jump( short x, short y, int mode, int dir )
     if ( mode != 8 )
         this->m_socket->send_packet( lcp );
     
-    JumpPacket *jump = new JumpPacket( this->m_characterID, x, y, mode, direction, timestamp );
+    JumpPacket *pJump = new JumpPacket( this->m_characterID, x, y, mode, direction, timestamp );
     
-    this->m_socket->send_packet( jump->pack() );
+    this->m_socket->send_packet( pJump->pack() );
     
     if ( mode != 8 )
     {
@@ -81,7 +84,7 @@ void User::jump( short x, short y, int mode, int dir )
     this->m_x = x;
     this->m_y = y;
     
-    delete jump;
+    delete pJump;
 }
 
 void User::give_money( int targetID, int ammount )

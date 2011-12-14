@@ -488,7 +488,7 @@ int main ( int argc, char * const argv[] )
 					
                 default:
                     printf( "ID: %d Length: %d Data:\n", packet.header.id, packet.header.size );
-                    hexdump( ( void * )packet.data, ( packet.header.size - sizeof( CPacketHeader ) ) );
+                    hexdump( ( void * )packet.data, (int32_t)( packet.header.size - sizeof( CPacketHeader ) ) );
                     printf( "\n");
                     break;
             }

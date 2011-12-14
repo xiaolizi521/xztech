@@ -9,7 +9,13 @@
 
 #include "MapInfoPacket.h"
 #include <stdio.h>
-MapInfoPacket::MapInfoPacket( CPacket packet )
+MapInfoPacket::MapInfoPacket( CPacket packet ) :
+  m_type(0)
+, m_id(0)
+, m_mapdoc(0)
+, m_direction(0)
+, m_x(0)
+, m_y(0)
 {
     MAP_INFO_PACKET Map;
     
