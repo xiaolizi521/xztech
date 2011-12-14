@@ -21,7 +21,7 @@ public:
     
     void reset( void );
 	
-    void operator ++( int );
+    const Counter operator ++( int );
     
 public:
     

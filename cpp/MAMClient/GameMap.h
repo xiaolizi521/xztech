@@ -83,6 +83,9 @@ private:
     NpcList     m_npcList;
     PortalList  m_portalList;
     
+    GameMap& operator=(const GameMap &other);
+    GameMap(const GameMap&);
+    
 };
 
 #endif

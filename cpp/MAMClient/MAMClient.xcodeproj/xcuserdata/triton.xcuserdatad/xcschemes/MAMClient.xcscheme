@@ -15,15 +15,15 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DD76F620486A84900D96B5E"
                BuildableName = "MAMClient"
-               BlueprintName = "MAMClient AgentGreasy"
+               BlueprintName = "MAMClient"
                ReferencedContainer = "container:MAMClient.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
@@ -40,7 +40,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DD76F620486A84900D96B5E"
             BuildableName = "MAMClient"
-            BlueprintName = "MAMClient AgentGreasy"
+            BlueprintName = "MAMClient"
             ReferencedContainer = "container:MAMClient.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -57,13 +57,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Release">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DD76F620486A84900D96B5E"
             BuildableName = "MAMClient"
-            BlueprintName = "MAMClient AgentGreasy"
+            BlueprintName = "MAMClient"
             ReferencedContainer = "container:MAMClient.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

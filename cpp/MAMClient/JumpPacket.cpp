@@ -9,7 +9,13 @@
 
 #include "JumpPacket.h"
 
-JumpPacket::JumpPacket( CPacket packet )
+JumpPacket::JumpPacket( CPacket packet ) :
+  m_mode(0)
+, m_direction(0)
+, m_timestamp(0)
+, m_x(0)
+, m_y(0)
+, m_playerID(0)
 {
     JUMP_PACKET jump;
     
@@ -23,15 +29,13 @@ JumpPacket::JumpPacket( CPacket packet )
     this->m_y           = jump.y;
 }
 
-JumpPacket::JumpPacket( int player_id, short x, short y, int direction, int mode, int timestamp )
-{
-    this->m_playerID    = player_id;
-    this->m_direction   = direction;
-    this->m_mode        = mode;
-    this->m_timestamp   = timestamp;
-    this->m_x           = x;
-    this->m_y           = y;
-}
+JumpPacket::JumpPacket( int player_id, short x, short y, int direction, int mode, int timestamp ) :
+  m_mode(mode)
+, m_direction(direction)
+, m_timestamp(timestamp)
+, m_x(x)
+, m_y(y)
+, m_playerID(player_id) {}
 
 CPacket JumpPacket::pack( void )
 {
