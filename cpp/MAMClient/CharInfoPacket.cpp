@@ -9,8 +9,10 @@
 
 #include "CharInfoPacket.h"
 #include <stdio.h>
+
 CharInfoPacket::CharInfoPacket( CPacket packet ) :
-  m_characterID(0)
+
+m_characterID(0)
 , m_level(0)
 , m_currentHP(0)
 , m_totalHP(0)
@@ -36,8 +38,8 @@ CharInfoPacket::CharInfoPacket( CPacket packet ) :
 , m_mapID(0)
 , m_guildRank(0)
 , m_x(0)
-, m_y(0)
-{
+, m_y(0) {
+    
     CHARINFO_PACKET_HEADER header;
     
     BYTE nLength = *( BYTE * )( packet.data + 0x57 );

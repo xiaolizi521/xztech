@@ -13,8 +13,8 @@ ActionPacket::ActionPacket( CPacket packet ) :
   m_x(0)
 , m_y(0)
 , m_actionID(0)
-, m_playerID(0)
-{
+, m_playerID(0) {
+    
     ACTION_PACKET action;
     
     memcpy( ( void * )&action, ( void * )packet.data, ( packet.header.size - sizeof( CPacketHeader ) ) );

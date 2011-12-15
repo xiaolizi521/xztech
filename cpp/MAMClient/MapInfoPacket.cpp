@@ -15,8 +15,8 @@ MapInfoPacket::MapInfoPacket( CPacket packet ) :
 , m_mapdoc(0)
 , m_direction(0)
 , m_x(0)
-, m_y(0)
-{
+, m_y(0) {
+    
     MAP_INFO_PACKET Map;
     
     memcpy( ( void * )&Map, ( void * )packet.data, ( packet.header.size - sizeof( CPacketHeader ) ) );
