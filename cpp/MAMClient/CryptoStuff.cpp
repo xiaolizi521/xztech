@@ -23,7 +23,7 @@ CryptoStuff::~CryptoStuff( void )
 
 void CryptoStuff::incoming( char *packet, size_t size )
 {
-    for ( int i = 0; i < size; i++ )
+    for ( size_t i = 0; i < size; i++ )
     {
         int num = this->m_remoteCounter.first;
 		
@@ -37,7 +37,7 @@ void CryptoStuff::outgoing( char *packet, size_t size )
 {
 
     hexdump( ( void * )packet, 52);
-    for ( int i = 0; i < size; i++ )
+    for ( size_t i = 0; i < size; i++ )
     {
         int num = this->m_localCounter.first;
 		

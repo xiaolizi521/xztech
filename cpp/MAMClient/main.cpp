@@ -17,6 +17,7 @@
 #include "MapFile.h"
 
 int account_id;
+Socket login( Socket aSocket, CryptoStuff *crypto, AccountInfo acct_info );
 
 
 Socket login( Socket aSocket, CryptoStuff *crypto, AccountInfo acct_info )
@@ -152,8 +153,8 @@ int main ( int argc, char * const argv[] )
             {
                 case 1002:
                 {
-                    memset( ( void * )( packet.data + 0x04 ), 0, packet.header.size - sizeof( CPacketHeader ) );
-                    packet.data[8] = 0xC5;
+                    memset( ( void * )( packet.data + 0x04 ), 0, (packet.header.size - sizeof( CPacketHeader )) );
+                    packet.data[8] = (char) 0xC5;
 					
                     g_socket.send_packet( packet );
 				}

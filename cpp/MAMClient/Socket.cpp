@@ -94,7 +94,7 @@ bool Socket::is_readable( void )
 
 bool Socket::send( const char *data, size_t size ) const
 {
-    intptr_t status;
+    intptr_t status = 0;
 	size_t nSent = 0;
     
     while ( nSent < size )
@@ -115,7 +115,7 @@ bool Socket::send( const char *data, size_t size ) const
 
 ssize_t Socket::read( const char *buffer, size_t size ) const
 {
-    ssize_t     status;
+    ssize_t     status = 0;
     char    rBuffer[0x1000];
 	size_t     nRecieved = 0;
     

@@ -38,7 +38,7 @@ void MapFile::process( const std::string &map_file )
         for ( int n = 0; n < nodeNum; n++ )
         {
             std::string szNode;
-            Node node = { NULL };
+            Node node = { 0, 0, 0 };
             
             szNode = this->m_mapFile.Value( section, "Node" + toString( n ) );
             
@@ -70,7 +70,7 @@ std::list< vertex_t > MapFile::get_path( int source, int destination )
 
 Node MapFile::get_node( int map_id, int node_id )
 {
-    Node nullNode = { NULL };
+    Node nullNode = { 0, 0, 0 };
     
     MapList::iterator   it;
     NodeList::iterator  nit;
@@ -98,7 +98,7 @@ Transport MapFile::get_transport( int transport_id )
     for ( int i = 0; i < stepCount; i++ )
     {
         std::string the_step = this->m_mapFile.Value( "transport" + toString( transport_id ), "Step" + toString( i ) );
-        Step step = { NULL };
+        Step step = { 0, 0 };
         
         sscanf( the_step.c_str(), "%d,%d", &step.type, &step.param );
         

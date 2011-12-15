@@ -25,7 +25,7 @@ NpcDialoguePacket::NpcDialoguePacket( CPacket packet ) : m_options(), m_nOptions
         
         index += ( length + 1 );
         
-        ( length == 0 ) ? is_option = false : NULL;
+        ( length == 0 ) ? is_option = false : 0;
 
         if ( is_option )
         {

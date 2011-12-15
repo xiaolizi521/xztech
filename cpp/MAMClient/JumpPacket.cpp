@@ -42,7 +42,7 @@ CPacket JumpPacket::pack( void )
     JUMP_PACKET jump;
     CPacket     packet = {
         { 24, 1007 },
-        { NULL }
+        { 0 }
     };
     
     jump.player_id  = this->m_playerID;

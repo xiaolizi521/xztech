@@ -57,7 +57,7 @@ Player::Player( CPacket packet ) :
 	//this->m_position[pLength]     = '\0';
     
     for ( int i = 0; i < (int)strlen( this->m_name ); i++ )
-        ( this->m_name[i] == '\n' ) ? this->m_name[i] = '.' : NULL ;
+        ( this->m_name[i] == '\n' ) ? this->m_name[i] = '.' : 0 ;
 }
 
 Player::~Player( void )

@@ -45,15 +45,15 @@ MessagePacket::MessagePacket( CPacket packet ) :
      * newlines in their names, so don't have to worry about too many people having newlines.
      */
     for ( int i = 0; i < (int)strlen( this->m_sender ); i++ )
-        ( this->m_sender[i] == '\n' ) ? this->m_sender[i] = ' ' : NULL;
+        ( this->m_sender[i] == '\n' ) ? this->m_sender[i] = ' ' : 0;
     
     /* Do the same thing for the message, because sometimes players names are in it. */
     for ( int i = 0; i < (int)strlen( this->m_message ); i++ )
-        ( this->m_message[i] == '\n' ) ? this->m_message[i] = ' ' : NULL;
+        ( this->m_message[i] == '\n' ) ? this->m_message[i] = ' ' : 0;
     
     /* Sigh, do the same for target */
     for ( int i = 0; i < (int)strlen( this->m_target ); i++ )
-        ( this->m_target[i] == '\n' ) ? this->m_target[i] = ' ' : NULL;
+        ( this->m_target[i] == '\n' ) ? this->m_target[i] = ' ' : 0;
     
     switch ( this->m_channel )
     {
@@ -124,7 +124,7 @@ MessagePacket::MessagePacket( const char *sender, const char *target
                              ,int color, short effect
                              ,const char *emotion ) :
  m_effect(effect)
-, m_time(NULL)
+, m_time(0)
 , m_color(color)
 , m_channel(channel)
 {
@@ -136,7 +136,7 @@ MessagePacket::MessagePacket( const char *sender, const char *target
     this->m_channel = channel;
     this->m_color   = color;
     this->m_effect  = effect;
-    this->m_time    = NULL;
+    this->m_time    = 0;
 }
 
 CPacket MessagePacket::pack( void )

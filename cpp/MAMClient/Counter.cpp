@@ -10,8 +10,8 @@
 #include "Counter.h"
 
 Counter::Counter( void ) :
-  first(NULL)
-, second(NULL)
+  first(0)
+, second(0)
 {}
 
 Counter::~Counter( void )
@@ -20,8 +20,8 @@ Counter::~Counter( void )
 
 void Counter::reset( void )
 {
-    this->first     = NULL;
-    this->second    = NULL;
+    this->first     = 0;
+    this->second    = 0;
 }
 
 const Counter Counter::operator++( int )
@@ -32,12 +32,12 @@ const Counter Counter::operator++( int )
 	
     if ( this->first == 256 )
     {
-        this->first = NULL;
+        this->first = 0;
         this->second++;
     }
 	
     if ( this->second == 256 )
-        this->second = NULL;
+        this->second = 0;
     
     return *this;
 }

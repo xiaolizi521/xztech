@@ -152,7 +152,7 @@ AccountInfo account_info( const char *name )
     
     if ( cfg_parse( cfg, filename ) != CFG_PARSE_ERROR )
     {
-        for ( int i = 0; i < cfg_size( cfg, "character" ); i++ )
+        for (unsigned int i = 0; i < cfg_size( cfg, "character" ); i++ )
         {
             cfg_character = cfg_getnsec( cfg, "character", i );
             
