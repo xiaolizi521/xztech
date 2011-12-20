@@ -82,6 +82,7 @@ void Socket::select( void )
     FD_SET( this->m_sock, &this->readfds );
 	
     ::select( this->m_sock + 1, &this->readfds, NULL, NULL, &tv );
+    
 }
 
 bool Socket::is_readable( void )
