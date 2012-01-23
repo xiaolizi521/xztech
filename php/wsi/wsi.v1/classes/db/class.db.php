@@ -23,8 +23,8 @@
 
 function add_single_quotes($arg)
 {
- 	/* Single quote and escape single quotes and backslashes */
- 	return "'" . addcslashes($arg, "'\\") . "'";
+  /* Single quote and escape single quotes and backslashes */
+  return "'" . addcslashes($arg, "'\\") . "'";
 }
 
 /*
@@ -36,39 +36,39 @@ function add_single_quotes($arg)
 
 function getVarType() {
 
-	$type = "";
-	$args = func_get_args();
-	
-	for ($x = 0; $x < count($args); $x++) {
+  $type = "";
+  $args = func_get_args();
+  
+  for ($x = 0; $x < count($args); $x++) {
 
-		// If integer, return i
-		if (is_int($args[$x])) {
-		
-			$type .= "i";
-		}
-		
-		// If string, return s
-		elseif (is_string($args[$x])) {
-		
-			$type .= "s";
-		}
-		
-		// If numerical double, return d
-		elseif (is_double($args[$x])){
-		
-			$type .= "d";
-		}
-		
-		// Mysqli->prepare will not allow anything but the above three, except for blob. For blob, manually set.
-		else {
-		
-			die ("Invalid non-scalar value");
-		}
+    // If integer, return i
+    if (is_int($args[$x])) {
+    
+      $type .= "i";
+    }
+    
+    // If string, return s
+    elseif (is_string($args[$x])) {
+    
+      $type .= "s";
+    }
+    
+    // If numerical double, return d
+    elseif (is_double($args[$x])){
+    
+      $type .= "d";
+    }
+    
+    // Mysqli->prepare will not allow anything but the above three, except for blob. For blob, manually set.
+    else {
+    
+      die ("Invalid non-scalar value");
+    }
 
-	}
-			
-	return $type;
-		
+  }
+      
+  return $type;
+    
 }
 
 /*
@@ -99,74 +99,74 @@ function getVarType() {
 */
 
 class DB extends mysqli {
-	
-	function __construct() {
+  
+  function __construct() {
 
-		/* Try to connect, throw exception on error */
-	 	try {
-	
-			/* Pass all arguments sent to constructor to the parent constructor */
-			$args = func_get_args();
-			eval("parent::__construct(" . join(',',array_map('add_single_quotes', $args)) . ");");
-			
-			/* Throw an error if the connection fails */
-			if(mysqli_connect_error()) {
-				throw new ConnException(mysqli_connect_error(),mysqli_connect_errno());
-			}
-		}
-		
-		/*Catch a connection error.*/
-		catch (ConnException $exception) {
-		
-			printf("Connection Error Occurred.\n");
-			var_dump($exception->getMessage());
-		}
-		
-		/*Catch any other error*/
-		catch (Exception $exception) {
-		
-			printf("Other Error Occurred.\n");
-			var_dump($exception->getMessage());
-		}
-	}
-	
-	function query($query) {
-		
-		/*Attempt the query. Throw exception on error or failure.*/
-		try {
+    /* Try to connect, throw exception on error */
+    try {
+  
+      /* Pass all arguments sent to constructor to the parent constructor */
+      $args = func_get_args();
+      eval("parent::__construct(" . join(',',array_map('add_single_quotes', $args)) . ");");
+      
+      /* Throw an error if the connection fails */
+      if(mysqli_connect_error()) {
+        throw new ConnException(mysqli_connect_error(),mysqli_connect_errno());
+      }
+    }
+    
+    /*Catch a connection error.*/
+    catch (ConnException $exception) {
+    
+      printf("Connection Error Occurred.\n");
+      var_dump($exception->getMessage());
+    }
+    
+    /*Catch any other error*/
+    catch (Exception $exception) {
+    
+      printf("Other Error Occurred.\n");
+      var_dump($exception->getMessage());
+    }
+  }
+  
+  function query($query) {
+    
+    /*Attempt the query. Throw exception on error or failure.*/
+    try {
 
-			/*Perform a SQL Query utilizing the parent Query function*/
-			$result = parent::query($query);
-			
-			/*Throw an error if the query fails.*/
-			if(mysqli_error($this)) {
-				throw new QueryException(mysqli_error($this),mysqli_errno($this));
-			}
-		}
-		
-		/*Catch any query exception*/
-		catch (QueryException $exception) {
-			
-			printf("Query Error Occurred.\n");
-			var_dump($exception->getMessage());
-		}
-		
-		/*Catch any other exception*/
-		catch (Exception $exception) {
-		
-			printf("Other Error Occurred.\n");
-			var_dump($exception->getMessage());
-		}
-		
-		return $result;
-	}
+      /*Perform a SQL Query utilizing the parent Query function*/
+      $result = parent::query($query);
+      
+      /*Throw an error if the query fails.*/
+      if(mysqli_error($this)) {
+        throw new QueryException(mysqli_error($this),mysqli_errno($this));
+      }
+    }
+    
+    /*Catch any query exception*/
+    catch (QueryException $exception) {
+      
+      printf("Query Error Occurred.\n");
+      var_dump($exception->getMessage());
+    }
+    
+    /*Catch any other exception*/
+    catch (Exception $exception) {
+    
+      printf("Other Error Occurred.\n");
+      var_dump($exception->getMessage());
+    }
+    
+    return $result;
+  }
 
-	function prepare($query) {
-		
-		$this->stmt = new DBStmt($this, $query);
+  function prepare($query) {
+    
+    $this->stmt = new DBStmt($this, $query);
 
-        return $this->stmt;
-	}
+    return $this->stmt;
+  }
 }
 
 ?>
