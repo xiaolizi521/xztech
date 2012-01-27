@@ -1,4 +1,4 @@
-pass#!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Bandwidth Reporting
@@ -9,7 +9,7 @@ pass#!/usr/bin/python
 # Once complete, the results are emailed to the Recipients listed.
 
 import datetime
-import psycopg2
+import e
 import sys
 import os
 import smtplib

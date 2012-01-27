@@ -1,0 +1,320 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6232D85614A0855200EF114A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6232D85514A0855200EF114A /* main.cpp */; };
+		6232D85814A0855200EF114A /* IRC_Bot.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6232D85714A0855200EF114A /* IRC_Bot.1 */; };
+		6232D86014A08B6100EF114A /* irc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6232D85F14A08B6100EF114A /* irc.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6232D84F14A0855200EF114A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				6232D85814A0855200EF114A /* IRC_Bot.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6232D85114A0855200EF114A /* IRC Bot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "IRC Bot"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6232D85514A0855200EF114A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6232D85714A0855200EF114A /* IRC_Bot.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = IRC_Bot.1; sourceTree = "<group>"; };
+		6232D85E14A085CC00EF114A /* irc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = irc.h; sourceTree = "<group>"; };
+		6232D85F14A08B6100EF114A /* irc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = irc.cpp; sourceTree = "<group>"; };
+		627B14F314A8500500920215 /* db.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = db.h; sourceTree = "<group>"; };
+		62BB411714A23C7D005578D4 /* event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
+		62BB411B14A273CE005578D4 /* define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
+		62CD1B4314ACF50600485419 /* users.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.sql; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6232D84E14A0855200EF114A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6232D84614A0855200EF114A = {
+			isa = PBXGroup;
+			children = (
+				6232D85414A0855200EF114A /* IRC Bot */,
+				6232D85214A0855200EF114A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6232D85214A0855200EF114A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6232D85114A0855200EF114A /* IRC Bot */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6232D85414A0855200EF114A /* IRC Bot */ = {
+			isa = PBXGroup;
+			children = (
+				627B14F114A8401F00920215 /* Database */,
+				62BB411A14A273C3005578D4 /* Misc */,
+				62BB411514A23651005578D4 /* Event */,
+				62BB411314A2363F005578D4 /* Network */,
+				6232D85514A0855200EF114A /* main.cpp */,
+				6232D85714A0855200EF114A /* IRC_Bot.1 */,
+			);
+			path = "IRC Bot";
+			sourceTree = "<group>";
+		};
+		627B14F114A8401F00920215 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				62CD1B4114ACF4D100485419 /* sql */,
+				627B14F314A8500500920215 /* db.h */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		62BB411314A2363F005578D4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6232D85E14A085CC00EF114A /* irc.h */,
+				6232D85F14A08B6100EF114A /* irc.cpp */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		62BB411514A23651005578D4 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				62BB411714A23C7D005578D4 /* event.h */,
+			);
+			name = Event;
+			sourceTree = "<group>";
+		};
+		62BB411A14A273C3005578D4 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				62BB411B14A273CE005578D4 /* define.h */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		62CD1B4114ACF4D100485419 /* sql */ = {
+			isa = PBXGroup;
+			children = (
+				62CD1B4314ACF50600485419 /* users.sql */,
+			);
+			name = sql;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6232D85014A0855200EF114A /* IRC Bot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6232D85B14A0855200EF114A /* Build configuration list for PBXNativeTarget "IRC Bot" */;
+			buildPhases = (
+				6232D84D14A0855200EF114A /* Sources */,
+				6232D84E14A0855200EF114A /* Frameworks */,
+				6232D84F14A0855200EF114A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "IRC Bot";
+			productName = "IRC Bot";
+			productReference = 6232D85114A0855200EF114A /* IRC Bot */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6232D84814A0855200EF114A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0410;
+				ORGANIZATIONNAME = "Enova Financial";
+			};
+			buildConfigurationList = 6232D84B14A0855200EF114A /* Build configuration list for PBXProject "IRC Bot" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6232D84614A0855200EF114A;
+			productRefGroup = 6232D85214A0855200EF114A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6232D85014A0855200EF114A /* IRC Bot */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6232D84D14A0855200EF114A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6232D85614A0855200EF114A /* main.cpp in Sources */,
+				6232D86014A08B6100EF114A /* irc.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6232D85914A0855200EF114A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = 4.2;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6232D85A14A0855200EF114A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = 4.2;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6232D85C14A0855200EF114A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_PROTOTYPE_CONVERSION = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				OTHER_LDFLAGS = "-lpq";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-pthreads";
+			};
+			name = Debug;
+		};
+		6232D85D14A0855200EF114A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_PROTOTYPE_CONVERSION = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				OTHER_LDFLAGS = "-lpq";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-pthreads";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6232D84B14A0855200EF114A /* Build configuration list for PBXProject "IRC Bot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6232D85914A0855200EF114A /* Debug */,
+				6232D85A14A0855200EF114A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6232D85B14A0855200EF114A /* Build configuration list for PBXNativeTarget "IRC Bot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6232D85C14A0855200EF114A /* Debug */,
+				6232D85D14A0855200EF114A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6232D84814A0855200EF114A /* Project object */;
+}
