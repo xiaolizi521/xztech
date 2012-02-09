@@ -26,7 +26,6 @@
 @xztech.org::aspmx2.googlemail.com:10:14400::
 @xztech.org::aspmx3.googlemail.com:10:14400::
 
-
 =titan.xztech.org:98.129.169.63:3600::
 =phobos.xztech.org:66.135.41.236:3600::
 
@@ -169,3 +168,62 @@ Cmail.x-zen.cx:ghs.google.com:3600::
 +ftp.webetheshitdotcom.com:66.135.41.236:3600::
 +mail.webetheshitdotcom.com:66.135.41.236:3600::
 +irc.webetheshitdotcom.com:66.135.41.236:3600::
+
+# Austin Postgres Users Group/AustinPUG Domains (For Meetup/Facebook Pages)
+# 4 domains, austinpug.org/net/com/us
+
+# >>[ austinpug.org ]<<
+# Primary Name Server and SOA
+.austinpug.org:66.135.41.236:ns1.xztech.org:14400::
+
+# Additional NS Records
+&austinpug.org:98.129.169.63:ns2.xztech.org:14400::
+
+# A Records
++austinpug.org:66.135.41.236:3600::
++ftp.austinpug.org:66.135.41.236:3600::
+
+# CName for Meetup Group Page
+Cwww.austinpug.org:www.meetup.com:3600::
+
+# >>[ austinpug.net ]<<
+# Primary Name Server and SOA
+.austinpug.net:66.135.41.236:ns1.xztech.org:14400::
+
+# Additional NS Records
+&austinpug.net:98.129.169.63:ns2.xztech.org:14400::
+
+# A Records
++austinpug.net:66.135.41.236:3600::
++ftp.austinpug.net:66.135.41.236:3600::
+
+# CName for Meetup Group Page
+Cwww.austinpug.net:www.meetup.com:3600::
+
+# >>[ austinpug.com ]<<
+# Primary Name Server and SOA
+.austinpug.com:66.135.41.236:ns1.xztech.org:14400::
+
+# Additional NS Records
+&austinpug.com:98.129.169.63:ns2.xztech.org:14400::
+
+# A Records
++austinpug.com:66.135.41.236:3600::
++ftp.austinpug.com:66.135.41.236:3600::
+
+# CName for Meetup Group Page
+Cwww.austinpug.com:www.meetup.com:3600::
+
+# >>[ austinpug.us ]<<
+# Primary Name Server and SOA
+.austinpug.us:66.135.41.236:ns1.xztech.org:14400::
+
+# Additional NS Records
+&austinpug.us:98.129.169.63:ns2.xztech.org:14400::
+
+# A Records
++austinpug.us:66.135.41.236:3600::
++ftp.austinpug.us:66.135.41.236:3600::
+
+# CName for Meetup Group Page
+Cwww.austinpug.us:www.meetup.com:3600::
