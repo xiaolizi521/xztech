@@ -3,12 +3,10 @@
 # Primary Domain - xztech.org
 
 # Primary Name Server and SOA
-.xztech.org:66.135.41.236:ns1.xztech.org:14400::
+.xztech.org:66.135.41.236:ns1.xztech.org:300::
 
 # Additional NS Records
-&xztech.org:98.129.169.63:ns2.xztech.org:14400::
-&xztech.org:66.135.41.236:ns1.x-zen.cx:14400::
-&xztech.org:98.129.169.63:ns2.x-zen.cx:14400::
+&xztech.org:98.129.169.63:ns2.xztech.org:300::
 
 # A Records
 +xztech.org:66.135.41.236:3600::
@@ -20,11 +18,11 @@
 +theshit.xztech.org:66.135.41.236:300::
 
 # MX Records - Google Hosted Mail
-@xztech.org::aspmx.l.google.com:1:14400::
-@xztech.org::alt1.aspmx.l.google.com:5:14400::
-@xztech.org::alt2.aspmx.l.google.com:5:14400::
-@xztech.org::aspmx2.googlemail.com:10:14400::
-@xztech.org::aspmx3.googlemail.com:10:14400::
+@xztech.org::aspmx.l.google.com:1:300::
+@xztech.org::alt1.aspmx.l.google.com:5:300::
+@xztech.org::alt2.aspmx.l.google.com:5:300::
+@xztech.org::aspmx2.googlemail.com:10:300::
+@xztech.org::aspmx3.googlemail.com:10:300::
 
 =titan.xztech.org:98.129.169.63:3600::
 =phobos.xztech.org:66.135.41.236:3600::
@@ -34,10 +32,10 @@
 Cmail.xztech.org:ghs.google.com:3600::
 
 # Create Primary Name Server (ns1) and SOA
-.x-zen.me:66.135.41.236:ns1.x-zen.me:14400::
+.x-zen.me:66.135.41.236:ns1.x-zen.me:300::
 
 # Additional NS Records
-&x-zen.me:98.129.169.63:ns2.x-zen.me:14400::
+&x-zen.me:98.129.169.63:ns2.x-zen.me:300::
 
 # A Records
 +x-zen.me:66.135.41.236:3600::
@@ -47,10 +45,10 @@ Cmail.xztech.org:ghs.google.com:3600::
 
 # x-zen.info
 # Attach Primary Name Server (ns1) and SOA
-.x-zen.info::ns1.x-zen.me:14400::
+.x-zen.info::ns1.x-zen.me:300::
 
 # Secondary NS record
-&x-zen.info::ns2.x-zen.me:14400::
+&x-zen.info::ns2.x-zen.me:300::
 
 # A Records
 =x-zen.info:66.135.41.236:3600::
@@ -61,17 +59,17 @@ Cmail.xztech.org:ghs.google.com:3600::
 
 # Primary Domain - x-zen.cx
 # Create Primary Name Server (ns1) and SOA
-.x-zen.cx:66.135.41.236:ns1.x-zen.cx:14400::
+.x-zen.cx:66.135.41.236:ns1.x-zen.cx:300::
 
 # Additional NS Records
-&x-zen.cx:98.129.169.63:ns2.x-zen.cx:14400::
+&x-zen.cx:98.129.169.63:ns2.x-zen.cx:300::
 
 # MX Records - Google Hosted Mail
-@x-zen.cx::aspmx.l.google.com:1:14400::
-@x-zen.cx::alt1.aspmx.l.google.com:5:14400::
-@x-zen.cx::alt2.aspmx.l.google.com:5:14400::
-@x-zen.cx::aspmx2.googlemail.com:10:14400::
-@x-zen.cx::aspmx3.googlemail.com:10:14400::
+@x-zen.cx::aspmx.l.google.com:1:300::
+@x-zen.cx::alt1.aspmx.l.google.com:5:300::
+@x-zen.cx::alt2.aspmx.l.google.com:5:300::
+@x-zen.cx::aspmx2.googlemail.com:10:300::
+@x-zen.cx::aspmx3.googlemail.com:10:300::
 
 # A Records
 +x-zen.cx:66.135.41.236:3600::
@@ -82,7 +80,7 @@ Cmail.xztech.org:ghs.google.com:3600::
 +*.sbtest.x-zen.cx:69.172.247.144:300::
 
 # X-Zen Catch-all Wildcard
-+*.x-zen.cx:66.135.41.236:14400::
++*.x-zen.cx:66.135.41.236:300::
 
 # Adfrontiers Entries
 +aflb1.x-zen.cx:67.203.19.40:300::
@@ -112,10 +110,10 @@ Cmail.x-zen.cx:ghs.google.com:3600::
 
 # Bleachforums DNS
 # Attach Primary Name Server (ns1) and SOA
-.bleachforums.com::ns1.x-zen.cx:14400::
+.bleachforums.com::ns1.x-zen.cx:300::
 
 # Secondary NS record
-&bleachforums.com::ns2.x-zen.cx:14400::
+&bleachforums.com::ns2.x-zen.cx:300::
 
 # A Records
 =bleachforums.com:98.129.169.143:3600::
@@ -129,10 +127,10 @@ Cmail.x-zen.cx:ghs.google.com:3600::
 
 # Bleachforums DNS
 # Attach Primary Name Server (ns1) and SOA
-.bleachforums.us::ns1.x-zen.me:14400::
+.bleachforums.us::ns1.x-zen.me:300::
 
 # Secondary NS record
-&bleachforums.us::ns2.x-zen.me:14400::
+&bleachforums.us::ns2.x-zen.me:300::
 
 # A Records
 =bleachforums.us:98.129.169.143:3600::
@@ -143,10 +141,10 @@ Cmail.x-zen.cx:ghs.google.com:3600::
 
 # Bleachforums DNS
 # Attach Primary Name Server (ns1) and SOA
-.bleachforums.net::ns1.x-zen.me:14400::
+.bleachforums.net::ns1.x-zen.me:300::
 
 # Secondary NS record
-&bleachforums.net::ns2.x-zen.me:14400::
+&bleachforums.net::ns2.x-zen.me:300::
 
 # A Records
 =bleachforums.net:98.129.169.143:3600::
@@ -157,10 +155,10 @@ Cmail.x-zen.cx:ghs.google.com:3600::
 
 # Webetheshitdotcom.com DNS
 # Attach Primary Name Server (ns1) and SOA
-.webetheshitdotcom.com::ns1.xztech.org:14400::
+.webetheshitdotcom.com::ns1.xztech.org:300::
 
 # Secondary NS record
-&webetheshitdotcom.com::ns2.xztech.org:14400::
+&webetheshitdotcom.com::ns2.xztech.org:300::
 
 # A Records
 =webetheshitdotcom.com:66.135.41.236:3600::
@@ -174,24 +172,38 @@ Cmail.x-zen.cx:ghs.google.com:3600::
 
 # >>[ austinpug.org ]<<
 # Primary Name Server and SOA
-.austinpug.org:66.135.41.236:ns1.xztech.org:14400::
+.austinpug.org:66.135.41.236:ns1.xztech.org:300::
 
 # Additional NS Records
-&austinpug.org:98.129.169.63:ns2.xztech.org:14400::
+&austinpug.org:98.129.169.63:ns2.xztech.org:300::
 
 # A Records
 +austinpug.org:66.135.41.236:3600::
 +ftp.austinpug.org:66.135.41.236:3600::
++pgday.austinpug.org:66.135.41.236:300::
++lists.austinpug.org:66.135.41.236:300::
+
+@lists.austinpug.org:66.135.41.236::1:300::
 
 # CName for Meetup Group Page
 Cwww.austinpug.org:www.meetup.com:3600::
+Cmail.austinpug.org:ghs.google.com:300::
+
+'austinpug.org:google-site-verification=paPSNhDJnJYRMBKwbDDvS2XQ9qhY0i-ta6mf-LK-Td0:300
+
+# MX Records - Google Hosted Mail
+@austinpug.org::aspmx.l.google.com:1:300::
+@austinpug.org::alt1.aspmx.l.google.com:5:300::
+@austinpug.org::alt2.aspmx.l.google.com:5:300::
+@austinpug.org::aspmx2.googlemail.com:10:300::
+@austinpug.org::aspmx3.googlemail.com:10:300::
 
 # >>[ austinpug.net ]<<
 # Primary Name Server and SOA
-.austinpug.net:66.135.41.236:ns1.xztech.org:14400::
+.austinpug.net:66.135.41.236:ns1.xztech.org:300::
 
 # Additional NS Records
-&austinpug.net:98.129.169.63:ns2.xztech.org:14400::
+&austinpug.net:98.129.169.63:ns2.xztech.org:300::
 
 # A Records
 +austinpug.net:66.135.41.236:3600::
@@ -202,10 +214,10 @@ Cwww.austinpug.net:www.meetup.com:3600::
 
 # >>[ austinpug.com ]<<
 # Primary Name Server and SOA
-.austinpug.com:66.135.41.236:ns1.xztech.org:14400::
+.austinpug.com:66.135.41.236:ns1.xztech.org:300::
 
 # Additional NS Records
-&austinpug.com:98.129.169.63:ns2.xztech.org:14400::
+&austinpug.com:98.129.169.63:ns2.xztech.org:300::
 
 # A Records
 +austinpug.com:66.135.41.236:3600::
@@ -216,10 +228,10 @@ Cwww.austinpug.com:www.meetup.com:3600::
 
 # >>[ austinpug.us ]<<
 # Primary Name Server and SOA
-.austinpug.us:66.135.41.236:ns1.xztech.org:14400::
+.austinpug.us:66.135.41.236:ns1.xztech.org:300::
 
 # Additional NS Records
-&austinpug.us:98.129.169.63:ns2.xztech.org:14400::
+&austinpug.us:98.129.169.63:ns2.xztech.org:300::
 
 # A Records
 +austinpug.us:66.135.41.236:3600::
