@@ -221,6 +221,7 @@ Cmail.austinpug.org:ghs.google.com:300::
 # A Records
 +austinpug.com:66.135.41.236:3600::
 +ftp.austinpug.com:66.135.41.236:3600::
++pgday.austinpug.com:66.135.41.236:300::
 +*.austipug.com:66.135.41.236:300::
 
 # >>[ austinpug.us ]<<
@@ -233,4 +234,5 @@ Cmail.austinpug.org:ghs.google.com:300::
 # A Records
 +austinpug.us:66.135.41.236:3600::
 +ftp.austinpug.us:66.135.41.236:3600::
++pgday.austinpug.us:66.135.41.236:300::
 +*.austipug.us:66.135.41.236:300::
