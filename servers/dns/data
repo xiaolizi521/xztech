@@ -208,9 +208,7 @@ Cmail.austinpug.org:ghs.google.com:300::
 # A Records
 +austinpug.net:66.135.41.236:3600::
 +ftp.austinpug.net:66.135.41.236:3600::
-
-# CName for Meetup Group Page
-Cwww.austinpug.net:www.meetup.com:3600::
++*.austipug.net:66.135.41.236:300::
 
 # >>[ austinpug.com ]<<
 # Primary Name Server and SOA
@@ -222,9 +220,7 @@ Cwww.austinpug.net:www.meetup.com:3600::
 # A Records
 +austinpug.com:66.135.41.236:3600::
 +ftp.austinpug.com:66.135.41.236:3600::
-
-# CName for Meetup Group Page
-Cwww.austinpug.com:www.meetup.com:3600::
++*.austipug.com:66.135.41.236:300::
 
 # >>[ austinpug.us ]<<
 # Primary Name Server and SOA
@@ -236,6 +232,4 @@ Cwww.austinpug.com:www.meetup.com:3600::
 # A Records
 +austinpug.us:66.135.41.236:3600::
 +ftp.austinpug.us:66.135.41.236:3600::
-
-# CName for Meetup Group Page
-Cwww.austinpug.us:www.meetup.com:3600::
++*.austipug.us:66.135.41.236:300::
