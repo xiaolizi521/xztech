@@ -209,7 +209,7 @@ Cmail.austinpug.org:ghs.google.com:300::
 +austinpug.net:66.135.41.236:3600::
 +ftp.austinpug.net:66.135.41.236:3600::
 +pgday.austinpug.net:66.135.41.236:300::
-+*.austipug.net:66.135.41.236:300::
++www.austipug.net:66.135.41.236:300::
 
 # >>[ austinpug.com ]<<
 # Primary Name Server and SOA
@@ -222,7 +222,7 @@ Cmail.austinpug.org:ghs.google.com:300::
 +austinpug.com:66.135.41.236:3600::
 +ftp.austinpug.com:66.135.41.236:3600::
 +pgday.austinpug.com:66.135.41.236:300::
-+*.austipug.com:66.135.41.236:300::
++www.austinpug.com:66.135.41.236:300::
 
 # >>[ austinpug.us ]<<
 # Primary Name Server and SOA
@@ -235,4 +235,4 @@ Cmail.austinpug.org:ghs.google.com:300::
 +austinpug.us:66.135.41.236:3600::
 +ftp.austinpug.us:66.135.41.236:3600::
 +pgday.austinpug.us:66.135.41.236:300::
-+*.austipug.us:66.135.41.236:300::
++www.austipug.us:66.135.41.236:300::
