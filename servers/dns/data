@@ -178,15 +178,15 @@ Cmail.x-zen.cx:ghs.google.com:3600::
 &austinpug.org:98.129.169.63:ns2.xztech.org:300::
 
 # A Records
-+austinpug.org:66.135.41.236:3600::
-+ftp.austinpug.org:66.135.41.236:3600::
++austinpug.org:66.135.41.236:300::
++ftp.austinpug.org:66.135.41.236:300::
 +pgday.austinpug.org:66.135.41.236:300::
 +lists.austinpug.org:66.135.41.236:300::
 
 @lists.austinpug.org:66.135.41.236::1:300::
 
 # CName for Meetup Group Page
-Cwww.austinpug.org:www.meetup.com:3600::
+Cwww.austinpug.org:www.meetup.com:300::
 Cmail.austinpug.org:ghs.google.com:300::
 
 # MX Records - Google Hosted Mail
@@ -204,8 +204,8 @@ Cmail.austinpug.org:ghs.google.com:300::
 &austinpug.net:98.129.169.63:ns2.xztech.org:300::
 
 # A Records
-+austinpug.net:66.135.41.236:3600::
-+ftp.austinpug.net:66.135.41.236:3600::
++austinpug.net:66.135.41.236:300::
++ftp.austinpug.net:66.135.41.236:300::
 +pgday.austinpug.net:66.135.41.236:300::
 +www.austipug.net:66.135.41.236:300::
 
@@ -217,8 +217,8 @@ Cmail.austinpug.org:ghs.google.com:300::
 &austinpug.com:98.129.169.63:ns2.xztech.org:300::
 
 # A Records
-+austinpug.com:66.135.41.236:3600::
-+ftp.austinpug.com:66.135.41.236:3600::
++austinpug.com:66.135.41.236:300::
++ftp.austinpug.com:66.135.41.236:300::
 +pgday.austinpug.com:66.135.41.236:300::
 +www.austinpug.com:66.135.41.236:300::
 
@@ -230,7 +230,7 @@ Cmail.austinpug.org:ghs.google.com:300::
 &austinpug.us:98.129.169.63:ns2.xztech.org:300::
 
 # A Records
-+austinpug.us:66.135.41.236:3600::
-+ftp.austinpug.us:66.135.41.236:3600::
++austinpug.us:66.135.41.236:300::
++ftp.austinpug.us:66.135.41.236:300::
 +pgday.austinpug.us:66.135.41.236:300::
 +www.austipug.us:66.135.41.236:300::
