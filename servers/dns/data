@@ -189,8 +189,6 @@ Cmail.x-zen.cx:ghs.google.com:3600::
 Cwww.austinpug.org:www.meetup.com:3600::
 Cmail.austinpug.org:ghs.google.com:300::
 
-'austinpug.org:google-site-verification=paPSNhDJnJYRMBKwbDDvS2XQ9qhY0i-ta6mf-LK-Td0:300
-
 # MX Records - Google Hosted Mail
 @austinpug.org::aspmx.l.google.com:1:300::
 @austinpug.org::alt1.aspmx.l.google.com:5:300::
