@@ -5,14 +5,14 @@
 # statements for each of your virtual hosts
 
 server {
-	listen   80 default;
+	listen   81 default;
 	server_name  localhost;
 
 	access_log  /var/log/nginx/localhost.access.log;
 
 	location / {
 		root   /var/www/nginx-default;
-		index  index.html index.htm;
+		index  index.html index.htm index.php;
 	}
 
 	location /doc {
